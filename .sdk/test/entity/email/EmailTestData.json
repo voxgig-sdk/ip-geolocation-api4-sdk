@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "email": {
+      "EMAIL00": {
+        "email": "s5a",
+        "factor": {},
+        "has_mx_record": true,
+        "ip": "s5d",
+        "is_disposable": true,
+        "mx_record": [],
+        "risk_level": "s60",
+        "score": 97,
+        "syntax": {},
+        "id": "EMAIL00"
+      },
+      "EMAIL01": {
+        "email": "sb4",
+        "factor": {},
+        "has_mx_record": true,
+        "ip": "sb7",
+        "is_disposable": true,
+        "mx_record": [],
+        "risk_level": "sba",
+        "score": 187,
+        "syntax": {},
+        "id": "EMAIL01"
+      },
+      "EMAIL02": {
+        "email": "s10e",
+        "factor": {},
+        "has_mx_record": true,
+        "ip": "s111",
+        "is_disposable": true,
+        "mx_record": [],
+        "risk_level": "s114",
+        "score": 277,
+        "syntax": {},
+        "id": "EMAIL02"
+      }
+    }
+  },
+  "new": {
+    "email": {
+      "email_ref01": {
+        "email": "s168",
+        "factor": {},
+        "has_mx_record": true,
+        "ip": "s16b",
+        "is_disposable": true,
+        "mx_record": [],
+        "risk_level": "s16e",
+        "score": 367,
+        "syntax": {}
+      }
+    }
+  }
+}

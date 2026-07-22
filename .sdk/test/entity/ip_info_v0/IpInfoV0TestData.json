@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "ip_info_v0": {
+      "IP_INFO_V000": {
+        "ip": "IP01",
+        "id": "IP_INFO_V000"
+      },
+      "IP_INFO_V001": {
+        "ip": "IP01",
+        "id": "IP_INFO_V001"
+      },
+      "IP_INFO_V002": {
+        "ip": "IP01",
+        "id": "IP_INFO_V002"
+      }
+    }
+  },
+  "new": {
+    "ip_info_v0": {
+      "ip_info_v0_ref01": {}
+    }
+  }
+}

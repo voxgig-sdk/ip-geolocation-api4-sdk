@@ -1,0 +1,37 @@
+# BasicCacheManagementFlow
+
+main: kit: flow: BasicCacheManagementFlow:
+{
+  entity: "cache_management",
+  kind: "basic",
+  name: "BasicCacheManagementFlow",
+  step: [
+    {
+      input: {
+        ref: "cache_management_ref01",
+        srcdatavar: "cache_management_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-cache_management_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "cache_management_ref01",
+        suffix: "_rm0"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicCacheManagementFlow"
+}

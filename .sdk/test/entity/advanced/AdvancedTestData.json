@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "advanced": {
+      "ADVANCED00": {
+        "disposable": true,
+        "email": "s65",
+        "free": true,
+        "gravatar": "s67",
+        "has_mx_record": true,
+        "reachable": "s69",
+        "role_account": true,
+        "smtp": "s6b",
+        "suggestion": "s6c",
+        "syntax": {},
+        "id": "ADVANCED00"
+      },
+      "ADVANCED01": {
+        "disposable": true,
+        "email": "sc9",
+        "free": true,
+        "gravatar": "scb",
+        "has_mx_record": true,
+        "reachable": "scd",
+        "role_account": true,
+        "smtp": "scf",
+        "suggestion": "sd0",
+        "syntax": {},
+        "id": "ADVANCED01"
+      },
+      "ADVANCED02": {
+        "disposable": true,
+        "email": "s12d",
+        "free": true,
+        "gravatar": "s12f",
+        "has_mx_record": true,
+        "reachable": "s131",
+        "role_account": true,
+        "smtp": "s133",
+        "suggestion": "s134",
+        "syntax": {},
+        "id": "ADVANCED02"
+      }
+    }
+  },
+  "new": {
+    "advanced": {
+      "advanced_ref01": {
+        "disposable": true,
+        "email": "s191",
+        "free": true,
+        "gravatar": "s193",
+        "has_mx_record": true,
+        "reachable": "s195",
+        "role_account": true,
+        "smtp": "s197",
+        "suggestion": "s198",
+        "syntax": {}
+      }
+    }
+  }
+}

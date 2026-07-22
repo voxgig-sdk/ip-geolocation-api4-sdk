@@ -1,0 +1,28 @@
+# BasicApiUsageStatsModelFlow
+
+main: kit: flow: BasicApiUsageStatsModelFlow:
+{
+  entity: "api_usage_stats_model",
+  kind: "basic",
+  name: "BasicApiUsageStatsModelFlow",
+  step: [
+    {
+      input: {
+        ref: "api_usage_stats_model_ref01",
+        srcdatavar: "api_usage_stats_model_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-api_usage_stats_model_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicApiUsageStatsModelFlow"
+}

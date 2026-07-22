@@ -1,0 +1,3781 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "IP-API.io - IP Geolocation & Security API",
+    "description": "Comprehensive IP address intelligence API providing geolocation, security analysis, and network information.\n\nFeatures:\n- Real-time IP geolocation with city-level accuracy\n- Advanced threat detection and security scoring\n- VPN, proxy, and Tor node detection\n- Email validation and reputation analysis\n- Email / ip risk scoring for fraud prevention\n\nPerfect for fraud prevention, security applications, content personalization, and compliance requirements.",
+    "contact": {
+      "name": "IP-API.io Support",
+      "url": "https://ip-api.io",
+      "email": "support@ip-api.io"
+    },
+    "license": {
+      "name": "Commercial License",
+      "url": "https://ip-api.io"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ip-api.io",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Email Validation API",
+      "description": "Comprehensive email validation and analysis service for fraud prevention and data quality.\n\n**Validation Features**:\n- RFC 5322/5321 syntax compliance checking\n- Real-time MX record verification\n- Disposable email provider detection (10,000+ domains)\n- Typosquatting and misspelling detection\n- Free email provider identification\n- Role-based email detection (admin@, noreply@, etc.)\n\n**Use Cases**:\n- User registration validation\n- Marketing list cleaning\n- Fraud prevention workflows\n- Data quality assurance\n- Compliance verification\n\n**Performance**: Typical response time < 150ms with 99.9% uptime SLA"
+    },
+    {
+      "name": "Risk Score API",
+      "description": "Advanced fraud detection API that calculates risk scores for IP addresses and email addresses.\n\n**Risk Score Range**: 0.0-1.0 (higher = more risky)\n- 0.8-1.0: Very High Risk (immediate review recommended)\n- 0.6-0.8: High Risk (enhanced verification required)\n- 0.4-0.6: Medium Risk (standard verification)\n- 0.2-0.4: Low Risk (minimal verification)\n- 0.0-0.2: Very Low Risk (trusted)\n\n**Analysis Factors**:\n- IP: VPN/Proxy detection, Tor nodes, datacenter hosting, spam history, threat intelligence\n- Email: Disposable providers, syntax validation, domain reputation, MX record verification\n\n**Rate Limiting**: API calls are rate-limited per client IP or API key to ensure fair usage."
+    },
+    {
+      "name": "Tor Detection API",
+      "description": "Real-time Tor exit node detection. Checks whether an IP address is a known Tor exit node using live Tor consensus data updated every hour.\n\n**Data source**: Tor Project's official exit node list.\n\n**Use cases**: Fraud prevention, content licensing enforcement, compliance workflows, threat intelligence."
+    },
+    {
+      "name": "IP Reputation API",
+      "description": "Real-time IP reputation scoring that combines VPN, proxy, Tor, datacenter, and threat intelligence signals into a single composite score.\n\n**Reputation Score Range**: 0.0–1.0 (displayed as 0–100; higher = worse reputation)\n- 0.8–1.0: VERY_HIGH risk — block recommended\n- 0.6–0.8: HIGH risk — challenge or enhanced verification\n- 0.4–0.6: MEDIUM risk — standard verification\n- 0.2–0.4: LOW risk — allow with monitoring\n- 0.0–0.2: VERY_LOW risk — trusted\n\n**Signals analysed**: VPN/proxy detection, Tor exit node membership, datacenter hosting, spam/abuse history, suspicious activity patterns."
+    },
+    {
+      "name": "Advanced Email Validation API",
+      "description": "Advanced email validation service with comprehensive deliverability analysis and SMTP verification.\n\n**Advanced Validation Features**:\n- Real-time SMTP server verification\n- Inbox reachability testing\n- Catch-all domain detection\n- Advanced disposable email detection\n- Gravatar profile verification\n- Role-based account identification\n- Free email provider detection\n- Domain suggestion for typos\n- MX record validation\n\n**Use Cases**:\n- Marketing campaign optimization\n- User registration with high confidence\n- E-commerce customer validation\n- Lead qualification\n- Fraud prevention workflows\n- Email list cleaning and verification\n\n**Performance**: Response time varies 500ms-2s due to real-time SMTP checks\n**Accuracy**: 95%+ accuracy for deliverability assessment"
+    },
+    {
+      "name": "Rate Limit Information API",
+      "description": "Rate limit and quota information service providing real-time usage statistics and subscription details.\n\n**Features**:\n- Current quota usage for IP and Email APIs\n- Remaining requests in the current billing period\n- Next renewal/reset date\n- Subscription plan details and status\n\n**Use Cases**: Quota monitoring, usage analytics, billing integration, API client dashboard"
+    },
+    {
+      "name": "Domain Reputation API",
+      "description": "Real-time domain reputation checks combining domain threat intelligence,\ndisposable email domain detection, DNS resolution, and IP intelligence in a single call.\n\n**Signals analysed**:\n- Domain threat feeds: malware distribution and phishing domains from URLhaus, OpenPhish,\n  Phishing Army, ViriBack, and maltrail static trails (1M+ flagged domains, refreshed continuously)\n- Disposable/temporary email provider domains\n- Live DNS resolution (A/AAAA records)\n- Full IP intelligence for the resolved addresses: geolocation, ISP/ASN, and security flags\n  (VPN, proxy, Tor, datacenter, threat)"
+    },
+    {
+      "name": "ASN Lookup API",
+      "description": "Autonomous System Number lookup by IP address"
+    },
+    {
+      "name": "Domain Analysis",
+      "description": "Domain analysis and information APIs"
+    },
+    {
+      "name": "Usage Statistics",
+      "description": "API usage statistics and consumption history"
+    },
+    {
+      "name": "IP Geolocation & Security API",
+      "description": "Advanced IP address intelligence service providing geolocation, security analysis, and threat detection.\n\n**Core Features**:\n- High-precision geolocation (city-level accuracy)\n- Real-time timezone and local time calculation\n- Comprehensive threat intelligence (VPN, proxy, Tor detection)\n- ISP and network classification\n- Abuse and reputation scoring\n\n**Security Analysis**:\n- Proxy & VPN detection with 99.5% accuracy\n- Tor node identification (real-time consensus)\n- Spam and malware source detection\n- Datacenter and hosting provider classification\n- Threat intelligence from 50+ global feeds\n\n**Geolocation Accuracy**:\n- Country: 99.8% accuracy\n- City: 85-95% accuracy (varies by region)\n- Coordinates: ~50km median accuracy\n\n**Use Cases**: Fraud prevention, content localization, compliance, analytics, security monitoring"
+    },
+    {
+      "name": "IP Info V0",
+      "description": "Endpoints for IP information retrieval without versioning"
+    },
+    {
+      "name": "Status",
+      "description": "Endpoints for application health checks"
+    },
+    {
+      "name": "Cache Management",
+      "description": "Cache monitoring and management endpoints"
+    },
+    {
+      "name": "DNS Lookup API",
+      "description": "DNS record lookup tools"
+    }
+  ],
+  "paths": {
+    "/month-sub": {
+      "get": {
+        "tags": [
+          "paddle-controller"
+        ],
+        "operationId": "healthCheck",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "paddle-controller"
+        ],
+        "operationId": "handleSubscription",
+        "parameters": [
+          {
+            "name": "httpEntity",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/ip/batch": {
+      "post": {
+        "tags": [
+          "IP Geolocation & Security API"
+        ],
+        "summary": "Batch IP lookup — analyze up to 100 IPs in a single request",
+        "description": "Performs geolocation and security analysis on multiple IP addresses in one request.\n\n**Batch Processing**:\n- Up to 100 IP addresses per request\n- Duplicate IPs are automatically deduplicated\n- IPs processed concurrently for sub-second total response time\n- Results returned as a map keyed by IP address\n\n**Quota Management**:\n- One quota unit deducted per unique IP address\n- Quota checked before any processing begins (no charge if insufficient)\n- Quota deducted only after ALL lookups complete successfully\n- No quota charged if batch processing fails or request is invalid\n\n**Error Handling**:\n- HTTP 400: Malformed IP address format (no charge)\n- HTTP 429: Insufficient quota (no charge)\n- Private/reserved IPs are included in results with limited data and still consume quota\n\n**Use Cases**:\n- Bulk fraud screening of user registrations\n- Log analysis and threat intelligence\n- Network auditing and security monitoring\n- Geolocation of large IP datasets",
+        "operationId": "lookupIpBatch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchIpLookupRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Batch lookup completed successfully with intelligence for all processed IPs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchIpLookupResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request — invalid IP format, empty list, or exceeds maximum batch size of 100",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchIpLookupResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests — insufficient quota for the batch size (no quota consumed)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchIpLookupResponseDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — geolocation service temporarily unavailable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchIpLookupResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/email/advanced/batch": {
+      "post": {
+        "tags": [
+          "Advanced Email Validation API"
+        ],
+        "summary": "Batch email validation from JSON array",
+        "description": "Validates multiple email addresses provided as a JSON array with advanced SMTP verification.\n\n**Batch Processing Features**:\n- Synchronous processing of up to 100 emails per request\n- All-or-nothing quota deduction (only charged after successful completion)\n- Comprehensive validation results for each email\n- Detailed statistics for the batch operation\n\n**Request Format**:\n- JSON object containing an array of email addresses\n- Maximum 100 emails per batch request\n- Each email validated with full advanced features\n\n**Quota Management**:\n- One quota unit deducted per email address\n- Quota deducted only after ALL validations complete successfully\n- No quota charged if batch processing fails\n\n**Performance**: \n- Processing time: ~500ms-2s per email due to SMTP checks\n- Total batch time: 5-200 seconds depending on batch size\n\n**Use Cases**:\n- Marketing list validation\n- User registration batch processing\n- Email list cleaning operations\n- Lead qualification workflows",
+        "operationId": "validateEmailBatch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchEmailValidationRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Batch validation completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid request format, empty email list, or exceeds maximum batch size",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Insufficient quota for batch operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Batch processing failed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable - Batch email validation service is disabled or unreachable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/email/advanced/batch/csv": {
+      "post": {
+        "tags": [
+          "Advanced Email Validation API"
+        ],
+        "summary": "Batch email validation from CSV file upload",
+        "description": "Validates multiple email addresses from a CSV file upload with advanced SMTP verification.\n\n**CSV File Requirements**:\n- First column must contain email addresses\n- Headers optional (will be detected automatically)  \n- Maximum 100 emails per file\n- Supported formats: .csv, .txt with comma/semicolon separation\n- Maximum file size: 1MB\n\n**File Format Examples**:\n```csv\nemail\nuser1@example.com\nuser2@gmail.com\nuser3@company.org\n```\n\nOr without headers:\n```csv\nuser1@example.com\nuser2@gmail.com\nuser3@company.org\n```\n\n**Batch Processing Features**:\n- Synchronous processing with complete validation\n- All-or-nothing quota deduction (only charged after successful completion)\n- Comprehensive validation results for each email\n- Detailed statistics for the batch operation\n\n**Quota Management**:\n- One quota unit deducted per email address\n- Quota deducted only after ALL validations complete successfully\n- No quota charged if file processing or validation fails\n\n**Performance**: \n- File processing: <1 second for parsing\n- Email validation: ~500ms-2s per email due to SMTP checks\n- Total processing time: 5-200 seconds depending on file size\n\n**Use Cases**:\n- Marketing list validation from exports\n- CRM data cleaning operations\n- Lead import with validation\n- Email list quality assessment",
+        "operationId": "validateEmailBatchFromCsv",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "CSV file containing email addresses to validate.\n            \n**File Requirements**:\n- CSV format with first column containing emails\n- Headers optional but recommended\n- Maximum 100 emails per file\n- Maximum file size: 1MB\n- Supported separators: comma (,) or semicolon (;)\n\n**File Structure**:\n- First column: email addresses (required)\n- Additional columns: ignored during processing\n- Empty rows: automatically skipped\n- Invalid emails: included in results with validation details\n\n**Processing Details**:\n- File parsed and emails extracted automatically\n- All emails processed synchronously in file order\n- Results include original file row order reference\n- Quota charged per email only after successful completion\n\n**Supported File Examples**:\n- CSV exports from CRM systems\n- Email lists from marketing platforms  \n- Contact exports from various sources\n- Manual CSV files with email collections"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "CSV batch validation completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid CSV format, empty file, no emails found, or exceeds maximum batch size",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Insufficient quota for batch operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - File processing or batch validation failed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable - Batch email validation service is disabled or unreachable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchEmailValidationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/domain/age/batch": {
+      "post": {
+        "tags": [
+          "Domain Analysis"
+        ],
+        "summary": "Check multiple domains age",
+        "description": "Returns domain registration date and age information for multiple domains",
+        "operationId": "getBatchDomainAge",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchDomainRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Domain age information retrieved successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchDomainResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request format",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchDomainResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchDomainResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/management/cache/domain-age/stats": {
+      "get": {
+        "tags": [
+          "Cache Management"
+        ],
+        "summary": "Get domain age cache statistics (HTTP API method)",
+        "description": "Returns cache hit/miss statistics, eviction count, and current cache size for HTTP-based service",
+        "operationId": "getDomainAgeCacheStats",
+        "responses": {
+          "200": {
+            "description": "Cache statistics retrieved successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/management/cache/domain-age/check/{domain}": {
+      "get": {
+        "tags": [
+          "Cache Management"
+        ],
+        "summary": "Check if domain is cached (HTTP API method)",
+        "description": "Check if a specific domain is currently cached in HTTP-based service",
+        "operationId": "isDomainCached",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cache status retrieved successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/json/{ip}": {
+      "get": {
+        "tags": [
+          "IP Info V0"
+        ],
+        "operationId": "getIpInfoNoApiPrefixAndVersion",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV0Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usage/summary": {
+      "get": {
+        "tags": [
+          "Usage Statistics"
+        ],
+        "summary": "Get usage summary",
+        "description": "\n            Retrieves aggregated summary statistics for your API key within a specified date range.\n            Returns totals and averages without hourly breakdown, useful for dashboard overview.\n\n            **Authorization:** Requires valid API key.\n\n            **Example usage:**\n            ```\n            GET /api/v1/usage/summary?api_key=YOUR_KEY&start_date=2025-11-01T00:00:00Z&end_date=2025-11-04T00:00:00Z\n            ```\n        ",
+        "operationId": "getUsageSummary",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Your API key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "your-api-key-here"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Start date in ISO 8601 format (inclusive)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2025-11-01T00:00:00Z"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "End date in ISO 8601 format (exclusive)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2025-11-04T00:00:00Z"
+          },
+          {
+            "name": "api_type",
+            "in": "query",
+            "description": "Filter by API type (optional)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IP",
+                "ADVANCED_EMAIL_VALIDATION"
+              ]
+            },
+            "example": "IP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved usage summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiUsageSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No usage data found for this period",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usage/stats": {
+      "get": {
+        "tags": [
+          "Usage Statistics"
+        ],
+        "summary": "Get detailed usage statistics",
+        "description": "\n            Retrieves hourly aggregated usage statistics for your API key within a specified date range.\n            Returns detailed breakdown of requests, quota consumption, and performance metrics.\n\n            **Authorization:** Requires valid API key.\n\n            **Example usage:**\n            ```\n            GET /api/v1/usage/stats?api_key=YOUR_KEY&start_date=2025-11-01T00:00:00Z&end_date=2025-11-04T00:00:00Z&api_type=IP\n            ```\n        ",
+        "operationId": "getUsageStats",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Your API key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "your-api-key-here"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Start date in ISO 8601 format (inclusive)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2025-11-01T00:00:00Z"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "End date in ISO 8601 format (exclusive)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2025-11-04T00:00:00Z"
+          },
+          {
+            "name": "api_type",
+            "in": "query",
+            "description": "Filter by API type (optional)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IP",
+                "ADVANCED_EMAIL_VALIDATION"
+              ]
+            },
+            "example": "IP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved usage statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiUsageStatsModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date range or parameters",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing API key",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usage/recent": {
+      "get": {
+        "tags": [
+          "Usage Statistics"
+        ],
+        "summary": "Get recent usage (last 24 hours)",
+        "description": "\n            Convenience endpoint to retrieve usage statistics for the last 24 hours.\n            Equivalent to calling /stats with start_date = now-24h and end_date = now.\n\n            **Authorization:** Requires valid API key.\n        ",
+        "operationId": "getRecentUsage",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Your API key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_type",
+            "in": "query",
+            "description": "Filter by API type (optional)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IP",
+                "ADVANCED_EMAIL_VALIDATION"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usage/current-month": {
+      "get": {
+        "tags": [
+          "Usage Statistics"
+        ],
+        "summary": "Get current month usage summary",
+        "description": "\n            Convenience endpoint to retrieve aggregated usage for the current calendar month.\n            Useful for displaying monthly usage on dashboards.\n\n            **Authorization:** Requires valid API key.\n        ",
+        "operationId": "getCurrentMonthSummary",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Your API key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_type",
+            "in": "query",
+            "description": "Filter by API type (optional)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "IP",
+                "ADVANCED_EMAIL_VALIDATION"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tor/{ip}": {
+      "get": {
+        "tags": [
+          "Tor Detection API"
+        ],
+        "summary": "Check if an IP address is a Tor exit node",
+        "description": "Returns whether the given IP address is currently listed as a Tor exit node, plus the total count of known exit nodes.\n\n**Response time**: < 10 ms (in-memory lookup against live consensus list).\n\n**Update frequency**: Exit node list refreshed every hour from the Tor Project's official data.",
+        "operationId": "checkTorNode",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "IPv4 or IPv6 address to check against the Tor exit node list",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "185.220.101.50"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tor detection result returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TorDetectionV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request — invalid IP address format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TorDetectionV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests — rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TorDetectionV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/risk-score": {
+      "get": {
+        "tags": [
+          "Risk Score API"
+        ],
+        "summary": "Calculate risk score from client IP",
+        "description": "Automatically detects and analyzes the client's IP address from the HTTP request.\n\n**IP Detection Order**:\n1. X-Real-IP header (preferred for load balancers/proxies)\n2. RemoteAddr from servlet request\n\n**Use Cases**:\n- Real-time fraud detection during user sessions\n- Account creation risk assessment\n- Transaction monitoring without explicit IP parameter\n\n**Returns**: Complete risk score analysis with risk factors breakdown",
+        "operationId": "getRiskScoreFromRequest",
+        "responses": {
+          "200": {
+            "description": "Risk score calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Unable to extract valid IP address from request headers",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded (check X-RateLimit-* headers)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Risk score calculation failed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/risk-score/{ip}": {
+      "get": {
+        "tags": [
+          "Risk Score API"
+        ],
+        "summary": "Calculate risk score for specific IP address",
+        "description": "Analyzes a specific IP address with optional email correlation for enhanced fraud detection.\n\n**IP Analysis Includes**:\n- Network type classification (residential, datacenter, mobile)\n- Anonymization service detection (VPN, proxy, Tor)\n- Threat intelligence feeds (spam, malware, botnet)\n- Geographic anomaly detection\n- Historical behavior patterns\n\n**Combined Analysis** (when email provided):\n- Cross-reference IP and email reputation\n- Account takeover risk assessment\n- Multi-factor fraud indicators\n\n**Response Time**: Typically < 200ms for cached results, < 1s for new lookups",
+        "operationId": "getRiskScoreWithIp",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "Target IP address for risk score analysis. Supports both IPv4 (e.g., 203.0.113.1) and IPv6 (e.g., 2001:db8::1) formats. Private IP ranges (10.x.x.x, 192.168.x.x, 172.16-31.x.x) will return limited analysis.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "203.0.113.195"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Optional email address for combined IP+email risk analysis. When provided, enables cross-correlation between IP and email reputation, account takeover detection, and enhanced fraud scoring. Must be a valid email format.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "suspicious.user@tempmail.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Risk score calculated successfully with detailed factor breakdown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid IP address format (must be valid IPv4 or IPv6)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity - IP address format valid but not analyzable (e.g., private ranges)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded (check X-RateLimit-* headers)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Risk score calculation failed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/risk-score/email/{email}": {
+      "get": {
+        "tags": [
+          "Risk Score API"
+        ],
+        "summary": "Calculate risk score for email address",
+        "description": "Performs comprehensive email-based fraud analysis without IP correlation.\n\n**Email Analysis Includes**:\n- Syntax validation (RFC 5322 compliance)\n- Domain verification (MX record validation)\n- Disposable email service detection (10k+ providers)\n- Free email provider identification\n- Domain reputation scoring\n- Typosquatting detection\n- Recently created domain analysis\n\n**Use Cases**:\n- Account registration validation\n- Email-based fraud prevention\n- Marketing list cleaning\n- Customer verification workflows\n\n**Data Sources**: Real-time lookups against multiple threat intelligence feeds",
+        "operationId": "getRiskScoreWithEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "Email address for comprehensive trust analysis. Must be a valid email format (user@domain.tld). The system will validate syntax, check domain reputation, detect disposable email services, and assess overall risk. International domains and IDN (Internationalized Domain Names) are supported.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "john.doe@legitbusiness.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email risk score calculated successfully with validation details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid email address format or missing email parameter",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity - Email format valid but domain unresolvable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded (check X-RateLimit-* headers)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Email analysis failed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ratelimit": {
+      "get": {
+        "tags": [
+          "Rate Limit Information API"
+        ],
+        "summary": "Get rate limit information for authenticated user",
+        "description": "Retrieves comprehensive rate limit information including current usage, limits, and renewal date.\n\n**Authentication**:\n- Requires a valid API key passed as a query parameter (`api_key`)\n- Works with both active and expired API keys\n- This endpoint does not support anonymous/IP-based access\n\n**Response Includes**:\n- Current subscription plan ID and name\n- IP API quota (limit, remaining, used, usage percentage)\n- Email API quota (limit, remaining, used, usage percentage)\n- Rate limit interval in seconds\n- Next renewal/reset date (ISO 8601 format)\n- Subscription status (active, past_due, cancelled, etc.)\n\n**Rate Limit Intervals**:\n- Daily: 86400 seconds\n- Monthly: 2678400 seconds (~31 days)\n- Yearly: 31536000 seconds (~365 days)\n\n**Use Cases**:\n- Display usage dashboard in client applications\n- Monitor quota consumption to prevent rate limit errors\n- Plan upgrades based on usage patterns\n- Billing and subscription management\n\n**Example Response**:\n```json\n{\n  \"plan_id\": \"550712\",\n  \"plan_name\": \"Professional Monthly\",\n  \"ip_api\": {\n    \"limit\": 100000,\n    \"remaining\": 87532,\n    \"used\": 12468,\n    \"usage_percent\": 12.47\n  },\n  \"email_api\": {\n    \"limit\": 10000,\n    \"remaining\": 9850,\n    \"used\": 150,\n    \"usage_percent\": 1.50\n  },\n  \"interval_seconds\": 2678400,\n  \"next_renewal_date\": \"2025-11-26\",\n  \"status\": \"active\"\n}\n```",
+        "operationId": "getRateLimitInfo",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key for authentication (required).\n\n**API Key Format**: 32-character alphanumeric string\n**Required**: This parameter is mandatory for accessing rate limit information\n**Note**: Works with both active and expired API keys\n\n**Example**: `?api_key=your_api_key_here`",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "abcdef1234567890abcdef1234567890"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rate limit information retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitInfoDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - API key is required",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitInfoDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - API key does not exist in the system",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitInfoDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Unable to retrieve rate limit information",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RateLimitInfoDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ip": {
+      "get": {
+        "tags": [
+          "IP Geolocation & Security API"
+        ],
+        "summary": "Get IP intelligence from client request",
+        "description": "Automatically analyzes the client's IP address from HTTP request headers for comprehensive intelligence gathering.\n\n**IP Detection Strategy**:\n1. **X-Real-IP Header**: Preferred for load balancers and reverse proxies\n2. **X-Forwarded-For**: First non-private IP in the chain\n3. **RemoteAddr**: Direct connection IP (fallback)\n\n**Analysis Includes**:\n- Precise geolocation with city-level accuracy\n- Real-time timezone calculation with DST detection\n- Comprehensive security threat assessment\n- Network classification (residential, datacenter, mobile)\n- ISP and organization identification\n\n**Use Cases**:\n- User session fraud detection\n- Content personalization by location\n- Timezone-aware application behavior\n- Real-time security monitoring\n\n**Privacy**: No personal information is logged or stored",
+        "operationId": "getIpInfoNoIp",
+        "responses": {
+          "200": {
+            "description": "IP intelligence gathered successfully with complete analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Unable to extract valid IP address from request headers",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity - Private IP address cannot be geolocated",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded (check X-RateLimit-* headers)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Geolocation service temporarily unavailable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ip/{ip}": {
+      "get": {
+        "tags": [
+          "IP Geolocation & Security API"
+        ],
+        "summary": "Get comprehensive IP intelligence for specific address",
+        "description": "Performs detailed analysis of a specific IP address providing geolocation, security assessment, and network intelligence.\n\n**Geolocation Analysis**:\n- Country, region, and city identification\n- Latitude/longitude coordinates with accuracy indicators\n- Postal/ZIP code when available\n- ISP and organization details\n- Connection type classification\n\n**Security Intelligence**:\n- Real-time threat assessment from 50+ feeds\n- VPN and proxy detection with confidence scoring\n- Tor network node identification\n- Spam source and malware C&C detection\n- Datacenter and hosting classification\n\n**Timezone Intelligence**:\n- IANA timezone identification\n- Current local time calculation\n- Daylight saving time detection\n- UTC offset determination\n\n**Performance**: Sub-second response with global CDN caching\n**Accuracy**: 99.8% country, 90%+ city-level precision",
+        "operationId": "getIpInfoFullPath",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "IP address for comprehensive intelligence analysis.\n\n**Supported Formats**:\n- IPv4: Standard dotted decimal (e.g., 203.0.113.195)\n- IPv6: Full or compressed format (e.g., 2001:db8::1)\n\n**Limitations**:\n- Private ranges (RFC 1918) return limited geolocation data\n- Reserved ranges (RFC 5735/4291) may return partial information\n- Localhost (127.x.x.x, ::1) returns minimal data\n\n**Performance Notes**:\n- Cached results: < 50ms response time\n- Fresh lookups: < 500ms response time\n- Global POPs for reduced latency\n\n**Examples**:\n- Public IPv4: 8.8.8.8, 1.1.1.1\n- Public IPv6: 2001:4860:4860::8888\n- Corporate: 203.0.113.195",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "203.0.113.195"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Complete IP intelligence analysis with geolocation and security data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid IP address format (must be valid IPv4 or IPv6)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity - Private/reserved IP ranges cannot be geolocated",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded (check X-RateLimit-* headers)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Geolocation or threat intelligence service unavailable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ip-reputation/{ip}": {
+      "get": {
+        "tags": [
+          "IP Reputation API"
+        ],
+        "summary": "Check IP address reputation",
+        "description": "Returns a composite reputation score and per-signal breakdown for any IPv4 or IPv6 address.\n\n**Signals included in the score**:\n- Proxy detection (HTTP/HTTPS/SOCKS proxies)\n- VPN detection (commercial and self-hosted endpoints)\n- Tor node membership (live Tor consensus data)\n- Datacenter classification (AWS, GCP, Azure, and other hosting providers)\n- Spam/abuse history (threat intelligence feeds)\n- Suspicious activity patterns (behavioural anomalies)\n\n**Response time**: Typically < 200 ms for cached results, < 1 s for new lookups.",
+        "operationId": "getIpReputation",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "Target IP address. Supports IPv4 (e.g. 203.0.113.1) and IPv6 (e.g. 2001:db8::1). Private ranges return limited analysis.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "203.0.113.195"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reputation score calculated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request — invalid IP address format (must be valid IPv4 or IPv6)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity — IP format valid but not analysable (e.g. private ranges)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests — rate limit exceeded (check X-RateLimit-* headers)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — reputation calculation failed",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RiskScoreV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/email/{email}": {
+      "get": {
+        "tags": [
+          "Email Validation API"
+        ],
+        "summary": "Comprehensive email validation and analysis",
+        "description": "Performs detailed validation and analysis of an email address for fraud prevention and data quality.\n\n**Validation Process**:\n1. **Syntax Validation**: RFC 5322 compliance checking\n2. **Domain Analysis**: MX record verification and domain reputation\n3. **Provider Detection**: Identifies disposable, free, and role-based emails\n4. **Security Checks**: Typosquatting and suspicious pattern detection\n5. **Deliverability Assessment**: Real-time SMTP verification (optional)\n\n**Response Includes**:\n- Detailed validation results with specific error reasons\n- Domain and username breakdown\n- Disposable email service detection\n- Syntax compliance status\n\n**Performance**: Cached results for improved response times on repeated queries",
+        "operationId": "getEmailInfo",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "Email address to validate and analyze. Must be properly URL-encoded if containing special characters.\n\n**Supported Formats**:\n- Standard emails: user@domain.com\n- Plus addressing: user+tag@domain.com  \n- Internationalized domains: user@münchen.de\n- Quoted local parts: \"user name\"@domain.com\n\n**Size Limits**: Maximum 320 characters (64 for local part + 255 for domain)\n**Encoding**: URL encoding required for special characters\n\n**Examples**:\n- Simple: john.doe@company.com\n- Complex: \"test user\"@sub.domain.co.uk\n- International: user@exämple.com",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "john.doe@company.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email validation completed successfully with detailed analysis results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailInfoV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid email format or missing email parameter",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailInfoV1Dto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity - Email format acceptable but domain cannot be validated",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailInfoV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded (check X-RateLimit-* headers)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailInfoV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Email validation service temporarily unavailable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailInfoV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/email/advanced/{email}": {
+      "get": {
+        "tags": [
+          "Advanced Email Validation API"
+        ],
+        "summary": "Advanced email validation with SMTP verification",
+        "description": "Performs comprehensive email validation including real-time SMTP verification, \ndeliverability assessment, and advanced fraud detection.\n\n**Validation Process**:\n1. **Syntax Validation**: RFC 5322/5321 compliance checking\n2. **DNS Verification**: MX record validation and domain reputation\n3. **SMTP Testing**: Real-time connection to mail server\n4. **Deliverability Check**: Inbox reachability assessment\n5. **Security Analysis**: Disposable email and role account detection\n6. **Enhancement**: Gravatar detection and domain suggestions\n\n**Advanced Features**:\n- **SMTP Verification**: Real-time mail server connectivity testing\n- **Inbox Analysis**: Full inbox and catch-all domain detection\n- **Provider Intelligence**: Free vs. paid email provider identification\n- **Security Screening**: Role accounts and disposable email detection\n- **User Experience**: Domain typo suggestions and corrections\n\n**Response Includes**:\n- Comprehensive reachability assessment (yes/no/unknown)\n- Detailed SMTP server analysis\n- Gravatar profile availability\n- Domain suggestion for typos\n- Advanced fraud prevention flags\n\n**Performance Note**: This endpoint performs real-time SMTP checks which may take 500ms-2s",
+        "operationId": "getAdvancedEmailValidation",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "Email address to validate with advanced analysis. Must be properly URL-encoded if containing special characters.\n\n**Supported Formats**:\n- Standard emails: user@domain.com\n- Plus addressing: user+tag@domain.com  \n- Internationalized domains: user@münchen.de\n- Complex local parts: \"user.name\"@domain.com\n\n**Size Limits**: Maximum 320 characters (64 for local part + 255 for domain)\n**Encoding**: URL encoding required for special characters\n\n**Examples**:\n- Business: john.doe@company.com\n- Free provider: user@gmail.com\n- International: user@exämple.com\n- Complex: \"test+user\"@sub.domain.co.uk\n\n**Performance**: Advanced validation includes real-time SMTP checks which may take 500ms-2s",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "test@yandex.ru"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Advanced email validation completed successfully with comprehensive analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvancedEmailValidationV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid email format or missing email parameter",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvancedEmailValidationV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error - Advanced email validation service temporarily unavailable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvancedEmailValidationV1Dto"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable - Advanced email validation service is disabled or unreachable",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvancedEmailValidationV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/domain/reputation/{domain}": {
+      "get": {
+        "tags": [
+          "Domain Reputation API"
+        ],
+        "summary": "Check domain reputation",
+        "description": "Returns a composite reputation report for a domain:\n\n- **threat** — whether the domain appears on malware/phishing threat feeds, with categories\n- **is_disposable_email_domain** — whether it is a known disposable email provider\n- **resolved_ips** — current A/AAAA records, each enriched with full IP intelligence\n  (geolocation, ISP, ASN, VPN/proxy/Tor/datacenter/threat flags)\n\nSend the bare hostname (`example.com`) as the path segment — URL-encoded slashes are rejected, so\nextract the host from full URLs before calling. Ports, trailing dots, wildcards, and case are\nnormalized server-side. A domain that does not resolve still returns its threat and disposable\nverdicts with an empty `resolved_ips` array.",
+        "operationId": "getDomainReputation",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain name or URL to analyze, e.g. `example.com` or `https://example.com/login`.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Domain reputation report generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainReputationV1Dto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request — not a valid domain name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainReputationV1Dto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests — rate limit exceeded (check X-RateLimit-* headers)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainReputationV1Dto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error — reputation lookup failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainReputationV1Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/domain/age/{domain}": {
+      "get": {
+        "tags": [
+          "Domain Analysis"
+        ],
+        "summary": "Check domain age",
+        "description": "Returns domain registration date and age information for a given domain name",
+        "operationId": "getDomainAge",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain name to check (e.g., example.com)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "google.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Domain age information retrieved successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainAgeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid domain format",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainAgeResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainAgeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/dns/whois/{domain}": {
+      "get": {
+        "tags": [
+          "DNS Lookup API"
+        ],
+        "summary": "WHOIS lookup for a domain",
+        "description": "Returns structured WHOIS data including registrar, registration dates, nameservers, and EPP status codes. Results are cached for 24 hours.",
+        "operationId": "getWhois",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain name, e.g. example.com",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WHOIS data retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WhoisResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid domain name format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WhoisResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Domain not found or not registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WhoisResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "WHOIS lookup failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WhoisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/dns/reverse/{ip}": {
+      "get": {
+        "tags": [
+          "DNS Lookup API"
+        ],
+        "summary": "Reverse DNS lookup for an IP address",
+        "description": "Returns the PTR record (hostname) for a given IPv4 or IPv6 address. Results are cached for 5 minutes.",
+        "operationId": "getReverseDns",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "IPv4 or IPv6 address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "8.8.8.8"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reverse DNS lookup completed (hostname may be null if no PTR record exists)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReverseDnsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid IP address format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReverseDnsResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "DNS lookup failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReverseDnsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/dns/mx/{domain}": {
+      "get": {
+        "tags": [
+          "DNS Lookup API"
+        ],
+        "summary": "Look up MX records for a domain",
+        "description": "Returns all MX records for a domain, sorted by priority ascending. Results are cached for 5 minutes.",
+        "operationId": "getMxRecords",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain name, e.g. gmail.com",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "gmail.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MX records retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MxLookupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid domain name format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MxLookupResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Domain not found (NXDOMAIN)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MxLookupResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "DNS lookup failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MxLookupResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/dns/forward/{hostname}": {
+      "get": {
+        "tags": [
+          "DNS Lookup API"
+        ],
+        "summary": "Forward DNS lookup for a hostname",
+        "description": "Returns A and AAAA records for a given hostname. Results are cached for 5 minutes.",
+        "operationId": "getForwardDns",
+        "parameters": [
+          {
+            "name": "hostname",
+            "in": "path",
+            "description": "Hostname to look up, e.g. dns.google",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "dns.google"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Forward DNS lookup succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForwardDnsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid hostname format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForwardDnsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No address records found for the hostname",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForwardDnsResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "DNS lookup failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForwardDnsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/asn/{ip}": {
+      "get": {
+        "tags": [
+          "ASN Lookup API"
+        ],
+        "summary": "Look up ASN for an IP address",
+        "description": "Returns the Autonomous System Number, organization, network prefix, and datacenter classification for the given IP. Results are cached for 24 hours.",
+        "operationId": "getAsn",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "IPv4 or IPv6 address, e.g. 8.8.8.8",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "8.8.8.8"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ASN data retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsnLookupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid IP address format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsnLookupResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No ASN data found for IP",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsnLookupResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsnLookupResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/status": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Health check endpoint",
+        "description": "Returns HTTP 200 OK if the application is healthy.",
+        "operationId": "handleHealth",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/json/{ip}": {
+      "get": {
+        "tags": [
+          "IP Info V0"
+        ],
+        "summary": "Get IP information without versioning",
+        "description": "Retrieve IP information for the specified IP address without API versioning.",
+        "operationId": "getIpInfoNoVersion",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV0Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/json/": {
+      "get": {
+        "tags": [
+          "IP Info V0"
+        ],
+        "operationId": "getIpInfoNoIp_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV0Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/json/": {
+      "get": {
+        "tags": [
+          "IP Info V0"
+        ],
+        "operationId": "getIpInfoNoIp_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV0Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/json": {
+      "get": {
+        "tags": [
+          "IP Info V0"
+        ],
+        "operationId": "getIpInfoNoIp_3",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV0Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/json": {
+      "get": {
+        "tags": [
+          "IP Info V0"
+        ],
+        "operationId": "getIpInfoNoIp_4",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfoV0Dto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/management/cache/domain-age": {
+      "delete": {
+        "tags": [
+          "Cache Management"
+        ],
+        "summary": "Clear domain age cache (HTTP API method)",
+        "description": "Clears all entries from the HTTP-based domain age cache",
+        "operationId": "clearDomainAgeCache",
+        "responses": {
+          "200": {
+            "description": "Cache cleared successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/management/cache/domain-age/all": {
+      "delete": {
+        "tags": [
+          "Cache Management"
+        ],
+        "summary": "Clear all domain age caches",
+        "description": "Clears all entries from both HTTP-based and terminal-based domain age caches",
+        "operationId": "clearAllDomainAgeCaches",
+        "responses": {
+          "200": {
+            "description": "All caches cleared successfully",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BatchIpLookupRequestDto": {
+        "type": "object",
+        "description": "JSON request containing list of IP addresses to analyze.\n\n**Request Requirements**:\n- Must contain 1–100 IP addresses\n- Each IP must be valid IPv4 or IPv6 format\n- Maximum 45 characters per IP address\n\n**Example Request**:\n```json\n{\n  \"ips\": [\n    \"8.8.8.8\",\n    \"1.1.1.1\",\n    \"203.0.113.195\"\n  ]\n}\n```",
+        "example": {
+          "ips": [
+            "8.8.8.8",
+            "1.1.1.1",
+            "203.0.113.195"
+          ]
+        },
+        "properties": {
+          "ips": {
+            "type": "array",
+            "description": "List of IP addresses to look up. Maximum 100 IPs per request.\n\n**Format Requirements**:\n- Standard IPv4 dotted decimal (e.g., 8.8.8.8)\n- IPv6 full or compressed format (e.g., 2001:db8::1)\n- Maximum 45 characters per address\n- Must be structurally valid IP format\n\n**Batch Processing**:\n- Duplicate IPs are automatically deduplicated before processing\n- Quota is deducted only after successful completion of all lookups\n- Invalid IP formats result in HTTP 400 with no quota charged",
+            "example": [
+              "8.8.8.8",
+              "1.1.1.1",
+              "203.0.113.195"
+            ],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "ips"
+        ]
+      },
+      "BatchIpLookupResponseDto": {
+        "type": "object",
+        "description": "Response object containing geolocation and security intelligence results for all processed IPs in a batch request.",
+        "example": {
+          "results": {
+            "8.8.8.8": {
+              "ip": "8.8.8.8",
+              "suspicious_factors": {
+                "is_proxy": false,
+                "is_tor_node": false,
+                "is_spam": false,
+                "is_crawler": false,
+                "is_datacenter": true,
+                "is_vpn": false,
+                "is_threat": false
+              },
+              "location": {
+                "country": "United States",
+                "country_code": "US",
+                "city": "Mountain View",
+                "latitude": 37.4056,
+                "longitude": -122.0775,
+                "zip": "94043",
+                "timezone": "America/Los_Angeles",
+                "local_time": "2024-01-15T10:30:00-08:00",
+                "local_time_unix": 1705340400,
+                "is_daylight_savings": false
+              }
+            }
+          },
+          "total_processed": 3,
+          "successful_lookups": 3,
+          "failed_lookups": 0
+        },
+        "properties": {
+          "results": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IpInfoV1Dto"
+            },
+            "description": "Map of IP addresses to their full intelligence results. The key is the original IP address.\nIPs that could not be resolved (e.g., private ranges) are excluded from the map and counted in failed_lookups."
+          },
+          "total_processed": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Total number of unique IPs processed in this batch.",
+            "example": 3
+          },
+          "successful_lookups": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of IPs that returned a successful geolocation result.",
+            "example": 3
+          },
+          "failed_lookups": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of IPs that could not be resolved (e.g., private ranges, reserved addresses).",
+            "example": 0
+          }
+        },
+        "required": [
+          "failed_lookups",
+          "results",
+          "successful_lookups",
+          "total_processed"
+        ]
+      },
+      "IpInfoV1Dto": {
+        "type": "object",
+        "description": "Comprehensive IP address intelligence response containing geolocation, security analysis, and network information.\n\nProvides detailed analysis including precise location data, threat intelligence assessment,\ntimezone information, and network classification for fraud prevention and security applications.\n\n**Data Sources**: Global threat intelligence feeds, geolocation databases, ISP registries\n**Update Frequency**: Real-time threat data, weekly geolocation updates",
+        "example": {
+          "ip": "203.0.113.195",
+          "isp": "Comcast Cable Communications",
+          "asn": "AS7922",
+          "suspicious_factors": {
+            "is_proxy": false,
+            "is_tor_node": false,
+            "is_spam": false,
+            "is_crawler": false,
+            "is_datacenter": true,
+            "is_vpn": false,
+            "is_threat": false
+          },
+          "location": {
+            "country": "United States",
+            "country_code": "US",
+            "city": "San Francisco",
+            "latitude": 37.7749,
+            "longitude": -122.4194,
+            "zip": "94105",
+            "timezone": "America/Los_Angeles",
+            "local_time": "2023-06-21T14:30:00-07:00",
+            "local_time_unix": 1687385400,
+            "is_daylight_savings": true
+          }
+        },
+        "properties": {
+          "ip": {
+            "type": "string",
+            "description": "The IP address that was analyzed, returned in standard format.\n\n**Normalization Applied**:\n- IPv4: Standard dotted decimal notation\n- IPv6: Compressed format when possible\n- Case normalization for IPv6\n\n**Note**: Returned format may differ from input due to standardization",
+            "example": "203.0.113.195"
+          },
+          "isp": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Internet Service Provider name derived from the ASN organization field.",
+            "example": "Deutsche Telekom AG"
+          },
+          "asn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Autonomous System Number in AS<number> format.",
+            "example": "AS3320"
+          },
+          "suspicious_factors": {
+            "$ref": "#/components/schemas/SuspiciousFactorsV1Dto",
+            "description": "Comprehensive security threat analysis and suspicious activity indicators.\n\nContains multiple boolean flags indicating various types of potentially\nmalicious or suspicious network behavior associated with the IP address.\n\n**Data Sources**: Real-time threat intelligence from 50+ global security feeds\n**Update Frequency**: Continuous updates with sub-minute latency for new threats"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationV1Dto",
+            "description": "Geographic location and timezone information for the IP address.\n\nProvides detailed location data including coordinates, administrative regions,\ntimezone details, and local time calculations with daylight saving consideration.\n\n**Accuracy Levels**:\n- Country: 99.8% accuracy\n- City: 85-95% accuracy (varies by region)\n- Coordinates: ~50km median accuracy radius"
+          }
+        },
+        "required": [
+          "ip",
+          "location",
+          "suspicious_factors"
+        ]
+      },
+      "LocationV1Dto": {
+        "type": "object",
+        "description": "Comprehensive geographic location and timezone intelligence for an IP address.\n\nProvides detailed location data including administrative regions, precise coordinates,\ntimezone information, and real-time local time calculations with daylight saving awareness.\n\n**Geolocation Accuracy**:\n- Country: 99.8% accuracy\n- Region/State: 95% accuracy  \n- City: 85-95% accuracy (varies by region and population density)\n- Coordinates: Median accuracy radius of ~50km\n\n**Data Sources**: Multiple commercial and open geolocation databases",
+        "example": {
+          "country": "United States",
+          "country_code": "US",
+          "city": "San Francisco",
+          "latitude": 37.7749,
+          "longitude": -122.4194,
+          "zip": "94105",
+          "timezone": "America/Los_Angeles",
+          "local_time": "2023-06-21T14:30:00-07:00",
+          "local_time_unix": 1687385400,
+          "is_daylight_savings": true
+        },
+        "properties": {
+          "country": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Full country name where the IP address is geolocated.\n\n**Language**: English country names using ISO 3166-1 standard\n**Coverage**: All 249 countries and territories\n**Null when**: IP address cannot be geolocated (private ranges, invalid IPs)\n\n**Examples**: \"United States\", \"United Kingdom\", \"Germany\", \"Japan\\\"",
+            "example": "United States"
+          },
+          "country_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "ISO 3166-1 alpha-2 country code (two-letter country identifier).\n\n**Standard**: ISO 3166-1 alpha-2 (official country codes)\n**Format**: Two uppercase letters\n**Null when**: Country cannot be determined\n\n**Examples**: \"US\", \"GB\", \"DE\", \"JP\", \"CA\", \"AU\"\n**Use Cases**: Country-based filtering, compliance rules, localization",
+            "example": "US"
+          },
+          "city": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "City or municipality name where the IP address is located.\n\n**Accuracy**: 85-95% depending on region (higher in developed countries)\n**Language**: English city names with local variations\n**Null when**: City cannot be determined or IP is in rural area\n\n**Examples**: \"New York\", \"London\", \"Tokyo\", \"San Francisco\"\n**Note**: May include districts or boroughs for large metropolitan areas",
+            "example": "San Francisco"
+          },
+          "latitude": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Latitude coordinate of the estimated IP address location in decimal degrees.\n\n**Format**: Decimal degrees (-90.0 to 90.0)\n**Precision**: Up to 6 decimal places\n**Accuracy**: Median radius of ~50km from actual location\n**Coordinate System**: WGS84 (World Geodetic System 1984)\n\n**Positive values**: North of equator\n**Negative values**: South of equator\n**Null when**: Location cannot be determined",
+            "example": 37.7749,
+            "maximum": 90,
+            "minimum": -90
+          },
+          "longitude": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Longitude coordinate of the estimated IP address location in decimal degrees.\n\n**Format**: Decimal degrees (-180.0 to 180.0)\n**Precision**: Up to 6 decimal places\n**Accuracy**: Median radius of ~50km from actual location\n**Coordinate System**: WGS84 (World Geodetic System 1984)\n\n**Positive values**: East of Prime Meridian\n**Negative values**: West of Prime Meridian\n**Null when**: Location cannot be determined",
+            "example": -122.4194,
+            "maximum": 180,
+            "minimum": -180
+          },
+          "zip": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Postal or ZIP code for the IP address location.\n\n**Format**: Country-specific postal code formats\n**Availability**: Varies by country (high coverage in US/Canada/Europe)\n**Accuracy**: Generally accurate to postal district level\n**Null when**: Postal code not available or cannot be determined\n\n**Examples**: \n- US: \"94105\", \"10001\"\n- UK: \"SW1A 1AA\", \"M1 1AA\"  \n- Canada: \"K1A 0A6\"\n- Germany: \"10115\\\"",
+            "example": "94105"
+          },
+          "timezone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "IANA timezone identifier for the IP address location.\n\n**Format**: IANA Time Zone Database format (Area/Location)\n**Examples**: \"America/New_York\", \"Europe/London\", \"Asia/Tokyo\"\n**Null when**: Timezone cannot be determined\n\n**Use Cases**:\n- Localized time display\n- Business hours calculation\n- Scheduling applications\n- Regulatory compliance (trading hours, etc.)",
+            "example": "America/Los_Angeles"
+          },
+          "local_time": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Current local time at the IP address location in ISO 8601 format.\n\n**Format**: ISO 8601 with timezone offset (YYYY-MM-DDTHH:mm:ssZ)\n**Calculation**: Real-time based on system clock and timezone data\n**DST Aware**: Automatically adjusts for daylight saving time\n**Null when**: Timezone information not available\n\n**Examples**:\n- \"2023-06-21T14:30:00-07:00\" (PDT)\n- \"2023-06-21T22:30:00+01:00\" (BST)\n- \"2023-06-22T07:30:00+09:00\" (JST)",
+            "example": "2023-06-21T14:30:00-07:00"
+          },
+          "local_time_unix": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Current local time as Unix timestamp (seconds since epoch).\n\n**Format**: Integer seconds since January 1, 1970 00:00:00 UTC\n**Precision**: Second-level accuracy\n**Timezone**: Adjusted to local timezone (not UTC)\n**Null when**: Timezone information not available\n\n**Use Cases**: \n- Programming language datetime conversion\n- Database timestamp storage\n- Cross-platform time synchronization\n\n**Example**: 1687385400 represents \"2023-06-21T14:30:00-07:00\\\"",
+            "example": 1687385400
+          },
+          "is_daylight_savings": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Indicates whether the location is currently observing daylight saving time.\n\n**True**: Location is currently in daylight saving time (summer time)\n**False**: Location is in standard time (winter time)\n**Null**: Timezone information not available OR location doesn't observe DST\n\n**DST Regions**: North America, Europe, parts of Australia, etc.\n**Non-DST Regions**: Most of Asia, Africa, South America\n\n**Update Frequency**: Real-time calculation based on current date and timezone rules\n**Use Cases**: Business hours calculation, scheduling, compliance",
+            "example": true
+          }
+        }
+      },
+      "SuspiciousFactorsV1Dto": {
+        "type": "object",
+        "description": "Comprehensive security threat assessment and suspicious activity indicators.\n\nContains boolean flags for various types of potentially malicious or suspicious\nnetwork behavior, enabling fine-grained security decision making.\n\n**Detection Methods**: \n- Machine learning classification models\n- Real-time threat intelligence feeds\n- Behavioral pattern analysis\n- Network fingerprinting techniques",
+        "example": {
+          "is_proxy": false,
+          "is_tor_node": false,
+          "is_spam": false,
+          "is_crawler": false,
+          "is_datacenter": true,
+          "is_vpn": false,
+          "is_threat": false
+        },
+        "properties": {
+          "is_proxy": {
+            "type": "boolean",
+            "description": "Indicates if the IP address is operating as a proxy server.\n\n**Proxy Types Detected**:\n- HTTP/HTTPS proxies (transparent, anonymous, elite)\n- SOCKS proxies (v4/v5)\n- Residential proxy services\n- Data center proxy pools\n\n**Detection Accuracy**: 99.5% with < 0.1% false positive rate\n**Risk Level**: Medium to High (depends on proxy type)\n**Use Cases**: Fraud prevention, content protection, geo-compliance",
+            "example": false
+          },
+          "is_tor_node": {
+            "type": "boolean",
+            "description": "Indicates if the IP address is part of the Tor anonymity network.\n\n**Node Types Detected**:\n- Tor exit nodes (highest risk)\n- Tor relay nodes (medium risk)\n- Tor bridge nodes (medium risk)\n\n**Data Source**: Real-time Tor consensus data updated every hour\n**Risk Level**: High - Often blocked due to anonymization\n**Detection Confidence**: 100% (official Tor directory)",
+            "example": false
+          },
+          "is_spam": {
+            "type": "boolean",
+            "description": "Indicates if the IP address has been associated with spam or malicious email activity.\n\n**Activity Types Detected**:\n- Email spam campaigns\n- Phishing email sources\n- Malware distribution via email\n- Compromised email servers\n- Botnet email activity\n\n**Risk Level**: High - Strong indicator of malicious intent\n**Data Sources**: Multiple global spam databases and threat feeds\n**Update Frequency**: Real-time with hourly consolidation",
+            "example": false
+          },
+          "is_crawler": {
+            "type": "boolean",
+            "description": "Indicates if the IP address is identified as a web crawler, scraper, or automated bot.\n\n**Bot Types Detected**:\n- Search engine crawlers (Google, Bing, etc.)\n- Social media bots\n- Content scrapers\n- Price monitoring bots\n- SEO analysis tools\n\n**Risk Level**: Low to Medium (legitimate vs. malicious crawlers)\n**Use Cases**: Rate limiting, content protection, analytics filtering\n**Note**: Includes both legitimate and potentially harmful automated traffic",
+            "example": false
+          },
+          "is_datacenter": {
+            "type": "boolean",
+            "description": "Indicates if the IP address originates from a datacenter or cloud hosting environment.\n\n**Infrastructure Types**:\n- Major cloud providers (AWS, GCP, Azure, etc.)\n- Dedicated server hosting\n- Virtual private servers (VPS)\n- Colocation facilities\n- Content delivery networks (CDN)\n\n**Risk Level**: Medium - Less likely to be genuine residential users\n**Use Cases**: Bot detection, user verification, residential filtering\n**Coverage**: 5000+ hosting providers globally",
+            "example": true
+          },
+          "is_vpn": {
+            "type": "boolean",
+            "description": "Indicates if the IP address belongs to a VPN (Virtual Private Network) service.\n\n**VPN Types Detected**:\n- Commercial VPN providers (NordVPN, ExpressVPN, etc.)\n- Corporate VPN gateways\n- Self-hosted VPN servers (OpenVPN, WireGuard)\n- Mobile VPN applications\n\n**Detection Methods**: \n- ISP classification analysis\n- Traffic pattern recognition\n- Known VPN server databases\n\n**Risk Level**: Medium - Privacy tool but can indicate location spoofing\n**Database Coverage**: 2000+ VPN providers with 50M+ IP ranges",
+            "example": false
+          },
+          "is_threat": {
+            "type": "boolean",
+            "description": "Indicates if the IP address has been flagged as an active security threat.\n\n**Threat Categories**:\n- Malware command & control servers\n- Botnet participants\n- Attack source IPs (DDoS, bruteforce)\n- Phishing and fraud infrastructure\n- Compromised devices and servers\n\n**Risk Level**: Very High - Immediate security concern\n**Data Sources**: Global threat intelligence partnerships\n**Response Recommendation**: Block or apply enhanced scrutiny\n**Update Frequency**: Real-time threat feed integration",
+            "example": false
+          }
+        },
+        "required": [
+          "is_crawler",
+          "is_datacenter",
+          "is_proxy",
+          "is_spam",
+          "is_threat",
+          "is_tor_node",
+          "is_vpn"
+        ]
+      },
+      "BatchEmailValidationRequestDto": {
+        "type": "object",
+        "description": "JSON request containing list of email addresses to validate.\n            \n**Request Requirements**:\n- Must contain 1-100 email addresses\n- Each email must be valid format and ≤320 characters\n- Properly formatted JSON structure required\n\n**Processing Details**:\n- All emails processed synchronously in order\n- Results returned in same order as input\n- Quota charged per email only after successful completion\n\n**Example Request**:\n```json\n{\n  \"emails\": [\n    \"user1@example.com\",\n    \"user2@gmail.com\", \n    \"user3@company.org\"\n  ]\n}\n```",
+        "example": {
+          "emails": [
+            "user1@example.com",
+            "user2@gmail.com",
+            "user3@company.org"
+          ]
+        },
+        "properties": {
+          "emails": {
+            "type": "array",
+            "description": "List of email addresses to validate. Maximum 100 emails per request.\n        \n**Email Format Requirements**:\n- Standard email format (user@domain.com)\n- Maximum 320 characters per email\n- Properly URL-encoded if containing special characters\n        \n**Batch Processing**:\n- All emails are processed synchronously\n- Results are returned in the same order as input\n- Quota is deducted only after successful completion of all validations",
+            "example": [
+              "user1@example.com",
+              "user2@gmail.com",
+              "user3@company.org"
+            ],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "emails"
+        ]
+      },
+      "AdvancedEmailValidationV1Dto": {
+        "type": "object",
+        "description": "Advanced email validation response with comprehensive analysis including SMTP verification, \ndisposable email detection, and deliverability assessment.\n\nProvides advanced validation information including real-time SMTP checks,\nGravatar detection, and detailed deliverability analysis.\n\n**Use Cases**:\n- Advanced email verification\n- Marketing campaign optimization\n- User registration validation with deliverability check\n- Fraud prevention and security screening",
+        "example": {
+          "email": "test@yandex.ru",
+          "reachable": "no",
+          "syntax": {
+            "username": "test",
+            "domain": "yandex.ru",
+            "valid": true
+          },
+          "smtp": {
+            "host_exists": true,
+            "full_inbox": false,
+            "catch_all": false,
+            "deliverable": false,
+            "disabled": false
+          },
+          "gravatar": {
+            "has_gravatar": false,
+            "gravatar_url": ""
+          },
+          "suggestion": "",
+          "disposable": false,
+          "role_account": true,
+          "free": true,
+          "has_mx_records": true
+        },
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email address that was analyzed, returned in the original format provided.",
+            "example": "test@yandex.ru"
+          },
+          "reachable": {
+            "type": "string",
+            "description": "Overall reachability assessment. Values: 'yes', 'no', 'unknown'.\n        \n**Reachability Levels**:\n- **yes**: Email is deliverable and reachable\n- **no**: Email is not reachable or invalid\n- **unknown**: Unable to determine reachability status",
+            "enum": [
+              "yes",
+              "no",
+              "unknown"
+            ],
+            "example": "no"
+          },
+          "syntax": {
+            "$ref": "#/components/schemas/AdvancedSyntaxDto",
+            "description": "Detailed syntax analysis of the email address components."
+          },
+          "smtp": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AdvancedSmtpDto"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "gravatar": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AdvancedGravatarDto"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "suggestion": {
+            "type": "string",
+            "description": "Suggested correction for misspelled domains. Empty string if no suggestion available."
+          },
+          "disposable": {
+            "type": "boolean",
+            "description": "Indicates whether the email is from a disposable/temporary email service.\n        \n**Disposable Email Detection**:\n- Checks against extensive database of known disposable providers\n- Identifies temporary email services\n- Detects throwaway email patterns",
+            "example": false
+          },
+          "role_account": {
+            "type": "boolean",
+            "description": "Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.).\n        \n**Role Account Types**:\n- Administrative accounts (admin@, webmaster@)\n- Support accounts (support@, help@, info@)\n- No-reply accounts (noreply@, no-reply@)\n- Generic business accounts (sales@, contact@)",
+            "example": true
+          },
+          "free": {
+            "type": "boolean",
+            "description": "Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.).\n        \n**Free Email Providers Include**:\n- Gmail, Yahoo Mail, Hotmail/Outlook\n- Regional free providers\n- Educational institution emails\n- Government email domains",
+            "example": true
+          },
+          "has_mx_records": {
+            "type": "boolean",
+            "description": "Indicates whether the domain has valid MX (Mail Exchange) records configured.\n        \n**MX Record Verification**:\n- Checks DNS for MX records\n- Validates mail server configuration\n- Essential for email deliverability",
+            "example": true
+          }
+        },
+        "required": [
+          "disposable",
+          "email",
+          "free",
+          "has_mx_records",
+          "reachable",
+          "role_account",
+          "suggestion",
+          "syntax"
+        ]
+      },
+      "AdvancedGravatarDto": {
+        "type": "object",
+        "description": "Gravatar availability information for the email address",
+        "properties": {
+          "has_gravatar": {
+            "type": "boolean",
+            "description": "Whether the email has an associated Gravatar profile image",
+            "example": false
+          },
+          "gravatar_url": {
+            "type": "string",
+            "description": "URL to the Gravatar image. Empty string if no Gravatar available."
+          }
+        },
+        "required": [
+          "gravatar_url",
+          "has_gravatar"
+        ]
+      },
+      "AdvancedSmtpDto": {
+        "type": "object",
+        "description": "SMTP server analysis and deliverability assessment",
+        "properties": {
+          "host_exists": {
+            "type": "boolean",
+            "description": "Whether the mail server host exists and is reachable",
+            "example": true
+          },
+          "full_inbox": {
+            "type": "boolean",
+            "description": "Whether the email account's inbox is full",
+            "example": false
+          },
+          "catch_all": {
+            "type": "boolean",
+            "description": "Whether the domain has a catch-all email configuration (accepts all emails)",
+            "example": false
+          },
+          "deliverable": {
+            "type": "boolean",
+            "description": "Whether emails can be successfully delivered to this address",
+            "example": false
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Whether the email account is blocked or disabled by the provider",
+            "example": false
+          }
+        },
+        "required": [
+          "catch_all",
+          "deliverable",
+          "disabled",
+          "full_inbox",
+          "host_exists"
+        ]
+      },
+      "AdvancedSyntaxDto": {
+        "type": "object",
+        "description": "Detailed syntax analysis of email address components",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username/local part of the email address (before @)",
+            "example": "test"
+          },
+          "domain": {
+            "type": "string",
+            "description": "The domain part of the email address (after @)",
+            "example": "yandex.ru"
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "Whether the email syntax is valid according to RFC standards",
+            "example": true
+          }
+        },
+        "required": [
+          "domain",
+          "username",
+          "valid"
+        ]
+      },
+      "BatchEmailValidationResponseDto": {
+        "type": "object",
+        "description": "Response object containing validation results for all processed emails in a batch request.",
+        "example": {
+          "results": {
+            "user1@example.com": {
+              "email": "user1@example.com",
+              "reachable": "yes",
+              "syntax": {
+                "username": "user1",
+                "domain": "example.com",
+                "valid": true
+              },
+              "smtp": {
+                "host_exists": true,
+                "full_inbox": false,
+                "catch_all": false,
+                "deliverable": true,
+                "disabled": false
+              },
+              "gravatar": {
+                "has_gravatar": false,
+                "gravatar_url": ""
+              },
+              "suggestion": "",
+              "disposable": false,
+              "role_account": false,
+              "free": false,
+              "has_mx_records": true
+            },
+            "user2@gmail.com": {
+              "email": "user2@gmail.com",
+              "reachable": "unknown",
+              "syntax": {
+                "username": "user2",
+                "domain": "gmail.com",
+                "valid": true
+              },
+              "smtp": null,
+              "gravatar": null,
+              "suggestion": "",
+              "disposable": false,
+              "role_account": false,
+              "free": true,
+              "has_mx_records": true
+            }
+          },
+          "total_processed": 2,
+          "successful_validations": 2,
+          "failed_validations": 0
+        },
+        "properties": {
+          "results": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AdvancedEmailValidationV1Dto"
+            },
+            "description": "Map of email addresses to their validation results. The key is the original email address, \nand the value is the complete validation result."
+          },
+          "totalProcessed": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Total number of emails processed in this batch.",
+            "example": 2
+          },
+          "successfulValidations": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of emails that were successfully validated.",
+            "example": 2
+          },
+          "failedValidations": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of emails that failed validation (returned null from service).",
+            "example": 0
+          }
+        },
+        "required": [
+          "failedValidations",
+          "results",
+          "successfulValidations",
+          "totalProcessed"
+        ]
+      },
+      "BatchDomainRequest": {
+        "type": "object",
+        "properties": {
+          "domains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "domains"
+        ]
+      },
+      "BatchDomainResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DomainAgeResponse"
+            }
+          }
+        },
+        "required": [
+          "results"
+        ]
+      },
+      "DomainAgeResponse": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "is_valid": {
+            "type": "boolean"
+          },
+          "registration_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "age_in_years": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "age_in_days": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "domain",
+          "is_valid"
+        ]
+      },
+      "FactorsV0Dto": {
+        "type": "object",
+        "properties": {
+          "isProxy": {
+            "type": "boolean"
+          },
+          "isTorNode": {
+            "type": "boolean"
+          },
+          "isSpam": {
+            "type": "boolean"
+          },
+          "isSuspicious": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "isProxy",
+          "isSpam",
+          "isSuspicious",
+          "isTorNode"
+        ]
+      },
+      "IpInfoV0Dto": {
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string"
+          },
+          "countryName": {
+            "type": "string"
+          },
+          "country_name": {
+            "type": "string"
+          },
+          "isInEuropeanUnion": {
+            "type": "boolean"
+          },
+          "is_in_european_union": {
+            "type": "boolean"
+          },
+          "regionName": {
+            "type": "string"
+          },
+          "region_name": {
+            "type": "string"
+          },
+          "regionCode": {
+            "type": "string"
+          },
+          "region_code": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "zipCode": {
+            "type": "string"
+          },
+          "zip_code": {
+            "type": "string"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "time_zone": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "metroCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "metro_code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organisation": {
+            "type": "string"
+          },
+          "flagUrl": {
+            "type": "string"
+          },
+          "emojiFlag": {
+            "type": "string"
+          },
+          "currencySymbol": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "callingCode": {
+            "type": "string"
+          },
+          "countryCapital": {
+            "type": "string"
+          },
+          "suspiciousFactors": {
+            "$ref": "#/components/schemas/FactorsV0Dto"
+          }
+        },
+        "required": [
+          "callingCode",
+          "city",
+          "countryCapital",
+          "countryCode",
+          "countryName",
+          "country_code",
+          "country_name",
+          "currency",
+          "currencySymbol",
+          "emojiFlag",
+          "flagUrl",
+          "ip",
+          "isInEuropeanUnion",
+          "is_in_european_union",
+          "latitude",
+          "longitude",
+          "metroCode",
+          "metro_code",
+          "organisation",
+          "regionCode",
+          "regionName",
+          "region_code",
+          "region_name",
+          "suspiciousFactors",
+          "timeZone",
+          "time_zone",
+          "zipCode",
+          "zip_code"
+        ]
+      },
+      "ApiUsageSummary": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string"
+          },
+          "apiType": {
+            "type": "string"
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalRequests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "successfulRequests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "rateLimitedRequests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quotaConsumed": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "batchOperations": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "avgRequestDurationMs": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double"
+          }
+        },
+        "required": [
+          "apiKey",
+          "apiType",
+          "batchOperations",
+          "periodEnd",
+          "periodStart",
+          "quotaConsumed",
+          "rateLimitedRequests",
+          "successfulRequests",
+          "totalRequests"
+        ]
+      },
+      "ApiUsageStatsModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "apiKey": {
+            "type": "string"
+          },
+          "planId": {
+            "type": "string"
+          },
+          "apiType": {
+            "type": "string"
+          },
+          "authType": {
+            "type": "string"
+          },
+          "hourBucket": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalRequests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "successfulRequests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rateLimitedRequests": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quotaConsumed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "peakRemainingQuota": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "minRemainingQuota": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "batchOperations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "batchTokensConsumed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "avgRequestDurationNanos": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "apiKey",
+          "apiType",
+          "authType",
+          "batchOperations",
+          "batchTokensConsumed",
+          "hourBucket",
+          "planId",
+          "quotaConsumed",
+          "rateLimitedRequests",
+          "successfulRequests",
+          "totalRequests"
+        ]
+      },
+      "TorDetectionV1Dto": {
+        "type": "object",
+        "description": "Tor exit node detection result for the given IP address",
+        "properties": {
+          "ip": {
+            "type": "string",
+            "description": "The IP address that was checked",
+            "example": "185.220.101.50"
+          },
+          "is_tor": {
+            "type": "boolean",
+            "description": "Whether the IP is a known Tor exit node",
+            "example": true
+          },
+          "tor_node_count": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Total number of currently known Tor exit nodes in the database",
+            "example": 1247
+          }
+        },
+        "required": [
+          "ip",
+          "is_tor",
+          "tor_node_count"
+        ]
+      },
+      "EmailFactorsDto": {
+        "type": "object",
+        "description": "Email address analysis results and validation factors.\n\nProvides comprehensive validation and reputation analysis for the email address,\nincluding syntax verification, domain reputation, and disposable email detection.\n\n**Validation Standards**: RFC 5322 compliance, domain verification, reputation scoring",
+        "example": {
+          "is_disposable": false,
+          "is_valid_syntax": true,
+          "risk_contribution": 0
+        },
+        "properties": {
+          "is_disposable": {
+            "type": "boolean",
+            "description": "Indicates if the email address uses a disposable or temporary email service.\n\n**Disposable Email Services Detected**:\n- Temporary email providers (10MinuteMail, TempMail, etc.)\n- One-time use email generators\n- Throwaway email services\n- Self-destructing email addresses\n\n**Risk Level**: High - Often used to bypass verification systems\n**Database Coverage**: 10,000+ known disposable email domains\n**Update Frequency**: Daily updates from multiple threat intelligence sources",
+            "example": false
+          },
+          "is_valid_syntax": {
+            "type": "boolean",
+            "description": "Indicates if the email address has valid syntax according to RFC 5322 standards.\n\n**Validation Checks**:\n- Proper @ symbol placement\n- Valid local part (before @)\n- Valid domain part (after @)\n- Correct character usage\n- Length limitations compliance\n- Special character handling\n\n**Standards Compliance**: RFC 5322, RFC 6532 (internationalized email)\n**Note**: Syntax validation does not guarantee deliverability",
+            "example": true
+          },
+          "risk_contribution": {
+            "type": "number",
+            "format": "double",
+            "description": "Risk score calculated for this email address based on validation results.\n\n**Value Range**: 0.0 to 1.0\n- **0.0**: No risk detected (valid email with good reputation)\n- **0.4**: Disposable email service detected\n- **0.6**: Invalid email syntax detected  \n- **1.0**: Multiple risk factors present (invalid + disposable)\n\n**Risk Factors**:\n- Invalid syntax: +0.6 risk score\n- Disposable email service: +0.4 risk score\n- Scores are capped at 1.0 maximum",
+            "example": 0.4,
+            "maximum": 1,
+            "minimum": 0
+          }
+        },
+        "required": [
+          "is_disposable",
+          "is_valid_syntax",
+          "risk_contribution"
+        ]
+      },
+      "IpFactorsDto": {
+        "type": "object",
+        "description": "Detailed IP address analysis results and risk factor indicators.\n\nEach boolean field represents a specific characteristic or threat classification\nof the IP address. The risk_contribution field shows the calculated risk score\nfor this IP address based on the detected factors.\n\n**Detection Methods**: Advanced fingerprinting, BGP analysis, threat intelligence feeds,\nbehavioral pattern recognition, and real-time data lookups.",
+        "example": {
+          "is_proxy": false,
+          "is_tor_node": false,
+          "is_spam": true,
+          "is_vpn": false,
+          "is_datacenter": true,
+          "risk_contribution": 0.15
+        },
+        "properties": {
+          "is_proxy": {
+            "type": "boolean",
+            "description": "Indicates if the IP address is operating as a proxy server.\n\n**Detection includes**:\n- HTTP/HTTPS proxies\n- SOCKS proxies (versions 4/5)\n- Transparent proxies\n- Elite/anonymous proxies\n\n**Risk Level**: Medium - Often used to hide real identity",
+            "example": false
+          },
+          "is_tor_node": {
+            "type": "boolean",
+            "description": "Indicates if the IP address is part of the Tor anonymity network.\n\n**Detection covers**:\n- Tor exit nodes\n- Tor relay nodes\n- Tor bridge nodes\n\n**Risk Level**: High - Strong anonymization, often blocked by services\n**Data Source**: Real-time Tor consensus data",
+            "example": false
+          },
+          "is_spam": {
+            "type": "boolean",
+            "description": "Indicates if the IP address has been associated with spam or malicious email activity.\n\n**Detection based on**:\n- Email spam campaigns\n- Malware command & control\n- Phishing attacks\n- Botnet activity\n\n**Risk Level**: High - Strong indicator of malicious intent\n**Update Frequency**: Real-time threat intelligence feeds",
+            "example": true
+          },
+          "is_vpn": {
+            "type": "boolean",
+            "description": "Indicates if the IP address belongs to a VPN (Virtual Private Network) service.\n\n**Detection includes**:\n- Commercial VPN providers\n- Corporate VPN endpoints\n- Self-hosted VPN servers\n- VPN detection via traffic patterns\n\n**Risk Level**: Medium - Legitimate privacy tool, but can hide true location\n**Database Size**: 50M+ known VPN IP ranges",
+            "example": false
+          },
+          "is_datacenter": {
+            "type": "boolean",
+            "description": "Indicates if the IP address originates from a datacenter or cloud hosting provider.\n\n**Provider types detected**:\n- Cloud providers (AWS, GCP, Azure, etc.)\n- Dedicated server hosts\n- VPS providers\n- Colocation facilities\n\n**Risk Level**: Medium - Less likely to be residential users\n**Use Cases**: Bot detection, residential verification",
+            "example": true
+          },
+          "risk_contribution": {
+            "type": "number",
+            "format": "double",
+            "description": "Risk score calculated for this IP address based on detected factors.\n\n**Value Range**: 0.0 to 1.0\n- **0.0**: No risk detected\n- **0.05-0.25**: Low to medium risk factors present  \n- **0.25-0.6**: High risk factors detected\n- **0.6-1.0**: Multiple high-risk factors present\n\n**Calculation**: Weighted sum of detected risk factors:\n- Tor node: +0.25, Proxy: +0.25, Threat: +0.25\n- VPN: +0.2, Suspicious activity: +0.15  \n- Datacenter: +0.1, Spam source: +0.05",
+            "example": 0.15,
+            "maximum": 1,
+            "minimum": 0
+          }
+        },
+        "required": [
+          "is_datacenter",
+          "is_proxy",
+          "is_spam",
+          "is_tor_node",
+          "is_vpn",
+          "risk_contribution"
+        ]
+      },
+      "RiskScoreFactorsDto": {
+        "type": "object",
+        "description": "Comprehensive breakdown of factors contributing to the risk score calculation.\n\nThis object separates analysis results into IP-specific and email-specific factors,\nallowing for granular understanding of what influenced the final risk score.\n\n**Null Handling**:\n- ip_factors: null when no IP was analyzed\n- email_factors: null when no email was analyzed\n\n**Score Calculation**: The final risk score is calculated by averaging the individual IP and email risk scores.",
+        "example": {
+          "ip_factors": {
+            "is_proxy": false,
+            "is_tor_node": false,
+            "is_spam": true,
+            "is_vpn": false,
+            "is_datacenter": true,
+            "risk_contribution": 0.15
+          },
+          "email_factors": {
+            "is_disposable": false,
+            "is_valid_syntax": true,
+            "risk_contribution": 0
+          }
+        },
+        "properties": {
+          "ip_factors": {
+            "type": "null",
+            "$ref": "#/components/schemas/IpFactorsDto",
+            "description": "IP-specific risk factors and analysis results.\n\n**Null when**: No IP address was provided for analysis\n**Present when**: IP analysis was performed (from headers, path parameter, or query parameter)\n\nContains boolean flags for various IP characteristics and a numerical risk score."
+          },
+          "email_factors": {
+            "type": "null",
+            "$ref": "#/components/schemas/EmailFactorsDto",
+            "description": "Email-specific risk factors and validation results.\n\n**Null when**: No email address was provided for analysis\n**Present when**: Email analysis was performed (from path parameter or query parameter)\n\nContains validation results, reputation checks, and numerical risk score."
+          }
+        }
+      },
+      "RiskScoreV1Dto": {
+        "type": "object",
+        "description": "Comprehensive risk score response with detailed fraud analysis results.\n\nThis response provides a complete assessment of the trustworthiness of the provided IP address and/or email,\nincluding a numerical score, risk classification, and detailed breakdown of all contributing factors.",
+        "example": {
+          "score": 0.675,
+          "risk_level": "HIGH",
+          "ip": "203.0.113.195",
+          "email": "user@example.com",
+          "factors": {
+            "ip_factors": {
+              "is_proxy": false,
+              "is_tor_node": false,
+              "is_spam": true,
+              "is_vpn": false,
+              "is_datacenter": true,
+              "risk_contribution": 0.15
+            },
+            "email_factors": {
+              "is_disposable": false,
+              "is_valid_syntax": true,
+              "risk_contribution": 0
+            }
+          }
+        },
+        "properties": {
+          "score": {
+            "type": "number",
+            "format": "double",
+            "description": "Risk score on a scale of 0.0-1.0, where higher values indicate greater risk.\n\n**Score Ranges**:\n- 0.8-1.0: Very High Risk (immediate manual review recommended)\n- 0.6-0.8: High Risk (enhanced verification required)\n- 0.4-0.6: Medium Risk (standard verification procedures)\n- 0.2-0.4: Low Risk (low fraud probability)\n- 0.0-0.2: Very Low Risk (trusted, minimal verification needed)\n\nThe score is calculated by averaging individual risk factor scores from IP and email analysis.\nRisk factors are weighted based on their threat level and combined into a normalized score.",
+            "example": 0.675,
+            "maximum": 1,
+            "minimum": 0
+          },
+          "risk_level": {
+            "type": "string",
+            "description": "Human-readable risk classification derived from the numerical risk score.\n\n**Risk Levels**:\n- **VERY_HIGH** (0.8-1.0): Immediate attention required, high probability of fraud\n- **HIGH** (0.6-0.8): Enhanced verification recommended, elevated fraud risk\n- **MEDIUM** (0.4-0.6): Standard verification sufficient, moderate risk\n- **LOW** (0.2-0.4): Minimal verification needed, low fraud probability\n- **VERY_LOW** (0.0-0.2): Trusted, very low risk\n\nThis classification helps in automated decision-making and risk-based workflows.",
+            "enum": [
+              "VERY_LOW",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "VERY_HIGH"
+            ],
+            "example": "MEDIUM"
+          },
+          "ip": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The IP address that was analyzed for this risk score calculation.\n\n**Null when**: Only email analysis was requested (using /email/{email} endpoint)\n**Present when**: IP analysis was performed (either from request headers or explicit IP parameter)\n\nFormat can be IPv4 (e.g., 203.0.113.195) or IPv6 (e.g., 2001:db8::1)",
+            "example": "203.0.113.195"
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The email address that was analyzed for this risk score calculation.\n\n**Null when**: Only IP analysis was requested (using root endpoint or /{ip} without email param)\n**Present when**: Email analysis was performed (either via /email/{email} or as query parameter)\n\nAlways returned in lowercase, normalized format regardless of input casing.",
+            "example": "user@example.com"
+          },
+          "factors": {
+            "$ref": "#/components/schemas/RiskScoreFactorsDto",
+            "description": "Comprehensive breakdown of all factors that contributed to the final risk score.\n\nThis object contains detailed analysis results for both IP and email factors (when applicable),\nincluding boolean flags for specific risk indicators and numerical risk scores.\n\nUse these factors for:\n- Detailed fraud investigation\n- Custom risk rule implementation\n- Audit trails and compliance reporting\n- Understanding individual risk components"
+          }
+        },
+        "required": [
+          "factors",
+          "risk_level",
+          "score"
+        ]
+      },
+      "ApiLimitInfo": {
+        "type": "object",
+        "description": "Rate limit details for a specific API type",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Maximum number of requests allowed in the rate limit interval",
+            "example": 100000
+          },
+          "remaining": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Remaining requests available in the current interval",
+            "example": 87532
+          },
+          "used": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of requests consumed in the current interval",
+            "example": 12468
+          },
+          "usage_percent": {
+            "type": "number",
+            "format": "double",
+            "description": "Percentage of quota utilized (0-100)",
+            "example": 12.47
+          }
+        },
+        "required": [
+          "limit",
+          "remaining",
+          "usage_percent",
+          "used"
+        ]
+      },
+      "RateLimitInfoDto": {
+        "type": "object",
+        "description": "Rate limit information for the authenticated user, including current usage, limits, and renewal date",
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "description": "Subscription plan ID or 'default' for free tier users",
+            "example": "550712"
+          },
+          "plan_name": {
+            "type": "string",
+            "description": "Human-readable plan name (if available)",
+            "example": "Professional Monthly"
+          },
+          "ip_api": {
+            "$ref": "#/components/schemas/ApiLimitInfo",
+            "description": "IP lookup API rate limit information"
+          },
+          "email_api": {
+            "$ref": "#/components/schemas/ApiLimitInfo",
+            "description": "Email validation API rate limit information"
+          },
+          "interval_seconds": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Rate limit interval in seconds (time period for quota renewal)",
+            "example": 2678400
+          },
+          "next_renewal_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
+            "example": "2025-11-26"
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Subscription status (active, past_due, cancelled, etc.)",
+            "example": "active"
+          }
+        },
+        "required": [
+          "email_api",
+          "interval_seconds",
+          "ip_api",
+          "plan_id"
+        ]
+      },
+      "EmailInfoV1Dto": {
+        "type": "object",
+        "description": "Comprehensive email validation response with detailed analysis results.\n\nProvides complete validation information including syntax compliance,\ndisposable email detection, and detailed breakdown of email components.\n\n**Use Cases**:\n- User registration validation\n- Fraud prevention screening  \n- Marketing list quality control\n- Compliance verification",
+        "example": {
+          "email": "john.doe@company.com",
+          "is_disposable": false,
+          "syntax": {
+            "domain": "company.com",
+            "username": "john.doe",
+            "is_valid": true,
+            "error_reasons": []
+          }
+        },
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email address that was analyzed, returned in normalized lowercase format.\n\n**Normalization Applied**:\n- Converted to lowercase\n- Whitespace trimmed\n- Unicode normalization (NFC)\n- Punycode encoding for international domains\n\n**Note**: The returned format may differ slightly from input due to normalization",
+            "example": "john.doe@company.com"
+          },
+          "is_disposable": {
+            "type": "boolean",
+            "description": "Indicates whether the email address uses a disposable or temporary email service.\n\n**Disposable Email Characteristics**:\n- Temporary email addresses that auto-expire\n- One-time use email services\n- Anonymous email generators\n- Throwaway email providers\n\n**Detection Method**: Real-time lookup against 10,000+ known disposable domains\n**Risk Level**: High for fraud prevention use cases\n**Update Frequency**: Daily threat intelligence updates",
+            "example": false
+          },
+          "has_mx_records": {
+            "type": "boolean",
+            "description": "Whether the email domain has valid MX records in DNS. False when no records exist or DNS lookup fails.",
+            "example": true
+          },
+          "mx_records": {
+            "type": "array",
+            "description": "MX records for the email domain, sorted by priority ascending. Empty when has_mx_records is false.",
+            "items": {
+              "$ref": "#/components/schemas/MxRecord"
+            }
+          },
+          "syntax": {
+            "$ref": "#/components/schemas/Syntax",
+            "description": "Detailed syntax validation results and email component breakdown.\n\nProvides granular analysis of email structure including domain and username\nvalidation, compliance checking, and specific error identification."
+          }
+        },
+        "required": [
+          "email",
+          "has_mx_records",
+          "is_disposable",
+          "mx_records",
+          "syntax"
+        ]
+      },
+      "MxRecord": {
+        "type": "object",
+        "properties": {
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hostname": {
+            "type": "string"
+          },
+          "ttl": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "hostname",
+          "priority",
+          "ttl"
+        ]
+      },
+      "Syntax": {
+        "type": "object",
+        "description": "Detailed email syntax validation results and component analysis.\n\nBreaks down the email address into its constituent parts and provides\ncomprehensive validation status with specific error identification.\n\n**Validation Standards**: RFC 5322, RFC 5321, RFC 6531 (internationalized email)",
+        "example": {
+          "domain": "company.com",
+          "username": "john.doe",
+          "is_valid": true,
+          "error_reasons": []
+        },
+        "properties": {
+          "domain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Domain portion of the email address (everything after the @ symbol).\n\n**Validation Includes**:\n- Valid domain format checking\n- TLD (Top Level Domain) verification\n- Internationalized domain support\n- Punycode conversion for Unicode domains\n\n**Null when**: Syntax is so malformed that domain cannot be extracted\n**Examples**: \"company.com\", \"sub.domain.co.uk\", \"xn--fsq.xn--0zwm56d\" (Chinese domain)",
+            "example": "company.com"
+          },
+          "username": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Username (local) portion of the email address (everything before the @ symbol).\n\n**Validation Includes**:\n- Character set compliance\n- Length restrictions (max 64 characters)\n- Special character handling\n- Quoted string support\n- Dot notation rules\n\n**Null when**: Syntax is so malformed that username cannot be extracted\n**Examples**: \"john.doe\", \"user+tag\", \"\\\"special user\\\"\", \"a\\\"",
+            "example": "john.doe"
+          },
+          "is_valid": {
+            "type": "boolean",
+            "description": "Overall syntax validity according to RFC standards.\n\n**Validation Criteria**:\n- RFC 5322 compliance (Internet Message Format)\n- RFC 5321 compliance (SMTP)\n- Proper @ symbol placement (exactly one)\n- Valid local part format\n- Valid domain part format\n- Character encoding compliance\n- Length limitations adherence\n\n**Note**: Valid syntax does not guarantee email deliverability",
+            "example": true
+          },
+          "error_reasons": {
+            "type": "array",
+            "description": "Specific validation errors found during syntax analysis.\n\n**Common Error Types**:\n- \"Missing @ symbol\"\n- \"Multiple @ symbols found\"\n- \"Invalid domain format\"\n- \"Username too long (max 64 characters)\"\n- \"Invalid characters in username\"\n- \"Domain too long (max 255 characters)\"\n- \"Empty username or domain\"\n- \"Consecutive dots in domain\"\n- \"Leading/trailing dots\"\n\n**Empty Array**: When email syntax is valid (is_valid = true)\n**Multiple Errors**: Array contains all detected validation issues",
+            "example": [],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "error_reasons",
+          "is_valid"
+        ]
+      },
+      "DomainReputationV1Dto": {
+        "type": "object",
+        "description": "Composite domain reputation report combining threat-intelligence domain feeds,\ndisposable email domain detection, DNS resolution, and IP intelligence for the resolved addresses.\n\n**Threat data sources**: URLhaus (abuse.ch), OpenPhish, Phishing Army, ViriBack, and the maltrail\nstatic trails — aggregated and refreshed continuously.",
+        "example": {
+          "domain": "example.com",
+          "is_valid": true,
+          "threat": {
+            "is_threat": false,
+            "categories": []
+          },
+          "is_disposable_email_domain": false,
+          "resolved_ips": [
+            {
+              "address": "93.184.215.14",
+              "type": "A",
+              "ttl": 3600,
+              "ip_info": {
+                "ip": "93.184.215.14"
+              }
+            }
+          ]
+        },
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "The normalized domain that was analyzed (lowercased, scheme/path stripped).",
+            "example": "example.com"
+          },
+          "is_valid": {
+            "type": "boolean",
+            "description": "Whether the input was a syntactically valid domain name.",
+            "example": true
+          },
+          "threat": {
+            "$ref": "#/components/schemas/ThreatVerdictV1Dto",
+            "description": "Threat-intelligence verdict for the domain itself (independent of its IPs)."
+          },
+          "is_disposable_email_domain": {
+            "type": "boolean",
+            "description": "Whether the domain is a known disposable/temporary email provider domain.",
+            "example": false
+          },
+          "resolved_ips": {
+            "type": "array",
+            "description": "DNS A/AAAA records the domain currently resolves to. Empty when the domain\ndoes not resolve (which is itself common for parked or taken-down malicious domains). IP\nintelligence is embedded for the first records to bound response time.",
+            "items": {
+              "$ref": "#/components/schemas/ResolvedIpV1Dto"
+            }
+          }
+        },
+        "required": [
+          "domain",
+          "is_disposable_email_domain",
+          "is_valid",
+          "resolved_ips",
+          "threat"
+        ]
+      },
+      "ResolvedIpV1Dto": {
+        "type": "object",
+        "description": "One resolved DNS address record, optionally enriched with IP intelligence.",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "The resolved IP address.",
+            "example": "93.184.215.14"
+          },
+          "type": {
+            "type": "string",
+            "description": "DNS record type: `A` (IPv4) or `AAAA` (IPv6).",
+            "example": "A"
+          },
+          "ttl": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "DNS record TTL in seconds.",
+            "example": 3600
+          },
+          "ip_info": {
+            "type": "null",
+            "$ref": "#/components/schemas/IpInfoV1Dto",
+            "description": "Full IP intelligence (geolocation + security flags) for this address. Null for records beyond the enrichment limit or when the lookup fails."
+          }
+        },
+        "required": [
+          "address",
+          "type"
+        ]
+      },
+      "ThreatVerdictV1Dto": {
+        "type": "object",
+        "description": "Threat-list verdict with the categories the domain is flagged under.",
+        "properties": {
+          "is_threat": {
+            "type": "boolean",
+            "description": "True when the domain appears on at least one threat feed.",
+            "example": false
+          },
+          "categories": {
+            "type": "array",
+            "description": "Threat categories the domain is listed under, e.g. `malware`, `phishing`.",
+            "example": [
+              "malware",
+              "phishing"
+            ],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "categories",
+          "is_threat"
+        ]
+      },
+      "WhoisRegistrar": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "iana_id": {
+            "type": "string"
+          }
+        }
+      },
+      "WhoisResponse": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "registrar": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/WhoisRegistrar"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "registered_on": {
+            "type": "string"
+          },
+          "expires_on": {
+            "type": "string"
+          },
+          "updated_on": {
+            "type": "string"
+          },
+          "name_servers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WhoisStatus"
+            }
+          },
+          "raw": {
+            "type": "string"
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "domain",
+          "name_servers",
+          "raw",
+          "status"
+        ]
+      },
+      "WhoisStatus": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "humanized": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "humanized"
+        ]
+      },
+      "ReverseDnsResponse": {
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string"
+          },
+          "hostname": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ptr_record": {
+            "type": "string"
+          },
+          "ttl": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          }
+        },
+        "required": [
+          "ip"
+        ]
+      },
+      "MxLookupResponse": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "mx_records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MxRecord"
+            }
+          }
+        },
+        "required": [
+          "domain",
+          "mx_records"
+        ]
+      },
+      "ForwardDnsResponse": {
+        "type": "object",
+        "properties": {
+          "hostname": {
+            "type": "string"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ForwardLookupRecord"
+            }
+          }
+        },
+        "required": [
+          "addresses",
+          "hostname"
+        ]
+      },
+      "ForwardLookupRecord": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "ttl": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "address",
+          "ttl",
+          "type"
+        ]
+      },
+      "AsnLookupResponse": {
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string"
+          },
+          "asn": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "organization": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "network": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "is_datacenter": {
+            "type": "boolean"
+          },
+          "country": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "country_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ip",
+          "is_datacenter"
+        ]
+      }
+    }
+  }
+}

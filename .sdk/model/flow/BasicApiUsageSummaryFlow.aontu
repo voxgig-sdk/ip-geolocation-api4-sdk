@@ -1,0 +1,28 @@
+# BasicApiUsageSummaryFlow
+
+main: kit: flow: BasicApiUsageSummaryFlow:
+{
+  entity: "api_usage_summary",
+  kind: "basic",
+  name: "BasicApiUsageSummaryFlow",
+  step: [
+    {
+      input: {
+        ref: "api_usage_summary_ref01",
+        srcdatavar: "api_usage_summary_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-api_usage_summary_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicApiUsageSummaryFlow"
+}

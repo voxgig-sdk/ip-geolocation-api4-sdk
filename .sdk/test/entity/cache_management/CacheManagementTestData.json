@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "cache_management": {
+      "CACHE_MANAGEMENT00": {
+        "domain": "DOMAIN01",
+        "id": "CACHE_MANAGEMENT00"
+      },
+      "CACHE_MANAGEMENT01": {
+        "domain": "DOMAIN01",
+        "id": "CACHE_MANAGEMENT01"
+      },
+      "CACHE_MANAGEMENT02": {
+        "domain": "DOMAIN01",
+        "id": "CACHE_MANAGEMENT02"
+      }
+    }
+  },
+  "new": {
+    "cache_management": {
+      "cache_management_ref01": {}
+    }
+  }
+}

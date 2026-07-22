@@ -1,0 +1,61 @@
+{
+  "existing": {
+    "api_usage_summary": {
+      "API_USAGE_SUMMARY00": {
+        "api_key": "s64",
+        "api_type": "s65",
+        "avg_request_duration_m": "s66",
+        "batch_operation": "s67",
+        "period_end": "s68",
+        "period_start": "s69",
+        "quota_consumed": "s6a",
+        "rate_limited_request": "s6b",
+        "successful_request": "s6c",
+        "total_request": "s6d",
+        "id": "API_USAGE_SUMMARY00"
+      },
+      "API_USAGE_SUMMARY01": {
+        "api_key": "sc8",
+        "api_type": "sc9",
+        "avg_request_duration_m": "sca",
+        "batch_operation": "scb",
+        "period_end": "scc",
+        "period_start": "scd",
+        "quota_consumed": "sce",
+        "rate_limited_request": "scf",
+        "successful_request": "sd0",
+        "total_request": "sd1",
+        "id": "API_USAGE_SUMMARY01"
+      },
+      "API_USAGE_SUMMARY02": {
+        "api_key": "s12c",
+        "api_type": "s12d",
+        "avg_request_duration_m": "s12e",
+        "batch_operation": "s12f",
+        "period_end": "s130",
+        "period_start": "s131",
+        "quota_consumed": "s132",
+        "rate_limited_request": "s133",
+        "successful_request": "s134",
+        "total_request": "s135",
+        "id": "API_USAGE_SUMMARY02"
+      }
+    }
+  },
+  "new": {
+    "api_usage_summary": {
+      "api_usage_summary_ref01": {
+        "api_key": "s190",
+        "api_type": "s191",
+        "avg_request_duration_m": "s192",
+        "batch_operation": "s193",
+        "period_end": "s194",
+        "period_start": "s195",
+        "quota_consumed": "s196",
+        "rate_limited_request": "s197",
+        "successful_request": "s198",
+        "total_request": "s199"
+      }
+    }
+  }
+}

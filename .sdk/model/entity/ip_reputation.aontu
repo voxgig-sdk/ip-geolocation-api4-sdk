@@ -1,0 +1,94 @@
+# Entity: ip_reputation
+
+main: kit: entity: ip_reputation: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "email"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "factor"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "ip"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "risk_level"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "score"
+      req: true
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "ip_reputation"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "203.0.113.195"
+                kind: "param"
+                name: "id"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/ip-reputation/{ip}"
+          parts: [
+            "api"
+            "v1"
+            "ip-reputation"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ip: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

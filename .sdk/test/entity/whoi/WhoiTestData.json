@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "whoi": {
+      "WHOI00": {
+        "domain": "s5a",
+        "error": "s5b",
+        "expires_on": "s5c",
+        "name_server": [],
+        "raw": "s5e",
+        "registered_on": "s5f",
+        "registrar": "s60",
+        "status": [],
+        "updated_on": "s62",
+        "id": "WHOI00"
+      },
+      "WHOI01": {
+        "domain": "sb4",
+        "error": "sb5",
+        "expires_on": "sb6",
+        "name_server": [],
+        "raw": "sb8",
+        "registered_on": "sb9",
+        "registrar": "sba",
+        "status": [],
+        "updated_on": "sbc",
+        "id": "WHOI01"
+      },
+      "WHOI02": {
+        "domain": "s10e",
+        "error": "s10f",
+        "expires_on": "s110",
+        "name_server": [],
+        "raw": "s112",
+        "registered_on": "s113",
+        "registrar": "s114",
+        "status": [],
+        "updated_on": "s116",
+        "id": "WHOI02"
+      }
+    }
+  },
+  "new": {
+    "whoi": {
+      "whoi_ref01": {
+        "domain": "s168",
+        "error": "s169",
+        "expires_on": "s16a",
+        "name_server": [],
+        "raw": "s16c",
+        "registered_on": "s16d",
+        "registrar": "s16e",
+        "status": [],
+        "updated_on": "s170"
+      }
+    }
+  }
+}

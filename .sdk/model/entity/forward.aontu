@@ -1,0 +1,68 @@
+# Entity: forward
+
+main: kit: entity: forward: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "address"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "hostname"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "forward"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "dns.google"
+                kind: "param"
+                name: "id"
+                orig: "hostname"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/dns/forward/{hostname}"
+          parts: [
+            "api"
+            "v1"
+            "dns"
+            "forward"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              hostname: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

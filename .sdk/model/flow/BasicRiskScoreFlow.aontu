@@ -1,0 +1,28 @@
+# BasicRiskScoreFlow
+
+main: kit: flow: BasicRiskScoreFlow:
+{
+  entity: "risk_score",
+  kind: "basic",
+  name: "BasicRiskScoreFlow",
+  step: [
+    {
+      input: {
+        ref: "risk_score_ref01",
+        srcdatavar: "risk_score_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-risk_score_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRiskScoreFlow"
+}

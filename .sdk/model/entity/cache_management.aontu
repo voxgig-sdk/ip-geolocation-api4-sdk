@@ -1,0 +1,103 @@
+# Entity: cache_management
+
+main: kit: entity: cache_management: {
+
+  alias: field: {}
+
+  name: "cache_management"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "domain"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/management/cache/domain-age/check/{domain}"
+          parts: [
+            "management"
+            "cache"
+            "domain-age"
+            "check"
+            "{domain}"
+          ]
+          select: {
+            exist: [
+              "domain"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/management/cache/domain-age/stats"
+          parts: [
+            "management"
+            "cache"
+            "domain-age"
+            "stats"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          method: "DELETE"
+          orig: "/management/cache/domain-age"
+          parts: [
+            "management"
+            "cache"
+            "domain-age"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "DELETE"
+          orig: "/management/cache/domain-age/all"
+          parts: [
+            "management"
+            "cache"
+            "domain-age"
+            "all"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "check"
+      ]
+    ]
+  }
+
+
+
+}

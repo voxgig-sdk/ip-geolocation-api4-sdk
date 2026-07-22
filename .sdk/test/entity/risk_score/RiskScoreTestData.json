@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "risk_score": {
+      "RISK_SCORE00": {
+        "email": "s32",
+        "factor": {},
+        "ip": "s34",
+        "risk_level": "s35",
+        "score": 54,
+        "id": "RISK_SCORE00"
+      },
+      "RISK_SCORE01": {
+        "email": "s64",
+        "factor": {},
+        "ip": "s66",
+        "risk_level": "s67",
+        "score": 104,
+        "id": "RISK_SCORE01"
+      },
+      "RISK_SCORE02": {
+        "email": "s96",
+        "factor": {},
+        "ip": "s98",
+        "risk_level": "s99",
+        "score": 154,
+        "id": "RISK_SCORE02"
+      }
+    }
+  },
+  "new": {
+    "risk_score": {
+      "risk_score_ref01": {
+        "email": "sc8",
+        "factor": {},
+        "ip": "sca",
+        "risk_level": "scb",
+        "score": 204
+      }
+    }
+  }
+}

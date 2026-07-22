@@ -1,0 +1,85 @@
+{
+  "existing": {
+    "api_usage_stats_model": {
+      "API_USAGE_STATS_MODEL00": {
+        "api_key": "saa",
+        "api_type": "sab",
+        "auth_type": "sac",
+        "avg_request_duration_nano": "sad",
+        "batch_operation": "sae",
+        "batch_tokens_consumed": "saf",
+        "created_at": "sb0",
+        "hour_bucket": "sb1",
+        "id": "API_USAGE_STATS_MODEL00",
+        "min_remaining_quota": "sb3",
+        "peak_remaining_quota": "sb4",
+        "plan_id": "PLAN01",
+        "quota_consumed": "sb6",
+        "rate_limited_request": "sb7",
+        "successful_request": "sb8",
+        "total_request": "sb9",
+        "updated_at": "sba"
+      },
+      "API_USAGE_STATS_MODEL01": {
+        "api_key": "s154",
+        "api_type": "s155",
+        "auth_type": "s156",
+        "avg_request_duration_nano": "s157",
+        "batch_operation": "s158",
+        "batch_tokens_consumed": "s159",
+        "created_at": "s15a",
+        "hour_bucket": "s15b",
+        "id": "API_USAGE_STATS_MODEL01",
+        "min_remaining_quota": "s15d",
+        "peak_remaining_quota": "s15e",
+        "plan_id": "PLAN01",
+        "quota_consumed": "s160",
+        "rate_limited_request": "s161",
+        "successful_request": "s162",
+        "total_request": "s163",
+        "updated_at": "s164"
+      },
+      "API_USAGE_STATS_MODEL02": {
+        "api_key": "s1fe",
+        "api_type": "s1ff",
+        "auth_type": "s200",
+        "avg_request_duration_nano": "s201",
+        "batch_operation": "s202",
+        "batch_tokens_consumed": "s203",
+        "created_at": "s204",
+        "hour_bucket": "s205",
+        "id": "API_USAGE_STATS_MODEL02",
+        "min_remaining_quota": "s207",
+        "peak_remaining_quota": "s208",
+        "plan_id": "PLAN01",
+        "quota_consumed": "s20a",
+        "rate_limited_request": "s20b",
+        "successful_request": "s20c",
+        "total_request": "s20d",
+        "updated_at": "s20e"
+      }
+    }
+  },
+  "new": {
+    "api_usage_stats_model": {
+      "api_usage_stats_model_ref01": {
+        "api_key": "s2a8",
+        "api_type": "s2a9",
+        "auth_type": "s2aa",
+        "avg_request_duration_nano": "s2ab",
+        "batch_operation": "s2ac",
+        "batch_tokens_consumed": "s2ad",
+        "created_at": "s2ae",
+        "hour_bucket": "s2af",
+        "min_remaining_quota": "s2b1",
+        "peak_remaining_quota": "s2b2",
+        "plan_id": "PLAN01",
+        "quota_consumed": "s2b4",
+        "rate_limited_request": "s2b5",
+        "successful_request": "s2b6",
+        "total_request": "s2b7",
+        "updated_at": "s2b8"
+      }
+    }
+  }
+}

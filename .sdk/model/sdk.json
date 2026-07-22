@@ -1,0 +1,3797 @@
+{
+  "def": "ip-geolocation-api-4_0.1.0.json",
+  "main": {
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "advanced": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "disposable",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "email",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "free",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "gravatar",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "has_mx_record",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "reachable",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "role_account",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "smtp",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "suggestion",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "syntax",
+              "req": true,
+              "type": "`$OBJECT`"
+            }
+          ],
+          "name": "advanced",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "test@yandex.ru",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "email",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/email/advanced/{email}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "email",
+                    "advanced",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "email": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "api_usage_stats_model": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "api_key",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "api_type",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "auth_type",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "avg_request_duration_nano",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "batch_operation",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "batch_tokens_consumed",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "created_at",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "hour_bucket",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "min_remaining_quota",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "peak_remaining_quota",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "plan_id",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "quota_consumed",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "rate_limited_request",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "successful_request",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "total_request",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "updated_at",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "api_usage_stats_model",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "your-api-key-here",
+                        "kind": "query",
+                        "name": "api_key",
+                        "orig": "api_key",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "IP",
+                        "kind": "query",
+                        "name": "api_type",
+                        "orig": "api_type",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "2025-11-04T00:00:00Z",
+                        "kind": "query",
+                        "name": "end_date",
+                        "orig": "end_date",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "2025-11-01T00:00:00Z",
+                        "kind": "query",
+                        "name": "start_date",
+                        "orig": "start_date",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/usage/stats",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "usage",
+                    "stats"
+                  ],
+                  "select": {
+                    "exist": [
+                      "api_key",
+                      "api_type",
+                      "end_date",
+                      "start_date"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "api_usage_summary": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "api_key",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "api_type",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "avg_request_duration_m",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "batch_operation",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "period_end",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "period_start",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "quota_consumed",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "rate_limited_request",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "successful_request",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "total_request",
+              "req": true,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "api_usage_summary",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "your-api-key-here",
+                        "kind": "query",
+                        "name": "api_key",
+                        "orig": "api_key",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "IP",
+                        "kind": "query",
+                        "name": "api_type",
+                        "orig": "api_type",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "2025-11-04T00:00:00Z",
+                        "kind": "query",
+                        "name": "end_date",
+                        "orig": "end_date",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "2025-11-01T00:00:00Z",
+                        "kind": "query",
+                        "name": "start_date",
+                        "orig": "start_date",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/usage/summary",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "usage",
+                    "summary"
+                  ],
+                  "select": {
+                    "exist": [
+                      "api_key",
+                      "api_type",
+                      "end_date",
+                      "start_date"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "asn": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "asn",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "country",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "country_code",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "is_datacenter",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "network",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "organization",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            }
+          ],
+          "name": "asn",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "8.8.8.8",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/asn/{ip}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "asn",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "batch": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "email",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "failed_lookup",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "failed_validation",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "ips",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "result",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "successful_lookup",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "successful_validation",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "total_processed",
+              "req": true,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "batch",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/api/v1/email/advanced/batch",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "email",
+                    "advanced",
+                    "batch"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/api/v1/ip/batch",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "ip",
+                    "batch"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "batch_email_validation_response_dto": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "failed_validation",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "result",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "successful_validation",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "total_processed",
+              "req": true,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "batch_email_validation_response_dto",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/api/v1/email/advanced/batch/csv",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "email",
+                    "advanced",
+                    "batch",
+                    "csv"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "cache_management": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [],
+          "name": "cache_management",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "domain",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/management/cache/domain-age/check/{domain}",
+                  "parts": [
+                    "management",
+                    "cache",
+                    "domain-age",
+                    "check",
+                    "{domain}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "domain"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/management/cache/domain-age/stats",
+                  "parts": [
+                    "management",
+                    "cache",
+                    "domain-age",
+                    "stats"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "remove": {
+              "input": "data",
+              "name": "remove",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "DELETE",
+                  "orig": "/management/cache/domain-age",
+                  "parts": [
+                    "management",
+                    "cache",
+                    "domain-age"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "DELETE",
+                  "orig": "/management/cache/domain-age/all",
+                  "parts": [
+                    "management",
+                    "cache",
+                    "domain-age",
+                    "all"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "check"
+              ]
+            ]
+          }
+        },
+        "domain_analysi": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "domain",
+              "req": true,
+              "type": "`$ARRAY`"
+            }
+          ],
+          "name": "domain_analysi",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/api/v1/domain/age/batch",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "domain",
+                    "age",
+                    "batch"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "google.com",
+                        "kind": "param",
+                        "name": "domain",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/domain/age/{domain}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "domain",
+                    "age",
+                    "{domain}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "domain"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "age"
+              ]
+            ]
+          }
+        },
+        "domain_reputation_v1_dto": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "domain",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "is_disposable_email_domain",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "is_valid",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "resolved_ip",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "threat",
+              "req": true,
+              "type": "`$OBJECT`"
+            }
+          ],
+          "name": "domain_reputation_v1_dto",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "example.com",
+                        "kind": "param",
+                        "name": "domain",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/domain/reputation/{domain}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "domain",
+                    "reputation",
+                    "{domain}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "domain"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "reputation"
+              ]
+            ]
+          }
+        },
+        "email": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "email",
+              "op": {
+                "load": {
+                  "req": false,
+                  "type": [
+                    "`$ONE`",
+                    [
+                      "`$STRING`",
+                      "`$NULL`"
+                    ]
+                  ]
+                }
+              },
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "factor",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "has_mx_record",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "ip",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "is_disposable",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "mx_record",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "risk_level",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "score",
+              "req": true,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "syntax",
+              "req": true,
+              "type": "`$OBJECT`"
+            }
+          ],
+          "name": "email",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "john.doe@company.com",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "email",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/email/{email}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "email",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "email": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "john.doe@legitbusiness.com",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "email",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/risk-score/email/{email}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "risk-score",
+                    "email",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "email": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "forward": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "address",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "hostname",
+              "req": true,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "forward",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "dns.google",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "hostname",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/dns/forward/{hostname}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "dns",
+                    "forward",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "hostname": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "ip_info_v0": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [],
+          "name": "ip_info_v0",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/json/{ip}",
+                  "parts": [
+                    "api",
+                    "json",
+                    "{ip}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/json/{ip}",
+                  "parts": [
+                    "json",
+                    "{ip}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/api/json",
+                  "parts": [
+                    "api",
+                    "json"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/api/json/",
+                  "parts": [
+                    "api",
+                    "json"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/json",
+                  "parts": [
+                    "json"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/json/",
+                  "parts": [
+                    "json"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "json"
+              ]
+            ]
+          }
+        },
+        "ip_reputation": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "email",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "factor",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "ip",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "risk_level",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "score",
+              "req": true,
+              "type": "`$NUMBER`"
+            }
+          ],
+          "name": "ip_reputation",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "203.0.113.195",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/ip-reputation/{ip}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "ip-reputation",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "ipn": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "asn",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "isp",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "location",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "suspicious_factor",
+              "req": true,
+              "type": "`$OBJECT`"
+            }
+          ],
+          "name": "ipn",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/api/v1/ip",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "ip"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "ipn2": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "asn",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "isp",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "location",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "suspicious_factor",
+              "req": true,
+              "type": "`$OBJECT`"
+            }
+          ],
+          "name": "ipn2",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "203.0.113.195",
+                        "kind": "param",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/ip/{ip}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "ip",
+                    "{ip}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "ip"
+              ]
+            ]
+          }
+        },
+        "mxn": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "domain",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "mx_record",
+              "req": true,
+              "type": "`$ARRAY`"
+            }
+          ],
+          "name": "mxn",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "gmail.com",
+                        "kind": "param",
+                        "name": "domain",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/dns/mx/{domain}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "dns",
+                    "mx",
+                    "{domain}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "domain"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "mx"
+              ]
+            ]
+          }
+        },
+        "paddle_controller": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [],
+          "name": "paddle_controller",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "http_entity",
+                        "orig": "http_entity",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "POST",
+                  "orig": "/month-sub",
+                  "parts": [
+                    "month-sub"
+                  ],
+                  "select": {
+                    "exist": [
+                      "http_entity"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/month-sub",
+                  "parts": [
+                    "month-sub"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "rate_limit_info_dto": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "email_api",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "interval_second",
+              "req": true,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "ip_api",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "next_renewal_date",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "plan_id",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "plan_name",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "status",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            }
+          ],
+          "name": "rate_limit_info_dto",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "abcdef1234567890abcdef1234567890",
+                        "kind": "query",
+                        "name": "api_key",
+                        "orig": "api_key",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/ratelimit",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "ratelimit"
+                  ],
+                  "select": {
+                    "exist": [
+                      "api_key"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "reverse": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "hostname",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ptr_record",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ttl",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            }
+          ],
+          "name": "reverse",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "8.8.8.8",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/dns/reverse/{ip}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "dns",
+                    "reverse",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "risk_score": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "email",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "factor",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "ip",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "risk_level",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "score",
+              "req": true,
+              "type": "`$NUMBER`"
+            }
+          ],
+          "name": "risk_score",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "203.0.113.195",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "suspicious.user@tempmail.com",
+                        "kind": "query",
+                        "name": "email",
+                        "orig": "email",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/risk-score/{ip}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "risk-score",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "email",
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/api/v1/risk-score",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "risk-score"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "status": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [],
+          "name": "status",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/api/status",
+                  "parts": [
+                    "api",
+                    "status"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "tor": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "ip",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "is_tor",
+              "req": true,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "tor_node_count",
+              "req": true,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "tor",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "185.220.101.50",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "ip",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/tor/{ip}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "tor",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "ip": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "usage_statistic": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [],
+          "name": "usage_statistic",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "api_key",
+                        "orig": "api_key",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "api_type",
+                        "orig": "api_type",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/usage/current-month",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "usage",
+                    "current-month"
+                  ],
+                  "select": {
+                    "exist": [
+                      "api_key",
+                      "api_type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "api_key",
+                        "orig": "api_key",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "api_type",
+                        "orig": "api_type",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/usage/recent",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "usage",
+                    "recent"
+                  ],
+                  "select": {
+                    "exist": [
+                      "api_key",
+                      "api_type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "whoi": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "domain",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "error",
+              "req": false,
+              "type": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            {
+              "active": true,
+              "name": "expires_on",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "name_server",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "raw",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "registered_on",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "registrar",
+              "req": false,
+              "type": "`$ANY`"
+            },
+            {
+              "active": true,
+              "name": "status",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "updated_on",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "whoi",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": "example.com",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/api/v1/dns/whois/{domain}",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "dns",
+                    "whois",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "domain": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicAdvancedFlow": {
+          "active": true,
+          "entity": "advanced",
+          "key$": "BasicAdvancedFlow",
+          "kind": "basic",
+          "name": "BasicAdvancedFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "advanced_ref01",
+                "srcdatavar": "advanced_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "advanced01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-advanced_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicApiUsageStatsModelFlow": {
+          "active": true,
+          "entity": "api_usage_stats_model",
+          "key$": "BasicApiUsageStatsModelFlow",
+          "kind": "basic",
+          "name": "BasicApiUsageStatsModelFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "api_usage_stats_model_ref01",
+                "srcdatavar": "api_usage_stats_model_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-api_usage_stats_model_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicApiUsageSummaryFlow": {
+          "active": true,
+          "entity": "api_usage_summary",
+          "key$": "BasicApiUsageSummaryFlow",
+          "kind": "basic",
+          "name": "BasicApiUsageSummaryFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "api_usage_summary_ref01",
+                "srcdatavar": "api_usage_summary_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-api_usage_summary_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicAsnFlow": {
+          "active": true,
+          "entity": "asn",
+          "key$": "BasicAsnFlow",
+          "kind": "basic",
+          "name": "BasicAsnFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "asn_ref01",
+                "srcdatavar": "asn_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "asn01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-asn_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicBatchEmailValidationResponseDtoFlow": {
+          "active": true,
+          "entity": "batch_email_validation_response_dto",
+          "key$": "BasicBatchEmailValidationResponseDtoFlow",
+          "kind": "basic",
+          "name": "BasicBatchEmailValidationResponseDtoFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "batch_email_validation_response_dto_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicBatchFlow": {
+          "active": true,
+          "entity": "batch",
+          "key$": "BasicBatchFlow",
+          "kind": "basic",
+          "name": "BasicBatchFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "batch_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicCacheManagementFlow": {
+          "active": true,
+          "entity": "cache_management",
+          "key$": "BasicCacheManagementFlow",
+          "kind": "basic",
+          "name": "BasicCacheManagementFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "cache_management_ref01",
+                "srcdatavar": "cache_management_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-cache_management_ref01"
+                  }
+                }
+              ]
+            },
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "cache_management_ref01",
+                "suffix": "_rm0"
+              },
+              "match": {},
+              "op": "remove",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicDomainAnalysiFlow": {
+          "active": true,
+          "entity": "domain_analysi",
+          "key$": "BasicDomainAnalysiFlow",
+          "kind": "basic",
+          "name": "BasicDomainAnalysiFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "domain_analysi_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            },
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "domain_analysi_ref01",
+                "srcdatavar": "domain_analysi_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "domain_analysi01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-domain_analysi_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicDomainReputationV1DtoFlow": {
+          "active": true,
+          "entity": "domain_reputation_v1_dto",
+          "key$": "BasicDomainReputationV1DtoFlow",
+          "kind": "basic",
+          "name": "BasicDomainReputationV1DtoFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "domain_reputation_v1_dto_ref01",
+                "srcdatavar": "domain_reputation_v1_dto_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "domain_reputation_v1_dto01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-domain_reputation_v1_dto_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicEmailFlow": {
+          "active": true,
+          "entity": "email",
+          "key$": "BasicEmailFlow",
+          "kind": "basic",
+          "name": "BasicEmailFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "email_ref01",
+                "srcdatavar": "email_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "email01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-email_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicForwardFlow": {
+          "active": true,
+          "entity": "forward",
+          "key$": "BasicForwardFlow",
+          "kind": "basic",
+          "name": "BasicForwardFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "forward_ref01",
+                "srcdatavar": "forward_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "forward01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-forward_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicIpInfoV0Flow": {
+          "active": true,
+          "entity": "ip_info_v0",
+          "key$": "BasicIpInfoV0Flow",
+          "kind": "basic",
+          "name": "BasicIpInfoV0Flow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "ip_info_v0_ref01",
+                "srcdatavar": "ip_info_v0_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-ip_info_v0_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicIpReputationFlow": {
+          "active": true,
+          "entity": "ip_reputation",
+          "key$": "BasicIpReputationFlow",
+          "kind": "basic",
+          "name": "BasicIpReputationFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "ip_reputation_ref01",
+                "srcdatavar": "ip_reputation_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "ip_reputation01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-ip_reputation_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicIpn2Flow": {
+          "active": true,
+          "entity": "ipn2",
+          "key$": "BasicIpn2Flow",
+          "kind": "basic",
+          "name": "BasicIpn2Flow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "ipn2_ref01",
+                "srcdatavar": "ipn2_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "ipn201"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-ipn2_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicIpnFlow": {
+          "active": true,
+          "entity": "ipn",
+          "key$": "BasicIpnFlow",
+          "kind": "basic",
+          "name": "BasicIpnFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "ipn_ref01",
+                "srcdatavar": "ipn_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-ipn_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicMxnFlow": {
+          "active": true,
+          "entity": "mxn",
+          "key$": "BasicMxnFlow",
+          "kind": "basic",
+          "name": "BasicMxnFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "mxn_ref01",
+                "srcdatavar": "mxn_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "mxn01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-mxn_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicPaddleControllerFlow": {
+          "active": true,
+          "entity": "paddle_controller",
+          "key$": "BasicPaddleControllerFlow",
+          "kind": "basic",
+          "name": "BasicPaddleControllerFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "paddle_controller_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            },
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "paddle_controller_ref01",
+                "srcdatavar": "paddle_controller_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-paddle_controller_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicRateLimitInfoDtoFlow": {
+          "active": true,
+          "entity": "rate_limit_info_dto",
+          "key$": "BasicRateLimitInfoDtoFlow",
+          "kind": "basic",
+          "name": "BasicRateLimitInfoDtoFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "rate_limit_info_dto_ref01",
+                "srcdatavar": "rate_limit_info_dto_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-rate_limit_info_dto_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicReverseFlow": {
+          "active": true,
+          "entity": "reverse",
+          "key$": "BasicReverseFlow",
+          "kind": "basic",
+          "name": "BasicReverseFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "reverse_ref01",
+                "srcdatavar": "reverse_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "reverse01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-reverse_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicRiskScoreFlow": {
+          "active": true,
+          "entity": "risk_score",
+          "key$": "BasicRiskScoreFlow",
+          "kind": "basic",
+          "name": "BasicRiskScoreFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "risk_score_ref01",
+                "srcdatavar": "risk_score_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-risk_score_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicStatusFlow": {
+          "active": true,
+          "entity": "status",
+          "key$": "BasicStatusFlow",
+          "kind": "basic",
+          "name": "BasicStatusFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "status_ref01",
+                "srcdatavar": "status_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-status_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicTorFlow": {
+          "active": true,
+          "entity": "tor",
+          "key$": "BasicTorFlow",
+          "kind": "basic",
+          "name": "BasicTorFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "tor_ref01",
+                "srcdatavar": "tor_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "tor01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-tor_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicUsageStatisticFlow": {
+          "active": true,
+          "entity": "usage_statistic",
+          "key$": "BasicUsageStatisticFlow",
+          "kind": "basic",
+          "name": "BasicUsageStatisticFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "usage_statistic_ref01",
+                "srcdatavar": "usage_statistic_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-usage_statistic_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicWhoiFlow": {
+          "active": true,
+          "entity": "whoi",
+          "key$": "BasicWhoiFlow",
+          "kind": "basic",
+          "name": "BasicWhoiFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "whoi_ref01",
+                "srcdatavar": "whoi_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "whoi01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-whoi_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "info": {
+        "auth": false,
+        "contact": {
+          "email": "support@ip-api.io",
+          "name": "IP-API.io Support",
+          "url": "https://ip-api.io"
+        },
+        "description": "Comprehensive IP address intelligence API providing geolocation, security analysis, and network information.\n\nFeatures:\n- Real-time IP geolocation with city-level accuracy\n- Advanced threat detection and security scoring\n- VPN, proxy, and Tor node detection\n- Email validation and reputation analysis\n- Email / ip risk scoring for fraud prevention\n\nPerfect for fraud prevention, security applications, content personalization, and compliance requirements.",
+        "license": {
+          "name": "Commercial License",
+          "url": "https://ip-api.io"
+        },
+        "meta_source": "https://www.freepublicapis.com",
+        "servers": [
+          {
+            "description": "Generated server url",
+            "url": "https://ip-api.io"
+          }
+        ],
+        "summary": "Comprehensive IP address intelligence API providing geolocation, security analysis, and network information.",
+        "title": "IP-API.io - IP Geolocation & Security API",
+        "version": "1.0.0",
+        "website": "https://ip-api.io"
+      },
+      "option": {},
+      "target": {
+        "go": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "ip-geolocation-api4"
+          },
+          "name": "go",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "ip-geolocation-api4"
+          },
+          "name": "go-cli",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            }
+          },
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "ip-geolocation-api4"
+          },
+          "name": "go-mcp",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            }
+          },
+          "title": "Go MCP server"
+        },
+        "lua": {
+          "active": true,
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "module": {
+            "name": "ip-geolocation-api4"
+          },
+          "name": "lua",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "module": {
+            "name": "ip-geolocation-api4"
+          },
+          "name": "php",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "module": {
+            "name": "ip-geolocation-api4"
+          },
+          "name": "py",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "json": {
+              "active": true,
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
+            }
+          },
+          "ext": "rb",
+          "module": {
+            "name": "ip-geolocation-api4"
+          },
+          "name": "rb",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "rubygems",
+              "package": "",
+              "state": "pending",
+              "url": "https://rubygems.org",
+              "vault": {
+                "alias": "gem",
+                "env": "",
+                "recipe": "gem"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "ip-geolocation-api4"
+          },
+          "name": "ts",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "title": "TypeScript"
+        }
+      }
+    }
+  },
+  "name": "ip-geolocation-api4",
+  "origin": "voxgig-sdk"
+}

@@ -1,0 +1,90 @@
+# Entity: batch
+
+main: kit: entity: batch: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "email"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "failed_lookup"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "failed_validation"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "ips"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "result"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "successful_lookup"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "successful_validation"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "total_processed"
+      req: true
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "batch"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/v1/email/advanced/batch"
+          parts: [
+            "api"
+            "v1"
+            "email"
+            "advanced"
+            "batch"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/api/v1/ip/batch"
+          parts: [
+            "api"
+            "v1"
+            "ip"
+            "batch"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "mxn": {
+      "MXN00": {
+        "domain": "s14",
+        "mx_record": [],
+        "id": "MXN00"
+      },
+      "MXN01": {
+        "domain": "s28",
+        "mx_record": [],
+        "id": "MXN01"
+      },
+      "MXN02": {
+        "domain": "s3c",
+        "mx_record": [],
+        "id": "MXN02"
+      }
+    }
+  },
+  "new": {
+    "mxn": {
+      "mxn_ref01": {
+        "domain": "s50",
+        "mx_record": []
+      }
+    }
+  }
+}

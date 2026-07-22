@@ -1,0 +1,28 @@
+# BasicUsageStatisticFlow
+
+main: kit: flow: BasicUsageStatisticFlow:
+{
+  entity: "usage_statistic",
+  kind: "basic",
+  name: "BasicUsageStatisticFlow",
+  step: [
+    {
+      input: {
+        ref: "usage_statistic_ref01",
+        srcdatavar: "usage_statistic_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-usage_statistic_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUsageStatisticFlow"
+}

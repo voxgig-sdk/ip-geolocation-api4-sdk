@@ -1,0 +1,86 @@
+# Entity: domain_analysi
+
+main: kit: entity: domain_analysi: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "domain"
+      req: true
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "domain_analysi"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/v1/domain/age/batch"
+          parts: [
+            "api"
+            "v1"
+            "domain"
+            "age"
+            "batch"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "google.com"
+                kind: "param"
+                name: "domain"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/domain/age/{domain}"
+          parts: [
+            "api"
+            "v1"
+            "domain"
+            "age"
+            "{domain}"
+          ]
+          select: {
+            exist: [
+              "domain"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "age"
+      ]
+    ]
+  }
+
+
+
+}

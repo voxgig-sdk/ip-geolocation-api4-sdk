@@ -1,0 +1,40 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        email: "support@ip-api.io"
+        name: "IP-API.io Support"
+        url: "https://ip-api.io"
+      }
+      description: `Comprehensive IP address intelligence API providing geolocation, security analysis, and network information.
+
+Features:
+- Real-time IP geolocation with city-level accuracy
+- Advanced threat detection and security scoring
+- VPN, proxy, and Tor node detection
+- Email validation and reputation analysis
+- Email / ip risk scoring for fraud prevention
+
+Perfect for fraud prevention, security applications, content personalization, and compliance requirements.`
+      license: {
+        name: "Commercial License"
+        url: "https://ip-api.io"
+      }
+      servers: [
+        {
+          description: "Generated server url"
+          url: "https://ip-api.io"
+        }
+      ]
+      summary: "Comprehensive IP address intelligence API providing geolocation, security analysis, and network information."
+      title: "IP-API.io - IP Geolocation & Security API"
+      version: "1.0.0"
+      website: "https://ip-api.io"
+    }
+  }
+}
+

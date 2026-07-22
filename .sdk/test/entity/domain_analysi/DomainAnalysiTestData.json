@@ -1,0 +1,25 @@
+{
+  "existing": {
+    "domain_analysi": {
+      "DOMAIN_ANALYSI00": {
+        "domain": [],
+        "id": "DOMAIN_ANALYSI00"
+      },
+      "DOMAIN_ANALYSI01": {
+        "domain": [],
+        "id": "DOMAIN_ANALYSI01"
+      },
+      "DOMAIN_ANALYSI02": {
+        "domain": [],
+        "id": "DOMAIN_ANALYSI02"
+      }
+    }
+  },
+  "new": {
+    "domain_analysi": {
+      "domain_analysi_ref01": {
+        "domain": []
+      }
+    }
+  }
+}

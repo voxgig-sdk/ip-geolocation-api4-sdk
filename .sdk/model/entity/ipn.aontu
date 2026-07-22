@@ -1,0 +1,71 @@
+# Entity: ipn
+
+main: kit: entity: ipn: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asn"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "ip"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "isp"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "location"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "suspicious_factor"
+      req: true
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "ipn"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/api/v1/ip"
+          parts: [
+            "api"
+            "v1"
+            "ip"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

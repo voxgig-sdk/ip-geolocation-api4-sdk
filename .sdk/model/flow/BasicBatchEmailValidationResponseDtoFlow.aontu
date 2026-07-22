@@ -1,0 +1,18 @@
+# BasicBatchEmailValidationResponseDtoFlow
+
+main: kit: flow: BasicBatchEmailValidationResponseDtoFlow:
+{
+  entity: "batch_email_validation_response_dto",
+  kind: "basic",
+  name: "BasicBatchEmailValidationResponseDtoFlow",
+  step: [
+    {
+      input: {
+        ref: "batch_email_validation_response_dto_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicBatchEmailValidationResponseDtoFlow"
+}

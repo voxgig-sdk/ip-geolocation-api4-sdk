@@ -1,0 +1,202 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 24
+  metrics: count: path: 37
+  metrics: count: method: 38
+
+  entity: advanced: {
+    path: "/api/v1/email/advanced/{email}": {
+      rename: param: "email": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: api_usage_stats_model: {
+    path: "/api/v1/usage/stats": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: api_usage_summary: {
+    path: "/api/v1/usage/summary": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: asn: {
+    path: "/api/v1/asn/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: batch: {
+    path: "/api/v1/email/advanced/batch": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/ip/batch": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: batch_email_validation_response_dto: {
+    path: "/api/v1/email/advanced/batch/csv": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: cache_management: {
+    path: "/management/cache/domain-age": {
+      op: remove: method: *DELETE
+    }
+    path: "/management/cache/domain-age/all": {
+      op: remove: method: *DELETE
+    }
+    path: "/management/cache/domain-age/check/{domain}": {
+      op: load: method: *GET
+    }
+    path: "/management/cache/domain-age/stats": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: domain_analysi: {
+    path: "/api/v1/domain/age/batch": {
+      op: create: method: *POST
+    }
+    path: "/api/v1/domain/age/{domain}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: domain_reputation_v1_dto: {
+    path: "/api/v1/domain/reputation/{domain}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: email: {
+    path: "/api/v1/email/{email}": {
+      rename: param: "email": *"id"
+      op: load: method: *GET
+    }
+    path: "/api/v1/risk-score/email/{email}": {
+      rename: param: "email": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: forward: {
+    path: "/api/v1/dns/forward/{hostname}": {
+      rename: param: "hostname": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: ip_info_v0: {
+    path: "/api/json": {
+      op: load: method: *GET
+    }
+    path: "/api/json/": {
+      op: load: method: *GET
+    }
+    path: "/api/json/{ip}": {
+      op: load: method: *GET
+    }
+    path: "/json": {
+      op: load: method: *GET
+    }
+    path: "/json/": {
+      op: load: method: *GET
+    }
+    path: "/json/{ip}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: ip_reputation: {
+    path: "/api/v1/ip-reputation/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: ipn: {
+    path: "/api/v1/ip": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: ipn2: {
+    path: "/api/v1/ip/{ip}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: mxn: {
+    path: "/api/v1/dns/mx/{domain}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: paddle_controller: {
+    path: "/month-sub": {
+      op: create: method: *POST
+      op: load: method: *GET
+    }
+  }
+
+  entity: rate_limit_info_dto: {
+    path: "/api/v1/ratelimit": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: reverse: {
+    path: "/api/v1/dns/reverse/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: risk_score: {
+    path: "/api/v1/risk-score": {
+      op: load: method: *GET
+    }
+    path: "/api/v1/risk-score/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: status: {
+    path: "/api/status": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: tor: {
+    path: "/api/v1/tor/{ip}": {
+      rename: param: "ip": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: usage_statistic: {
+    path: "/api/v1/usage/current-month": {
+      op: load: method: *GET
+    }
+    path: "/api/v1/usage/recent": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: whoi: {
+    path: "/api/v1/dns/whois/{domain}": {
+      rename: param: "domain": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

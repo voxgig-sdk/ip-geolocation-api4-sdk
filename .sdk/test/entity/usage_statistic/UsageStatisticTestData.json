@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "usage_statistic": {
+      "USAGE_STATISTIC00": {
+        "id": "USAGE_STATISTIC00"
+      },
+      "USAGE_STATISTIC01": {
+        "id": "USAGE_STATISTIC01"
+      },
+      "USAGE_STATISTIC02": {
+        "id": "USAGE_STATISTIC02"
+      }
+    }
+  },
+  "new": {
+    "usage_statistic": {
+      "usage_statistic_ref01": {}
+    }
+  }
+}

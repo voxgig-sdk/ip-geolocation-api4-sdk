@@ -1,0 +1,109 @@
+# Entity: whoi
+
+main: kit: entity: whoi: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "domain"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "error"
+      req: false
+      type: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "expires_on"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name_server"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "raw"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "registered_on"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "registrar"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "status"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "updated_on"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "whoi"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "id"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/dns/whois/{domain}"
+          parts: [
+            "api"
+            "v1"
+            "dns"
+            "whois"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              domain: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

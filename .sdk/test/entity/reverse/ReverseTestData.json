@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "reverse": {
+      "REVERSE00": {
+        "hostname": "s28",
+        "ip": "s29",
+        "ptr_record": "s2a",
+        "ttl": "s2b",
+        "id": "REVERSE00"
+      },
+      "REVERSE01": {
+        "hostname": "s50",
+        "ip": "s51",
+        "ptr_record": "s52",
+        "ttl": "s53",
+        "id": "REVERSE01"
+      },
+      "REVERSE02": {
+        "hostname": "s78",
+        "ip": "s79",
+        "ptr_record": "s7a",
+        "ttl": "s7b",
+        "id": "REVERSE02"
+      }
+    }
+  },
+  "new": {
+    "reverse": {
+      "reverse_ref01": {
+        "hostname": "sa0",
+        "ip": "sa1",
+        "ptr_record": "sa2",
+        "ttl": "sa3"
+      }
+    }
+  }
+}

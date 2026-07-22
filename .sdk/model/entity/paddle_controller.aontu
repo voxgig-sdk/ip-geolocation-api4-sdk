@@ -1,0 +1,61 @@
+# Entity: paddle_controller
+
+main: kit: entity: paddle_controller: {
+
+  alias: field: {}
+
+  name: "paddle_controller"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "http_entity"
+                orig: "http_entity"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/month-sub"
+          parts: [
+            "month-sub"
+          ]
+          select: {
+            exist: [
+              "http_entity"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/month-sub"
+          parts: [
+            "month-sub"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

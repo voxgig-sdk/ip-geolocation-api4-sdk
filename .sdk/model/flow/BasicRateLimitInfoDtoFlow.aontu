@@ -1,0 +1,28 @@
+# BasicRateLimitInfoDtoFlow
+
+main: kit: flow: BasicRateLimitInfoDtoFlow:
+{
+  entity: "rate_limit_info_dto",
+  kind: "basic",
+  name: "BasicRateLimitInfoDtoFlow",
+  step: [
+    {
+      input: {
+        ref: "rate_limit_info_dto_ref01",
+        srcdatavar: "rate_limit_info_dto_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-rate_limit_info_dto_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRateLimitInfoDtoFlow"
+}

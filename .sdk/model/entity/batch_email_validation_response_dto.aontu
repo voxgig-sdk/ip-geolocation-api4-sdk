@@ -1,0 +1,57 @@
+# Entity: batch_email_validation_response_dto
+
+main: kit: entity: batch_email_validation_response_dto: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "failed_validation"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "result"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "successful_validation"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "total_processed"
+      req: true
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "batch_email_validation_response_dto"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/api/v1/email/advanced/batch/csv"
+          parts: [
+            "api"
+            "v1"
+            "email"
+            "advanced"
+            "batch"
+            "csv"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

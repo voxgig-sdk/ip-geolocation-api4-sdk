@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "tor": {
+      "TOR00": {
+        "ip": "s1e",
+        "is_tor": false,
+        "tor_node_count": "s20",
+        "id": "TOR00"
+      },
+      "TOR01": {
+        "ip": "s3c",
+        "is_tor": false,
+        "tor_node_count": "s3e",
+        "id": "TOR01"
+      },
+      "TOR02": {
+        "ip": "s5a",
+        "is_tor": false,
+        "tor_node_count": "s5c",
+        "id": "TOR02"
+      }
+    }
+  },
+  "new": {
+    "tor": {
+      "tor_ref01": {
+        "ip": "s78",
+        "is_tor": false,
+        "tor_node_count": "s7a"
+      }
+    }
+  }
+}

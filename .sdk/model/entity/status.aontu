@@ -1,0 +1,30 @@
+# Entity: status
+
+main: kit: entity: status: {
+
+  alias: field: {}
+
+  name: "status"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/api/status"
+          parts: [
+            "api"
+            "status"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

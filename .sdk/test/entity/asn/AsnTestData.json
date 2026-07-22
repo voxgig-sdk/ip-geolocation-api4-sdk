@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "asn": {
+      "ASN00": {
+        "asn": "s46",
+        "country": "s47",
+        "country_code": "s48",
+        "ip": "s49",
+        "is_datacenter": true,
+        "network": "s4b",
+        "organization": "s4c",
+        "id": "ASN00"
+      },
+      "ASN01": {
+        "asn": "s8c",
+        "country": "s8d",
+        "country_code": "s8e",
+        "ip": "s8f",
+        "is_datacenter": true,
+        "network": "s91",
+        "organization": "s92",
+        "id": "ASN01"
+      },
+      "ASN02": {
+        "asn": "sd2",
+        "country": "sd3",
+        "country_code": "sd4",
+        "ip": "sd5",
+        "is_datacenter": true,
+        "network": "sd7",
+        "organization": "sd8",
+        "id": "ASN02"
+      }
+    }
+  },
+  "new": {
+    "asn": {
+      "asn_ref01": {
+        "asn": "s118",
+        "country": "s119",
+        "country_code": "s11a",
+        "ip": "s11b",
+        "is_datacenter": true,
+        "network": "s11d",
+        "organization": "s11e"
+      }
+    }
+  }
+}

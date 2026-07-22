@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "domain_reputation_v1_dto": {
+      "DOMAIN_REPUTATION_V1_DTO00": {
+        "domain": "s32",
+        "is_disposable_email_domain": false,
+        "is_valid": true,
+        "resolved_ip": [],
+        "threat": {},
+        "id": "DOMAIN_REPUTATION_V1_DTO00"
+      },
+      "DOMAIN_REPUTATION_V1_DTO01": {
+        "domain": "s64",
+        "is_disposable_email_domain": false,
+        "is_valid": true,
+        "resolved_ip": [],
+        "threat": {},
+        "id": "DOMAIN_REPUTATION_V1_DTO01"
+      },
+      "DOMAIN_REPUTATION_V1_DTO02": {
+        "domain": "s96",
+        "is_disposable_email_domain": false,
+        "is_valid": true,
+        "resolved_ip": [],
+        "threat": {},
+        "id": "DOMAIN_REPUTATION_V1_DTO02"
+      }
+    }
+  },
+  "new": {
+    "domain_reputation_v1_dto": {
+      "domain_reputation_v1_dto_ref01": {
+        "domain": "sc8",
+        "is_disposable_email_domain": false,
+        "is_valid": true,
+        "resolved_ip": [],
+        "threat": {}
+      }
+    }
+  }
+}

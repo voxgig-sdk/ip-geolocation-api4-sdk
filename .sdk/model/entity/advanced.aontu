@@ -1,0 +1,108 @@
+# Entity: advanced
+
+main: kit: entity: advanced: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "disposable"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "email"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "free"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "gravatar"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "has_mx_record"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "reachable"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "role_account"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "smtp"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggestion"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "syntax"
+      req: true
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "advanced"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "test@yandex.ru"
+                kind: "param"
+                name: "id"
+                orig: "email"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/email/advanced/{email}"
+          parts: [
+            "api"
+            "v1"
+            "email"
+            "advanced"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              email: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "ipn": {
+      "IPN00": {
+        "asn": "s32",
+        "ip": "s33",
+        "isp": "s34",
+        "location": {},
+        "suspicious_factor": {},
+        "id": "IPN00"
+      },
+      "IPN01": {
+        "asn": "s64",
+        "ip": "s65",
+        "isp": "s66",
+        "location": {},
+        "suspicious_factor": {},
+        "id": "IPN01"
+      },
+      "IPN02": {
+        "asn": "s96",
+        "ip": "s97",
+        "isp": "s98",
+        "location": {},
+        "suspicious_factor": {},
+        "id": "IPN02"
+      }
+    }
+  },
+  "new": {
+    "ipn": {
+      "ipn_ref01": {
+        "asn": "sc8",
+        "ip": "sc9",
+        "isp": "sca",
+        "location": {},
+        "suspicious_factor": {}
+      }
+    }
+  }
+}

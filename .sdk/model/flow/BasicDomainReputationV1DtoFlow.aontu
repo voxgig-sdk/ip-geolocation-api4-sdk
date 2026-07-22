@@ -1,0 +1,32 @@
+# BasicDomainReputationV1DtoFlow
+
+main: kit: flow: BasicDomainReputationV1DtoFlow:
+{
+  entity: "domain_reputation_v1_dto",
+  kind: "basic",
+  name: "BasicDomainReputationV1DtoFlow",
+  step: [
+    {
+      input: {
+        ref: "domain_reputation_v1_dto_ref01",
+        srcdatavar: "domain_reputation_v1_dto_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "domain_reputation_v1_dto01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_reputation_v1_dto_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainReputationV1DtoFlow"
+}

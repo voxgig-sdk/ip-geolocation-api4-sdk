@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "rate_limit_info_dto": {
+      "RATE_LIMIT_INFO_DTO00": {
+        "email_api": {},
+        "interval_second": "s47",
+        "ip_api": {},
+        "next_renewal_date": "s49",
+        "plan_id": "PLAN01",
+        "plan_name": "s4b",
+        "status": "s4c",
+        "id": "RATE_LIMIT_INFO_DTO00"
+      },
+      "RATE_LIMIT_INFO_DTO01": {
+        "email_api": {},
+        "interval_second": "s8d",
+        "ip_api": {},
+        "next_renewal_date": "s8f",
+        "plan_id": "PLAN01",
+        "plan_name": "s91",
+        "status": "s92",
+        "id": "RATE_LIMIT_INFO_DTO01"
+      },
+      "RATE_LIMIT_INFO_DTO02": {
+        "email_api": {},
+        "interval_second": "sd3",
+        "ip_api": {},
+        "next_renewal_date": "sd5",
+        "plan_id": "PLAN01",
+        "plan_name": "sd7",
+        "status": "sd8",
+        "id": "RATE_LIMIT_INFO_DTO02"
+      }
+    }
+  },
+  "new": {
+    "rate_limit_info_dto": {
+      "rate_limit_info_dto_ref01": {
+        "email_api": {},
+        "interval_second": "s119",
+        "ip_api": {},
+        "next_renewal_date": "s11b",
+        "plan_id": "PLAN01",
+        "plan_name": "s11d",
+        "status": "s11e"
+      }
+    }
+  }
+}
