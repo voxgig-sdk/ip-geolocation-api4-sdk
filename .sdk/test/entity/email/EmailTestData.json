@@ -2,38 +2,32 @@
   "existing": {
     "email": {
       "EMAIL00": {
-        "email": "s5a",
-        "factor": {},
-        "has_mx_record": true,
-        "ip": "s5d",
+        "email": "s46",
+        "email_factors": "s47",
+        "has_mx_records": true,
+        "ip_factors": "s49",
         "is_disposable": true,
-        "mx_record": [],
-        "risk_level": "s60",
-        "score": 97,
+        "mx_records": [],
         "syntax": {},
         "id": "EMAIL00"
       },
       "EMAIL01": {
-        "email": "sb4",
-        "factor": {},
-        "has_mx_record": true,
-        "ip": "sb7",
+        "email": "s8c",
+        "email_factors": "s8d",
+        "has_mx_records": true,
+        "ip_factors": "s8f",
         "is_disposable": true,
-        "mx_record": [],
-        "risk_level": "sba",
-        "score": 187,
+        "mx_records": [],
         "syntax": {},
         "id": "EMAIL01"
       },
       "EMAIL02": {
-        "email": "s10e",
-        "factor": {},
-        "has_mx_record": true,
-        "ip": "s111",
+        "email": "sd2",
+        "email_factors": "sd3",
+        "has_mx_records": true,
+        "ip_factors": "sd5",
         "is_disposable": true,
-        "mx_record": [],
-        "risk_level": "s114",
-        "score": 277,
+        "mx_records": [],
         "syntax": {},
         "id": "EMAIL02"
       }
@@ -42,14 +36,12 @@
   "new": {
     "email": {
       "email_ref01": {
-        "email": "s168",
-        "factor": {},
-        "has_mx_record": true,
-        "ip": "s16b",
+        "email": "s118",
+        "email_factors": "s119",
+        "has_mx_records": true,
+        "ip_factors": "s11b",
         "is_disposable": true,
-        "mx_record": [],
-        "risk_level": "s16e",
-        "score": 367,
+        "mx_records": [],
         "syntax": {}
       }
     }

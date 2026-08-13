@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-advanced, err := client.Advanced(nil).Load(map[string]any{"id": "example_id"}, nil)
+riskscore, err := client.RiskScore(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = advanced
+_ = riskscore
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-advanced, err := client.Advanced(nil).Load(
+riskScore, err := client.RiskScore(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(advanced) // the returned mock data
+fmt.Println(riskScore) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -232,7 +232,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `IpInfoV0` | `(data map[string]any) IpGeolocationApi4Entity` | Create an IpInfoV0 entity instance. |
 | `IpReputation` | `(data map[string]any) IpGeolocationApi4Entity` | Create an IpReputation entity instance. |
 | `Ipn` | `(data map[string]any) IpGeolocationApi4Entity` | Create an Ipn entity instance. |
-| `Ipn2` | `(data map[string]any) IpGeolocationApi4Entity` | Create an Ipn2 entity instance. |
 | `Mxn` | `(data map[string]any) IpGeolocationApi4Entity` | Create a Mxn entity instance. |
 | `PaddleController` | `(data map[string]any) IpGeolocationApi4Entity` | Create a PaddleController entity instance. |
 | `RateLimitInfoDto` | `(data map[string]any) IpGeolocationApi4Entity` | Create a RateLimitInfoDto entity instance. |
@@ -287,7 +286,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"email"` |  |
 | `"free"` |  |
 | `"gravatar"` |  |
-| `"has_mx_record"` |  |
+| `"has_mx_records"` |  |
 | `"reachable"` |  |
 | `"role_account"` |  |
 | `"smtp"` |  |
@@ -302,23 +301,23 @@ API path: `/api/v1/email/advanced/{email}`
 
 | Field | Description |
 | --- | --- |
-| `"api_key"` |  |
-| `"api_type"` |  |
-| `"auth_type"` |  |
-| `"avg_request_duration_nano"` |  |
-| `"batch_operation"` |  |
-| `"batch_tokens_consumed"` |  |
-| `"created_at"` |  |
-| `"hour_bucket"` |  |
+| `"apiKey"` |  |
+| `"apiType"` |  |
+| `"authType"` |  |
+| `"avgRequestDurationNanos"` |  |
+| `"batchOperations"` |  |
+| `"batchTokensConsumed"` |  |
+| `"createdAt"` |  |
+| `"hourBucket"` |  |
 | `"id"` |  |
-| `"min_remaining_quota"` |  |
-| `"peak_remaining_quota"` |  |
-| `"plan_id"` |  |
-| `"quota_consumed"` |  |
-| `"rate_limited_request"` |  |
-| `"successful_request"` |  |
-| `"total_request"` |  |
-| `"updated_at"` |  |
+| `"minRemainingQuota"` |  |
+| `"peakRemainingQuota"` |  |
+| `"planId"` |  |
+| `"quotaConsumed"` |  |
+| `"rateLimitedRequests"` |  |
+| `"successfulRequests"` |  |
+| `"totalRequests"` |  |
+| `"updatedAt"` |  |
 
 Operations: Load.
 
@@ -328,16 +327,16 @@ API path: `/api/v1/usage/stats`
 
 | Field | Description |
 | --- | --- |
-| `"api_key"` |  |
-| `"api_type"` |  |
-| `"avg_request_duration_m"` |  |
-| `"batch_operation"` |  |
-| `"period_end"` |  |
-| `"period_start"` |  |
-| `"quota_consumed"` |  |
-| `"rate_limited_request"` |  |
-| `"successful_request"` |  |
-| `"total_request"` |  |
+| `"apiKey"` |  |
+| `"apiType"` |  |
+| `"avgRequestDurationMs"` |  |
+| `"batchOperations"` |  |
+| `"periodEnd"` |  |
+| `"periodStart"` |  |
+| `"quotaConsumed"` |  |
+| `"rateLimitedRequests"` |  |
+| `"successfulRequests"` |  |
+| `"totalRequests"` |  |
 
 Operations: Load.
 
@@ -363,14 +362,8 @@ API path: `/api/v1/asn/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `"email"` |  |
-| `"failed_lookup"` |  |
-| `"failed_validation"` |  |
+| `"emails"` |  |
 | `"ips"` |  |
-| `"result"` |  |
-| `"successful_lookup"` |  |
-| `"successful_validation"` |  |
-| `"total_processed"` |  |
 
 Operations: Create.
 
@@ -380,9 +373,9 @@ API path: `/api/v1/email/advanced/batch`
 
 | Field | Description |
 | --- | --- |
-| `"failed_validation"` |  |
-| `"result"` |  |
-| `"successful_validation"` |  |
+| `"failed_validations"` |  |
+| `"results"` |  |
+| `"successful_validations"` |  |
 | `"total_processed"` |  |
 
 Operations: Create.
@@ -402,7 +395,7 @@ API path: `/management/cache/domain-age/check/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `"domain"` |  |
+| `"domains"` |  |
 
 Operations: Create, Load.
 
@@ -415,7 +408,7 @@ API path: `/api/v1/domain/age/batch`
 | `"domain"` |  |
 | `"is_disposable_email_domain"` |  |
 | `"is_valid"` |  |
-| `"resolved_ip"` |  |
+| `"resolved_ips"` |  |
 | `"threat"` |  |
 
 Operations: Load.
@@ -427,13 +420,11 @@ API path: `/api/v1/domain/reputation/{domain}`
 | Field | Description |
 | --- | --- |
 | `"email"` |  |
-| `"factor"` |  |
-| `"has_mx_record"` |  |
-| `"ip"` |  |
+| `"email_factors"` |  |
+| `"has_mx_records"` |  |
+| `"ip_factors"` |  |
 | `"is_disposable"` |  |
-| `"mx_record"` |  |
-| `"risk_level"` |  |
-| `"score"` |  |
+| `"mx_records"` |  |
 | `"syntax"` |  |
 
 Operations: Load.
@@ -444,7 +435,7 @@ API path: `/api/v1/email/{email}`
 
 | Field | Description |
 | --- | --- |
-| `"address"` |  |
+| `"addresses"` |  |
 | `"hostname"` |  |
 
 Operations: Load.
@@ -464,11 +455,8 @@ API path: `/api/json/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `"email"` |  |
-| `"factor"` |  |
-| `"ip"` |  |
-| `"risk_level"` |  |
-| `"score"` |  |
+| `"email_factors"` |  |
+| `"ip_factors"` |  |
 
 Operations: Load.
 
@@ -482,21 +470,7 @@ API path: `/api/v1/ip-reputation/{ip}`
 | `"ip"` |  |
 | `"isp"` |  |
 | `"location"` |  |
-| `"suspicious_factor"` |  |
-
-Operations: Load.
-
-API path: `/api/v1/ip`
-
-#### Ipn2
-
-| Field | Description |
-| --- | --- |
-| `"asn"` |  |
-| `"ip"` |  |
-| `"isp"` |  |
-| `"location"` |  |
-| `"suspicious_factor"` |  |
+| `"suspicious_factors"` |  |
 
 Operations: Load.
 
@@ -507,7 +481,7 @@ API path: `/api/v1/ip/{ip}`
 | Field | Description |
 | --- | --- |
 | `"domain"` |  |
-| `"mx_record"` |  |
+| `"mx_records"` |  |
 
 Operations: Load.
 
@@ -527,7 +501,7 @@ API path: `/month-sub`
 | Field | Description |
 | --- | --- |
 | `"email_api"` |  |
-| `"interval_second"` |  |
+| `"interval_seconds"` |  |
 | `"ip_api"` |  |
 | `"next_renewal_date"` |  |
 | `"plan_id"` |  |
@@ -555,11 +529,8 @@ API path: `/api/v1/dns/reverse/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `"email"` |  |
-| `"factor"` |  |
-| `"ip"` |  |
-| `"risk_level"` |  |
-| `"score"` |  |
+| `"email_factors"` |  |
+| `"ip_factors"` |  |
 
 Operations: Load.
 
@@ -602,7 +573,7 @@ API path: `/api/v1/usage/current-month`
 | `"domain"` |  |
 | `"error"` |  |
 | `"expires_on"` |  |
-| `"name_server"` |  |
+| `"name_servers"` |  |
 | `"raw"` |  |
 | `"registered_on"` |  |
 | `"registrar"` |  |
@@ -636,7 +607,7 @@ Create an instance: `advanced := client.Advanced(nil)`
 | `email` | `string` |  |
 | `free` | `bool` |  |
 | `gravatar` | `any` |  |
-| `has_mx_record` | `bool` |  |
+| `has_mx_records` | `bool` |  |
 | `reachable` | `string` |  |
 | `role_account` | `bool` |  |
 | `smtp` | `any` |  |
@@ -668,23 +639,23 @@ Create an instance: `apiUsageStatsModel := client.ApiUsageStatsModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `string` |  |
-| `api_type` | `string` |  |
-| `auth_type` | `string` |  |
-| `avg_request_duration_nano` | `any` |  |
-| `batch_operation` | `int` |  |
-| `batch_tokens_consumed` | `int` |  |
-| `created_at` | `any` |  |
-| `hour_bucket` | `string` |  |
+| `apiKey` | `string` |  |
+| `apiType` | `string` |  |
+| `authType` | `string` |  |
+| `avgRequestDurationNanos` | `any` |  |
+| `batchOperations` | `int` |  |
+| `batchTokensConsumed` | `int` |  |
+| `createdAt` | `any` |  |
+| `hourBucket` | `string` |  |
 | `id` | `any` |  |
-| `min_remaining_quota` | `any` |  |
-| `peak_remaining_quota` | `any` |  |
-| `plan_id` | `string` |  |
-| `quota_consumed` | `int` |  |
-| `rate_limited_request` | `int` |  |
-| `successful_request` | `int` |  |
-| `total_request` | `int` |  |
-| `updated_at` | `any` |  |
+| `minRemainingQuota` | `any` |  |
+| `peakRemainingQuota` | `any` |  |
+| `planId` | `string` |  |
+| `quotaConsumed` | `int` |  |
+| `rateLimitedRequests` | `int` |  |
+| `successfulRequests` | `int` |  |
+| `totalRequests` | `int` |  |
+| `updatedAt` | `any` |  |
 
 #### Example: Load
 
@@ -711,16 +682,16 @@ Create an instance: `apiUsageSummary := client.ApiUsageSummary(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `string` |  |
-| `api_type` | `string` |  |
-| `avg_request_duration_m` | `any` |  |
-| `batch_operation` | `int` |  |
-| `period_end` | `string` |  |
-| `period_start` | `string` |  |
-| `quota_consumed` | `int` |  |
-| `rate_limited_request` | `int` |  |
-| `successful_request` | `int` |  |
-| `total_request` | `int` |  |
+| `apiKey` | `string` |  |
+| `apiType` | `string` |  |
+| `avgRequestDurationMs` | `any` |  |
+| `batchOperations` | `int` |  |
+| `periodEnd` | `string` |  |
+| `periodStart` | `string` |  |
+| `quotaConsumed` | `int` |  |
+| `rateLimitedRequests` | `int` |  |
+| `successfulRequests` | `int` |  |
+| `totalRequests` | `int` |  |
 
 #### Example: Load
 
@@ -780,27 +751,15 @@ Create an instance: `batch := client.Batch(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `[]any` |  |
-| `failed_lookup` | `int` |  |
-| `failed_validation` | `int` |  |
+| `emails` | `[]any` |  |
 | `ips` | `[]any` |  |
-| `result` | `map[string]any` |  |
-| `successful_lookup` | `int` |  |
-| `successful_validation` | `int` |  |
-| `total_processed` | `int` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.Batch(nil).Create(map[string]any{
-    "email": []any{},
-    "failed_lookup": 1,
-    "failed_validation": 1,
+    "emails": []any{},
     "ips": []any{},
-    "result": map[string]any{},
-    "successful_lookup": 1,
-    "successful_validation": 1,
-    "total_processed": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -823,19 +782,15 @@ Create an instance: `batchEmailValidationResponseDto := client.BatchEmailValidat
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `failed_validation` | `int` |  |
-| `result` | `map[string]any` |  |
-| `successful_validation` | `int` |  |
+| `failed_validations` | `int` |  |
+| `results` | `map[string]any` |  |
+| `successful_validations` | `int` |  |
 | `total_processed` | `int` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.BatchEmailValidationResponseDto(nil).Create(map[string]any{
-    "failed_validation": 1,
-    "result": map[string]any{},
-    "successful_validation": 1,
-    "total_processed": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -881,7 +836,7 @@ Create an instance: `domainAnalysi := client.DomainAnalysi(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `[]any` |  |
+| `domains` | `[]any` |  |
 
 #### Example: Load
 
@@ -897,7 +852,7 @@ fmt.Println(domainAnalysi) // the loaded record
 
 ```go
 result, err := client.DomainAnalysi(nil).Create(map[string]any{
-    "domain": []any{},
+    "domains": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -923,7 +878,7 @@ Create an instance: `domainReputationV1Dto := client.DomainReputationV1Dto(nil)`
 | `domain` | `string` |  |
 | `is_disposable_email_domain` | `bool` |  |
 | `is_valid` | `bool` |  |
-| `resolved_ip` | `[]any` |  |
+| `resolved_ips` | `[]any` |  |
 | `threat` | `map[string]any` |  |
 
 #### Example: Load
@@ -952,13 +907,11 @@ Create an instance: `email := client.Email(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` |  |
-| `factor` | `map[string]any` |  |
-| `has_mx_record` | `bool` |  |
-| `ip` | `any` |  |
+| `email_factors` | `any` |  |
+| `has_mx_records` | `bool` |  |
+| `ip_factors` | `any` |  |
 | `is_disposable` | `bool` |  |
-| `mx_record` | `[]any` |  |
-| `risk_level` | `string` |  |
-| `score` | `float64` |  |
+| `mx_records` | `[]any` |  |
 | `syntax` | `map[string]any` |  |
 
 #### Example: Load
@@ -986,7 +939,7 @@ Create an instance: `forward := client.Forward(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `[]any` |  |
+| `addresses` | `[]any` |  |
 | `hostname` | `string` |  |
 
 #### Example: Load
@@ -1035,11 +988,8 @@ Create an instance: `ipReputation := client.IpReputation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `any` |  |
-| `factor` | `map[string]any` |  |
-| `ip` | `any` |  |
-| `risk_level` | `string` |  |
-| `score` | `float64` |  |
+| `email_factors` | `any` |  |
+| `ip_factors` | `any` |  |
 
 #### Example: Load
 
@@ -1070,7 +1020,7 @@ Create an instance: `ipn := client.Ipn(nil)`
 | `ip` | `string` |  |
 | `isp` | `any` |  |
 | `location` | `map[string]any` |  |
-| `suspicious_factor` | `map[string]any` |  |
+| `suspicious_factors` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -1080,37 +1030,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(ipn) // the loaded record
-```
-
-
-### Ipn2
-
-Create an instance: `ipn2 := client.Ipn2(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `Load(match, ctrl)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `asn` | `any` |  |
-| `ip` | `string` |  |
-| `isp` | `any` |  |
-| `location` | `map[string]any` |  |
-| `suspicious_factor` | `map[string]any` |  |
-
-#### Example: Load
-
-```go
-ipn2, err := client.Ipn2(nil).Load(map[string]any{"ip": "ip"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(ipn2) // the loaded record
 ```
 
 
@@ -1129,7 +1048,7 @@ Create an instance: `mxn := client.Mxn(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `mx_record` | `[]any` |  |
+| `mx_records` | `[]any` |  |
 
 #### Example: Load
 
@@ -1190,7 +1109,7 @@ Create an instance: `rateLimitInfoDto := client.RateLimitInfoDto(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_api` | `map[string]any` |  |
-| `interval_second` | `int` |  |
+| `interval_seconds` | `int` |  |
 | `ip_api` | `map[string]any` |  |
 | `next_renewal_date` | `string` |  |
 | `plan_id` | `string` |  |
@@ -1252,11 +1171,8 @@ Create an instance: `riskScore := client.RiskScore(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `any` |  |
-| `factor` | `map[string]any` |  |
-| `ip` | `any` |  |
-| `risk_level` | `string` |  |
-| `score` | `float64` |  |
+| `email_factors` | `any` |  |
+| `ip_factors` | `any` |  |
 
 #### Example: Load
 
@@ -1357,7 +1273,7 @@ Create an instance: `whoi := client.Whoi(nil)`
 | `domain` | `string` |  |
 | `error` | `any` |  |
 | `expires_on` | `string` |  |
-| `name_server` | `[]any` |  |
+| `name_servers` | `[]any` |  |
 | `raw` | `string` |  |
 | `registered_on` | `string` |  |
 | `registrar` | `any` |  |
@@ -1448,11 +1364,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-advanced := client.Advanced(nil)
-advanced.Load(map[string]any{"id": "example_id"}, nil)
+riskscore := client.RiskScore(nil)
+riskscore.Load(nil, nil)
 
-// advanced.Data() now returns the advanced data from the last load
-// advanced.Match() returns the last match criteria
+// riskscore.Data() now returns the riskscore data from the last load
+// riskscore.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

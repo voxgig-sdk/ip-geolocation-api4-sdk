@@ -16,14 +16,14 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as **24 semantic entities** that you
+This SDK exposes the API as **23 semantic entities** that you
 call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`load`, `create`, `remove`):
 
 ```ts
 const client = new IpGeolocationApi4SDK()
-const advanced = await client.Advanced().load()
+const advanced = await client.Advanced().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = IpGeolocationApi4SDK.test()
-const advanced = await client.Advanced().load({ id: 'test01' })
-// advanced is a bare Advanced populated with mock data
-console.log(advanced)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = IpGeolocationApi4SDK.test({
+  entity: {
+    risk_score: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const riskscore = await client.RiskScore().load({ id: 'test01' })
+// riskscore is the RiskScore entity, populated with mock data
+// — call riskscore.data() for the record itself
+console.log(riskscore)
 ```
 
 ### Python
 
 ```python
 client = IpGeolocationApi4SDK.test()
-advanced = client.Advanced().load({"id": "test01"})
-print(advanced)
+riskscore = client.RiskScore().load({"id": "test01"})
+print(riskscore)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(advanced)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = IpGeolocationApi4SDK::test([
-    "entity" => ["advanced" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["riskscore" => ["test01" => ["id" => "test01"]]],
 ]);
-$advanced = $client->Advanced()->load(["id" => "test01"]);
+$riskscore = $client->RiskScore()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Advanced(nil).Load(
+result, err := client.RiskScore(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Advanced(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = IpGeolocationApi4SDK.test({
-  "entity" => { "advanced" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "riskscore" => { "test01" => { "id" => "test01" } } },
 })
-advanced = client.Advanced.load({ "id" => "test01" })
+riskscore = client.RiskScore.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Advanced():load({ id = "test01" })
+local result, err = client:RiskScore():load({ id = "test01" })
 ```
 
 ## Packages
@@ -152,7 +161,7 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 24 entities:
+The API exposes 23 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
@@ -163,14 +172,13 @@ The API exposes 24 entities:
 | **Batch** | The Batch entity (create). | `/api/v1/email/advanced/batch` |
 | **BatchEmailValidationResponseDto** | The BatchEmailValidationResponseDto entity (create). | `/api/v1/email/advanced/batch/csv` |
 | **CacheManagement** | The CacheManagement entity (load, remove). | `/management/cache/domain-age/check/{domain}` |
-| **DomainAnalysi** | The DomainAnalysi entity (create, load). | `/api/v1/domain/age/batch` |
+| **DomainAnalysi** | The DomainAnalysi entity (create, load). | `/api/v1/domain/age/{domain}` |
 | **DomainReputationV1Dto** | The DomainReputationV1Dto entity (load). | `/api/v1/domain/reputation/{domain}` |
 | **Email** | The Email entity (load). | `/api/v1/email/{email}` |
 | **Forward** | The Forward entity (load). | `/api/v1/dns/forward/{hostname}` |
 | **IpInfoV0** | The IpInfoV0 entity (load). | `/api/json/{ip}` |
 | **IpReputation** | The IpReputation entity (load). | `/api/v1/ip-reputation/{ip}` |
-| **Ipn** | The Ipn entity (load). | `/api/v1/ip` |
-| **Ipn2** | The Ipn2 entity (load). | `/api/v1/ip/{ip}` |
+| **Ipn** | The Ipn entity (load). | `/api/v1/ip/{ip}` |
 | **Mxn** | The Mxn entity (load). | `/api/v1/dns/mx/{domain}` |
 | **PaddleController** | The PaddleController entity (create, load). | `/month-sub` |
 | **RateLimitInfoDto** | The RateLimitInfoDto entity (load). | `/api/v1/ratelimit` |
@@ -208,7 +216,7 @@ require_once 'ipgeolocationapi4_sdk.php';
 $client = new IpGeolocationApi4SDK();
 
 
-// Load a specific advanced (returns the bare record; throws on error)
+// Load a specific advanced (returns the ENTITY; call data_get() for the record; throws on error)
 $advanced = $client->Advanced()->load(["id" => "example_id"]);
 print_r($advanced);
 ```
@@ -239,7 +247,7 @@ require_relative "IpGeolocationApi4_sdk"
 client = IpGeolocationApi4SDK.new
 
 
-# Load a specific advanced (returns the bare record; raises on error)
+# Load a specific advanced (returns the ENTITY; call data_get for the record)
 advanced = client.Advanced.load({ "id" => "example_id" })
 puts advanced
 ```
@@ -373,6 +381,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://ip-api.io](https://ip-api.io)
 

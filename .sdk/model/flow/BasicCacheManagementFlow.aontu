@@ -23,15 +23,6 @@ main: kit: flow: BasicCacheManagementFlow:
         }
       ]
     }
-
-    {
-      input: {
-        ref: "cache_management_ref01",
-        suffix: "_rm0"
-      }
-
-      op: "remove"
-    }
   ],
   "key$": "BasicCacheManagementFlow"
 }

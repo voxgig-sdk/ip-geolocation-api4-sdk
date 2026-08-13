@@ -3,7 +3,7 @@
     "rate_limit_info_dto": {
       "RATE_LIMIT_INFO_DTO00": {
         "email_api": {},
-        "interval_second": "s47",
+        "interval_seconds": "s47",
         "ip_api": {},
         "next_renewal_date": "s49",
         "plan_id": "PLAN01",
@@ -13,7 +13,7 @@
       },
       "RATE_LIMIT_INFO_DTO01": {
         "email_api": {},
-        "interval_second": "s8d",
+        "interval_seconds": "s8d",
         "ip_api": {},
         "next_renewal_date": "s8f",
         "plan_id": "PLAN01",
@@ -23,7 +23,7 @@
       },
       "RATE_LIMIT_INFO_DTO02": {
         "email_api": {},
-        "interval_second": "sd3",
+        "interval_seconds": "sd3",
         "ip_api": {},
         "next_renewal_date": "sd5",
         "plan_id": "PLAN01",
@@ -37,7 +37,7 @@
     "rate_limit_info_dto": {
       "rate_limit_info_dto_ref01": {
         "email_api": {},
-        "interval_second": "s119",
+        "interval_seconds": "s119",
         "ip_api": {},
         "next_renewal_date": "s11b",
         "plan_id": "PLAN01",

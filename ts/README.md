@@ -56,8 +56,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const advanced = await client.Advanced().load({ id: "example_id" })
-  console.log(advanced)
+  const riskscore = await client.RiskScore().load()
+  console.log(riskscore)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -123,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = IpGeolocationApi4SDK.test()
 
-const advanced = await client.Advanced().load({ id: 'test01' })
-// advanced is a bare entity populated with mock response data
-console.log(advanced)
+const riskscore = await client.RiskScore().load({ id: 'test01' })
+// riskscore is the entity, populated with mock response data
+// — call riskscore.data() for the record itself
+console.log(riskscore)
 ```
 
 You can also use the instance method:
@@ -140,7 +141,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Advanced()
+const entity = client.RiskScore()
 
 // First call runs the operation and stores its result
 await entity.load({ id: 'example' })
@@ -232,7 +233,6 @@ new IpGeolocationApi4SDK(options?: {
 | `IpInfoV0(data?)` | `IpInfoV0Entity` | Create an IpInfoV0 entity instance. |
 | `IpReputation(data?)` | `IpReputationEntity` | Create an IpReputation entity instance. |
 | `Ipn(data?)` | `IpnEntity` | Create an Ipn entity instance. |
-| `Ipn2(data?)` | `Ipn2Entity` | Create an Ipn2 entity instance. |
 | `Mxn(data?)` | `MxnEntity` | Create a Mxn entity instance. |
 | `PaddleController(data?)` | `PaddleControllerEntity` | Create a PaddleController entity instance. |
 | `RateLimitInfoDto(data?)` | `RateLimitInfoDtoEntity` | Create a RateLimitInfoDto entity instance. |
@@ -317,7 +317,7 @@ The `prepare()` method returns:
 | `email` |  |
 | `free` |  |
 | `gravatar` |  |
-| `has_mx_record` |  |
+| `has_mx_records` |  |
 | `reachable` |  |
 | `role_account` |  |
 | `smtp` |  |
@@ -332,23 +332,23 @@ API path: `/api/v1/email/advanced/{email}`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `auth_type` |  |
-| `avg_request_duration_nano` |  |
-| `batch_operation` |  |
-| `batch_tokens_consumed` |  |
-| `created_at` |  |
-| `hour_bucket` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `authType` |  |
+| `avgRequestDurationNanos` |  |
+| `batchOperations` |  |
+| `batchTokensConsumed` |  |
+| `createdAt` |  |
+| `hourBucket` |  |
 | `id` |  |
-| `min_remaining_quota` |  |
-| `peak_remaining_quota` |  |
-| `plan_id` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
-| `updated_at` |  |
+| `minRemainingQuota` |  |
+| `peakRemainingQuota` |  |
+| `planId` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
+| `updatedAt` |  |
 
 Operations: load.
 
@@ -358,16 +358,16 @@ API path: `/api/v1/usage/stats`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `avg_request_duration_m` |  |
-| `batch_operation` |  |
-| `period_end` |  |
-| `period_start` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `avgRequestDurationMs` |  |
+| `batchOperations` |  |
+| `periodEnd` |  |
+| `periodStart` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
 
 Operations: load.
 
@@ -393,14 +393,8 @@ API path: `/api/v1/asn/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `failed_lookup` |  |
-| `failed_validation` |  |
+| `emails` |  |
 | `ips` |  |
-| `result` |  |
-| `successful_lookup` |  |
-| `successful_validation` |  |
-| `total_processed` |  |
 
 Operations: create.
 
@@ -410,9 +404,9 @@ API path: `/api/v1/email/advanced/batch`
 
 | Field | Description |
 | --- | --- |
-| `failed_validation` |  |
-| `result` |  |
-| `successful_validation` |  |
+| `failed_validations` |  |
+| `results` |  |
+| `successful_validations` |  |
 | `total_processed` |  |
 
 Operations: create.
@@ -432,7 +426,7 @@ API path: `/management/cache/domain-age/check/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 
 Operations: create, load.
 
@@ -445,7 +439,7 @@ API path: `/api/v1/domain/age/batch`
 | `domain` |  |
 | `is_disposable_email_domain` |  |
 | `is_valid` |  |
-| `resolved_ip` |  |
+| `resolved_ips` |  |
 | `threat` |  |
 
 Operations: load.
@@ -457,13 +451,11 @@ API path: `/api/v1/domain/reputation/{domain}`
 | Field | Description |
 | --- | --- |
 | `email` |  |
-| `factor` |  |
-| `has_mx_record` |  |
-| `ip` |  |
+| `email_factors` |  |
+| `has_mx_records` |  |
+| `ip_factors` |  |
 | `is_disposable` |  |
-| `mx_record` |  |
-| `risk_level` |  |
-| `score` |  |
+| `mx_records` |  |
 | `syntax` |  |
 
 Operations: load.
@@ -474,7 +466,7 @@ API path: `/api/v1/email/{email}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
+| `addresses` |  |
 | `hostname` |  |
 
 Operations: load.
@@ -494,11 +486,8 @@ API path: `/api/json/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: load.
 
@@ -512,21 +501,7 @@ API path: `/api/v1/ip-reputation/{ip}`
 | `ip` |  |
 | `isp` |  |
 | `location` |  |
-| `suspicious_factor` |  |
-
-Operations: load.
-
-API path: `/api/v1/ip`
-
-#### Ipn2
-
-| Field | Description |
-| --- | --- |
-| `asn` |  |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `suspicious_factor` |  |
+| `suspicious_factors` |  |
 
 Operations: load.
 
@@ -537,7 +512,7 @@ API path: `/api/v1/ip/{ip}`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `mx_record` |  |
+| `mx_records` |  |
 
 Operations: load.
 
@@ -557,7 +532,7 @@ API path: `/month-sub`
 | Field | Description |
 | --- | --- |
 | `email_api` |  |
-| `interval_second` |  |
+| `interval_seconds` |  |
 | `ip_api` |  |
 | `next_renewal_date` |  |
 | `plan_id` |  |
@@ -585,11 +560,8 @@ API path: `/api/v1/dns/reverse/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: load.
 
@@ -632,7 +604,7 @@ API path: `/api/v1/usage/current-month`
 | `domain` |  |
 | `error` |  |
 | `expires_on` |  |
-| `name_server` |  |
+| `name_servers` |  |
 | `raw` |  |
 | `registered_on` |  |
 | `registrar` |  |
@@ -666,7 +638,7 @@ Create an instance: `const advanced = client.Advanced()`
 | `email` | `string` |  |
 | `free` | `boolean` |  |
 | `gravatar` | `any` |  |
-| `has_mx_record` | `boolean` |  |
+| `has_mx_records` | `boolean` |  |
 | `reachable` | `string` |  |
 | `role_account` | `boolean` |  |
 | `smtp` | `any` |  |
@@ -694,23 +666,23 @@ Create an instance: `const api_usage_stats_model = client.ApiUsageStatsModel()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `string` |  |
-| `api_type` | `string` |  |
-| `auth_type` | `string` |  |
-| `avg_request_duration_nano` | `any` |  |
-| `batch_operation` | `number` |  |
-| `batch_tokens_consumed` | `number` |  |
-| `created_at` | `any` |  |
-| `hour_bucket` | `string` |  |
-| `id` | `any` |  |
-| `min_remaining_quota` | `any` |  |
-| `peak_remaining_quota` | `any` |  |
-| `plan_id` | `string` |  |
-| `quota_consumed` | `number` |  |
-| `rate_limited_request` | `number` |  |
-| `successful_request` | `number` |  |
-| `total_request` | `number` |  |
-| `updated_at` | `any` |  |
+| `apiKey` | `string` |  |
+| `apiType` | `string` |  |
+| `authType` | `string` |  |
+| `avgRequestDurationNanos` | `number | null` |  |
+| `batchOperations` | `number` |  |
+| `batchTokensConsumed` | `number` |  |
+| `createdAt` | `string | null` |  |
+| `hourBucket` | `string` |  |
+| `id` | `number | null` |  |
+| `minRemainingQuota` | `number | null` |  |
+| `peakRemainingQuota` | `number | null` |  |
+| `planId` | `string` |  |
+| `quotaConsumed` | `number` |  |
+| `rateLimitedRequests` | `number` |  |
+| `successfulRequests` | `number` |  |
+| `totalRequests` | `number` |  |
+| `updatedAt` | `string | null` |  |
 
 #### Example: Load
 
@@ -733,16 +705,16 @@ Create an instance: `const api_usage_summary = client.ApiUsageSummary()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `string` |  |
-| `api_type` | `string` |  |
-| `avg_request_duration_m` | `any` |  |
-| `batch_operation` | `number` |  |
-| `period_end` | `string` |  |
-| `period_start` | `string` |  |
-| `quota_consumed` | `number` |  |
-| `rate_limited_request` | `number` |  |
-| `successful_request` | `number` |  |
-| `total_request` | `number` |  |
+| `apiKey` | `string` |  |
+| `apiType` | `string` |  |
+| `avgRequestDurationMs` | `number | null` |  |
+| `batchOperations` | `number` |  |
+| `periodEnd` | `string` |  |
+| `periodStart` | `string` |  |
+| `quotaConsumed` | `number` |  |
+| `rateLimitedRequests` | `number` |  |
+| `successfulRequests` | `number` |  |
+| `totalRequests` | `number` |  |
 
 #### Example: Load
 
@@ -765,13 +737,13 @@ Create an instance: `const asn = client.Asn()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | `any` |  |
-| `country` | `any` |  |
+| `asn` | `number | null` |  |
+| `country` | `string | null` |  |
 | `country_code` | `string` |  |
 | `ip` | `string` |  |
 | `is_datacenter` | `boolean` |  |
-| `network` | `any` |  |
-| `organization` | `any` |  |
+| `network` | `string | null` |  |
+| `organization` | `string | null` |  |
 
 #### Example: Load
 
@@ -794,27 +766,15 @@ Create an instance: `const batch = client.Batch()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `any[]` |  |
-| `failed_lookup` | `number` |  |
-| `failed_validation` | `number` |  |
+| `emails` | `any[]` |  |
 | `ips` | `any[]` |  |
-| `result` | `Record<string, any>` |  |
-| `successful_lookup` | `number` |  |
-| `successful_validation` | `number` |  |
-| `total_processed` | `number` |  |
 
 #### Example: Create
 
 ```ts
 const batch = await client.Batch().create({
-  email: [],
-  failed_lookup: 1,
-  failed_validation: 1,
+  emails: [],
   ips: [],
-  result: {},
-  successful_lookup: 1,
-  successful_validation: 1,
-  total_processed: 1,
 })
 ```
 
@@ -833,19 +793,15 @@ Create an instance: `const batch_email_validation_response_dto = client.BatchEma
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `failed_validation` | `number` |  |
-| `result` | `Record<string, any>` |  |
-| `successful_validation` | `number` |  |
+| `failed_validations` | `number` |  |
+| `results` | `Record<string, any>` |  |
+| `successful_validations` | `number` |  |
 | `total_processed` | `number` |  |
 
 #### Example: Create
 
 ```ts
 const batch_email_validation_response_dto = await client.BatchEmailValidationResponseDto().create({
-  failed_validation: 1,
-  result: {},
-  successful_validation: 1,
-  total_processed: 1,
 })
 ```
 
@@ -883,7 +839,7 @@ Create an instance: `const domain_analysi = client.DomainAnalysi()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `any[]` |  |
+| `domains` | `any[]` |  |
 
 #### Example: Load
 
@@ -895,7 +851,7 @@ const domain_analysi = await client.DomainAnalysi().load({ domain: 'domain' })
 
 ```ts
 const domain_analysi = await client.DomainAnalysi().create({
-  domain: [],
+  domains: [],
 })
 ```
 
@@ -917,7 +873,7 @@ Create an instance: `const domain_reputation_v1_dto = client.DomainReputationV1D
 | `domain` | `string` |  |
 | `is_disposable_email_domain` | `boolean` |  |
 | `is_valid` | `boolean` |  |
-| `resolved_ip` | `any[]` |  |
+| `resolved_ips` | `any[]` |  |
 | `threat` | `Record<string, any>` |  |
 
 #### Example: Load
@@ -942,13 +898,11 @@ Create an instance: `const email = client.Email()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` |  |
-| `factor` | `Record<string, any>` |  |
-| `has_mx_record` | `boolean` |  |
-| `ip` | `any` |  |
+| `email_factors` | `null` |  |
+| `has_mx_records` | `boolean` |  |
+| `ip_factors` | `null` |  |
 | `is_disposable` | `boolean` |  |
-| `mx_record` | `any[]` |  |
-| `risk_level` | `string` |  |
-| `score` | `number` |  |
+| `mx_records` | `any[]` |  |
 | `syntax` | `Record<string, any>` |  |
 
 #### Example: Load
@@ -972,7 +926,7 @@ Create an instance: `const forward = client.Forward()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `any[]` |  |
+| `addresses` | `any[]` |  |
 | `hostname` | `string` |  |
 
 #### Example: Load
@@ -1013,11 +967,8 @@ Create an instance: `const ip_reputation = client.IpReputation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `any` |  |
-| `factor` | `Record<string, any>` |  |
-| `ip` | `any` |  |
-| `risk_level` | `string` |  |
-| `score` | `number` |  |
+| `email_factors` | `null` |  |
+| `ip_factors` | `null` |  |
 
 #### Example: Load
 
@@ -1040,43 +991,16 @@ Create an instance: `const ipn = client.Ipn()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | `any` |  |
+| `asn` | `string | null` |  |
 | `ip` | `string` |  |
-| `isp` | `any` |  |
+| `isp` | `string | null` |  |
 | `location` | `Record<string, any>` |  |
-| `suspicious_factor` | `Record<string, any>` |  |
+| `suspicious_factors` | `Record<string, any>` |  |
 
 #### Example: Load
 
 ```ts
 const ipn = await client.Ipn().load()
-```
-
-
-### Ipn2
-
-Create an instance: `const ipn2 = client.Ipn2()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `asn` | `any` |  |
-| `ip` | `string` |  |
-| `isp` | `any` |  |
-| `location` | `Record<string, any>` |  |
-| `suspicious_factor` | `Record<string, any>` |  |
-
-#### Example: Load
-
-```ts
-const ipn2 = await client.Ipn2().load({ ip: 'ip' })
 ```
 
 
@@ -1095,7 +1019,7 @@ Create an instance: `const mxn = client.Mxn()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `mx_record` | `any[]` |  |
+| `mx_records` | `any[]` |  |
 
 #### Example: Load
 
@@ -1144,12 +1068,12 @@ Create an instance: `const rate_limit_info_dto = client.RateLimitInfoDto()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_api` | `Record<string, any>` |  |
-| `interval_second` | `number` |  |
+| `interval_seconds` | `number` |  |
 | `ip_api` | `Record<string, any>` |  |
 | `next_renewal_date` | `string` |  |
 | `plan_id` | `string` |  |
 | `plan_name` | `string` |  |
-| `status` | `any` |  |
+| `status` | `string | null` |  |
 
 #### Example: Load
 
@@ -1172,10 +1096,10 @@ Create an instance: `const reverse = client.Reverse()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hostname` | `any` |  |
+| `hostname` | `string | null` |  |
 | `ip` | `string` |  |
 | `ptr_record` | `string` |  |
-| `ttl` | `any` |  |
+| `ttl` | `number | null` |  |
 
 #### Example: Load
 
@@ -1198,11 +1122,8 @@ Create an instance: `const risk_score = client.RiskScore()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `any` |  |
-| `factor` | `Record<string, any>` |  |
-| `ip` | `any` |  |
-| `risk_level` | `string` |  |
-| `score` | `number` |  |
+| `email_factors` | `null` |  |
+| `ip_factors` | `null` |  |
 
 #### Example: Load
 
@@ -1285,9 +1206,9 @@ Create an instance: `const whoi = client.Whoi()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `error` | `any` |  |
+| `error` | `string | null` |  |
 | `expires_on` | `string` |  |
-| `name_server` | `any[]` |  |
+| `name_servers` | `any[]` |  |
 | `raw` | `string` |  |
 | `registered_on` | `string` |  |
 | `registrar` | `any` |  |
@@ -1370,11 +1291,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const advanced = client.Advanced()
-await advanced.load({ id: "example_id" })
+const riskscore = client.RiskScore()
+await riskscore.load()
 
-// advanced.data() now returns the advanced data from the last `load`
-// advanced.match() returns { id: "example_id" }
+// riskscore.data() now returns the riskscore data from the last `load`
+// riskscore.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

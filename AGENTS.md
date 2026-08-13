@@ -31,7 +31,7 @@ Each feature is generated into every SDK target — as a directory
 `<lang>/src/feature/<name>/` (ts/js) or a flat file in the `<lang>/feature/`
 package (other languages). Each target's guide documents its features.
 
-**Entities** (24): `Advanced`, `ApiUsageStatsModel`, `ApiUsageSummary`, `Asn`, `Batch`, `BatchEmailValidationResponseDto`, `CacheManagement`, `DomainAnalysi`, `DomainReputationV1Dto`, `Email`, `Forward`, `IpInfoV0`, `IpReputation`, `Ipn`, `Ipn2`, `Mxn`, `PaddleController`, `RateLimitInfoDto`, `Reverse`, `RiskScore`, `Status`, `Tor`, `UsageStatistic`, `Whoi`.
+**Entities** (23): `Advanced`, `ApiUsageStatsModel`, `ApiUsageSummary`, `Asn`, `Batch`, `BatchEmailValidationResponseDto`, `CacheManagement`, `DomainAnalysi`, `DomainReputationV1Dto`, `Email`, `Forward`, `IpInfoV0`, `IpReputation`, `Ipn`, `Mxn`, `PaddleController`, `RateLimitInfoDto`, `Reverse`, `RiskScore`, `Status`, `Tor`, `UsageStatistic`, `Whoi`.
 
 ## Generating and updating the SDK
 

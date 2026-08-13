@@ -15,11 +15,19 @@ class IpnDirectTest < Minitest::Test
     end
     client = setup[:client]
 
+    params = {}
+    query = {}
+    if setup[:live]
+      params["ip"] = "203.0.113.195"
+    else
+      params["ip"] = "direct01"
+    end
 
     result = client.direct({
-      "path" => "api/v1/ip",
+      "path" => "api/v1/ip/{ip}",
       "method" => "GET",
-      "params" => {},
+      "params" => params,
+      "query" => query,
     })
     if setup[:live]
       # Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
@@ -59,11 +67,11 @@ def ipn_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "IPGEOLOCATIONAPI__TEST_IPN_ENTID" => {},
-    "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
+    "IP_GEOLOCATION_API4_TEST_IPN_ENTID" => {},
+    "IP_GEOLOCATION_API4_TEST_LIVE" => "FALSE",
   })
 
-  live = env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
+  live = env["IP_GEOLOCATION_API4_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

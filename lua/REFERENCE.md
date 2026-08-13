@@ -96,10 +96,6 @@ Create a new `IpReputation` entity instance. Pass `nil` for no initial data.
 
 Create a new `Ipn` entity instance. Pass `nil` for no initial data.
 
-#### `Ipn2(data)`
-
-Create a new `Ipn2` entity instance. Pass `nil` for no initial data.
-
 #### `Mxn(data)`
 
 Create a new `Mxn` entity instance. Pass `nil` for no initial data.
@@ -186,7 +182,7 @@ local advanced = client:Advanced(nil)
 | `email` | `string` | Yes |  |
 | `free` | `boolean` | Yes |  |
 | `gravatar` | `any` | No |  |
-| `has_mx_record` | `boolean` | Yes |  |
+| `has_mx_records` | `boolean` | Yes |  |
 | `reachable` | `string` | Yes |  |
 | `role_account` | `boolean` | Yes |  |
 | `smtp` | `any` | No |  |
@@ -243,23 +239,23 @@ local api_usage_stats_model = client:ApiUsageStatsModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string` | Yes |  |
-| `api_type` | `string` | Yes |  |
-| `auth_type` | `string` | Yes |  |
-| `avg_request_duration_nano` | `any` | No |  |
-| `batch_operation` | `number` | Yes |  |
-| `batch_tokens_consumed` | `number` | Yes |  |
-| `created_at` | `any` | No |  |
-| `hour_bucket` | `string` | Yes |  |
-| `id` | `any` | No |  |
-| `min_remaining_quota` | `any` | No |  |
-| `peak_remaining_quota` | `any` | No |  |
-| `plan_id` | `string` | Yes |  |
-| `quota_consumed` | `number` | Yes |  |
-| `rate_limited_request` | `number` | Yes |  |
-| `successful_request` | `number` | Yes |  |
-| `total_request` | `number` | Yes |  |
-| `updated_at` | `any` | No |  |
+| `apiKey` | `string` | Yes |  |
+| `apiType` | `string` | Yes |  |
+| `authType` | `string` | Yes |  |
+| `avgRequestDurationNanos` | `number|nil` | No |  |
+| `batchOperations` | `number` | Yes |  |
+| `batchTokensConsumed` | `number` | Yes |  |
+| `createdAt` | `string|nil` | No |  |
+| `hourBucket` | `string` | Yes |  |
+| `id` | `number|nil` | No |  |
+| `minRemainingQuota` | `number|nil` | No |  |
+| `peakRemainingQuota` | `number|nil` | No |  |
+| `planId` | `string` | Yes |  |
+| `quotaConsumed` | `number` | Yes |  |
+| `rateLimitedRequests` | `number` | Yes |  |
+| `successfulRequests` | `number` | Yes |  |
+| `totalRequests` | `number` | Yes |  |
+| `updatedAt` | `string|nil` | No |  |
 
 ### Operations
 
@@ -311,16 +307,16 @@ local api_usage_summary = client:ApiUsageSummary(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string` | Yes |  |
-| `api_type` | `string` | Yes |  |
-| `avg_request_duration_m` | `any` | No |  |
-| `batch_operation` | `number` | Yes |  |
-| `period_end` | `string` | Yes |  |
-| `period_start` | `string` | Yes |  |
-| `quota_consumed` | `number` | Yes |  |
-| `rate_limited_request` | `number` | Yes |  |
-| `successful_request` | `number` | Yes |  |
-| `total_request` | `number` | Yes |  |
+| `apiKey` | `string` | Yes |  |
+| `apiType` | `string` | Yes |  |
+| `avgRequestDurationMs` | `number|nil` | No |  |
+| `batchOperations` | `number` | Yes |  |
+| `periodEnd` | `string` | Yes |  |
+| `periodStart` | `string` | Yes |  |
+| `quotaConsumed` | `number` | Yes |  |
+| `rateLimitedRequests` | `number` | Yes |  |
+| `successfulRequests` | `number` | Yes |  |
+| `totalRequests` | `number` | Yes |  |
 
 ### Operations
 
@@ -372,13 +368,13 @@ local asn = client:Asn(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `any` | No |  |
-| `country` | `any` | No |  |
+| `asn` | `number|nil` | No |  |
+| `country` | `string|nil` | No |  |
 | `country_code` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_datacenter` | `boolean` | Yes |  |
-| `network` | `any` | No |  |
-| `organization` | `any` | No |  |
+| `network` | `string|nil` | No |  |
+| `organization` | `string|nil` | No |  |
 
 ### Operations
 
@@ -430,14 +426,8 @@ local batch = client:Batch(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `table` | Yes |  |
-| `failed_lookup` | `number` | Yes |  |
-| `failed_validation` | `number` | Yes |  |
+| `emails` | `table` | Yes |  |
 | `ips` | `table` | Yes |  |
-| `result` | `table` | Yes |  |
-| `successful_lookup` | `number` | Yes |  |
-| `successful_validation` | `number` | Yes |  |
-| `total_processed` | `number` | Yes |  |
 
 ### Operations
 
@@ -447,14 +437,8 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Batch():create({
-  email = --[[ table ]],
-  failed_lookup = --[[ number ]],
-  failed_validation = --[[ number ]],
+  emails = --[[ table ]],
   ips = --[[ table ]],
-  result = --[[ table ]],
-  successful_lookup = --[[ number ]],
-  successful_validation = --[[ number ]],
-  total_processed = --[[ number ]],
 })
 ```
 
@@ -498,10 +482,10 @@ local batch_email_validation_response_dto = client:BatchEmailValidationResponseD
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `failed_validation` | `number` | Yes |  |
-| `result` | `table` | Yes |  |
-| `successful_validation` | `number` | Yes |  |
-| `total_processed` | `number` | Yes |  |
+| `failed_validations` | `number` | No |  |
+| `results` | `table` | No |  |
+| `successful_validations` | `number` | No |  |
+| `total_processed` | `number` | No |  |
 
 ### Operations
 
@@ -511,10 +495,6 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:BatchEmailValidationResponseDto():create({
-  failed_validation = --[[ number ]],
-  result = --[[ table ]],
-  successful_validation = --[[ number ]],
-  total_processed = --[[ number ]],
 })
 ```
 
@@ -612,7 +592,7 @@ local domain_analysi = client:DomainAnalysi(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `table` | Yes |  |
+| `domains` | `table` | Yes |  |
 
 ### Operations
 
@@ -622,7 +602,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:DomainAnalysi():create({
-  domain = --[[ table ]],
+  domains = --[[ table ]],
 })
 ```
 
@@ -677,7 +657,7 @@ local domain_reputation_v1_dto = client:DomainReputationV1Dto(nil)
 | `domain` | `string` | Yes |  |
 | `is_disposable_email_domain` | `boolean` | Yes |  |
 | `is_valid` | `boolean` | Yes |  |
-| `resolved_ip` | `table` | Yes |  |
+| `resolved_ips` | `table` | Yes |  |
 | `threat` | `table` | Yes |  |
 
 ### Operations
@@ -731,28 +711,12 @@ local email = client:Email(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `string` | Yes |  |
-| `factor` | `table` | Yes |  |
-| `has_mx_record` | `boolean` | Yes |  |
-| `ip` | `any` | No |  |
+| `email_factors` | `nil` | Yes |  |
+| `has_mx_records` | `boolean` | Yes |  |
+| `ip_factors` | `nil` | Yes |  |
 | `is_disposable` | `boolean` | Yes |  |
-| `mx_record` | `table` | Yes |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `number` | Yes |  |
+| `mx_records` | `table` | Yes |  |
 | `syntax` | `table` | Yes |  |
-
-### Field Usage by Operation
-
-| Field | load |
-| --- | --- |
-| `email` | Yes |
-| `factor` | - |
-| `has_mx_record` | - |
-| `ip` | - |
-| `is_disposable` | - |
-| `mx_record` | - |
-| `risk_level` | - |
-| `score` | - |
-| `syntax` | - |
 
 ### Operations
 
@@ -804,7 +768,7 @@ local forward = client:Forward(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `table` | Yes |  |
+| `addresses` | `table` | Yes |  |
 | `hostname` | `string` | Yes |  |
 
 ### Operations
@@ -903,11 +867,8 @@ local ip_reputation = client:IpReputation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `any` | No |  |
-| `factor` | `table` | Yes |  |
-| `ip` | `any` | No |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `number` | Yes |  |
+| `email_factors` | `nil` | Yes |  |
+| `ip_factors` | `nil` | Yes |  |
 
 ### Operations
 
@@ -959,11 +920,11 @@ local ipn = client:Ipn(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `any` | No |  |
+| `asn` | `string|nil` | No |  |
 | `ip` | `string` | Yes |  |
-| `isp` | `any` | No |  |
+| `isp` | `string|nil` | No |  |
 | `location` | `table` | Yes |  |
-| `suspicious_factor` | `table` | Yes |  |
+| `suspicious_factors` | `table` | Yes |  |
 
 ### Operations
 
@@ -1005,62 +966,6 @@ Return the entity name.
 
 ---
 
-## Ipn2Entity
-
-```lua
-local ipn2 = client:Ipn2(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `asn` | `any` | No |  |
-| `ip` | `string` | Yes |  |
-| `isp` | `any` | No |  |
-| `location` | `table` | Yes |  |
-| `suspicious_factor` | `table` | Yes |  |
-
-### Operations
-
-#### `load(reqmatch, ctrl) -> any, err`
-
-Load a single entity matching the given criteria.
-
-```lua
-local result, err = client:Ipn2():load({ ip = "ip" })
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `Ipn2Entity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## MxnEntity
 
 ```lua
@@ -1072,7 +977,7 @@ local mxn = client:Mxn(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `mx_record` | `table` | Yes |  |
+| `mx_records` | `table` | Yes |  |
 
 ### Operations
 
@@ -1180,12 +1085,12 @@ local rate_limit_info_dto = client:RateLimitInfoDto(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_api` | `table` | Yes |  |
-| `interval_second` | `number` | Yes |  |
+| `interval_seconds` | `number` | Yes |  |
 | `ip_api` | `table` | Yes |  |
 | `next_renewal_date` | `string` | No |  |
 | `plan_id` | `string` | Yes |  |
 | `plan_name` | `string` | No |  |
-| `status` | `any` | No |  |
+| `status` | `string|nil` | No |  |
 
 ### Operations
 
@@ -1237,10 +1142,10 @@ local reverse = client:Reverse(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hostname` | `any` | No |  |
+| `hostname` | `string|nil` | No |  |
 | `ip` | `string` | Yes |  |
 | `ptr_record` | `string` | No |  |
-| `ttl` | `any` | No |  |
+| `ttl` | `number|nil` | No |  |
 
 ### Operations
 
@@ -1292,11 +1197,8 @@ local risk_score = client:RiskScore(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `any` | No |  |
-| `factor` | `table` | Yes |  |
-| `ip` | `any` | No |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `number` | Yes |  |
+| `email_factors` | `nil` | Yes |  |
+| `ip_factors` | `nil` | Yes |  |
 
 ### Operations
 
@@ -1495,9 +1397,9 @@ local whoi = client:Whoi(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `error` | `any` | No |  |
+| `error` | `string|nil` | No |  |
 | `expires_on` | `string` | No |  |
-| `name_server` | `table` | Yes |  |
+| `name_servers` | `table` | Yes |  |
 | `raw` | `string` | Yes |  |
 | `registered_on` | `string` | No |  |
 | `registrar` | `any` | No |  |

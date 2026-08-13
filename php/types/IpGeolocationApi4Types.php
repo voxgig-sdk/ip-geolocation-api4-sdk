@@ -19,7 +19,7 @@ class Advanced
     public string $email;
     public bool $free;
     public mixed $gravatar = null;
-    public bool $has_mx_record;
+    public bool $has_mx_records;
     public string $reachable;
     public bool $role_account;
     public mixed $smtp = null;
@@ -36,75 +36,75 @@ class AdvancedLoadMatch
 /** ApiUsageStatsModel entity data model. */
 class ApiUsageStatsModel
 {
-    public string $api_key;
-    public string $api_type;
-    public string $auth_type;
-    public mixed $avg_request_duration_nano = null;
-    public int $batch_operation;
-    public int $batch_tokens_consumed;
-    public mixed $created_at = null;
-    public string $hour_bucket;
+    public string $apiKey;
+    public string $apiType;
+    public string $authType;
+    public mixed $avgRequestDurationNanos = null;
+    public int $batchOperations;
+    public int $batchTokensConsumed;
+    public mixed $createdAt = null;
+    public string $hourBucket;
     public mixed $id = null;
-    public mixed $min_remaining_quota = null;
-    public mixed $peak_remaining_quota = null;
-    public string $plan_id;
-    public int $quota_consumed;
-    public int $rate_limited_request;
-    public int $successful_request;
-    public int $total_request;
-    public mixed $updated_at = null;
+    public mixed $minRemainingQuota = null;
+    public mixed $peakRemainingQuota = null;
+    public string $planId;
+    public int $quotaConsumed;
+    public int $rateLimitedRequests;
+    public int $successfulRequests;
+    public int $totalRequests;
+    public mixed $updatedAt = null;
 }
 
 /** Request payload for ApiUsageStatsModel#load. */
 class ApiUsageStatsModelLoadMatch
 {
-    public ?string $api_key = null;
-    public ?string $api_type = null;
-    public ?string $auth_type = null;
-    public mixed $avg_request_duration_nano = null;
-    public ?int $batch_operation = null;
-    public ?int $batch_tokens_consumed = null;
-    public mixed $created_at = null;
-    public ?string $hour_bucket = null;
+    public ?string $apiKey = null;
+    public ?string $apiType = null;
+    public ?string $authType = null;
+    public mixed $avgRequestDurationNanos = null;
+    public ?int $batchOperations = null;
+    public ?int $batchTokensConsumed = null;
+    public mixed $createdAt = null;
+    public ?string $hourBucket = null;
     public mixed $id;
-    public mixed $min_remaining_quota = null;
-    public mixed $peak_remaining_quota = null;
-    public ?string $plan_id = null;
-    public ?int $quota_consumed = null;
-    public ?int $rate_limited_request = null;
-    public ?int $successful_request = null;
-    public ?int $total_request = null;
-    public mixed $updated_at = null;
+    public mixed $minRemainingQuota = null;
+    public mixed $peakRemainingQuota = null;
+    public ?string $planId = null;
+    public ?int $quotaConsumed = null;
+    public ?int $rateLimitedRequests = null;
+    public ?int $successfulRequests = null;
+    public ?int $totalRequests = null;
+    public mixed $updatedAt = null;
 }
 
 /** ApiUsageSummary entity data model. */
 class ApiUsageSummary
 {
-    public string $api_key;
-    public string $api_type;
-    public mixed $avg_request_duration_m = null;
-    public int $batch_operation;
-    public string $period_end;
-    public string $period_start;
-    public int $quota_consumed;
-    public int $rate_limited_request;
-    public int $successful_request;
-    public int $total_request;
+    public string $apiKey;
+    public string $apiType;
+    public mixed $avgRequestDurationMs = null;
+    public int $batchOperations;
+    public string $periodEnd;
+    public string $periodStart;
+    public int $quotaConsumed;
+    public int $rateLimitedRequests;
+    public int $successfulRequests;
+    public int $totalRequests;
 }
 
 /** Request payload for ApiUsageSummary#load. */
 class ApiUsageSummaryLoadMatch
 {
-    public ?string $api_key = null;
-    public ?string $api_type = null;
-    public mixed $avg_request_duration_m = null;
-    public ?int $batch_operation = null;
-    public ?string $period_end = null;
-    public ?string $period_start = null;
-    public ?int $quota_consumed = null;
-    public ?int $rate_limited_request = null;
-    public ?int $successful_request = null;
-    public ?int $total_request = null;
+    public ?string $apiKey = null;
+    public ?string $apiType = null;
+    public mixed $avgRequestDurationMs = null;
+    public ?int $batchOperations = null;
+    public ?string $periodEnd = null;
+    public ?string $periodStart = null;
+    public ?int $quotaConsumed = null;
+    public ?int $rateLimitedRequests = null;
+    public ?int $successfulRequests = null;
+    public ?int $totalRequests = null;
 }
 
 /** Asn entity data model. */
@@ -128,45 +128,33 @@ class AsnLoadMatch
 /** Batch entity data model. */
 class Batch
 {
-    public array $email;
-    public int $failed_lookup;
-    public int $failed_validation;
+    public array $emails;
     public array $ips;
-    public array $result;
-    public int $successful_lookup;
-    public int $successful_validation;
-    public int $total_processed;
 }
 
 /** Request payload for Batch#create. */
 class BatchCreateData
 {
-    public array $email;
-    public int $failed_lookup;
-    public int $failed_validation;
+    public array $emails;
     public array $ips;
-    public array $result;
-    public int $successful_lookup;
-    public int $successful_validation;
-    public int $total_processed;
 }
 
 /** BatchEmailValidationResponseDto entity data model. */
 class BatchEmailValidationResponseDto
 {
-    public int $failed_validation;
-    public array $result;
-    public int $successful_validation;
-    public int $total_processed;
+    public ?int $failed_validations = null;
+    public ?array $results = null;
+    public ?int $successful_validations = null;
+    public ?int $total_processed = null;
 }
 
 /** Request payload for BatchEmailValidationResponseDto#create. */
 class BatchEmailValidationResponseDtoCreateData
 {
-    public int $failed_validation;
-    public array $result;
-    public int $successful_validation;
-    public int $total_processed;
+    public ?int $failed_validations = null;
+    public ?array $results = null;
+    public ?int $successful_validations = null;
+    public ?int $total_processed = null;
 }
 
 /** CacheManagement entity data model. */
@@ -188,7 +176,7 @@ class CacheManagementRemoveMatch
 /** DomainAnalysi entity data model. */
 class DomainAnalysi
 {
-    public array $domain;
+    public array $domains;
 }
 
 /** Request payload for DomainAnalysi#load. */
@@ -200,7 +188,7 @@ class DomainAnalysiLoadMatch
 /** Request payload for DomainAnalysi#create. */
 class DomainAnalysiCreateData
 {
-    public array $domain;
+    public array $domains;
 }
 
 /** DomainReputationV1Dto entity data model. */
@@ -209,7 +197,7 @@ class DomainReputationV1Dto
     public string $domain;
     public bool $is_disposable_email_domain;
     public bool $is_valid;
-    public array $resolved_ip;
+    public array $resolved_ips;
     public array $threat;
 }
 
@@ -223,13 +211,11 @@ class DomainReputationV1DtoLoadMatch
 class Email
 {
     public string $email;
-    public array $factor;
-    public bool $has_mx_record;
-    public mixed $ip = null;
+    public mixed $email_factors;
+    public bool $has_mx_records;
+    public mixed $ip_factors;
     public bool $is_disposable;
-    public array $mx_record;
-    public string $risk_level;
-    public float $score;
+    public array $mx_records;
     public array $syntax;
 }
 
@@ -242,7 +228,7 @@ class EmailLoadMatch
 /** Forward entity data model. */
 class Forward
 {
-    public array $address;
+    public array $addresses;
     public string $hostname;
 }
 
@@ -266,11 +252,8 @@ class IpInfoV0LoadMatch
 /** IpReputation entity data model. */
 class IpReputation
 {
-    public mixed $email = null;
-    public array $factor;
-    public mixed $ip = null;
-    public string $risk_level;
-    public float $score;
+    public mixed $email_factors;
+    public mixed $ip_factors;
 }
 
 /** Request payload for IpReputation#load. */
@@ -286,40 +269,20 @@ class Ipn
     public string $ip;
     public mixed $isp = null;
     public array $location;
-    public array $suspicious_factor;
+    public array $suspicious_factors;
 }
 
 /** Request payload for Ipn#load. */
 class IpnLoadMatch
 {
-    public mixed $asn = null;
     public ?string $ip = null;
-    public mixed $isp = null;
-    public ?array $location = null;
-    public ?array $suspicious_factor = null;
-}
-
-/** Ipn2 entity data model. */
-class Ipn2
-{
-    public mixed $asn = null;
-    public string $ip;
-    public mixed $isp = null;
-    public array $location;
-    public array $suspicious_factor;
-}
-
-/** Request payload for Ipn2#load. */
-class Ipn2LoadMatch
-{
-    public string $ip;
 }
 
 /** Mxn entity data model. */
 class Mxn
 {
     public string $domain;
-    public array $mx_record;
+    public array $mx_records;
 }
 
 /** Request payload for Mxn#load. */
@@ -347,7 +310,7 @@ class PaddleControllerCreateData
 class RateLimitInfoDto
 {
     public array $email_api;
-    public int $interval_second;
+    public int $interval_seconds;
     public array $ip_api;
     public ?string $next_renewal_date = null;
     public string $plan_id;
@@ -359,7 +322,7 @@ class RateLimitInfoDto
 class RateLimitInfoDtoLoadMatch
 {
     public ?array $email_api = null;
-    public ?int $interval_second = null;
+    public ?int $interval_seconds = null;
     public ?array $ip_api = null;
     public ?string $next_renewal_date = null;
     public ?string $plan_id = null;
@@ -385,11 +348,8 @@ class ReverseLoadMatch
 /** RiskScore entity data model. */
 class RiskScore
 {
-    public mixed $email = null;
-    public array $factor;
-    public mixed $ip = null;
-    public string $risk_level;
-    public float $score;
+    public mixed $email_factors;
+    public mixed $ip_factors;
 }
 
 /** Request payload for RiskScore#load. */
@@ -438,7 +398,7 @@ class Whoi
     public string $domain;
     public mixed $error = null;
     public ?string $expires_on = null;
-    public array $name_server;
+    public array $name_servers;
     public string $raw;
     public ?string $registered_on = null;
     public mixed $registrar = null;

@@ -22,7 +22,7 @@
 # @!attribute [rw] gravatar
 #   @return [Object, nil]
 #
-# @!attribute [rw] has_mx_record
+# @!attribute [rw] has_mx_records
 #   @return [Boolean]
 #
 # @!attribute [rw] reachable
@@ -44,7 +44,7 @@ Advanced = Struct.new(
   :email,
   :free,
   :gravatar,
-  :has_mx_record,
+  :has_mx_records,
   :reachable,
   :role_account,
   :smtp,
@@ -64,237 +64,237 @@ AdvancedLoadMatch = Struct.new(
 
 # ApiUsageStatsModel entity data model.
 #
-# @!attribute [rw] api_key
+# @!attribute [rw] apiKey
 #   @return [String]
 #
-# @!attribute [rw] api_type
+# @!attribute [rw] apiType
 #   @return [String]
 #
-# @!attribute [rw] auth_type
+# @!attribute [rw] authType
 #   @return [String]
 #
-# @!attribute [rw] avg_request_duration_nano
+# @!attribute [rw] avgRequestDurationNanos
 #   @return [Object, nil]
 #
-# @!attribute [rw] batch_operation
+# @!attribute [rw] batchOperations
 #   @return [Integer]
 #
-# @!attribute [rw] batch_tokens_consumed
+# @!attribute [rw] batchTokensConsumed
 #   @return [Integer]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [Object, nil]
 #
-# @!attribute [rw] hour_bucket
+# @!attribute [rw] hourBucket
 #   @return [String]
 #
 # @!attribute [rw] id
 #   @return [Object, nil]
 #
-# @!attribute [rw] min_remaining_quota
+# @!attribute [rw] minRemainingQuota
 #   @return [Object, nil]
 #
-# @!attribute [rw] peak_remaining_quota
+# @!attribute [rw] peakRemainingQuota
 #   @return [Object, nil]
 #
-# @!attribute [rw] plan_id
+# @!attribute [rw] planId
 #   @return [String]
 #
-# @!attribute [rw] quota_consumed
+# @!attribute [rw] quotaConsumed
 #   @return [Integer]
 #
-# @!attribute [rw] rate_limited_request
+# @!attribute [rw] rateLimitedRequests
 #   @return [Integer]
 #
-# @!attribute [rw] successful_request
+# @!attribute [rw] successfulRequests
 #   @return [Integer]
 #
-# @!attribute [rw] total_request
+# @!attribute [rw] totalRequests
 #   @return [Integer]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [Object, nil]
 ApiUsageStatsModel = Struct.new(
-  :api_key,
-  :api_type,
-  :auth_type,
-  :avg_request_duration_nano,
-  :batch_operation,
-  :batch_tokens_consumed,
-  :created_at,
-  :hour_bucket,
+  :apiKey,
+  :apiType,
+  :authType,
+  :avgRequestDurationNanos,
+  :batchOperations,
+  :batchTokensConsumed,
+  :createdAt,
+  :hourBucket,
   :id,
-  :min_remaining_quota,
-  :peak_remaining_quota,
-  :plan_id,
-  :quota_consumed,
-  :rate_limited_request,
-  :successful_request,
-  :total_request,
-  :updated_at,
+  :minRemainingQuota,
+  :peakRemainingQuota,
+  :planId,
+  :quotaConsumed,
+  :rateLimitedRequests,
+  :successfulRequests,
+  :totalRequests,
+  :updatedAt,
   keyword_init: true
 )
 
 # Request payload for ApiUsageStatsModel#load.
 #
-# @!attribute [rw] api_key
+# @!attribute [rw] apiKey
 #   @return [String, nil]
 #
-# @!attribute [rw] api_type
+# @!attribute [rw] apiType
 #   @return [String, nil]
 #
-# @!attribute [rw] auth_type
+# @!attribute [rw] authType
 #   @return [String, nil]
 #
-# @!attribute [rw] avg_request_duration_nano
+# @!attribute [rw] avgRequestDurationNanos
 #   @return [Object, nil]
 #
-# @!attribute [rw] batch_operation
+# @!attribute [rw] batchOperations
 #   @return [Integer, nil]
 #
-# @!attribute [rw] batch_tokens_consumed
+# @!attribute [rw] batchTokensConsumed
 #   @return [Integer, nil]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [Object, nil]
 #
-# @!attribute [rw] hour_bucket
+# @!attribute [rw] hourBucket
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [Object]
 #
-# @!attribute [rw] min_remaining_quota
+# @!attribute [rw] minRemainingQuota
 #   @return [Object, nil]
 #
-# @!attribute [rw] peak_remaining_quota
+# @!attribute [rw] peakRemainingQuota
 #   @return [Object, nil]
 #
-# @!attribute [rw] plan_id
+# @!attribute [rw] planId
 #   @return [String, nil]
 #
-# @!attribute [rw] quota_consumed
+# @!attribute [rw] quotaConsumed
 #   @return [Integer, nil]
 #
-# @!attribute [rw] rate_limited_request
+# @!attribute [rw] rateLimitedRequests
 #   @return [Integer, nil]
 #
-# @!attribute [rw] successful_request
+# @!attribute [rw] successfulRequests
 #   @return [Integer, nil]
 #
-# @!attribute [rw] total_request
+# @!attribute [rw] totalRequests
 #   @return [Integer, nil]
 #
-# @!attribute [rw] updated_at
+# @!attribute [rw] updatedAt
 #   @return [Object, nil]
 ApiUsageStatsModelLoadMatch = Struct.new(
-  :api_key,
-  :api_type,
-  :auth_type,
-  :avg_request_duration_nano,
-  :batch_operation,
-  :batch_tokens_consumed,
-  :created_at,
-  :hour_bucket,
+  :apiKey,
+  :apiType,
+  :authType,
+  :avgRequestDurationNanos,
+  :batchOperations,
+  :batchTokensConsumed,
+  :createdAt,
+  :hourBucket,
   :id,
-  :min_remaining_quota,
-  :peak_remaining_quota,
-  :plan_id,
-  :quota_consumed,
-  :rate_limited_request,
-  :successful_request,
-  :total_request,
-  :updated_at,
+  :minRemainingQuota,
+  :peakRemainingQuota,
+  :planId,
+  :quotaConsumed,
+  :rateLimitedRequests,
+  :successfulRequests,
+  :totalRequests,
+  :updatedAt,
   keyword_init: true
 )
 
 # ApiUsageSummary entity data model.
 #
-# @!attribute [rw] api_key
+# @!attribute [rw] apiKey
 #   @return [String]
 #
-# @!attribute [rw] api_type
+# @!attribute [rw] apiType
 #   @return [String]
 #
-# @!attribute [rw] avg_request_duration_m
+# @!attribute [rw] avgRequestDurationMs
 #   @return [Object, nil]
 #
-# @!attribute [rw] batch_operation
+# @!attribute [rw] batchOperations
 #   @return [Integer]
 #
-# @!attribute [rw] period_end
+# @!attribute [rw] periodEnd
 #   @return [String]
 #
-# @!attribute [rw] period_start
+# @!attribute [rw] periodStart
 #   @return [String]
 #
-# @!attribute [rw] quota_consumed
+# @!attribute [rw] quotaConsumed
 #   @return [Integer]
 #
-# @!attribute [rw] rate_limited_request
+# @!attribute [rw] rateLimitedRequests
 #   @return [Integer]
 #
-# @!attribute [rw] successful_request
+# @!attribute [rw] successfulRequests
 #   @return [Integer]
 #
-# @!attribute [rw] total_request
+# @!attribute [rw] totalRequests
 #   @return [Integer]
 ApiUsageSummary = Struct.new(
-  :api_key,
-  :api_type,
-  :avg_request_duration_m,
-  :batch_operation,
-  :period_end,
-  :period_start,
-  :quota_consumed,
-  :rate_limited_request,
-  :successful_request,
-  :total_request,
+  :apiKey,
+  :apiType,
+  :avgRequestDurationMs,
+  :batchOperations,
+  :periodEnd,
+  :periodStart,
+  :quotaConsumed,
+  :rateLimitedRequests,
+  :successfulRequests,
+  :totalRequests,
   keyword_init: true
 )
 
 # Request payload for ApiUsageSummary#load.
 #
-# @!attribute [rw] api_key
+# @!attribute [rw] apiKey
 #   @return [String, nil]
 #
-# @!attribute [rw] api_type
+# @!attribute [rw] apiType
 #   @return [String, nil]
 #
-# @!attribute [rw] avg_request_duration_m
+# @!attribute [rw] avgRequestDurationMs
 #   @return [Object, nil]
 #
-# @!attribute [rw] batch_operation
+# @!attribute [rw] batchOperations
 #   @return [Integer, nil]
 #
-# @!attribute [rw] period_end
+# @!attribute [rw] periodEnd
 #   @return [String, nil]
 #
-# @!attribute [rw] period_start
+# @!attribute [rw] periodStart
 #   @return [String, nil]
 #
-# @!attribute [rw] quota_consumed
+# @!attribute [rw] quotaConsumed
 #   @return [Integer, nil]
 #
-# @!attribute [rw] rate_limited_request
+# @!attribute [rw] rateLimitedRequests
 #   @return [Integer, nil]
 #
-# @!attribute [rw] successful_request
+# @!attribute [rw] successfulRequests
 #   @return [Integer, nil]
 #
-# @!attribute [rw] total_request
+# @!attribute [rw] totalRequests
 #   @return [Integer, nil]
 ApiUsageSummaryLoadMatch = Struct.new(
-  :api_key,
-  :api_type,
-  :avg_request_duration_m,
-  :batch_operation,
-  :period_end,
-  :period_start,
-  :quota_consumed,
-  :rate_limited_request,
-  :successful_request,
-  :total_request,
+  :apiKey,
+  :apiType,
+  :avgRequestDurationMs,
+  :batchOperations,
+  :periodEnd,
+  :periodStart,
+  :quotaConsumed,
+  :rateLimitedRequests,
+  :successfulRequests,
+  :totalRequests,
   keyword_init: true
 )
 
@@ -342,116 +342,68 @@ AsnLoadMatch = Struct.new(
 
 # Batch entity data model.
 #
-# @!attribute [rw] email
+# @!attribute [rw] emails
 #   @return [Array]
-#
-# @!attribute [rw] failed_lookup
-#   @return [Integer]
-#
-# @!attribute [rw] failed_validation
-#   @return [Integer]
 #
 # @!attribute [rw] ips
 #   @return [Array]
-#
-# @!attribute [rw] result
-#   @return [Hash]
-#
-# @!attribute [rw] successful_lookup
-#   @return [Integer]
-#
-# @!attribute [rw] successful_validation
-#   @return [Integer]
-#
-# @!attribute [rw] total_processed
-#   @return [Integer]
 Batch = Struct.new(
-  :email,
-  :failed_lookup,
-  :failed_validation,
+  :emails,
   :ips,
-  :result,
-  :successful_lookup,
-  :successful_validation,
-  :total_processed,
   keyword_init: true
 )
 
 # Request payload for Batch#create.
 #
-# @!attribute [rw] email
+# @!attribute [rw] emails
 #   @return [Array]
-#
-# @!attribute [rw] failed_lookup
-#   @return [Integer]
-#
-# @!attribute [rw] failed_validation
-#   @return [Integer]
 #
 # @!attribute [rw] ips
 #   @return [Array]
-#
-# @!attribute [rw] result
-#   @return [Hash]
-#
-# @!attribute [rw] successful_lookup
-#   @return [Integer]
-#
-# @!attribute [rw] successful_validation
-#   @return [Integer]
-#
-# @!attribute [rw] total_processed
-#   @return [Integer]
 BatchCreateData = Struct.new(
-  :email,
-  :failed_lookup,
-  :failed_validation,
+  :emails,
   :ips,
-  :result,
-  :successful_lookup,
-  :successful_validation,
-  :total_processed,
   keyword_init: true
 )
 
 # BatchEmailValidationResponseDto entity data model.
 #
-# @!attribute [rw] failed_validation
-#   @return [Integer]
+# @!attribute [rw] failed_validations
+#   @return [Integer, nil]
 #
-# @!attribute [rw] result
-#   @return [Hash]
+# @!attribute [rw] results
+#   @return [Hash, nil]
 #
-# @!attribute [rw] successful_validation
-#   @return [Integer]
+# @!attribute [rw] successful_validations
+#   @return [Integer, nil]
 #
 # @!attribute [rw] total_processed
-#   @return [Integer]
+#   @return [Integer, nil]
 BatchEmailValidationResponseDto = Struct.new(
-  :failed_validation,
-  :result,
-  :successful_validation,
+  :failed_validations,
+  :results,
+  :successful_validations,
   :total_processed,
   keyword_init: true
 )
 
 # Request payload for BatchEmailValidationResponseDto#create.
 #
-# @!attribute [rw] failed_validation
-#   @return [Integer]
+# @!attribute [rw] failed_validations
+#   @return [Integer, nil]
 #
-# @!attribute [rw] result
-#   @return [Hash]
+# @!attribute [rw] results
+#   @return [Hash, nil]
 #
-# @!attribute [rw] successful_validation
-#   @return [Integer]
+# @!attribute [rw] successful_validations
+#   @return [Integer, nil]
 #
 # @!attribute [rw] total_processed
-#   @return [Integer]
+#   @return [Integer, nil]
 BatchEmailValidationResponseDtoCreateData = Struct.new(
-  :failed_validation,
-  :result,
-  :successful_validation,
+  :failed_validations,
+  :results,
+  :successful_validations,
   :total_processed,
   keyword_init: true
 )
@@ -475,10 +427,10 @@ end
 
 # DomainAnalysi entity data model.
 #
-# @!attribute [rw] domain
+# @!attribute [rw] domains
 #   @return [Array]
 DomainAnalysi = Struct.new(
-  :domain,
+  :domains,
   keyword_init: true
 )
 
@@ -493,10 +445,10 @@ DomainAnalysiLoadMatch = Struct.new(
 
 # Request payload for DomainAnalysi#create.
 #
-# @!attribute [rw] domain
+# @!attribute [rw] domains
 #   @return [Array]
 DomainAnalysiCreateData = Struct.new(
-  :domain,
+  :domains,
   keyword_init: true
 )
 
@@ -511,7 +463,7 @@ DomainAnalysiCreateData = Struct.new(
 # @!attribute [rw] is_valid
 #   @return [Boolean]
 #
-# @!attribute [rw] resolved_ip
+# @!attribute [rw] resolved_ips
 #   @return [Array]
 #
 # @!attribute [rw] threat
@@ -520,7 +472,7 @@ DomainReputationV1Dto = Struct.new(
   :domain,
   :is_disposable_email_domain,
   :is_valid,
-  :resolved_ip,
+  :resolved_ips,
   :threat,
   keyword_init: true
 )
@@ -539,38 +491,30 @@ DomainReputationV1DtoLoadMatch = Struct.new(
 # @!attribute [rw] email
 #   @return [String]
 #
-# @!attribute [rw] factor
-#   @return [Hash]
+# @!attribute [rw] email_factors
+#   @return [NilClass]
 #
-# @!attribute [rw] has_mx_record
+# @!attribute [rw] has_mx_records
 #   @return [Boolean]
 #
-# @!attribute [rw] ip
-#   @return [Object, nil]
+# @!attribute [rw] ip_factors
+#   @return [NilClass]
 #
 # @!attribute [rw] is_disposable
 #   @return [Boolean]
 #
-# @!attribute [rw] mx_record
+# @!attribute [rw] mx_records
 #   @return [Array]
-#
-# @!attribute [rw] risk_level
-#   @return [String]
-#
-# @!attribute [rw] score
-#   @return [Float]
 #
 # @!attribute [rw] syntax
 #   @return [Hash]
 Email = Struct.new(
   :email,
-  :factor,
-  :has_mx_record,
-  :ip,
+  :email_factors,
+  :has_mx_records,
+  :ip_factors,
   :is_disposable,
-  :mx_record,
-  :risk_level,
-  :score,
+  :mx_records,
   :syntax,
   keyword_init: true
 )
@@ -586,13 +530,13 @@ EmailLoadMatch = Struct.new(
 
 # Forward entity data model.
 #
-# @!attribute [rw] address
+# @!attribute [rw] addresses
 #   @return [Array]
 #
 # @!attribute [rw] hostname
 #   @return [String]
 Forward = Struct.new(
-  :address,
+  :addresses,
   :hostname,
   keyword_init: true
 )
@@ -621,26 +565,14 @@ IpInfoV0LoadMatch = Struct.new(
 
 # IpReputation entity data model.
 #
-# @!attribute [rw] email
-#   @return [Object, nil]
+# @!attribute [rw] email_factors
+#   @return [NilClass]
 #
-# @!attribute [rw] factor
-#   @return [Hash]
-#
-# @!attribute [rw] ip
-#   @return [Object, nil]
-#
-# @!attribute [rw] risk_level
-#   @return [String]
-#
-# @!attribute [rw] score
-#   @return [Float]
+# @!attribute [rw] ip_factors
+#   @return [NilClass]
 IpReputation = Struct.new(
-  :email,
-  :factor,
-  :ip,
-  :risk_level,
-  :score,
+  :email_factors,
+  :ip_factors,
   keyword_init: true
 )
 
@@ -667,72 +599,22 @@ IpReputationLoadMatch = Struct.new(
 # @!attribute [rw] location
 #   @return [Hash]
 #
-# @!attribute [rw] suspicious_factor
+# @!attribute [rw] suspicious_factors
 #   @return [Hash]
 Ipn = Struct.new(
   :asn,
   :ip,
   :isp,
   :location,
-  :suspicious_factor,
+  :suspicious_factors,
   keyword_init: true
 )
 
 # Request payload for Ipn#load.
 #
-# @!attribute [rw] asn
-#   @return [Object, nil]
-#
 # @!attribute [rw] ip
 #   @return [String, nil]
-#
-# @!attribute [rw] isp
-#   @return [Object, nil]
-#
-# @!attribute [rw] location
-#   @return [Hash, nil]
-#
-# @!attribute [rw] suspicious_factor
-#   @return [Hash, nil]
 IpnLoadMatch = Struct.new(
-  :asn,
-  :ip,
-  :isp,
-  :location,
-  :suspicious_factor,
-  keyword_init: true
-)
-
-# Ipn2 entity data model.
-#
-# @!attribute [rw] asn
-#   @return [Object, nil]
-#
-# @!attribute [rw] ip
-#   @return [String]
-#
-# @!attribute [rw] isp
-#   @return [Object, nil]
-#
-# @!attribute [rw] location
-#   @return [Hash]
-#
-# @!attribute [rw] suspicious_factor
-#   @return [Hash]
-Ipn2 = Struct.new(
-  :asn,
-  :ip,
-  :isp,
-  :location,
-  :suspicious_factor,
-  keyword_init: true
-)
-
-# Request payload for Ipn2#load.
-#
-# @!attribute [rw] ip
-#   @return [String]
-Ipn2LoadMatch = Struct.new(
   :ip,
   keyword_init: true
 )
@@ -742,11 +624,11 @@ Ipn2LoadMatch = Struct.new(
 # @!attribute [rw] domain
 #   @return [String]
 #
-# @!attribute [rw] mx_record
+# @!attribute [rw] mx_records
 #   @return [Array]
 Mxn = Struct.new(
   :domain,
-  :mx_record,
+  :mx_records,
   keyword_init: true
 )
 
@@ -776,7 +658,7 @@ end
 # @!attribute [rw] email_api
 #   @return [Hash]
 #
-# @!attribute [rw] interval_second
+# @!attribute [rw] interval_seconds
 #   @return [Integer]
 #
 # @!attribute [rw] ip_api
@@ -795,7 +677,7 @@ end
 #   @return [Object, nil]
 RateLimitInfoDto = Struct.new(
   :email_api,
-  :interval_second,
+  :interval_seconds,
   :ip_api,
   :next_renewal_date,
   :plan_id,
@@ -809,7 +691,7 @@ RateLimitInfoDto = Struct.new(
 # @!attribute [rw] email_api
 #   @return [Hash, nil]
 #
-# @!attribute [rw] interval_second
+# @!attribute [rw] interval_seconds
 #   @return [Integer, nil]
 #
 # @!attribute [rw] ip_api
@@ -828,7 +710,7 @@ RateLimitInfoDto = Struct.new(
 #   @return [Object, nil]
 RateLimitInfoDtoLoadMatch = Struct.new(
   :email_api,
-  :interval_second,
+  :interval_seconds,
   :ip_api,
   :next_renewal_date,
   :plan_id,
@@ -869,26 +751,14 @@ ReverseLoadMatch = Struct.new(
 
 # RiskScore entity data model.
 #
-# @!attribute [rw] email
-#   @return [Object, nil]
+# @!attribute [rw] email_factors
+#   @return [NilClass]
 #
-# @!attribute [rw] factor
-#   @return [Hash]
-#
-# @!attribute [rw] ip
-#   @return [Object, nil]
-#
-# @!attribute [rw] risk_level
-#   @return [String]
-#
-# @!attribute [rw] score
-#   @return [Float]
+# @!attribute [rw] ip_factors
+#   @return [NilClass]
 RiskScore = Struct.new(
-  :email,
-  :factor,
-  :ip,
-  :risk_level,
-  :score,
+  :email_factors,
+  :ip_factors,
   keyword_init: true
 )
 
@@ -954,7 +824,7 @@ end
 # @!attribute [rw] expires_on
 #   @return [String, nil]
 #
-# @!attribute [rw] name_server
+# @!attribute [rw] name_servers
 #   @return [Array]
 #
 # @!attribute [rw] raw
@@ -975,7 +845,7 @@ Whoi = Struct.new(
   :domain,
   :error,
   :expires_on,
-  :name_server,
+  :name_servers,
   :raw,
   :registered_on,
   :registrar,

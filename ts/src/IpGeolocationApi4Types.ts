@@ -10,7 +10,7 @@ export interface Advanced {
   email: string
   free: boolean
   gravatar?: any
-  has_mx_record: boolean
+  has_mx_records: boolean
   reachable: string
   role_account: boolean
   smtp?: any
@@ -23,79 +23,79 @@ export interface AdvancedLoadMatch {
 }
 
 export interface ApiUsageStatsModel {
-  api_key: string
-  api_type: string
-  auth_type: string
-  avg_request_duration_nano?: any
-  batch_operation: number
-  batch_tokens_consumed: number
-  created_at?: any
-  hour_bucket: string
-  id?: any
-  min_remaining_quota?: any
-  peak_remaining_quota?: any
-  plan_id: string
-  quota_consumed: number
-  rate_limited_request: number
-  successful_request: number
-  total_request: number
-  updated_at?: any
+  apiKey: string
+  apiType: string
+  authType: string
+  avgRequestDurationNanos?: number | null
+  batchOperations: number
+  batchTokensConsumed: number
+  createdAt?: string | null
+  hourBucket: string
+  id?: number | null
+  minRemainingQuota?: number | null
+  peakRemainingQuota?: number | null
+  planId: string
+  quotaConsumed: number
+  rateLimitedRequests: number
+  successfulRequests: number
+  totalRequests: number
+  updatedAt?: string | null
 }
 
 export interface ApiUsageStatsModelLoadMatch {
-  api_key?: string
-  api_type?: string
-  auth_type?: string
-  avg_request_duration_nano?: any
-  batch_operation?: number
-  batch_tokens_consumed?: number
-  created_at?: any
-  hour_bucket?: string
-  id: any
-  min_remaining_quota?: any
-  peak_remaining_quota?: any
-  plan_id?: string
-  quota_consumed?: number
-  rate_limited_request?: number
-  successful_request?: number
-  total_request?: number
-  updated_at?: any
+  apiKey?: string
+  apiType?: string
+  authType?: string
+  avgRequestDurationNanos?: number | null
+  batchOperations?: number
+  batchTokensConsumed?: number
+  createdAt?: string | null
+  hourBucket?: string
+  id: number | null
+  minRemainingQuota?: number | null
+  peakRemainingQuota?: number | null
+  planId?: string
+  quotaConsumed?: number
+  rateLimitedRequests?: number
+  successfulRequests?: number
+  totalRequests?: number
+  updatedAt?: string | null
 }
 
 export interface ApiUsageSummary {
-  api_key: string
-  api_type: string
-  avg_request_duration_m?: any
-  batch_operation: number
-  period_end: string
-  period_start: string
-  quota_consumed: number
-  rate_limited_request: number
-  successful_request: number
-  total_request: number
+  apiKey: string
+  apiType: string
+  avgRequestDurationMs?: number | null
+  batchOperations: number
+  periodEnd: string
+  periodStart: string
+  quotaConsumed: number
+  rateLimitedRequests: number
+  successfulRequests: number
+  totalRequests: number
 }
 
 export interface ApiUsageSummaryLoadMatch {
-  api_key?: string
-  api_type?: string
-  avg_request_duration_m?: any
-  batch_operation?: number
-  period_end?: string
-  period_start?: string
-  quota_consumed?: number
-  rate_limited_request?: number
-  successful_request?: number
-  total_request?: number
+  apiKey?: string
+  apiType?: string
+  avgRequestDurationMs?: number | null
+  batchOperations?: number
+  periodEnd?: string
+  periodStart?: string
+  quotaConsumed?: number
+  rateLimitedRequests?: number
+  successfulRequests?: number
+  totalRequests?: number
 }
 
 export interface Asn {
-  asn?: any
-  country?: any
+  asn?: number | null
+  country?: string | null
   country_code?: string
   ip: string
   is_datacenter: boolean
-  network?: any
-  organization?: any
+  network?: string | null
+  organization?: string | null
 }
 
 export interface AsnLoadMatch {
@@ -103,39 +103,27 @@ export interface AsnLoadMatch {
 }
 
 export interface Batch {
-  email: any[]
-  failed_lookup: number
-  failed_validation: number
+  emails: any[]
   ips: any[]
-  result: Record<string, any>
-  successful_lookup: number
-  successful_validation: number
-  total_processed: number
 }
 
 export interface BatchCreateData {
-  email: any[]
-  failed_lookup: number
-  failed_validation: number
+  emails: any[]
   ips: any[]
-  result: Record<string, any>
-  successful_lookup: number
-  successful_validation: number
-  total_processed: number
 }
 
 export interface BatchEmailValidationResponseDto {
-  failed_validation: number
-  result: Record<string, any>
-  successful_validation: number
-  total_processed: number
+  failed_validations?: number
+  results?: Record<string, any>
+  successful_validations?: number
+  total_processed?: number
 }
 
 export interface BatchEmailValidationResponseDtoCreateData {
-  failed_validation: number
-  result: Record<string, any>
-  successful_validation: number
-  total_processed: number
+  failed_validations?: number
+  results?: Record<string, any>
+  successful_validations?: number
+  total_processed?: number
 }
 
 export interface CacheManagement {
@@ -149,7 +137,7 @@ export interface CacheManagementRemoveMatch {
 }
 
 export interface DomainAnalysi {
-  domain: any[]
+  domains: any[]
 }
 
 export interface DomainAnalysiLoadMatch {
@@ -157,14 +145,14 @@ export interface DomainAnalysiLoadMatch {
 }
 
 export interface DomainAnalysiCreateData {
-  domain: any[]
+  domains: any[]
 }
 
 export interface DomainReputationV1Dto {
   domain: string
   is_disposable_email_domain: boolean
   is_valid: boolean
-  resolved_ip: any[]
+  resolved_ips: any[]
   threat: Record<string, any>
 }
 
@@ -174,13 +162,11 @@ export interface DomainReputationV1DtoLoadMatch {
 
 export interface Email {
   email: string
-  factor: Record<string, any>
-  has_mx_record: boolean
-  ip?: any
+  email_factors: null
+  has_mx_records: boolean
+  ip_factors: null
   is_disposable: boolean
-  mx_record: any[]
-  risk_level: string
-  score: number
+  mx_records: any[]
   syntax: Record<string, any>
 }
 
@@ -189,7 +175,7 @@ export interface EmailLoadMatch {
 }
 
 export interface Forward {
-  address: any[]
+  addresses: any[]
   hostname: string
 }
 
@@ -205,11 +191,8 @@ export interface IpInfoV0LoadMatch {
 }
 
 export interface IpReputation {
-  email?: any
-  factor: Record<string, any>
-  ip?: any
-  risk_level: string
-  score: number
+  email_factors: null
+  ip_factors: null
 }
 
 export interface IpReputationLoadMatch {
@@ -217,36 +200,20 @@ export interface IpReputationLoadMatch {
 }
 
 export interface Ipn {
-  asn?: any
+  asn?: string | null
   ip: string
-  isp?: any
+  isp?: string | null
   location: Record<string, any>
-  suspicious_factor: Record<string, any>
+  suspicious_factors: Record<string, any>
 }
 
 export interface IpnLoadMatch {
-  asn?: any
   ip?: string
-  isp?: any
-  location?: Record<string, any>
-  suspicious_factor?: Record<string, any>
-}
-
-export interface Ipn2 {
-  asn?: any
-  ip: string
-  isp?: any
-  location: Record<string, any>
-  suspicious_factor: Record<string, any>
-}
-
-export interface Ipn2LoadMatch {
-  ip: string
 }
 
 export interface Mxn {
   domain: string
-  mx_record: any[]
+  mx_records: any[]
 }
 
 export interface MxnLoadMatch {
@@ -264,29 +231,29 @@ export interface PaddleControllerCreateData {
 
 export interface RateLimitInfoDto {
   email_api: Record<string, any>
-  interval_second: number
+  interval_seconds: number
   ip_api: Record<string, any>
   next_renewal_date?: string
   plan_id: string
   plan_name?: string
-  status?: any
+  status?: string | null
 }
 
 export interface RateLimitInfoDtoLoadMatch {
   email_api?: Record<string, any>
-  interval_second?: number
+  interval_seconds?: number
   ip_api?: Record<string, any>
   next_renewal_date?: string
   plan_id?: string
   plan_name?: string
-  status?: any
+  status?: string | null
 }
 
 export interface Reverse {
-  hostname?: any
+  hostname?: string | null
   ip: string
   ptr_record?: string
-  ttl?: any
+  ttl?: number | null
 }
 
 export interface ReverseLoadMatch {
@@ -294,11 +261,8 @@ export interface ReverseLoadMatch {
 }
 
 export interface RiskScore {
-  email?: any
-  factor: Record<string, any>
-  ip?: any
-  risk_level: string
-  score: number
+  email_factors: null
+  ip_factors: null
 }
 
 export interface RiskScoreLoadMatch {
@@ -329,9 +293,9 @@ export interface UsageStatisticLoadMatch {
 
 export interface Whoi {
   domain: string
-  error?: any
+  error?: string | null
   expires_on?: string
-  name_server: any[]
+  name_servers: any[]
   raw: string
   registered_on?: string
   registrar?: any

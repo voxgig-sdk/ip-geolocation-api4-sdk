@@ -16,7 +16,7 @@ import (
 // reqdata map passed through to the SDK. For load, `query` should be
 // `{"id": <value>}`. For list, omit `query` or pass an empty map.
 type Args struct {
-	Entity string         `json:"entity" jsonschema:"advanced | api_usage_stats_model | api_usage_summary | asn | batch | batch_email_validation_response_dto | cache_management | domain_analysi | domain_reputation_v1_dto | email | forward | ip_info_v0 | ip_reputation | ipn | ipn2 | mxn | paddle_controller | rate_limit_info_dto | reverse | risk_score | status | tor | usage_statistic | whoi"`
+	Entity string         `json:"entity" jsonschema:"advanced | api_usage_stats_model | api_usage_summary | asn | batch | batch_email_validation_response_dto | cache_management | domain_analysi | domain_reputation_v1_dto | email | forward | ip_info_v0 | ip_reputation | ipn | mxn | paddle_controller | rate_limit_info_dto | reverse | risk_score | status | tor | usage_statistic | whoi"`
 	Query  map[string]any `json:"query,omitempty" jsonschema:"optional match map e.g. {\"id\":1} for load, omit for list"`
 }
 
@@ -105,8 +105,6 @@ func entityFor(client *sdk.IpGeolocationApi4SDK, name string) (sdk.IpGeolocation
 		return client.IpReputation(nil), nil
 	case "ipn":
 		return client.Ipn(nil), nil
-	case "ipn2":
-		return client.Ipn2(nil), nil
 	case "mxn":
 		return client.Mxn(nil), nil
 	case "paddle_controller":

@@ -36,7 +36,7 @@ DomainAnalysi is nested under domain, so provide the `domain`.
 
 ```ruby
 begin
-  # load returns the bare DomainAnalysi record (raises on error).
+  # load returns the ENTITY — call data_get for the DomainAnalysi record (raises on error).
   domainanalysi = client.DomainAnalysi.load({ "domain" => "example_domain" })
   puts domainanalysi
 rescue => err
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  advanced = client.Advanced.load({ "id" => "example_id" })
+  riskscore = client.RiskScore.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -119,12 +119,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
 client = IpGeolocationApi4SDK.test({
-  "entity" => { "advanced" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "riskscore" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-advanced = client.Advanced.load({ "id" => "test01" })
-puts advanced
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+riskscore = client.RiskScore.load({ "id" => "test01" })
+puts riskscore
 ```
 
 ### Use a custom fetch function
@@ -214,7 +215,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `IpInfoV0` | `(data) -> IpInfoV0Entity` | Create an IpInfoV0 entity instance. |
 | `IpReputation` | `(data) -> IpReputationEntity` | Create an IpReputation entity instance. |
 | `Ipn` | `(data) -> IpnEntity` | Create an Ipn entity instance. |
-| `Ipn2` | `(data) -> Ipn2Entity` | Create an Ipn2 entity instance. |
 | `Mxn` | `(data) -> MxnEntity` | Create a Mxn entity instance. |
 | `PaddleController` | `(data) -> PaddleControllerEntity` | Create a PaddleController entity instance. |
 | `RateLimitInfoDto` | `(data) -> RateLimitInfoDtoEntity` | Create a RateLimitInfoDto entity instance. |
@@ -268,7 +268,7 @@ returns a result `Hash` with these keys:
 | `email` |  |
 | `free` |  |
 | `gravatar` |  |
-| `has_mx_record` |  |
+| `has_mx_records` |  |
 | `reachable` |  |
 | `role_account` |  |
 | `smtp` |  |
@@ -283,23 +283,23 @@ API path: `/api/v1/email/advanced/{email}`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `auth_type` |  |
-| `avg_request_duration_nano` |  |
-| `batch_operation` |  |
-| `batch_tokens_consumed` |  |
-| `created_at` |  |
-| `hour_bucket` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `authType` |  |
+| `avgRequestDurationNanos` |  |
+| `batchOperations` |  |
+| `batchTokensConsumed` |  |
+| `createdAt` |  |
+| `hourBucket` |  |
 | `id` |  |
-| `min_remaining_quota` |  |
-| `peak_remaining_quota` |  |
-| `plan_id` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
-| `updated_at` |  |
+| `minRemainingQuota` |  |
+| `peakRemainingQuota` |  |
+| `planId` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
+| `updatedAt` |  |
 
 Operations: Load.
 
@@ -309,16 +309,16 @@ API path: `/api/v1/usage/stats`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `avg_request_duration_m` |  |
-| `batch_operation` |  |
-| `period_end` |  |
-| `period_start` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `avgRequestDurationMs` |  |
+| `batchOperations` |  |
+| `periodEnd` |  |
+| `periodStart` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
 
 Operations: Load.
 
@@ -344,14 +344,8 @@ API path: `/api/v1/asn/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `failed_lookup` |  |
-| `failed_validation` |  |
+| `emails` |  |
 | `ips` |  |
-| `result` |  |
-| `successful_lookup` |  |
-| `successful_validation` |  |
-| `total_processed` |  |
 
 Operations: Create.
 
@@ -361,9 +355,9 @@ API path: `/api/v1/email/advanced/batch`
 
 | Field | Description |
 | --- | --- |
-| `failed_validation` |  |
-| `result` |  |
-| `successful_validation` |  |
+| `failed_validations` |  |
+| `results` |  |
+| `successful_validations` |  |
 | `total_processed` |  |
 
 Operations: Create.
@@ -383,7 +377,7 @@ API path: `/management/cache/domain-age/check/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 
 Operations: Create, Load.
 
@@ -396,7 +390,7 @@ API path: `/api/v1/domain/age/batch`
 | `domain` |  |
 | `is_disposable_email_domain` |  |
 | `is_valid` |  |
-| `resolved_ip` |  |
+| `resolved_ips` |  |
 | `threat` |  |
 
 Operations: Load.
@@ -408,13 +402,11 @@ API path: `/api/v1/domain/reputation/{domain}`
 | Field | Description |
 | --- | --- |
 | `email` |  |
-| `factor` |  |
-| `has_mx_record` |  |
-| `ip` |  |
+| `email_factors` |  |
+| `has_mx_records` |  |
+| `ip_factors` |  |
 | `is_disposable` |  |
-| `mx_record` |  |
-| `risk_level` |  |
-| `score` |  |
+| `mx_records` |  |
 | `syntax` |  |
 
 Operations: Load.
@@ -425,7 +417,7 @@ API path: `/api/v1/email/{email}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
+| `addresses` |  |
 | `hostname` |  |
 
 Operations: Load.
@@ -445,11 +437,8 @@ API path: `/api/json/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: Load.
 
@@ -463,21 +452,7 @@ API path: `/api/v1/ip-reputation/{ip}`
 | `ip` |  |
 | `isp` |  |
 | `location` |  |
-| `suspicious_factor` |  |
-
-Operations: Load.
-
-API path: `/api/v1/ip`
-
-#### Ipn2
-
-| Field | Description |
-| --- | --- |
-| `asn` |  |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `suspicious_factor` |  |
+| `suspicious_factors` |  |
 
 Operations: Load.
 
@@ -488,7 +463,7 @@ API path: `/api/v1/ip/{ip}`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `mx_record` |  |
+| `mx_records` |  |
 
 Operations: Load.
 
@@ -508,7 +483,7 @@ API path: `/month-sub`
 | Field | Description |
 | --- | --- |
 | `email_api` |  |
-| `interval_second` |  |
+| `interval_seconds` |  |
 | `ip_api` |  |
 | `next_renewal_date` |  |
 | `plan_id` |  |
@@ -536,11 +511,8 @@ API path: `/api/v1/dns/reverse/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: Load.
 
@@ -583,7 +555,7 @@ API path: `/api/v1/usage/current-month`
 | `domain` |  |
 | `error` |  |
 | `expires_on` |  |
-| `name_server` |  |
+| `name_servers` |  |
 | `raw` |  |
 | `registered_on` |  |
 | `registrar` |  |
@@ -617,7 +589,7 @@ Create an instance: `advanced = client.Advanced`
 | `email` | `String` |  |
 | `free` | `Boolean` |  |
 | `gravatar` | `Object` |  |
-| `has_mx_record` | `Boolean` |  |
+| `has_mx_records` | `Boolean` |  |
 | `reachable` | `String` |  |
 | `role_account` | `Boolean` |  |
 | `smtp` | `Object` |  |
@@ -627,7 +599,7 @@ Create an instance: `advanced = client.Advanced`
 #### Example: Load
 
 ```ruby
-# load returns the bare Advanced record (raises on error).
+# load returns the ENTITY — call data_get for the Advanced record (raises on error).
 advanced = client.Advanced.load({ "id" => "advanced_id" })
 ```
 
@@ -646,28 +618,28 @@ Create an instance: `api_usage_stats_model = client.ApiUsageStatsModel`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `String` |  |
-| `api_type` | `String` |  |
-| `auth_type` | `String` |  |
-| `avg_request_duration_nano` | `Object` |  |
-| `batch_operation` | `Integer` |  |
-| `batch_tokens_consumed` | `Integer` |  |
-| `created_at` | `Object` |  |
-| `hour_bucket` | `String` |  |
+| `apiKey` | `String` |  |
+| `apiType` | `String` |  |
+| `authType` | `String` |  |
+| `avgRequestDurationNanos` | `Object` |  |
+| `batchOperations` | `Integer` |  |
+| `batchTokensConsumed` | `Integer` |  |
+| `createdAt` | `Object` |  |
+| `hourBucket` | `String` |  |
 | `id` | `Object` |  |
-| `min_remaining_quota` | `Object` |  |
-| `peak_remaining_quota` | `Object` |  |
-| `plan_id` | `String` |  |
-| `quota_consumed` | `Integer` |  |
-| `rate_limited_request` | `Integer` |  |
-| `successful_request` | `Integer` |  |
-| `total_request` | `Integer` |  |
-| `updated_at` | `Object` |  |
+| `minRemainingQuota` | `Object` |  |
+| `peakRemainingQuota` | `Object` |  |
+| `planId` | `String` |  |
+| `quotaConsumed` | `Integer` |  |
+| `rateLimitedRequests` | `Integer` |  |
+| `successfulRequests` | `Integer` |  |
+| `totalRequests` | `Integer` |  |
+| `updatedAt` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ApiUsageStatsModel record (raises on error).
+# load returns the ENTITY — call data_get for the ApiUsageStatsModel record (raises on error).
 api_usage_stats_model = client.ApiUsageStatsModel.load({ "id" => "api_usage_stats_model_id" })
 ```
 
@@ -686,21 +658,21 @@ Create an instance: `api_usage_summary = client.ApiUsageSummary`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `String` |  |
-| `api_type` | `String` |  |
-| `avg_request_duration_m` | `Object` |  |
-| `batch_operation` | `Integer` |  |
-| `period_end` | `String` |  |
-| `period_start` | `String` |  |
-| `quota_consumed` | `Integer` |  |
-| `rate_limited_request` | `Integer` |  |
-| `successful_request` | `Integer` |  |
-| `total_request` | `Integer` |  |
+| `apiKey` | `String` |  |
+| `apiType` | `String` |  |
+| `avgRequestDurationMs` | `Object` |  |
+| `batchOperations` | `Integer` |  |
+| `periodEnd` | `String` |  |
+| `periodStart` | `String` |  |
+| `quotaConsumed` | `Integer` |  |
+| `rateLimitedRequests` | `Integer` |  |
+| `successfulRequests` | `Integer` |  |
+| `totalRequests` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ApiUsageSummary record (raises on error).
+# load returns the ENTITY — call data_get for the ApiUsageSummary record (raises on error).
 api_usage_summary = client.ApiUsageSummary.load()
 ```
 
@@ -730,7 +702,7 @@ Create an instance: `asn = client.Asn`
 #### Example: Load
 
 ```ruby
-# load returns the bare Asn record (raises on error).
+# load returns the ENTITY — call data_get for the Asn record (raises on error).
 asn = client.Asn.load({ "id" => "asn_id" })
 ```
 
@@ -749,27 +721,15 @@ Create an instance: `batch = client.Batch`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `Array` |  |
-| `failed_lookup` | `Integer` |  |
-| `failed_validation` | `Integer` |  |
+| `emails` | `Array` |  |
 | `ips` | `Array` |  |
-| `result` | `Hash` |  |
-| `successful_lookup` | `Integer` |  |
-| `successful_validation` | `Integer` |  |
-| `total_processed` | `Integer` |  |
 
 #### Example: Create
 
 ```ruby
 batch = client.Batch.create({
-  "email" => [], # Array
-  "failed_lookup" => 1, # Integer
-  "failed_validation" => 1, # Integer
+  "emails" => [], # Array
   "ips" => [], # Array
-  "result" => {}, # Hash
-  "successful_lookup" => 1, # Integer
-  "successful_validation" => 1, # Integer
-  "total_processed" => 1, # Integer
 })
 ```
 
@@ -788,19 +748,15 @@ Create an instance: `batch_email_validation_response_dto = client.BatchEmailVali
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `failed_validation` | `Integer` |  |
-| `result` | `Hash` |  |
-| `successful_validation` | `Integer` |  |
+| `failed_validations` | `Integer` |  |
+| `results` | `Hash` |  |
+| `successful_validations` | `Integer` |  |
 | `total_processed` | `Integer` |  |
 
 #### Example: Create
 
 ```ruby
 batch_email_validation_response_dto = client.BatchEmailValidationResponseDto.create({
-  "failed_validation" => 1, # Integer
-  "result" => {}, # Hash
-  "successful_validation" => 1, # Integer
-  "total_processed" => 1, # Integer
 })
 ```
 
@@ -819,7 +775,7 @@ Create an instance: `cache_management = client.CacheManagement`
 #### Example: Load
 
 ```ruby
-# load returns the bare CacheManagement record (raises on error).
+# load returns the ENTITY — call data_get for the CacheManagement record (raises on error).
 cache_management = client.CacheManagement.load()
 ```
 
@@ -839,12 +795,12 @@ Create an instance: `domain_analysi = client.DomainAnalysi`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `Array` |  |
+| `domains` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare DomainAnalysi record (raises on error).
+# load returns the ENTITY — call data_get for the DomainAnalysi record (raises on error).
 domain_analysi = client.DomainAnalysi.load({ "domain" => "domain" })
 ```
 
@@ -852,7 +808,7 @@ domain_analysi = client.DomainAnalysi.load({ "domain" => "domain" })
 
 ```ruby
 domain_analysi = client.DomainAnalysi.create({
-  "domain" => [], # Array
+  "domains" => [], # Array
 })
 ```
 
@@ -874,13 +830,13 @@ Create an instance: `domain_reputation_v1_dto = client.DomainReputationV1Dto`
 | `domain` | `String` |  |
 | `is_disposable_email_domain` | `Boolean` |  |
 | `is_valid` | `Boolean` |  |
-| `resolved_ip` | `Array` |  |
+| `resolved_ips` | `Array` |  |
 | `threat` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare DomainReputationV1Dto record (raises on error).
+# load returns the ENTITY — call data_get for the DomainReputationV1Dto record (raises on error).
 domain_reputation_v1_dto = client.DomainReputationV1Dto.load({ "domain" => "domain" })
 ```
 
@@ -900,19 +856,17 @@ Create an instance: `email = client.Email`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `String` |  |
-| `factor` | `Hash` |  |
-| `has_mx_record` | `Boolean` |  |
-| `ip` | `Object` |  |
+| `email_factors` | `NilClass` |  |
+| `has_mx_records` | `Boolean` |  |
+| `ip_factors` | `NilClass` |  |
 | `is_disposable` | `Boolean` |  |
-| `mx_record` | `Array` |  |
-| `risk_level` | `String` |  |
-| `score` | `Float` |  |
+| `mx_records` | `Array` |  |
 | `syntax` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Email record (raises on error).
+# load returns the ENTITY — call data_get for the Email record (raises on error).
 email = client.Email.load({ "id" => "email_id" })
 ```
 
@@ -931,13 +885,13 @@ Create an instance: `forward = client.Forward`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `Array` |  |
+| `addresses` | `Array` |  |
 | `hostname` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Forward record (raises on error).
+# load returns the ENTITY — call data_get for the Forward record (raises on error).
 forward = client.Forward.load({ "id" => "forward_id" })
 ```
 
@@ -955,7 +909,7 @@ Create an instance: `ip_info_v0 = client.IpInfoV0`
 #### Example: Load
 
 ```ruby
-# load returns the bare IpInfoV0 record (raises on error).
+# load returns the ENTITY — call data_get for the IpInfoV0 record (raises on error).
 ip_info_v0 = client.IpInfoV0.load()
 ```
 
@@ -974,16 +928,13 @@ Create an instance: `ip_reputation = client.IpReputation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `Object` |  |
-| `factor` | `Hash` |  |
-| `ip` | `Object` |  |
-| `risk_level` | `String` |  |
-| `score` | `Float` |  |
+| `email_factors` | `NilClass` |  |
+| `ip_factors` | `NilClass` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare IpReputation record (raises on error).
+# load returns the ENTITY — call data_get for the IpReputation record (raises on error).
 ip_reputation = client.IpReputation.load({ "id" => "ip_reputation_id" })
 ```
 
@@ -1006,41 +957,13 @@ Create an instance: `ipn = client.Ipn`
 | `ip` | `String` |  |
 | `isp` | `Object` |  |
 | `location` | `Hash` |  |
-| `suspicious_factor` | `Hash` |  |
+| `suspicious_factors` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Ipn record (raises on error).
+# load returns the ENTITY — call data_get for the Ipn record (raises on error).
 ipn = client.Ipn.load()
-```
-
-
-### Ipn2
-
-Create an instance: `ipn2 = client.Ipn2`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `asn` | `Object` |  |
-| `ip` | `String` |  |
-| `isp` | `Object` |  |
-| `location` | `Hash` |  |
-| `suspicious_factor` | `Hash` |  |
-
-#### Example: Load
-
-```ruby
-# load returns the bare Ipn2 record (raises on error).
-ipn2 = client.Ipn2.load({ "ip" => "ip" })
 ```
 
 
@@ -1059,12 +982,12 @@ Create an instance: `mxn = client.Mxn`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `String` |  |
-| `mx_record` | `Array` |  |
+| `mx_records` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Mxn record (raises on error).
+# load returns the ENTITY — call data_get for the Mxn record (raises on error).
 mxn = client.Mxn.load({ "domain" => "domain" })
 ```
 
@@ -1083,7 +1006,7 @@ Create an instance: `paddle_controller = client.PaddleController`
 #### Example: Load
 
 ```ruby
-# load returns the bare PaddleController record (raises on error).
+# load returns the ENTITY — call data_get for the PaddleController record (raises on error).
 paddle_controller = client.PaddleController.load()
 ```
 
@@ -1110,7 +1033,7 @@ Create an instance: `rate_limit_info_dto = client.RateLimitInfoDto`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_api` | `Hash` |  |
-| `interval_second` | `Integer` |  |
+| `interval_seconds` | `Integer` |  |
 | `ip_api` | `Hash` |  |
 | `next_renewal_date` | `String` |  |
 | `plan_id` | `String` |  |
@@ -1120,7 +1043,7 @@ Create an instance: `rate_limit_info_dto = client.RateLimitInfoDto`
 #### Example: Load
 
 ```ruby
-# load returns the bare RateLimitInfoDto record (raises on error).
+# load returns the ENTITY — call data_get for the RateLimitInfoDto record (raises on error).
 rate_limit_info_dto = client.RateLimitInfoDto.load()
 ```
 
@@ -1147,7 +1070,7 @@ Create an instance: `reverse = client.Reverse`
 #### Example: Load
 
 ```ruby
-# load returns the bare Reverse record (raises on error).
+# load returns the ENTITY — call data_get for the Reverse record (raises on error).
 reverse = client.Reverse.load({ "id" => "reverse_id" })
 ```
 
@@ -1166,16 +1089,13 @@ Create an instance: `risk_score = client.RiskScore`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `Object` |  |
-| `factor` | `Hash` |  |
-| `ip` | `Object` |  |
-| `risk_level` | `String` |  |
-| `score` | `Float` |  |
+| `email_factors` | `NilClass` |  |
+| `ip_factors` | `NilClass` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare RiskScore record (raises on error).
+# load returns the ENTITY — call data_get for the RiskScore record (raises on error).
 risk_score = client.RiskScore.load({ "id" => "risk_score_id" })
 ```
 
@@ -1193,7 +1113,7 @@ Create an instance: `status = client.Status`
 #### Example: Load
 
 ```ruby
-# load returns the bare Status record (raises on error).
+# load returns the ENTITY — call data_get for the Status record (raises on error).
 status = client.Status.load()
 ```
 
@@ -1219,7 +1139,7 @@ Create an instance: `tor = client.Tor`
 #### Example: Load
 
 ```ruby
-# load returns the bare Tor record (raises on error).
+# load returns the ENTITY — call data_get for the Tor record (raises on error).
 tor = client.Tor.load({ "id" => "tor_id" })
 ```
 
@@ -1237,7 +1157,7 @@ Create an instance: `usage_statistic = client.UsageStatistic`
 #### Example: Load
 
 ```ruby
-# load returns the bare UsageStatistic record (raises on error).
+# load returns the ENTITY — call data_get for the UsageStatistic record (raises on error).
 usage_statistic = client.UsageStatistic.load()
 ```
 
@@ -1259,7 +1179,7 @@ Create an instance: `whoi = client.Whoi`
 | `domain` | `String` |  |
 | `error` | `Object` |  |
 | `expires_on` | `String` |  |
-| `name_server` | `Array` |  |
+| `name_servers` | `Array` |  |
 | `raw` | `String` |  |
 | `registered_on` | `String` |  |
 | `registrar` | `Object` |  |
@@ -1269,7 +1189,7 @@ Create an instance: `whoi = client.Whoi`
 #### Example: Load
 
 ```ruby
-# load returns the bare Whoi record (raises on error).
+# load returns the ENTITY — call data_get for the Whoi record (raises on error).
 whoi = client.Whoi.load({ "id" => "whoi_id" })
 ```
 
@@ -1350,11 +1270,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-advanced = client.Advanced
-advanced.load({ "id" => "example_id" })
+riskscore = client.RiskScore
+riskscore.load()
 
-# advanced.data_get now returns the advanced data from the last load
-# advanced.match_get returns the last match criteria
+# riskscore.data_get now returns the riskscore data from the last load
+# riskscore.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

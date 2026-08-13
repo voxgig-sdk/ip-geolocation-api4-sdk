@@ -21,7 +21,7 @@ main: kit: entity: domain_reputation_v1_dto: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "resolved_ip"
+      name: "resolved_ips"
       req: true
       type: "`$ARRAY`"
     }

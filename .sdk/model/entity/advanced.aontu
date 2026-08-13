@@ -26,7 +26,7 @@ main: kit: entity: advanced: {
       type: "`$ANY`"
     }
     {
-      name: "has_mx_record"
+      name: "has_mx_records"
       req: true
       type: "`$BOOLEAN`"
     }

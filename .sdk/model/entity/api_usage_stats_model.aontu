@@ -6,22 +6,22 @@ main: kit: entity: api_usage_stats_model: {
 
   fields: [
     {
-      name: "api_key"
+      name: "apiKey"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "api_type"
+      name: "apiType"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "auth_type"
+      name: "authType"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "avg_request_duration_nano"
+      name: "avgRequestDurationNanos"
       req: false
       type: [
         "`$ONE`"
@@ -32,17 +32,17 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
-      name: "batch_operation"
+      name: "batchOperations"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "batch_tokens_consumed"
+      name: "batchTokensConsumed"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "created_at"
+      name: "createdAt"
       req: false
       type: [
         "`$ONE`"
@@ -53,7 +53,7 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
-      name: "hour_bucket"
+      name: "hourBucket"
       req: true
       type: "`$STRING`"
     }
@@ -69,7 +69,7 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
-      name: "min_remaining_quota"
+      name: "minRemainingQuota"
       req: false
       type: [
         "`$ONE`"
@@ -80,7 +80,7 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
-      name: "peak_remaining_quota"
+      name: "peakRemainingQuota"
       req: false
       type: [
         "`$ONE`"
@@ -91,32 +91,32 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
-      name: "plan_id"
+      name: "planId"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "quota_consumed"
+      name: "quotaConsumed"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "rate_limited_request"
+      name: "rateLimitedRequests"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "successful_request"
+      name: "successfulRequests"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "total_request"
+      name: "totalRequests"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "updated_at"
+      name: "updatedAt"
       req: false
       type: [
         "`$ONE`"

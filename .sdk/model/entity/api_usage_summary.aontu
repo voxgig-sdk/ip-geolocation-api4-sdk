@@ -6,17 +6,17 @@ main: kit: entity: api_usage_summary: {
 
   fields: [
     {
-      name: "api_key"
+      name: "apiKey"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "api_type"
+      name: "apiType"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "avg_request_duration_m"
+      name: "avgRequestDurationMs"
       req: false
       type: [
         "`$ONE`"
@@ -27,37 +27,37 @@ main: kit: entity: api_usage_summary: {
       ]
     }
     {
-      name: "batch_operation"
+      name: "batchOperations"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "period_end"
+      name: "periodEnd"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "period_start"
+      name: "periodStart"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "quota_consumed"
+      name: "quotaConsumed"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "rate_limited_request"
+      name: "rateLimitedRequests"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "successful_request"
+      name: "successfulRequests"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "total_request"
+      name: "totalRequests"
       req: true
       type: "`$INTEGER`"
     }

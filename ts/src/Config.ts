@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'IpGeolocationApi4',
   }
 
 
@@ -84,9 +84,6 @@ class Config {
       },
 
       ipn: {
-      },
-
-      ipn2: {
       },
 
       mxn: {
@@ -153,7 +150,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "has_mx_record",
+          "name": "has_mx_records",
           "req": true,
           "type": "`$BOOLEAN`",
           "index$": 4
@@ -216,6 +213,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/email/advanced/{email}",
               "parts": [
@@ -253,28 +251,28 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "api_key",
+          "name": "apiKey",
           "req": true,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "api_type",
+          "name": "apiType",
           "req": true,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "auth_type",
+          "name": "authType",
           "req": true,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "avg_request_duration_nano",
+          "name": "avgRequestDurationNanos",
           "req": false,
           "type": [
             "`$ONE`",
@@ -287,21 +285,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "batch_operation",
+          "name": "batchOperations",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "batch_tokens_consumed",
+          "name": "batchTokensConsumed",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "created_at",
+          "name": "createdAt",
           "req": false,
           "type": [
             "`$ONE`",
@@ -314,7 +312,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "hour_bucket",
+          "name": "hourBucket",
           "req": true,
           "type": "`$STRING`",
           "index$": 7
@@ -334,7 +332,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "min_remaining_quota",
+          "name": "minRemainingQuota",
           "req": false,
           "type": [
             "`$ONE`",
@@ -347,7 +345,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "peak_remaining_quota",
+          "name": "peakRemainingQuota",
           "req": false,
           "type": [
             "`$ONE`",
@@ -360,42 +358,42 @@ class Config {
         },
         {
           "active": true,
-          "name": "plan_id",
+          "name": "planId",
           "req": true,
           "type": "`$STRING`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "quota_consumed",
+          "name": "quotaConsumed",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 12
         },
         {
           "active": true,
-          "name": "rate_limited_request",
+          "name": "rateLimitedRequests",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 13
         },
         {
           "active": true,
-          "name": "successful_request",
+          "name": "successfulRequests",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 14
         },
         {
           "active": true,
-          "name": "total_request",
+          "name": "totalRequests",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 15
         },
         {
           "active": true,
-          "name": "updated_at",
+          "name": "updatedAt",
           "req": false,
           "type": [
             "`$ONE`",
@@ -455,6 +453,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/usage/stats",
               "parts": [
@@ -489,21 +488,21 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "api_key",
+          "name": "apiKey",
           "req": true,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "api_type",
+          "name": "apiType",
           "req": true,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "avg_request_duration_m",
+          "name": "avgRequestDurationMs",
           "req": false,
           "type": [
             "`$ONE`",
@@ -516,49 +515,49 @@ class Config {
         },
         {
           "active": true,
-          "name": "batch_operation",
+          "name": "batchOperations",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "period_end",
+          "name": "periodEnd",
           "req": true,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "period_start",
+          "name": "periodStart",
           "req": true,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "quota_consumed",
+          "name": "quotaConsumed",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "rate_limited_request",
+          "name": "rateLimitedRequests",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "successful_request",
+          "name": "successfulRequests",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "total_request",
+          "name": "totalRequests",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 9
@@ -612,6 +611,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/usage/summary",
               "parts": [
@@ -740,6 +740,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/asn/{ip}",
               "parts": [
@@ -776,59 +777,17 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "email",
+          "name": "emails",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "failed_lookup",
-          "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
-        },
-        {
-          "active": true,
-          "name": "failed_validation",
-          "req": true,
-          "type": "`$INTEGER`",
-          "index$": 2
-        },
-        {
-          "active": true,
           "name": "ips",
           "req": true,
           "type": "`$ARRAY`",
-          "index$": 3
-        },
-        {
-          "active": true,
-          "name": "result",
-          "req": true,
-          "type": "`$OBJECT`",
-          "index$": 4
-        },
-        {
-          "active": true,
-          "name": "successful_lookup",
-          "req": true,
-          "type": "`$INTEGER`",
-          "index$": 5
-        },
-        {
-          "active": true,
-          "name": "successful_validation",
-          "req": true,
-          "type": "`$INTEGER`",
-          "index$": 6
-        },
-        {
-          "active": true,
-          "name": "total_processed",
-          "req": true,
-          "type": "`$INTEGER`",
-          "index$": 7
+          "index$": 1
         }
       ],
       "name": "batch",
@@ -840,6 +799,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/api/v1/email/advanced/batch",
               "parts": [
@@ -852,13 +812,14 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 0
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/api/v1/ip/batch",
               "parts": [
@@ -870,7 +831,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 1
             }
@@ -886,29 +847,29 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "failed_validation",
-          "req": true,
+          "name": "failed_validations",
+          "req": false,
           "type": "`$INTEGER`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "result",
-          "req": true,
+          "name": "results",
+          "req": false,
           "type": "`$OBJECT`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "successful_validation",
-          "req": true,
+          "name": "successful_validations",
+          "req": false,
           "type": "`$INTEGER`",
           "index$": 2
         },
         {
           "active": true,
           "name": "total_processed",
-          "req": true,
+          "req": false,
           "type": "`$INTEGER`",
           "index$": 3
         }
@@ -922,6 +883,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/api/v1/email/advanced/batch/csv",
               "parts": [
@@ -935,7 +897,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "index$": 0
             }
@@ -970,6 +932,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/management/cache/domain-age/check/{domain}",
               "parts": [
@@ -993,6 +956,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/management/cache/domain-age/stats",
               "parts": [
@@ -1018,6 +982,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "DELETE",
               "orig": "/management/cache/domain-age",
               "parts": [
@@ -1035,6 +1000,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "DELETE",
               "orig": "/management/cache/domain-age/all",
               "parts": [
@@ -1066,7 +1032,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "domain",
+          "name": "domains",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 0
@@ -1081,6 +1047,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/api/v1/domain/age/batch",
               "parts": [
@@ -1120,6 +1087,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/domain/age/{domain}",
               "parts": [
@@ -1177,7 +1145,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "resolved_ip",
+          "name": "resolved_ips",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 3
@@ -1212,6 +1180,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/domain/reputation/{domain}",
               "parts": [
@@ -1249,47 +1218,29 @@ class Config {
         {
           "active": true,
           "name": "email",
-          "op": {
-            "load": {
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            }
-          },
           "req": true,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "factor",
+          "name": "email_factors",
           "req": true,
-          "type": "`$OBJECT`",
+          "type": "`$NULL`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "has_mx_record",
+          "name": "has_mx_records",
           "req": true,
           "type": "`$BOOLEAN`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "ip",
-          "req": false,
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ],
+          "name": "ip_factors",
+          "req": true,
+          "type": "`$NULL`",
           "index$": 3
         },
         {
@@ -1301,31 +1252,17 @@ class Config {
         },
         {
           "active": true,
-          "name": "mx_record",
+          "name": "mx_records",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "risk_level",
-          "req": true,
-          "type": "`$STRING`",
-          "index$": 6
-        },
-        {
-          "active": true,
-          "name": "score",
-          "req": true,
-          "type": "`$NUMBER`",
-          "index$": 7
-        },
-        {
-          "active": true,
           "name": "syntax",
           "req": true,
           "type": "`$OBJECT`",
-          "index$": 8
+          "index$": 6
         }
       ],
       "name": "email",
@@ -1350,6 +1287,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/email/{email}",
               "parts": [
@@ -1390,6 +1328,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/risk-score/email/{email}",
               "parts": [
@@ -1411,7 +1350,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.factors`"
               },
               "index$": 1
             }
@@ -1427,7 +1366,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "address",
+          "name": "addresses",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 0
@@ -1462,6 +1401,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/dns/forward/{hostname}",
               "parts": [
@@ -1518,6 +1458,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/json/{ip}",
               "parts": [
@@ -1551,6 +1492,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/json/{ip}",
               "parts": [
@@ -1571,6 +1513,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/api/json",
               "parts": [
@@ -1587,6 +1530,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/api/json/",
               "parts": [
@@ -1603,6 +1547,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/json",
               "parts": [
@@ -1618,6 +1563,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/json/",
               "parts": [
@@ -1646,50 +1592,17 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "email",
-          "req": false,
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ],
+          "name": "email_factors",
+          "req": true,
+          "type": "`$NULL`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "factor",
+          "name": "ip_factors",
           "req": true,
-          "type": "`$OBJECT`",
+          "type": "`$NULL`",
           "index$": 1
-        },
-        {
-          "active": true,
-          "name": "ip",
-          "req": false,
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ],
-          "index$": 2
-        },
-        {
-          "active": true,
-          "name": "risk_level",
-          "req": true,
-          "type": "`$STRING`",
-          "index$": 3
-        },
-        {
-          "active": true,
-          "name": "score",
-          "req": true,
-          "type": "`$NUMBER`",
-          "index$": 4
         }
       ],
       "name": "ip_reputation",
@@ -1714,6 +1627,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/ip-reputation/{ip}",
               "parts": [
@@ -1734,7 +1648,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.factors`"
               },
               "index$": 0
             }
@@ -1790,94 +1704,13 @@ class Config {
         },
         {
           "active": true,
-          "name": "suspicious_factor",
+          "name": "suspicious_factors",
           "req": true,
           "type": "`$OBJECT`",
           "index$": 4
         }
       ],
       "name": "ipn",
-      "op": {
-        "load": {
-          "input": "data",
-          "name": "load",
-          "points": [
-            {
-              "active": true,
-              "args": {},
-              "method": "GET",
-              "orig": "/api/v1/ip",
-              "parts": [
-                "api",
-                "v1",
-                "ip"
-              ],
-              "select": {},
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "index$": 0
-            }
-          ],
-          "key$": "load"
-        }
-      },
-      "relations": {
-        "ancestors": []
-      }
-    },
-    "ipn2": {
-      "fields": [
-        {
-          "active": true,
-          "name": "asn",
-          "req": false,
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ],
-          "index$": 0
-        },
-        {
-          "active": true,
-          "name": "ip",
-          "req": true,
-          "type": "`$STRING`",
-          "index$": 1
-        },
-        {
-          "active": true,
-          "name": "isp",
-          "req": false,
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ],
-          "index$": 2
-        },
-        {
-          "active": true,
-          "name": "location",
-          "req": true,
-          "type": "`$OBJECT`",
-          "index$": 3
-        },
-        {
-          "active": true,
-          "name": "suspicious_factor",
-          "req": true,
-          "type": "`$OBJECT`",
-          "index$": 4
-        }
-      ],
-      "name": "ipn2",
       "op": {
         "load": {
           "input": "data",
@@ -1899,6 +1732,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/ip/{ip}",
               "parts": [
@@ -1917,6 +1751,24 @@ class Config {
                 "res": "`body`"
               },
               "index$": 0
+            },
+            {
+              "active": true,
+              "args": {},
+              "kind": "http",
+              "method": "GET",
+              "orig": "/api/v1/ip",
+              "parts": [
+                "api",
+                "v1",
+                "ip"
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 1
             }
           ],
           "key$": "load"
@@ -1941,7 +1793,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "mx_record",
+          "name": "mx_records",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 1
@@ -1969,6 +1821,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/dns/mx/{domain}",
               "parts": [
@@ -2023,6 +1876,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "POST",
               "orig": "/month-sub",
               "parts": [
@@ -2049,6 +1903,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/month-sub",
               "parts": [
@@ -2080,7 +1935,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "interval_second",
+          "name": "interval_seconds",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 1
@@ -2148,6 +2003,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/ratelimit",
               "parts": [
@@ -2239,6 +2095,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/dns/reverse/{ip}",
               "parts": [
@@ -2276,50 +2133,17 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "email",
-          "req": false,
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ],
+          "name": "email_factors",
+          "req": true,
+          "type": "`$NULL`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "factor",
+          "name": "ip_factors",
           "req": true,
-          "type": "`$OBJECT`",
+          "type": "`$NULL`",
           "index$": 1
-        },
-        {
-          "active": true,
-          "name": "ip",
-          "req": false,
-          "type": [
-            "`$ONE`",
-            [
-              "`$STRING`",
-              "`$NULL`"
-            ]
-          ],
-          "index$": 2
-        },
-        {
-          "active": true,
-          "name": "risk_level",
-          "req": true,
-          "type": "`$STRING`",
-          "index$": 3
-        },
-        {
-          "active": true,
-          "name": "score",
-          "req": true,
-          "type": "`$NUMBER`",
-          "index$": 4
         }
       ],
       "name": "risk_score",
@@ -2355,6 +2179,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/risk-score/{ip}",
               "parts": [
@@ -2376,13 +2201,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.factors`"
               },
               "index$": 0
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/risk-score",
               "parts": [
@@ -2393,7 +2219,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.factors`"
               },
               "index$": 1
             }
@@ -2416,6 +2242,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/api/status",
               "parts": [
@@ -2483,6 +2310,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/tor/{ip}",
               "parts": [
@@ -2545,6 +2373,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/usage/current-month",
               "parts": [
@@ -2587,6 +2416,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/usage/recent",
               "parts": [
@@ -2646,7 +2476,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "name_server",
+          "name": "name_servers",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 3
@@ -2709,6 +2539,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/v1/dns/whois/{domain}",
               "parts": [

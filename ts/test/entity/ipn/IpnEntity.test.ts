@@ -26,8 +26,8 @@ import {
 describe('IpnEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when IPGEOLOCATIONAPI4_TEST_LIVE=TRUE.
-  afterEach(liveDelay('IPGEOLOCATIONAPI4_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when IP_GEOLOCATION_API4_TEST_LIVE=TRUE.
+  afterEach(liveDelay('IP_GEOLOCATION_API4_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IpGeolocationApi4SDK.test()
@@ -38,7 +38,7 @@ describe('IpnEntity', async () => {
 
   test('basic', async (t) => {
 
-    const live = 'TRUE' === process.env.IP_GEOLOCATION_API__TEST_LIVE
+    const live = 'TRUE' === process.env.IP_GEOLOCATION_API4_TEST_LIVE
     for (const op of ['load']) {
       if (maybeSkipControl(t, 'entityOp', 'ipn.' + op, live)) return
     }
@@ -48,7 +48,7 @@ describe('IpnEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set IP_GEOLOCATION_API__TEST_IPN_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set IP_GEOLOCATION_API4_TEST_IPN_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -59,11 +59,9 @@ describe('IpnEntity', async () => {
 
     let ipn_ref01_data = Object.values(setup.data.existing.ipn)[0] as any
 
-    // LOAD
+    // LOAD: skipped — no entity id field and load requires path params.
+    // Entity-var is declared here so later flow steps still compile.
     const ipn_ref01_ent = client.Ipn()
-    const ipn_ref01_match_dt0: any = {}
-    const ipn_ref01_data_dt0 = await ipn_ref01_ent.load(ipn_ref01_match_dt0)
-    assert(null != ipn_ref01_data_dt0)
 
 
   })
@@ -94,7 +92,7 @@ function basicSetup(extra?: any) {
   const transform = struct.transform
 
   let idmap = transform(
-    ['ipn01','ipn02','ipn03'],
+    ['ipn01','ipn02','ipn03','ip01','ip02','ip03'],
     {
       '`$PACK`': ['', {
         '`$KEY`': '`$COPY`',
@@ -106,18 +104,18 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['IP_GEOLOCATION_API__TEST_IPN_ENTID']
+  const idmapEnvVal = process.env['IP_GEOLOCATION_API4_TEST_IPN_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'IP_GEOLOCATION_API__TEST_IPN_ENTID': idmap,
-    'IP_GEOLOCATION_API__TEST_LIVE': 'FALSE',
-    'IP_GEOLOCATION_API__TEST_EXPLAIN': 'FALSE',
+    'IP_GEOLOCATION_API4_TEST_IPN_ENTID': idmap,
+    'IP_GEOLOCATION_API4_TEST_LIVE': 'FALSE',
+    'IP_GEOLOCATION_API4_TEST_EXPLAIN': 'FALSE',
   })
 
-  idmap = env['IP_GEOLOCATION_API__TEST_IPN_ENTID']
+  idmap = env['IP_GEOLOCATION_API4_TEST_IPN_ENTID']
 
-  const live = 'TRUE' === env.IP_GEOLOCATION_API__TEST_LIVE
+  const live = 'TRUE' === env.IP_GEOLOCATION_API4_TEST_LIVE
 
   if (live) {
     client = new IpGeolocationApi4SDK(merge([
@@ -134,7 +132,7 @@ function basicSetup(extra?: any) {
     client,
     struct,
     data: entityData,
-    explain: 'TRUE' === env.IP_GEOLOCATION_API__TEST_EXPLAIN,
+    explain: 'TRUE' === env.IP_GEOLOCATION_API4_TEST_EXPLAIN,
     live,
     syntheticOnly: live && !idmapOverridden,
     now: Date.now(),

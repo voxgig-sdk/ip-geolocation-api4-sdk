@@ -62,8 +62,8 @@ function makeCtrl(explain: boolean) {
 // Overrides configuration values with environment variables if available
 function envOverride(m: Record<string, any>) {
   if (
-    'TRUE' === process.env.IPGEOLOCATIONAPI4_TEST_LIVE ||
-    'TRUE' === process.env.IPGEOLOCATIONAPI4_TEST_OVERRIDE
+    'TRUE' === process.env.IP_GEOLOCATION_API4_TEST_LIVE ||
+    'TRUE' === process.env.IP_GEOLOCATION_API4_TEST_OVERRIDE
   ) {
     Object.entries(m).map(n => {
       let envval = process.env[n[0]]
@@ -74,7 +74,7 @@ function envOverride(m: Record<string, any>) {
     })
   }
 
-  m.IPGEOLOCATIONAPI4_TEST_EXPLAIN = process.env.IPGEOLOCATIONAPI4_TEST_EXPLAIN || m.IPGEOLOCATIONAPI4_TEST_EXPLAIN
+  m.IP_GEOLOCATION_API4_TEST_EXPLAIN = process.env.IP_GEOLOCATION_API4_TEST_EXPLAIN || m.IP_GEOLOCATION_API4_TEST_EXPLAIN
 
   return m
 }

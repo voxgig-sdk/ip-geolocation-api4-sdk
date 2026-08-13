@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "advanced": {
           "active": true,
@@ -51,7 +56,7 @@
             },
             {
               "active": true,
-              "name": "has_mx_record",
+              "name": "has_mx_records",
               "req": true,
               "type": "`$BOOLEAN`"
             },
@@ -107,6 +112,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/email/advanced/{email}",
                   "parts": [
@@ -146,25 +152,25 @@
           "fields": [
             {
               "active": true,
-              "name": "api_key",
+              "name": "apiKey",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "api_type",
+              "name": "apiType",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "auth_type",
+              "name": "authType",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "avg_request_duration_nano",
+              "name": "avgRequestDurationNanos",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -176,19 +182,19 @@
             },
             {
               "active": true,
-              "name": "batch_operation",
+              "name": "batchOperations",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "batch_tokens_consumed",
+              "name": "batchTokensConsumed",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "created_at",
+              "name": "createdAt",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -200,7 +206,7 @@
             },
             {
               "active": true,
-              "name": "hour_bucket",
+              "name": "hourBucket",
               "req": true,
               "type": "`$STRING`"
             },
@@ -218,7 +224,7 @@
             },
             {
               "active": true,
-              "name": "min_remaining_quota",
+              "name": "minRemainingQuota",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -230,7 +236,7 @@
             },
             {
               "active": true,
-              "name": "peak_remaining_quota",
+              "name": "peakRemainingQuota",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -242,37 +248,37 @@
             },
             {
               "active": true,
-              "name": "plan_id",
+              "name": "planId",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "quota_consumed",
+              "name": "quotaConsumed",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "rate_limited_request",
+              "name": "rateLimitedRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "successful_request",
+              "name": "successfulRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "total_request",
+              "name": "totalRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "updated_at",
+              "name": "updatedAt",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -335,6 +341,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/usage/stats",
                   "parts": [
@@ -371,19 +378,19 @@
           "fields": [
             {
               "active": true,
-              "name": "api_key",
+              "name": "apiKey",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "api_type",
+              "name": "apiType",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "avg_request_duration_m",
+              "name": "avgRequestDurationMs",
               "req": false,
               "type": [
                 "`$ONE`",
@@ -395,43 +402,43 @@
             },
             {
               "active": true,
-              "name": "batch_operation",
+              "name": "batchOperations",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "period_end",
+              "name": "periodEnd",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "period_start",
+              "name": "periodStart",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "quota_consumed",
+              "name": "quotaConsumed",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "rate_limited_request",
+              "name": "rateLimitedRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "successful_request",
+              "name": "successfulRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "total_request",
+              "name": "totalRequests",
               "req": true,
               "type": "`$INTEGER`"
             }
@@ -484,6 +491,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/usage/summary",
                   "parts": [
@@ -606,6 +614,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/asn/{ip}",
                   "parts": [
@@ -644,51 +653,15 @@
           "fields": [
             {
               "active": true,
-              "name": "email",
+              "name": "emails",
               "req": true,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "failed_lookup",
-              "req": true,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "failed_validation",
-              "req": true,
-              "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "ips",
               "req": true,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "result",
-              "req": true,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "successful_lookup",
-              "req": true,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "successful_validation",
-              "req": true,
-              "type": "`$INTEGER`"
-            },
-            {
-              "active": true,
-              "name": "total_processed",
-              "req": true,
-              "type": "`$INTEGER`"
             }
           ],
           "name": "batch",
@@ -700,6 +673,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/email/advanced/batch",
                   "parts": [
@@ -712,12 +686,13 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.results`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/ip/batch",
                   "parts": [
@@ -729,7 +704,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.results`"
                   }
                 }
               ]
@@ -747,26 +722,26 @@
           "fields": [
             {
               "active": true,
-              "name": "failed_validation",
-              "req": true,
+              "name": "failed_validations",
+              "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "result",
-              "req": true,
+              "name": "results",
+              "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "successful_validation",
-              "req": true,
+              "name": "successful_validations",
+              "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "total_processed",
-              "req": true,
+              "req": false,
               "type": "`$INTEGER`"
             }
           ],
@@ -779,6 +754,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/email/advanced/batch/csv",
                   "parts": [
@@ -792,7 +768,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.results`"
                   }
                 }
               ]
@@ -828,6 +804,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/management/cache/domain-age/check/{domain}",
                   "parts": [
@@ -850,6 +827,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/management/cache/domain-age/stats",
                   "parts": [
@@ -873,6 +851,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/management/cache/domain-age",
                   "parts": [
@@ -889,6 +868,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "DELETE",
                   "orig": "/management/cache/domain-age/all",
                   "parts": [
@@ -922,7 +902,7 @@
           "fields": [
             {
               "active": true,
-              "name": "domain",
+              "name": "domains",
               "req": true,
               "type": "`$ARRAY`"
             }
@@ -936,6 +916,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/domain/age/batch",
                   "parts": [
@@ -972,6 +953,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/domain/age/{domain}",
                   "parts": [
@@ -1028,7 +1010,7 @@
             },
             {
               "active": true,
-              "name": "resolved_ip",
+              "name": "resolved_ips",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -1060,6 +1042,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/domain/reputation/{domain}",
                   "parts": [
@@ -1099,44 +1082,26 @@
             {
               "active": true,
               "name": "email",
-              "op": {
-                "load": {
-                  "req": false,
-                  "type": [
-                    "`$ONE`",
-                    [
-                      "`$STRING`",
-                      "`$NULL`"
-                    ]
-                  ]
-                }
-              },
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "factor",
+              "name": "email_factors",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$NULL`"
             },
             {
               "active": true,
-              "name": "has_mx_record",
+              "name": "has_mx_records",
               "req": true,
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
-              "name": "ip",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
+              "name": "ip_factors",
+              "req": true,
+              "type": "`$NULL`"
             },
             {
               "active": true,
@@ -1146,21 +1111,9 @@
             },
             {
               "active": true,
-              "name": "mx_record",
+              "name": "mx_records",
               "req": true,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "risk_level",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "score",
-              "req": true,
-              "type": "`$NUMBER`"
             },
             {
               "active": true,
@@ -1190,6 +1143,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/email/{email}",
                   "parts": [
@@ -1228,6 +1182,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/risk-score/email/{email}",
                   "parts": [
@@ -1249,7 +1204,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.factors`"
                   }
                 }
               ]
@@ -1267,7 +1222,7 @@
           "fields": [
             {
               "active": true,
-              "name": "address",
+              "name": "addresses",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -1299,6 +1254,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/dns/forward/{hostname}",
                   "parts": [
@@ -1356,6 +1312,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/json/{ip}",
                   "parts": [
@@ -1387,6 +1344,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/json/{ip}",
                   "parts": [
@@ -1406,6 +1364,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/json",
                   "parts": [
@@ -1421,6 +1380,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/json/",
                   "parts": [
@@ -1436,6 +1396,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/json",
                   "parts": [
@@ -1450,6 +1411,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/json/",
                   "parts": [
@@ -1480,45 +1442,15 @@
           "fields": [
             {
               "active": true,
-              "name": "email",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "factor",
+              "name": "email_factors",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$NULL`"
             },
             {
               "active": true,
-              "name": "ip",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "risk_level",
+              "name": "ip_factors",
               "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "score",
-              "req": true,
-              "type": "`$NUMBER`"
+              "type": "`$NULL`"
             }
           ],
           "name": "ip_reputation",
@@ -1542,6 +1474,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/ip-reputation/{ip}",
                   "parts": [
@@ -1562,7 +1495,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.factors`"
                   }
                 }
               ]
@@ -1616,90 +1549,12 @@
             },
             {
               "active": true,
-              "name": "suspicious_factor",
+              "name": "suspicious_factors",
               "req": true,
               "type": "`$OBJECT`"
             }
           ],
           "name": "ipn",
-          "op": {
-            "load": {
-              "input": "data",
-              "name": "load",
-              "points": [
-                {
-                  "active": true,
-                  "args": {},
-                  "method": "GET",
-                  "orig": "/api/v1/ip",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "ip"
-                  ],
-                  "select": {},
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "ipn2": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "active": true,
-              "name": "asn",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "ip",
-              "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "isp",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "location",
-              "req": true,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "suspicious_factor",
-              "req": true,
-              "type": "`$OBJECT`"
-            }
-          ],
-          "name": "ipn2",
           "op": {
             "load": {
               "input": "data",
@@ -1720,6 +1575,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/ip/{ip}",
                   "parts": [
@@ -1733,6 +1589,23 @@
                       "ip"
                     ]
                   },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {},
+                  "kind": "http",
+                  "method": "GET",
+                  "orig": "/api/v1/ip",
+                  "parts": [
+                    "api",
+                    "v1",
+                    "ip"
+                  ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
@@ -1763,7 +1636,7 @@
             },
             {
               "active": true,
-              "name": "mx_record",
+              "name": "mx_records",
               "req": true,
               "type": "`$ARRAY`"
             }
@@ -1789,6 +1662,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/dns/mx/{domain}",
                   "parts": [
@@ -1845,6 +1719,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/month-sub",
                   "parts": [
@@ -1869,6 +1744,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/month-sub",
                   "parts": [
@@ -1901,7 +1777,7 @@
             },
             {
               "active": true,
-              "name": "interval_second",
+              "name": "interval_seconds",
               "req": true,
               "type": "`$INTEGER`"
             },
@@ -1963,6 +1839,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/ratelimit",
                   "parts": [
@@ -2051,6 +1928,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/dns/reverse/{ip}",
                   "parts": [
@@ -2090,45 +1968,15 @@
           "fields": [
             {
               "active": true,
-              "name": "email",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "factor",
+              "name": "email_factors",
               "req": true,
-              "type": "`$OBJECT`"
+              "type": "`$NULL`"
             },
             {
               "active": true,
-              "name": "ip",
-              "req": false,
-              "type": [
-                "`$ONE`",
-                [
-                  "`$STRING`",
-                  "`$NULL`"
-                ]
-              ]
-            },
-            {
-              "active": true,
-              "name": "risk_level",
+              "name": "ip_factors",
               "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "score",
-              "req": true,
-              "type": "`$NUMBER`"
+              "type": "`$NULL`"
             }
           ],
           "name": "risk_score",
@@ -2163,6 +2011,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/risk-score/{ip}",
                   "parts": [
@@ -2184,12 +2033,13 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.factors`"
                   }
                 },
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/risk-score",
                   "parts": [
@@ -2200,7 +2050,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.factors`"
                   }
                 }
               ]
@@ -2225,6 +2075,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/status",
                   "parts": [
@@ -2290,6 +2141,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/tor/{ip}",
                   "parts": [
@@ -2354,6 +2206,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/usage/current-month",
                   "parts": [
@@ -2395,6 +2248,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/usage/recent",
                   "parts": [
@@ -2453,7 +2307,7 @@
             },
             {
               "active": true,
-              "name": "name_server",
+              "name": "name_servers",
               "req": true,
               "type": "`$ARRAY`"
             },
@@ -2509,6 +2363,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/dns/whois/{domain}",
                   "parts": [
@@ -2828,18 +2683,6 @@
                   }
                 }
               ]
-            },
-            {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "cache_management_ref01",
-                "suffix": "_rm0"
-              },
-              "match": {},
-              "op": "remove",
-              "spec": [],
-              "valid": []
             }
           ]
         },
@@ -3038,38 +2881,6 @@
                   "apply": "TextFieldMark",
                   "def": {
                     "mark": "Mark01-ip_reputation_ref01"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "BasicIpn2Flow": {
-          "active": true,
-          "entity": "ipn2",
-          "key$": "BasicIpn2Flow",
-          "kind": "basic",
-          "name": "BasicIpn2Flow",
-          "param": {},
-          "step": [
-            {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "ipn2_ref01",
-                "srcdatavar": "ipn2_ref01_data",
-                "suffix": "_dt0"
-              },
-              "match": {
-                "id": "ipn201"
-              },
-              "op": "load",
-              "spec": [],
-              "valid": [
-                {
-                  "apply": "TextFieldMark",
-                  "def": {
-                    "mark": "Mark01-ipn2_ref01"
                   }
                 }
               ]
@@ -3421,18 +3232,41 @@
         "website": "https://ip-api.io"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "ip-geolocation-api4"
+            "goversion": "",
+            "name": "ip-geolocation-api4",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3454,22 +3288,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ip-geolocation-api4"
+            "goversion": "",
+            "name": "ip-geolocation-api4",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -3508,21 +3360,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ip-geolocation-api4"
+            "goversion": "",
+            "name": "ip-geolocation-api4",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -3561,12 +3431,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -3578,10 +3453,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ip-geolocation-api4"
+            "goversion": "",
+            "name": "ip-geolocation-api4",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3603,22 +3491,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ip-geolocation-api4"
+            "goversion": "",
+            "name": "ip-geolocation-api4",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3640,13 +3546,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -3658,10 +3569,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ip-geolocation-api4"
+            "goversion": "",
+            "name": "ip-geolocation-api4",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3683,13 +3607,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -3706,10 +3635,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ip-geolocation-api4"
+            "goversion": "",
+            "name": "ip-geolocation-api4",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3731,13 +3673,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -3760,10 +3707,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "ip-geolocation-api4"
+            "goversion": "",
+            "name": "ip-geolocation-api4",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3785,9 +3745,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

@@ -73,11 +73,11 @@ function domain_reputation_v1_dto_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "IPGEOLOCATIONAPI__TEST_DOMAIN_REPUTATION_V__DTO_ENTID" => [],
-        "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
+        "IP_GEOLOCATION_API4_TEST_DOMAIN_REPUTATION_V1_DTO_ENTID" => [],
+        "IP_GEOLOCATION_API4_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["IPGEOLOCATIONAPI__TEST_LIVE"] === "TRUE";
+    $live = $env["IP_GEOLOCATION_API4_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

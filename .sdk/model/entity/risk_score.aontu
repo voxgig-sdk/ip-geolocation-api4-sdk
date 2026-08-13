@@ -6,41 +6,14 @@ main: kit: entity: risk_score: {
 
   fields: [
     {
-      name: "email"
-      req: false
-      type: [
-        "`$ONE`"
-        [
-          "`$STRING`"
-          "`$NULL`"
-        ]
-      ]
-    }
-    {
-      name: "factor"
+      name: "email_factors"
       req: true
-      type: "`$OBJECT`"
+      type: "`$NULL`"
     }
     {
-      name: "ip"
-      req: false
-      type: [
-        "`$ONE`"
-        [
-          "`$STRING`"
-          "`$NULL`"
-        ]
-      ]
-    }
-    {
-      name: "risk_level"
+      name: "ip_factors"
       req: true
-      type: "`$STRING`"
-    }
-    {
-      name: "score"
-      req: true
-      type: "`$NUMBER`"
+      type: "`$NULL`"
     }
   ]
 
@@ -93,7 +66,7 @@ main: kit: entity: risk_score: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.factors`"
           }
         }
         {
@@ -106,7 +79,7 @@ main: kit: entity: risk_score: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.factors`"
           }
         }
       ]

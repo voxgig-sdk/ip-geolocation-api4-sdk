@@ -2,36 +2,18 @@
   "existing": {
     "batch": {
       "BATCH00": {
-        "email": [],
-        "failed_lookup": "s51",
-        "failed_validation": "s52",
+        "emails": [],
         "ips": [],
-        "result": {},
-        "successful_lookup": "s55",
-        "successful_validation": "s56",
-        "total_processed": "s57",
         "id": "BATCH00"
       },
       "BATCH01": {
-        "email": [],
-        "failed_lookup": "sa1",
-        "failed_validation": "sa2",
+        "emails": [],
         "ips": [],
-        "result": {},
-        "successful_lookup": "sa5",
-        "successful_validation": "sa6",
-        "total_processed": "sa7",
         "id": "BATCH01"
       },
       "BATCH02": {
-        "email": [],
-        "failed_lookup": "sf1",
-        "failed_validation": "sf2",
+        "emails": [],
         "ips": [],
-        "result": {},
-        "successful_lookup": "sf5",
-        "successful_validation": "sf6",
-        "total_processed": "sf7",
         "id": "BATCH02"
       }
     }
@@ -39,14 +21,8 @@
   "new": {
     "batch": {
       "batch_ref01": {
-        "email": [],
-        "failed_lookup": "s141",
-        "failed_validation": "s142",
-        "ips": [],
-        "result": {},
-        "successful_lookup": "s145",
-        "successful_validation": "s146",
-        "total_processed": "s147"
+        "emails": [],
+        "ips": []
       }
     }
   }

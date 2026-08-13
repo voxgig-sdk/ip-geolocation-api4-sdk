@@ -6,7 +6,7 @@ main: kit: entity: forward: {
 
   fields: [
     {
-      name: "address"
+      name: "addresses"
       req: true
       type: "`$ARRAY`"
     }

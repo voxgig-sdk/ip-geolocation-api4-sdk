@@ -13,7 +13,6 @@
 @"BasicForwardFlow.aontu"
 @"BasicIpInfoV0Flow.aontu"
 @"BasicIpReputationFlow.aontu"
-@"BasicIpn2Flow.aontu"
 @"BasicIpnFlow.aontu"
 @"BasicMxnFlow.aontu"
 @"BasicPaddleControllerFlow.aontu"

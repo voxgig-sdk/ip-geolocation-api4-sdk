@@ -97,10 +97,6 @@ Create a new `IpReputation` entity instance. Pass `nil` for no initial data.
 
 Create a new `Ipn` entity instance. Pass `nil` for no initial data.
 
-#### `Ipn2(data = nil)`
-
-Create a new `Ipn2` entity instance. Pass `nil` for no initial data.
-
 #### `Mxn(data = nil)`
 
 Create a new `Mxn` entity instance. Pass `nil` for no initial data.
@@ -189,7 +185,7 @@ advanced = client.Advanced
 | `email` | `String` | Yes |  |
 | `free` | `Boolean` | Yes |  |
 | `gravatar` | `Object` | No |  |
-| `has_mx_record` | `Boolean` | Yes |  |
+| `has_mx_records` | `Boolean` | Yes |  |
 | `reachable` | `String` | Yes |  |
 | `role_account` | `Boolean` | Yes |  |
 | `smtp` | `Object` | No |  |
@@ -246,23 +242,23 @@ api_usage_stats_model = client.ApiUsageStatsModel
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `String` | Yes |  |
-| `api_type` | `String` | Yes |  |
-| `auth_type` | `String` | Yes |  |
-| `avg_request_duration_nano` | `Object` | No |  |
-| `batch_operation` | `Integer` | Yes |  |
-| `batch_tokens_consumed` | `Integer` | Yes |  |
-| `created_at` | `Object` | No |  |
-| `hour_bucket` | `String` | Yes |  |
+| `apiKey` | `String` | Yes |  |
+| `apiType` | `String` | Yes |  |
+| `authType` | `String` | Yes |  |
+| `avgRequestDurationNanos` | `Object` | No |  |
+| `batchOperations` | `Integer` | Yes |  |
+| `batchTokensConsumed` | `Integer` | Yes |  |
+| `createdAt` | `Object` | No |  |
+| `hourBucket` | `String` | Yes |  |
 | `id` | `Object` | No |  |
-| `min_remaining_quota` | `Object` | No |  |
-| `peak_remaining_quota` | `Object` | No |  |
-| `plan_id` | `String` | Yes |  |
-| `quota_consumed` | `Integer` | Yes |  |
-| `rate_limited_request` | `Integer` | Yes |  |
-| `successful_request` | `Integer` | Yes |  |
-| `total_request` | `Integer` | Yes |  |
-| `updated_at` | `Object` | No |  |
+| `minRemainingQuota` | `Object` | No |  |
+| `peakRemainingQuota` | `Object` | No |  |
+| `planId` | `String` | Yes |  |
+| `quotaConsumed` | `Integer` | Yes |  |
+| `rateLimitedRequests` | `Integer` | Yes |  |
+| `successfulRequests` | `Integer` | Yes |  |
+| `totalRequests` | `Integer` | Yes |  |
+| `updatedAt` | `Object` | No |  |
 
 ### Operations
 
@@ -314,16 +310,16 @@ api_usage_summary = client.ApiUsageSummary
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `String` | Yes |  |
-| `api_type` | `String` | Yes |  |
-| `avg_request_duration_m` | `Object` | No |  |
-| `batch_operation` | `Integer` | Yes |  |
-| `period_end` | `String` | Yes |  |
-| `period_start` | `String` | Yes |  |
-| `quota_consumed` | `Integer` | Yes |  |
-| `rate_limited_request` | `Integer` | Yes |  |
-| `successful_request` | `Integer` | Yes |  |
-| `total_request` | `Integer` | Yes |  |
+| `apiKey` | `String` | Yes |  |
+| `apiType` | `String` | Yes |  |
+| `avgRequestDurationMs` | `Object` | No |  |
+| `batchOperations` | `Integer` | Yes |  |
+| `periodEnd` | `String` | Yes |  |
+| `periodStart` | `String` | Yes |  |
+| `quotaConsumed` | `Integer` | Yes |  |
+| `rateLimitedRequests` | `Integer` | Yes |  |
+| `successfulRequests` | `Integer` | Yes |  |
+| `totalRequests` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -433,14 +429,8 @@ batch = client.Batch
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `Array` | Yes |  |
-| `failed_lookup` | `Integer` | Yes |  |
-| `failed_validation` | `Integer` | Yes |  |
+| `emails` | `Array` | Yes |  |
 | `ips` | `Array` | Yes |  |
-| `result` | `Hash` | Yes |  |
-| `successful_lookup` | `Integer` | Yes |  |
-| `successful_validation` | `Integer` | Yes |  |
-| `total_processed` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -450,14 +440,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Batch.create({
-  "email" => [], # Array
-  "failed_lookup" => 1, # Integer
-  "failed_validation" => 1, # Integer
+  "emails" => [], # Array
   "ips" => [], # Array
-  "result" => {}, # Hash
-  "successful_lookup" => 1, # Integer
-  "successful_validation" => 1, # Integer
-  "total_processed" => 1, # Integer
 })
 ```
 
@@ -501,10 +485,10 @@ batch_email_validation_response_dto = client.BatchEmailValidationResponseDto
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `failed_validation` | `Integer` | Yes |  |
-| `result` | `Hash` | Yes |  |
-| `successful_validation` | `Integer` | Yes |  |
-| `total_processed` | `Integer` | Yes |  |
+| `failed_validations` | `Integer` | No |  |
+| `results` | `Hash` | No |  |
+| `successful_validations` | `Integer` | No |  |
+| `total_processed` | `Integer` | No |  |
 
 ### Operations
 
@@ -514,10 +498,6 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.BatchEmailValidationResponseDto.create({
-  "failed_validation" => 1, # Integer
-  "result" => {}, # Hash
-  "successful_validation" => 1, # Integer
-  "total_processed" => 1, # Integer
 })
 ```
 
@@ -615,7 +595,7 @@ domain_analysi = client.DomainAnalysi
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `Array` | Yes |  |
+| `domains` | `Array` | Yes |  |
 
 ### Operations
 
@@ -625,7 +605,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.DomainAnalysi.create({
-  "domain" => [], # Array
+  "domains" => [], # Array
 })
 ```
 
@@ -680,7 +660,7 @@ domain_reputation_v1_dto = client.DomainReputationV1Dto
 | `domain` | `String` | Yes |  |
 | `is_disposable_email_domain` | `Boolean` | Yes |  |
 | `is_valid` | `Boolean` | Yes |  |
-| `resolved_ip` | `Array` | Yes |  |
+| `resolved_ips` | `Array` | Yes |  |
 | `threat` | `Hash` | Yes |  |
 
 ### Operations
@@ -734,28 +714,12 @@ email = client.Email
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `String` | Yes |  |
-| `factor` | `Hash` | Yes |  |
-| `has_mx_record` | `Boolean` | Yes |  |
-| `ip` | `Object` | No |  |
+| `email_factors` | `NilClass` | Yes |  |
+| `has_mx_records` | `Boolean` | Yes |  |
+| `ip_factors` | `NilClass` | Yes |  |
 | `is_disposable` | `Boolean` | Yes |  |
-| `mx_record` | `Array` | Yes |  |
-| `risk_level` | `String` | Yes |  |
-| `score` | `Float` | Yes |  |
+| `mx_records` | `Array` | Yes |  |
 | `syntax` | `Hash` | Yes |  |
-
-### Field Usage by Operation
-
-| Field | load |
-| --- | --- |
-| `email` | Yes |
-| `factor` | - |
-| `has_mx_record` | - |
-| `ip` | - |
-| `is_disposable` | - |
-| `mx_record` | - |
-| `risk_level` | - |
-| `score` | - |
-| `syntax` | - |
 
 ### Operations
 
@@ -807,7 +771,7 @@ forward = client.Forward
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `Array` | Yes |  |
+| `addresses` | `Array` | Yes |  |
 | `hostname` | `String` | Yes |  |
 
 ### Operations
@@ -906,11 +870,8 @@ ip_reputation = client.IpReputation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `Object` | No |  |
-| `factor` | `Hash` | Yes |  |
-| `ip` | `Object` | No |  |
-| `risk_level` | `String` | Yes |  |
-| `score` | `Float` | Yes |  |
+| `email_factors` | `NilClass` | Yes |  |
+| `ip_factors` | `NilClass` | Yes |  |
 
 ### Operations
 
@@ -966,7 +927,7 @@ ipn = client.Ipn
 | `ip` | `String` | Yes |  |
 | `isp` | `Object` | No |  |
 | `location` | `Hash` | Yes |  |
-| `suspicious_factor` | `Hash` | Yes |  |
+| `suspicious_factors` | `Hash` | Yes |  |
 
 ### Operations
 
@@ -1008,62 +969,6 @@ Return the entity name.
 
 ---
 
-## Ipn2Entity
-
-```ruby
-ipn2 = client.Ipn2
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `asn` | `Object` | No |  |
-| `ip` | `String` | Yes |  |
-| `isp` | `Object` | No |  |
-| `location` | `Hash` | Yes |  |
-| `suspicious_factor` | `Hash` | Yes |  |
-
-### Operations
-
-#### `load(reqmatch, ctrl = nil) -> result`
-
-Load a single entity matching the given criteria. Raises on error.
-
-```ruby
-result = client.Ipn2.load({ "ip" => "ip" })
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `Ipn2Entity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
-
-
----
-
 ## MxnEntity
 
 ```ruby
@@ -1075,7 +980,7 @@ mxn = client.Mxn
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `String` | Yes |  |
-| `mx_record` | `Array` | Yes |  |
+| `mx_records` | `Array` | Yes |  |
 
 ### Operations
 
@@ -1183,7 +1088,7 @@ rate_limit_info_dto = client.RateLimitInfoDto
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_api` | `Hash` | Yes |  |
-| `interval_second` | `Integer` | Yes |  |
+| `interval_seconds` | `Integer` | Yes |  |
 | `ip_api` | `Hash` | Yes |  |
 | `next_renewal_date` | `String` | No |  |
 | `plan_id` | `String` | Yes |  |
@@ -1295,11 +1200,8 @@ risk_score = client.RiskScore
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `Object` | No |  |
-| `factor` | `Hash` | Yes |  |
-| `ip` | `Object` | No |  |
-| `risk_level` | `String` | Yes |  |
-| `score` | `Float` | Yes |  |
+| `email_factors` | `NilClass` | Yes |  |
+| `ip_factors` | `NilClass` | Yes |  |
 
 ### Operations
 
@@ -1500,7 +1402,7 @@ whoi = client.Whoi
 | `domain` | `String` | Yes |  |
 | `error` | `Object` | No |  |
 | `expires_on` | `String` | No |  |
-| `name_server` | `Array` | Yes |  |
+| `name_servers` | `Array` | Yes |  |
 | `raw` | `String` | Yes |  |
 | `registered_on` | `String` | No |  |
 | `registrar` | `Object` | No |  |

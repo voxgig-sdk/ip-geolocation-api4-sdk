@@ -129,7 +129,7 @@ Both tools take the same argument object:
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `entity` | string | One of the 24 supported entities (see below). |
+| `entity` | string | One of the 23 supported entities (see below). |
 | `query` | object | Optional match map. `{"id":N}` for load; omit or `{}` for list. |
 
 JSON schemas are emitted by the SDK from the `Args` struct's `json` /
@@ -151,9 +151,9 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 ### Entities
 
-The 24 entities valid as the `entity` argument:
+The 23 entities valid as the `entity` argument:
 
-advanced | api_usage_stats_model | api_usage_summary | asn | batch | batch_email_validation_response_dto | cache_management | domain_analysi | domain_reputation_v1_dto | email | forward | ip_info_v0 | ip_reputation | ipn | ipn2 | mxn | paddle_controller | rate_limit_info_dto | reverse | risk_score | status | tor | usage_statistic | whoi
+advanced | api_usage_stats_model | api_usage_summary | asn | batch | batch_email_validation_response_dto | cache_management | domain_analysi | domain_reputation_v1_dto | email | forward | ip_info_v0 | ip_reputation | ipn | mxn | paddle_controller | rate_limit_info_dto | reverse | risk_score | status | tor | usage_statistic | whoi
 
 ### Smoke test via HTTP (raw JSON-RPC)
 

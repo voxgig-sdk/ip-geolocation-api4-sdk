@@ -2,27 +2,18 @@
   "existing": {
     "ip_reputation": {
       "IP_REPUTATION00": {
-        "email": "s32",
-        "factor": {},
-        "ip": "s34",
-        "risk_level": "s35",
-        "score": 54,
+        "email_factors": "s14",
+        "ip_factors": "s15",
         "id": "IP_REPUTATION00"
       },
       "IP_REPUTATION01": {
-        "email": "s64",
-        "factor": {},
-        "ip": "s66",
-        "risk_level": "s67",
-        "score": 104,
+        "email_factors": "s28",
+        "ip_factors": "s29",
         "id": "IP_REPUTATION01"
       },
       "IP_REPUTATION02": {
-        "email": "s96",
-        "factor": {},
-        "ip": "s98",
-        "risk_level": "s99",
-        "score": 154,
+        "email_factors": "s3c",
+        "ip_factors": "s3d",
         "id": "IP_REPUTATION02"
       }
     }
@@ -30,11 +21,8 @@
   "new": {
     "ip_reputation": {
       "ip_reputation_ref01": {
-        "email": "sc8",
-        "factor": {},
-        "ip": "sca",
-        "risk_level": "scb",
-        "score": 204
+        "email_factors": "s50",
+        "ip_factors": "s51"
       }
     }
   }

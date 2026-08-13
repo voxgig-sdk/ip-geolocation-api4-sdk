@@ -60,11 +60,11 @@ function paddle_controller_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["IPGEOLOCATIONAPI__TEST_PADDLE_CONTROLLER_ENTID"] = {},
-    ["IPGEOLOCATIONAPI__TEST_LIVE"] = "FALSE",
+    ["IP_GEOLOCATION_API4_TEST_PADDLE_CONTROLLER_ENTID"] = {},
+    ["IP_GEOLOCATION_API4_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
+  local live = env["IP_GEOLOCATION_API4_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

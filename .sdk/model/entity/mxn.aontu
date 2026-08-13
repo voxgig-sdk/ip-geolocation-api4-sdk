@@ -11,7 +11,7 @@ main: kit: entity: mxn: {
       type: "`$STRING`"
     }
     {
-      name: "mx_record"
+      name: "mx_records"
       req: true
       type: "`$ARRAY`"
     }

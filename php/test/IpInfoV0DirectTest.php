@@ -75,11 +75,11 @@ function ip_info_v0_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "IPGEOLOCATIONAPI__TEST_IP_INFO_V__ENTID" => [],
-        "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
+        "IP_GEOLOCATION_API4_TEST_IP_INFO_V0_ENTID" => [],
+        "IP_GEOLOCATION_API4_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["IPGEOLOCATIONAPI__TEST_LIVE"] === "TRUE";
+    $live = $env["IP_GEOLOCATION_API4_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

@@ -16,11 +16,19 @@ describe("IpnDirect", function()
     end
     local client = setup.client
 
+    local params = {}
+    local query = {}
+    if setup.live then
+      params["ip"] = "203.0.113.195"
+    else
+      params["ip"] = "direct01"
+    end
 
     local result, err = client:direct({
-      path = "api/v1/ip",
+      path = "api/v1/ip/{ip}",
       method = "GET",
-      params = {},
+      params = params,
+      query = query,
     })
     if setup.live then
       -- Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
@@ -60,11 +68,11 @@ function ipn_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["IPGEOLOCATIONAPI__TEST_IPN_ENTID"] = {},
-    ["IPGEOLOCATIONAPI__TEST_LIVE"] = "FALSE",
+    ["IP_GEOLOCATION_API4_TEST_IPN_ENTID"] = {},
+    ["IP_GEOLOCATION_API4_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
+  local live = env["IP_GEOLOCATION_API4_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

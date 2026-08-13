@@ -2,17 +2,17 @@
   "existing": {
     "forward": {
       "FORWARD00": {
-        "address": [],
+        "addresses": [],
         "hostname": "s15",
         "id": "FORWARD00"
       },
       "FORWARD01": {
-        "address": [],
+        "addresses": [],
         "hostname": "s29",
         "id": "FORWARD01"
       },
       "FORWARD02": {
-        "address": [],
+        "addresses": [],
         "hostname": "s3d",
         "id": "FORWARD02"
       }
@@ -21,7 +21,7 @@
   "new": {
     "forward": {
       "forward_ref01": {
-        "address": [],
+        "addresses": [],
         "hostname": "s51"
       }
     }

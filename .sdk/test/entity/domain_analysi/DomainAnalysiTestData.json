@@ -2,15 +2,18 @@
   "existing": {
     "domain_analysi": {
       "DOMAIN_ANALYSI00": {
-        "domain": [],
+        "domains": [],
+        "domain": "DOMAIN01",
         "id": "DOMAIN_ANALYSI00"
       },
       "DOMAIN_ANALYSI01": {
-        "domain": [],
+        "domains": [],
+        "domain": "DOMAIN01",
         "id": "DOMAIN_ANALYSI01"
       },
       "DOMAIN_ANALYSI02": {
-        "domain": [],
+        "domains": [],
+        "domain": "DOMAIN01",
         "id": "DOMAIN_ANALYSI02"
       }
     }
@@ -18,7 +21,7 @@
   "new": {
     "domain_analysi": {
       "domain_analysi_ref01": {
-        "domain": []
+        "domains": []
       }
     }
   }

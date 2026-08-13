@@ -14,7 +14,6 @@ import { ForwardEntity } from './entity/ForwardEntity'
 import { IpInfoV0Entity } from './entity/IpInfoV0Entity'
 import { IpReputationEntity } from './entity/IpReputationEntity'
 import { IpnEntity } from './entity/IpnEntity'
-import { Ipn2Entity } from './entity/Ipn2Entity'
 import { MxnEntity } from './entity/MxnEntity'
 import { PaddleControllerEntity } from './entity/PaddleControllerEntity'
 import { RateLimitInfoDtoEntity } from './entity/RateLimitInfoDtoEntity'
@@ -169,8 +168,29 @@ class IpGeolocationApi4SDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('IpGeolocationApi4SDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -231,171 +251,264 @@ class IpGeolocationApi4SDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('IpGeolocationApi4SDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('IpGeolocationApi4SDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Advanced().list()` / `client.Advanced().load({ id })`.
-  Advanced(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Advanced(entopts?: Record<string, any>) {
     const self = this
-    return new AdvancedEntity(self,data)
+    return new AdvancedEntity(self, entopts)
   }
 
 
   // Entity access: `client.ApiUsageStatsModel().list()` / `client.ApiUsageStatsModel().load({ id })`.
-  ApiUsageStatsModel(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ApiUsageStatsModel(entopts?: Record<string, any>) {
     const self = this
-    return new ApiUsageStatsModelEntity(self,data)
+    return new ApiUsageStatsModelEntity(self, entopts)
   }
 
 
   // Entity access: `client.ApiUsageSummary().list()` / `client.ApiUsageSummary().load({ id })`.
-  ApiUsageSummary(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ApiUsageSummary(entopts?: Record<string, any>) {
     const self = this
-    return new ApiUsageSummaryEntity(self,data)
+    return new ApiUsageSummaryEntity(self, entopts)
   }
 
 
   // Entity access: `client.Asn().list()` / `client.Asn().load({ id })`.
-  Asn(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Asn(entopts?: Record<string, any>) {
     const self = this
-    return new AsnEntity(self,data)
+    return new AsnEntity(self, entopts)
   }
 
 
   // Entity access: `client.Batch().list()` / `client.Batch().load({ id })`.
-  Batch(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Batch(entopts?: Record<string, any>) {
     const self = this
-    return new BatchEntity(self,data)
+    return new BatchEntity(self, entopts)
   }
 
 
   // Entity access: `client.BatchEmailValidationResponseDto().list()` / `client.BatchEmailValidationResponseDto().load({ id })`.
-  BatchEmailValidationResponseDto(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BatchEmailValidationResponseDto(entopts?: Record<string, any>) {
     const self = this
-    return new BatchEmailValidationResponseDtoEntity(self,data)
+    return new BatchEmailValidationResponseDtoEntity(self, entopts)
   }
 
 
   // Entity access: `client.CacheManagement().list()` / `client.CacheManagement().load({ id })`.
-  CacheManagement(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CacheManagement(entopts?: Record<string, any>) {
     const self = this
-    return new CacheManagementEntity(self,data)
+    return new CacheManagementEntity(self, entopts)
   }
 
 
   // Entity access: `client.DomainAnalysi().list()` / `client.DomainAnalysi().load({ id })`.
-  DomainAnalysi(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DomainAnalysi(entopts?: Record<string, any>) {
     const self = this
-    return new DomainAnalysiEntity(self,data)
+    return new DomainAnalysiEntity(self, entopts)
   }
 
 
   // Entity access: `client.DomainReputationV1Dto().list()` / `client.DomainReputationV1Dto().load({ id })`.
-  DomainReputationV1Dto(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DomainReputationV1Dto(entopts?: Record<string, any>) {
     const self = this
-    return new DomainReputationV1DtoEntity(self,data)
+    return new DomainReputationV1DtoEntity(self, entopts)
   }
 
 
   // Entity access: `client.Email().list()` / `client.Email().load({ id })`.
-  Email(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Email(entopts?: Record<string, any>) {
     const self = this
-    return new EmailEntity(self,data)
+    return new EmailEntity(self, entopts)
   }
 
 
   // Entity access: `client.Forward().list()` / `client.Forward().load({ id })`.
-  Forward(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Forward(entopts?: Record<string, any>) {
     const self = this
-    return new ForwardEntity(self,data)
+    return new ForwardEntity(self, entopts)
   }
 
 
   // Entity access: `client.IpInfoV0().list()` / `client.IpInfoV0().load({ id })`.
-  IpInfoV0(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  IpInfoV0(entopts?: Record<string, any>) {
     const self = this
-    return new IpInfoV0Entity(self,data)
+    return new IpInfoV0Entity(self, entopts)
   }
 
 
   // Entity access: `client.IpReputation().list()` / `client.IpReputation().load({ id })`.
-  IpReputation(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  IpReputation(entopts?: Record<string, any>) {
     const self = this
-    return new IpReputationEntity(self,data)
+    return new IpReputationEntity(self, entopts)
   }
 
 
   // Entity access: `client.Ipn().list()` / `client.Ipn().load({ id })`.
-  Ipn(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Ipn(entopts?: Record<string, any>) {
     const self = this
-    return new IpnEntity(self,data)
-  }
-
-
-  // Entity access: `client.Ipn2().list()` / `client.Ipn2().load({ id })`.
-  Ipn2(data?: any) {
-    const self = this
-    return new Ipn2Entity(self,data)
+    return new IpnEntity(self, entopts)
   }
 
 
   // Entity access: `client.Mxn().list()` / `client.Mxn().load({ id })`.
-  Mxn(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Mxn(entopts?: Record<string, any>) {
     const self = this
-    return new MxnEntity(self,data)
+    return new MxnEntity(self, entopts)
   }
 
 
   // Entity access: `client.PaddleController().list()` / `client.PaddleController().load({ id })`.
-  PaddleController(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PaddleController(entopts?: Record<string, any>) {
     const self = this
-    return new PaddleControllerEntity(self,data)
+    return new PaddleControllerEntity(self, entopts)
   }
 
 
   // Entity access: `client.RateLimitInfoDto().list()` / `client.RateLimitInfoDto().load({ id })`.
-  RateLimitInfoDto(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  RateLimitInfoDto(entopts?: Record<string, any>) {
     const self = this
-    return new RateLimitInfoDtoEntity(self,data)
+    return new RateLimitInfoDtoEntity(self, entopts)
   }
 
 
   // Entity access: `client.Reverse().list()` / `client.Reverse().load({ id })`.
-  Reverse(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Reverse(entopts?: Record<string, any>) {
     const self = this
-    return new ReverseEntity(self,data)
+    return new ReverseEntity(self, entopts)
   }
 
 
   // Entity access: `client.RiskScore().list()` / `client.RiskScore().load({ id })`.
-  RiskScore(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  RiskScore(entopts?: Record<string, any>) {
     const self = this
-    return new RiskScoreEntity(self,data)
+    return new RiskScoreEntity(self, entopts)
   }
 
 
   // Entity access: `client.Status().list()` / `client.Status().load({ id })`.
-  Status(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Status(entopts?: Record<string, any>) {
     const self = this
-    return new StatusEntity(self,data)
+    return new StatusEntity(self, entopts)
   }
 
 
   // Entity access: `client.Tor().list()` / `client.Tor().load({ id })`.
-  Tor(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Tor(entopts?: Record<string, any>) {
     const self = this
-    return new TorEntity(self,data)
+    return new TorEntity(self, entopts)
   }
 
 
   // Entity access: `client.UsageStatistic().list()` / `client.UsageStatistic().load({ id })`.
-  UsageStatistic(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  UsageStatistic(entopts?: Record<string, any>) {
     const self = this
-    return new UsageStatisticEntity(self,data)
+    return new UsageStatisticEntity(self, entopts)
   }
 
 
   // Entity access: `client.Whoi().list()` / `client.Whoi().load({ id })`.
-  Whoi(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Whoi(entopts?: Record<string, any>) {
     const self = this
-    return new WhoiEntity(self,data)
+    return new WhoiEntity(self, entopts)
   }
 
 

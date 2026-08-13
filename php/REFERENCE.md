@@ -97,10 +97,6 @@ Create a new `IpReputationEntity` instance. Pass `null` for no initial data.
 
 Create a new `IpnEntity` instance. Pass `null` for no initial data.
 
-#### `Ipn2($data = null)`
-
-Create a new `Ipn2Entity` instance. Pass `null` for no initial data.
-
 #### `Mxn($data = null)`
 
 Create a new `MxnEntity` instance. Pass `null` for no initial data.
@@ -188,7 +184,7 @@ $advanced = $client->Advanced();
 | `email` | `string` | Yes |  |
 | `free` | `bool` | Yes |  |
 | `gravatar` | `mixed` | No |  |
-| `has_mx_record` | `bool` | Yes |  |
+| `has_mx_records` | `bool` | Yes |  |
 | `reachable` | `string` | Yes |  |
 | `role_account` | `bool` | Yes |  |
 | `smtp` | `mixed` | No |  |
@@ -245,23 +241,23 @@ $api_usage_stats_model = $client->ApiUsageStatsModel();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string` | Yes |  |
-| `api_type` | `string` | Yes |  |
-| `auth_type` | `string` | Yes |  |
-| `avg_request_duration_nano` | `mixed` | No |  |
-| `batch_operation` | `int` | Yes |  |
-| `batch_tokens_consumed` | `int` | Yes |  |
-| `created_at` | `mixed` | No |  |
-| `hour_bucket` | `string` | Yes |  |
+| `apiKey` | `string` | Yes |  |
+| `apiType` | `string` | Yes |  |
+| `authType` | `string` | Yes |  |
+| `avgRequestDurationNanos` | `mixed` | No |  |
+| `batchOperations` | `int` | Yes |  |
+| `batchTokensConsumed` | `int` | Yes |  |
+| `createdAt` | `mixed` | No |  |
+| `hourBucket` | `string` | Yes |  |
 | `id` | `mixed` | No |  |
-| `min_remaining_quota` | `mixed` | No |  |
-| `peak_remaining_quota` | `mixed` | No |  |
-| `plan_id` | `string` | Yes |  |
-| `quota_consumed` | `int` | Yes |  |
-| `rate_limited_request` | `int` | Yes |  |
-| `successful_request` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
-| `updated_at` | `mixed` | No |  |
+| `minRemainingQuota` | `mixed` | No |  |
+| `peakRemainingQuota` | `mixed` | No |  |
+| `planId` | `string` | Yes |  |
+| `quotaConsumed` | `int` | Yes |  |
+| `rateLimitedRequests` | `int` | Yes |  |
+| `successfulRequests` | `int` | Yes |  |
+| `totalRequests` | `int` | Yes |  |
+| `updatedAt` | `mixed` | No |  |
 
 ### Operations
 
@@ -313,16 +309,16 @@ $api_usage_summary = $client->ApiUsageSummary();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string` | Yes |  |
-| `api_type` | `string` | Yes |  |
-| `avg_request_duration_m` | `mixed` | No |  |
-| `batch_operation` | `int` | Yes |  |
-| `period_end` | `string` | Yes |  |
-| `period_start` | `string` | Yes |  |
-| `quota_consumed` | `int` | Yes |  |
-| `rate_limited_request` | `int` | Yes |  |
-| `successful_request` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
+| `apiKey` | `string` | Yes |  |
+| `apiType` | `string` | Yes |  |
+| `avgRequestDurationMs` | `mixed` | No |  |
+| `batchOperations` | `int` | Yes |  |
+| `periodEnd` | `string` | Yes |  |
+| `periodStart` | `string` | Yes |  |
+| `quotaConsumed` | `int` | Yes |  |
+| `rateLimitedRequests` | `int` | Yes |  |
+| `successfulRequests` | `int` | Yes |  |
+| `totalRequests` | `int` | Yes |  |
 
 ### Operations
 
@@ -432,14 +428,8 @@ $batch = $client->Batch();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `array` | Yes |  |
-| `failed_lookup` | `int` | Yes |  |
-| `failed_validation` | `int` | Yes |  |
+| `emails` | `array` | Yes |  |
 | `ips` | `array` | Yes |  |
-| `result` | `array` | Yes |  |
-| `successful_lookup` | `int` | Yes |  |
-| `successful_validation` | `int` | Yes |  |
-| `total_processed` | `int` | Yes |  |
 
 ### Operations
 
@@ -449,14 +439,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Batch()->create([
-  "email" => null, // array
-  "failed_lookup" => null, // int
-  "failed_validation" => null, // int
+  "emails" => null, // array
   "ips" => null, // array
-  "result" => null, // array
-  "successful_lookup" => null, // int
-  "successful_validation" => null, // int
-  "total_processed" => null, // int
 ]);
 ```
 
@@ -500,10 +484,10 @@ $batch_email_validation_response_dto = $client->BatchEmailValidationResponseDto(
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `failed_validation` | `int` | Yes |  |
-| `result` | `array` | Yes |  |
-| `successful_validation` | `int` | Yes |  |
-| `total_processed` | `int` | Yes |  |
+| `failed_validations` | `int` | No |  |
+| `results` | `array` | No |  |
+| `successful_validations` | `int` | No |  |
+| `total_processed` | `int` | No |  |
 
 ### Operations
 
@@ -513,10 +497,6 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->BatchEmailValidationResponseDto()->create([
-  "failed_validation" => null, // int
-  "result" => null, // array
-  "successful_validation" => null, // int
-  "total_processed" => null, // int
 ]);
 ```
 
@@ -614,7 +594,7 @@ $domain_analysi = $client->DomainAnalysi();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `array` | Yes |  |
+| `domains` | `array` | Yes |  |
 
 ### Operations
 
@@ -624,7 +604,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->DomainAnalysi()->create([
-  "domain" => null, // array
+  "domains" => null, // array
 ]);
 ```
 
@@ -679,7 +659,7 @@ $domain_reputation_v1_dto = $client->DomainReputationV1Dto();
 | `domain` | `string` | Yes |  |
 | `is_disposable_email_domain` | `bool` | Yes |  |
 | `is_valid` | `bool` | Yes |  |
-| `resolved_ip` | `array` | Yes |  |
+| `resolved_ips` | `array` | Yes |  |
 | `threat` | `array` | Yes |  |
 
 ### Operations
@@ -733,28 +713,12 @@ $email = $client->Email();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `string` | Yes |  |
-| `factor` | `array` | Yes |  |
-| `has_mx_record` | `bool` | Yes |  |
-| `ip` | `mixed` | No |  |
+| `email_factors` | `null` | Yes |  |
+| `has_mx_records` | `bool` | Yes |  |
+| `ip_factors` | `null` | Yes |  |
 | `is_disposable` | `bool` | Yes |  |
-| `mx_record` | `array` | Yes |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `float` | Yes |  |
+| `mx_records` | `array` | Yes |  |
 | `syntax` | `array` | Yes |  |
-
-### Field Usage by Operation
-
-| Field | load |
-| --- | --- |
-| `email` | Yes |
-| `factor` | - |
-| `has_mx_record` | - |
-| `ip` | - |
-| `is_disposable` | - |
-| `mx_record` | - |
-| `risk_level` | - |
-| `score` | - |
-| `syntax` | - |
 
 ### Operations
 
@@ -806,7 +770,7 @@ $forward = $client->Forward();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `array` | Yes |  |
+| `addresses` | `array` | Yes |  |
 | `hostname` | `string` | Yes |  |
 
 ### Operations
@@ -905,11 +869,8 @@ $ip_reputation = $client->IpReputation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `mixed` | No |  |
-| `factor` | `array` | Yes |  |
-| `ip` | `mixed` | No |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `float` | Yes |  |
+| `email_factors` | `null` | Yes |  |
+| `ip_factors` | `null` | Yes |  |
 
 ### Operations
 
@@ -965,7 +926,7 @@ $ipn = $client->Ipn();
 | `ip` | `string` | Yes |  |
 | `isp` | `mixed` | No |  |
 | `location` | `array` | Yes |  |
-| `suspicious_factor` | `array` | Yes |  |
+| `suspicious_factors` | `array` | Yes |  |
 
 ### Operations
 
@@ -1007,62 +968,6 @@ Return the entity name.
 
 ---
 
-## Ipn2Entity
-
-```php
-$ipn2 = $client->Ipn2();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `asn` | `mixed` | No |  |
-| `ip` | `string` | Yes |  |
-| `isp` | `mixed` | No |  |
-| `location` | `array` | Yes |  |
-| `suspicious_factor` | `array` | Yes |  |
-
-### Operations
-
-#### `load(array $reqmatch, ?array $ctrl = null): mixed`
-
-Load a single entity matching the given criteria. Throws on error.
-
-```php
-$result = $client->Ipn2()->load(["ip" => "ip"]);
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): Ipn2Entity`
-
-Create a new `Ipn2Entity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## MxnEntity
 
 ```php
@@ -1074,7 +979,7 @@ $mxn = $client->Mxn();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `mx_record` | `array` | Yes |  |
+| `mx_records` | `array` | Yes |  |
 
 ### Operations
 
@@ -1182,7 +1087,7 @@ $rate_limit_info_dto = $client->RateLimitInfoDto();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_api` | `array` | Yes |  |
-| `interval_second` | `int` | Yes |  |
+| `interval_seconds` | `int` | Yes |  |
 | `ip_api` | `array` | Yes |  |
 | `next_renewal_date` | `string` | No |  |
 | `plan_id` | `string` | Yes |  |
@@ -1294,11 +1199,8 @@ $risk_score = $client->RiskScore();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `mixed` | No |  |
-| `factor` | `array` | Yes |  |
-| `ip` | `mixed` | No |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `float` | Yes |  |
+| `email_factors` | `null` | Yes |  |
+| `ip_factors` | `null` | Yes |  |
 
 ### Operations
 
@@ -1499,7 +1401,7 @@ $whoi = $client->Whoi();
 | `domain` | `string` | Yes |  |
 | `error` | `mixed` | No |  |
 | `expires_on` | `string` | No |  |
-| `name_server` | `array` | Yes |  |
+| `name_servers` | `array` | Yes |  |
 | `raw` | `string` | Yes |  |
 | `registered_on` | `string` | No |  |
 | `registrar` | `mixed` | No |  |

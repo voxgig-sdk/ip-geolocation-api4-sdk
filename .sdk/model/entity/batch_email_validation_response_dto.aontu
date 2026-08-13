@@ -6,23 +6,23 @@ main: kit: entity: batch_email_validation_response_dto: {
 
   fields: [
     {
-      name: "failed_validation"
-      req: true
+      name: "failed_validations"
+      req: false
       type: "`$INTEGER`"
     }
     {
-      name: "result"
-      req: true
+      name: "results"
+      req: false
       type: "`$OBJECT`"
     }
     {
-      name: "successful_validation"
-      req: true
+      name: "successful_validations"
+      req: false
       type: "`$INTEGER`"
     }
     {
       name: "total_processed"
-      req: true
+      req: false
       type: "`$INTEGER`"
     }
   ]
@@ -45,7 +45,7 @@ main: kit: entity: batch_email_validation_response_dto: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

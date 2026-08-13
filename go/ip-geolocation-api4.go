@@ -74,9 +74,6 @@ func init() {
 	core.NewIpnEntityFunc = func(client *core.IpGeolocationApi4SDK, entopts map[string]any) core.IpGeolocationApi4Entity {
 		return entity.NewIpnEntity(client, entopts)
 	}
-	core.NewIpn2EntityFunc = func(client *core.IpGeolocationApi4SDK, entopts map[string]any) core.IpGeolocationApi4Entity {
-		return entity.NewIpn2Entity(client, entopts)
-	}
 	core.NewMxnEntityFunc = func(client *core.IpGeolocationApi4SDK, entopts map[string]any) core.IpGeolocationApi4Entity {
 		return entity.NewMxnEntity(client, entopts)
 	}

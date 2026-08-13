@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ IpGeolocationApi4Utility.registrar = ->(u) {
   u.prepare_params = IpGeolocationApi4Utilities::PrepareParams
   u.prepare_path = IpGeolocationApi4Utilities::PreparePath
   u.prepare_query = IpGeolocationApi4Utilities::PrepareQuery
+  u.graphql_body = IpGeolocationApi4Utilities::GraphqlBody
+  u.graphql_errors = IpGeolocationApi4Utilities::GraphqlErrors
   u.result_basic = IpGeolocationApi4Utilities::ResultBasic
   u.result_body = IpGeolocationApi4Utilities::ResultBody
   u.result_headers = IpGeolocationApi4Utilities::ResultHeaders

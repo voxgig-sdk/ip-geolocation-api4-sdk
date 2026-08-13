@@ -5,7 +5,7 @@
         "domain": "s32",
         "is_disposable_email_domain": false,
         "is_valid": true,
-        "resolved_ip": [],
+        "resolved_ips": [],
         "threat": {},
         "id": "DOMAIN_REPUTATION_V1_DTO00"
       },
@@ -13,7 +13,7 @@
         "domain": "s64",
         "is_disposable_email_domain": false,
         "is_valid": true,
-        "resolved_ip": [],
+        "resolved_ips": [],
         "threat": {},
         "id": "DOMAIN_REPUTATION_V1_DTO01"
       },
@@ -21,7 +21,7 @@
         "domain": "s96",
         "is_disposable_email_domain": false,
         "is_valid": true,
-        "resolved_ip": [],
+        "resolved_ips": [],
         "threat": {},
         "id": "DOMAIN_REPUTATION_V1_DTO02"
       }
@@ -33,7 +33,7 @@
         "domain": "sc8",
         "is_disposable_email_domain": false,
         "is_valid": true,
-        "resolved_ip": [],
+        "resolved_ips": [],
         "threat": {}
       }
     }

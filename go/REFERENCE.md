@@ -103,10 +103,6 @@ Create a new `IpReputation` entity instance. Pass `nil` for no initial data.
 
 Create a new `Ipn` entity instance. Pass `nil` for no initial data.
 
-#### `Ipn2(data map[string]any) IpGeolocationApi4Entity`
-
-Create a new `Ipn2` entity instance. Pass `nil` for no initial data.
-
 #### `Mxn(data map[string]any) IpGeolocationApi4Entity`
 
 Create a new `Mxn` entity instance. Pass `nil` for no initial data.
@@ -194,7 +190,7 @@ fmt.Println(advanced.GetName()) // "advanced"
 | `email` | `string` | Yes |  |
 | `free` | `bool` | Yes |  |
 | `gravatar` | `any` | No |  |
-| `has_mx_record` | `bool` | Yes |  |
+| `has_mx_records` | `bool` | Yes |  |
 | `reachable` | `string` | Yes |  |
 | `role_account` | `bool` | Yes |  |
 | `smtp` | `any` | No |  |
@@ -250,23 +246,23 @@ fmt.Println(apiUsageStatsModel.GetName()) // "api_usage_stats_model"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string` | Yes |  |
-| `api_type` | `string` | Yes |  |
-| `auth_type` | `string` | Yes |  |
-| `avg_request_duration_nano` | `any` | No |  |
-| `batch_operation` | `int` | Yes |  |
-| `batch_tokens_consumed` | `int` | Yes |  |
-| `created_at` | `any` | No |  |
-| `hour_bucket` | `string` | Yes |  |
+| `apiKey` | `string` | Yes |  |
+| `apiType` | `string` | Yes |  |
+| `authType` | `string` | Yes |  |
+| `avgRequestDurationNanos` | `any` | No |  |
+| `batchOperations` | `int` | Yes |  |
+| `batchTokensConsumed` | `int` | Yes |  |
+| `createdAt` | `any` | No |  |
+| `hourBucket` | `string` | Yes |  |
 | `id` | `any` | No |  |
-| `min_remaining_quota` | `any` | No |  |
-| `peak_remaining_quota` | `any` | No |  |
-| `plan_id` | `string` | Yes |  |
-| `quota_consumed` | `int` | Yes |  |
-| `rate_limited_request` | `int` | Yes |  |
-| `successful_request` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
-| `updated_at` | `any` | No |  |
+| `minRemainingQuota` | `any` | No |  |
+| `peakRemainingQuota` | `any` | No |  |
+| `planId` | `string` | Yes |  |
+| `quotaConsumed` | `int` | Yes |  |
+| `rateLimitedRequests` | `int` | Yes |  |
+| `successfulRequests` | `int` | Yes |  |
+| `totalRequests` | `int` | Yes |  |
+| `updatedAt` | `any` | No |  |
 
 ### Operations
 
@@ -317,16 +313,16 @@ fmt.Println(apiUsageSummary.GetName()) // "api_usage_summary"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string` | Yes |  |
-| `api_type` | `string` | Yes |  |
-| `avg_request_duration_m` | `any` | No |  |
-| `batch_operation` | `int` | Yes |  |
-| `period_end` | `string` | Yes |  |
-| `period_start` | `string` | Yes |  |
-| `quota_consumed` | `int` | Yes |  |
-| `rate_limited_request` | `int` | Yes |  |
-| `successful_request` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
+| `apiKey` | `string` | Yes |  |
+| `apiType` | `string` | Yes |  |
+| `avgRequestDurationMs` | `any` | No |  |
+| `batchOperations` | `int` | Yes |  |
+| `periodEnd` | `string` | Yes |  |
+| `periodStart` | `string` | Yes |  |
+| `quotaConsumed` | `int` | Yes |  |
+| `rateLimitedRequests` | `int` | Yes |  |
+| `successfulRequests` | `int` | Yes |  |
+| `totalRequests` | `int` | Yes |  |
 
 ### Operations
 
@@ -434,14 +430,8 @@ fmt.Println(batch.GetName()) // "batch"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `[]any` | Yes |  |
-| `failed_lookup` | `int` | Yes |  |
-| `failed_validation` | `int` | Yes |  |
+| `emails` | `[]any` | Yes |  |
 | `ips` | `[]any` | Yes |  |
-| `result` | `map[string]any` | Yes |  |
-| `successful_lookup` | `int` | Yes |  |
-| `successful_validation` | `int` | Yes |  |
-| `total_processed` | `int` | Yes |  |
 
 ### Operations
 
@@ -451,14 +441,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Batch(nil).Create(map[string]any{
-    "email": []any{},
-    "failed_lookup": 1,
-    "failed_validation": 1,
+    "emails": []any{},
     "ips": []any{},
-    "result": map[string]any{},
-    "successful_lookup": 1,
-    "successful_validation": 1,
-    "total_processed": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -501,10 +485,10 @@ fmt.Println(batchEmailValidationResponseDto.GetName()) // "batch_email_validatio
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `failed_validation` | `int` | Yes |  |
-| `result` | `map[string]any` | Yes |  |
-| `successful_validation` | `int` | Yes |  |
-| `total_processed` | `int` | Yes |  |
+| `failed_validations` | `int` | No |  |
+| `results` | `map[string]any` | No |  |
+| `successful_validations` | `int` | No |  |
+| `total_processed` | `int` | No |  |
 
 ### Operations
 
@@ -514,10 +498,6 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.BatchEmailValidationResponseDto(nil).Create(map[string]any{
-    "failed_validation": 1,
-    "result": map[string]any{},
-    "successful_validation": 1,
-    "total_processed": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -617,7 +597,7 @@ fmt.Println(domainAnalysi.GetName()) // "domain_analysi"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `[]any` | Yes |  |
+| `domains` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -639,7 +619,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.DomainAnalysi(nil).Create(map[string]any{
-    "domain": []any{},
+    "domains": []any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -685,7 +665,7 @@ fmt.Println(domainReputationV1Dto.GetName()) // "domain_reputation_v1_dto"
 | `domain` | `string` | Yes |  |
 | `is_disposable_email_domain` | `bool` | Yes |  |
 | `is_valid` | `bool` | Yes |  |
-| `resolved_ip` | `[]any` | Yes |  |
+| `resolved_ips` | `[]any` | Yes |  |
 | `threat` | `map[string]any` | Yes |  |
 
 ### Operations
@@ -738,28 +718,12 @@ fmt.Println(email.GetName()) // "email"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `string` | Yes |  |
-| `factor` | `map[string]any` | Yes |  |
-| `has_mx_record` | `bool` | Yes |  |
-| `ip` | `any` | No |  |
+| `email_factors` | `any` | Yes |  |
+| `has_mx_records` | `bool` | Yes |  |
+| `ip_factors` | `any` | Yes |  |
 | `is_disposable` | `bool` | Yes |  |
-| `mx_record` | `[]any` | Yes |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `float64` | Yes |  |
+| `mx_records` | `[]any` | Yes |  |
 | `syntax` | `map[string]any` | Yes |  |
-
-### Field Usage by Operation
-
-| Field | load |
-| --- | --- |
-| `email` | Yes |
-| `factor` | - |
-| `has_mx_record` | - |
-| `ip` | - |
-| `is_disposable` | - |
-| `mx_record` | - |
-| `risk_level` | - |
-| `score` | - |
-| `syntax` | - |
 
 ### Operations
 
@@ -810,7 +774,7 @@ fmt.Println(forward.GetName()) // "forward"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `[]any` | Yes |  |
+| `addresses` | `[]any` | Yes |  |
 | `hostname` | `string` | Yes |  |
 
 ### Operations
@@ -907,11 +871,8 @@ fmt.Println(ipReputation.GetName()) // "ip_reputation"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `any` | No |  |
-| `factor` | `map[string]any` | Yes |  |
-| `ip` | `any` | No |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `float64` | Yes |  |
+| `email_factors` | `any` | Yes |  |
+| `ip_factors` | `any` | Yes |  |
 
 ### Operations
 
@@ -966,7 +927,7 @@ fmt.Println(ipn.GetName()) // "ipn"
 | `ip` | `string` | Yes |  |
 | `isp` | `any` | No |  |
 | `location` | `map[string]any` | Yes |  |
-| `suspicious_factor` | `map[string]any` | Yes |  |
+| `suspicious_factors` | `map[string]any` | Yes |  |
 
 ### Operations
 
@@ -1006,61 +967,6 @@ Return the entity name.
 
 ---
 
-## Ipn2Entity
-
-```go
-ipn2 := client.Ipn2(nil)
-fmt.Println(ipn2.GetName()) // "ipn2"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `asn` | `any` | No |  |
-| `ip` | `string` | Yes |  |
-| `isp` | `any` | No |  |
-| `location` | `map[string]any` | Yes |  |
-| `suspicious_factor` | `map[string]any` | Yes |  |
-
-### Operations
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria.
-
-```go
-result, err := client.Ipn2(nil).Load(map[string]any{"ip": "ip"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `Ipn2Entity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## MxnEntity
 
 ```go
@@ -1073,7 +979,7 @@ fmt.Println(mxn.GetName()) // "mxn"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `mx_record` | `[]any` | Yes |  |
+| `mx_records` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -1183,7 +1089,7 @@ fmt.Println(rateLimitInfoDto.GetName()) // "rate_limit_info_dto"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_api` | `map[string]any` | Yes |  |
-| `interval_second` | `int` | Yes |  |
+| `interval_seconds` | `int` | Yes |  |
 | `ip_api` | `map[string]any` | Yes |  |
 | `next_renewal_date` | `string` | No |  |
 | `plan_id` | `string` | Yes |  |
@@ -1293,11 +1199,8 @@ fmt.Println(riskScore.GetName()) // "risk_score"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `any` | No |  |
-| `factor` | `map[string]any` | Yes |  |
-| `ip` | `any` | No |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `float64` | Yes |  |
+| `email_factors` | `any` | Yes |  |
+| `ip_factors` | `any` | Yes |  |
 
 ### Operations
 
@@ -1494,7 +1397,7 @@ fmt.Println(whoi.GetName()) // "whoi"
 | `domain` | `string` | Yes |  |
 | `error` | `any` | No |  |
 | `expires_on` | `string` | No |  |
-| `name_server` | `[]any` | Yes |  |
+| `name_servers` | `[]any` | Yes |  |
 | `raw` | `string` | Yes |  |
 | `registered_on` | `string` | No |  |
 | `registrar` | `any` | No |  |

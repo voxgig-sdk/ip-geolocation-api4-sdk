@@ -27,7 +27,7 @@ main: kit: entity: whoi: {
       type: "`$STRING`"
     }
     {
-      name: "name_server"
+      name: "name_servers"
       req: true
       type: "`$ARRAY`"
     }

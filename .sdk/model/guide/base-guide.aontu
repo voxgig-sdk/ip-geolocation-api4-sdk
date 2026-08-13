@@ -1,7 +1,7 @@
 # Guide
 
 guide: {
-  metrics: count: entity: 24
+  metrics: count: entity: 23
   metrics: count: path: 37
   metrics: count: method: 38
 
@@ -34,15 +34,18 @@ guide: {
   entity: batch: {
     path: "/api/v1/email/advanced/batch": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.results`")|top
     }
     path: "/api/v1/ip/batch": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.results`")|top
     }
   }
 
   entity: batch_email_validation_response_dto: {
     path: "/api/v1/email/advanced/batch/csv": {
       op: create: method: *POST
+      op: create: transform: res: *("`body.results`")|top
     }
   }
 
@@ -84,6 +87,7 @@ guide: {
     path: "/api/v1/risk-score/email/{email}": {
       rename: param: "email": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.factors`")|top
     }
   }
 
@@ -119,6 +123,7 @@ guide: {
     path: "/api/v1/ip-reputation/{ip}": {
       rename: param: "ip": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.factors`")|top
     }
   }
 
@@ -126,9 +131,6 @@ guide: {
     path: "/api/v1/ip": {
       op: load: method: *GET
     }
-  }
-
-  entity: ipn2: {
     path: "/api/v1/ip/{ip}": {
       op: load: method: *GET
     }
@@ -163,10 +165,12 @@ guide: {
   entity: risk_score: {
     path: "/api/v1/risk-score": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.factors`")|top
     }
     path: "/api/v1/risk-score/{ip}": {
       rename: param: "ip": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.factors`")|top
     }
   }
 

@@ -3,17 +3,17 @@
     "mxn": {
       "MXN00": {
         "domain": "s14",
-        "mx_record": [],
+        "mx_records": [],
         "id": "MXN00"
       },
       "MXN01": {
         "domain": "s28",
-        "mx_record": [],
+        "mx_records": [],
         "id": "MXN01"
       },
       "MXN02": {
         "domain": "s3c",
-        "mx_record": [],
+        "mx_records": [],
         "id": "MXN02"
       }
     }
@@ -22,7 +22,7 @@
     "mxn": {
       "mxn_ref01": {
         "domain": "s50",
-        "mx_record": []
+        "mx_records": []
       }
     }
   }

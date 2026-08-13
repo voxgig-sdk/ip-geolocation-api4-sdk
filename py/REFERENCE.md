@@ -97,10 +97,6 @@ Create a new `IpReputationEntity` instance. Pass `None` for no initial data.
 
 Create a new `IpnEntity` instance. Pass `None` for no initial data.
 
-#### `Ipn2(data=None)`
-
-Create a new `Ipn2Entity` instance. Pass `None` for no initial data.
-
 #### `Mxn(data=None)`
 
 Create a new `MxnEntity` instance. Pass `None` for no initial data.
@@ -183,7 +179,7 @@ advanced = client.Advanced()
 | `email` | `str` | Yes |  |
 | `free` | `bool` | Yes |  |
 | `gravatar` | `Any` | No |  |
-| `has_mx_record` | `bool` | Yes |  |
+| `has_mx_records` | `bool` | Yes |  |
 | `reachable` | `str` | Yes |  |
 | `role_account` | `bool` | Yes |  |
 | `smtp` | `Any` | No |  |
@@ -239,23 +235,23 @@ api_usage_stats_model = client.ApiUsageStatsModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `str` | Yes |  |
-| `api_type` | `str` | Yes |  |
-| `auth_type` | `str` | Yes |  |
-| `avg_request_duration_nano` | `Any` | No |  |
-| `batch_operation` | `int` | Yes |  |
-| `batch_tokens_consumed` | `int` | Yes |  |
-| `created_at` | `Any` | No |  |
-| `hour_bucket` | `str` | Yes |  |
-| `id` | `Any` | No |  |
-| `min_remaining_quota` | `Any` | No |  |
-| `peak_remaining_quota` | `Any` | No |  |
-| `plan_id` | `str` | Yes |  |
-| `quota_consumed` | `int` | Yes |  |
-| `rate_limited_request` | `int` | Yes |  |
-| `successful_request` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
-| `updated_at` | `Any` | No |  |
+| `apiKey` | `str` | Yes |  |
+| `apiType` | `str` | Yes |  |
+| `authType` | `str` | Yes |  |
+| `avgRequestDurationNanos` | `int | None` | No |  |
+| `batchOperations` | `int` | Yes |  |
+| `batchTokensConsumed` | `int` | Yes |  |
+| `createdAt` | `str | None` | No |  |
+| `hourBucket` | `str` | Yes |  |
+| `id` | `int | None` | No |  |
+| `minRemainingQuota` | `int | None` | No |  |
+| `peakRemainingQuota` | `int | None` | No |  |
+| `planId` | `str` | Yes |  |
+| `quotaConsumed` | `int` | Yes |  |
+| `rateLimitedRequests` | `int` | Yes |  |
+| `successfulRequests` | `int` | Yes |  |
+| `totalRequests` | `int` | Yes |  |
+| `updatedAt` | `str | None` | No |  |
 
 ### Operations
 
@@ -306,16 +302,16 @@ api_usage_summary = client.ApiUsageSummary()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `str` | Yes |  |
-| `api_type` | `str` | Yes |  |
-| `avg_request_duration_m` | `Any` | No |  |
-| `batch_operation` | `int` | Yes |  |
-| `period_end` | `str` | Yes |  |
-| `period_start` | `str` | Yes |  |
-| `quota_consumed` | `int` | Yes |  |
-| `rate_limited_request` | `int` | Yes |  |
-| `successful_request` | `int` | Yes |  |
-| `total_request` | `int` | Yes |  |
+| `apiKey` | `str` | Yes |  |
+| `apiType` | `str` | Yes |  |
+| `avgRequestDurationMs` | `float | None` | No |  |
+| `batchOperations` | `int` | Yes |  |
+| `periodEnd` | `str` | Yes |  |
+| `periodStart` | `str` | Yes |  |
+| `quotaConsumed` | `int` | Yes |  |
+| `rateLimitedRequests` | `int` | Yes |  |
+| `successfulRequests` | `int` | Yes |  |
+| `totalRequests` | `int` | Yes |  |
 
 ### Operations
 
@@ -366,13 +362,13 @@ asn = client.Asn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `Any` | No |  |
-| `country` | `Any` | No |  |
+| `asn` | `int | None` | No |  |
+| `country` | `str | None` | No |  |
 | `country_code` | `str` | No |  |
 | `ip` | `str` | Yes |  |
 | `is_datacenter` | `bool` | Yes |  |
-| `network` | `Any` | No |  |
-| `organization` | `Any` | No |  |
+| `network` | `str | None` | No |  |
+| `organization` | `str | None` | No |  |
 
 ### Operations
 
@@ -423,14 +419,8 @@ batch = client.Batch()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `list` | Yes |  |
-| `failed_lookup` | `int` | Yes |  |
-| `failed_validation` | `int` | Yes |  |
+| `emails` | `list` | Yes |  |
 | `ips` | `list` | Yes |  |
-| `result` | `dict` | Yes |  |
-| `successful_lookup` | `int` | Yes |  |
-| `successful_validation` | `int` | Yes |  |
-| `total_processed` | `int` | Yes |  |
 
 ### Operations
 
@@ -440,14 +430,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Batch().create({
-    "email": [],  # list
-    "failed_lookup": 1,  # int
-    "failed_validation": 1,  # int
+    "emails": [],  # list
     "ips": [],  # list
-    "result": {},  # dict
-    "successful_lookup": 1,  # int
-    "successful_validation": 1,  # int
-    "total_processed": 1,  # int
 })
 ```
 
@@ -490,10 +474,10 @@ batch_email_validation_response_dto = client.BatchEmailValidationResponseDto()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `failed_validation` | `int` | Yes |  |
-| `result` | `dict` | Yes |  |
-| `successful_validation` | `int` | Yes |  |
-| `total_processed` | `int` | Yes |  |
+| `failed_validations` | `int` | No |  |
+| `results` | `dict` | No |  |
+| `successful_validations` | `int` | No |  |
+| `total_processed` | `int` | No |  |
 
 ### Operations
 
@@ -503,10 +487,6 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.BatchEmailValidationResponseDto().create({
-    "failed_validation": 1,  # int
-    "result": {},  # dict
-    "successful_validation": 1,  # int
-    "total_processed": 1,  # int
 })
 ```
 
@@ -602,7 +582,7 @@ domain_analysi = client.DomainAnalysi()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `list` | Yes |  |
+| `domains` | `list` | Yes |  |
 
 ### Operations
 
@@ -612,7 +592,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.DomainAnalysi().create({
-    "domain": [],  # list
+    "domains": [],  # list
 })
 ```
 
@@ -666,7 +646,7 @@ domain_reputation_v1_dto = client.DomainReputationV1Dto()
 | `domain` | `str` | Yes |  |
 | `is_disposable_email_domain` | `bool` | Yes |  |
 | `is_valid` | `bool` | Yes |  |
-| `resolved_ip` | `list` | Yes |  |
+| `resolved_ips` | `list` | Yes |  |
 | `threat` | `dict` | Yes |  |
 
 ### Operations
@@ -719,28 +699,12 @@ email = client.Email()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `str` | Yes |  |
-| `factor` | `dict` | Yes |  |
-| `has_mx_record` | `bool` | Yes |  |
-| `ip` | `Any` | No |  |
+| `email_factors` | `None` | Yes |  |
+| `has_mx_records` | `bool` | Yes |  |
+| `ip_factors` | `None` | Yes |  |
 | `is_disposable` | `bool` | Yes |  |
-| `mx_record` | `list` | Yes |  |
-| `risk_level` | `str` | Yes |  |
-| `score` | `float` | Yes |  |
+| `mx_records` | `list` | Yes |  |
 | `syntax` | `dict` | Yes |  |
-
-### Field Usage by Operation
-
-| Field | load |
-| --- | --- |
-| `email` | Yes |
-| `factor` | - |
-| `has_mx_record` | - |
-| `ip` | - |
-| `is_disposable` | - |
-| `mx_record` | - |
-| `risk_level` | - |
-| `score` | - |
-| `syntax` | - |
 
 ### Operations
 
@@ -791,7 +755,7 @@ forward = client.Forward()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `list` | Yes |  |
+| `addresses` | `list` | Yes |  |
 | `hostname` | `str` | Yes |  |
 
 ### Operations
@@ -888,11 +852,8 @@ ip_reputation = client.IpReputation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `Any` | No |  |
-| `factor` | `dict` | Yes |  |
-| `ip` | `Any` | No |  |
-| `risk_level` | `str` | Yes |  |
-| `score` | `float` | Yes |  |
+| `email_factors` | `None` | Yes |  |
+| `ip_factors` | `None` | Yes |  |
 
 ### Operations
 
@@ -943,11 +904,11 @@ ipn = client.Ipn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `Any` | No |  |
+| `asn` | `str | None` | No |  |
 | `ip` | `str` | Yes |  |
-| `isp` | `Any` | No |  |
+| `isp` | `str | None` | No |  |
 | `location` | `dict` | Yes |  |
-| `suspicious_factor` | `dict` | Yes |  |
+| `suspicious_factors` | `dict` | Yes |  |
 
 ### Operations
 
@@ -988,61 +949,6 @@ Return the entity name.
 
 ---
 
-## Ipn2Entity
-
-```python
-ipn2 = client.Ipn2()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `asn` | `Any` | No |  |
-| `ip` | `str` | Yes |  |
-| `isp` | `Any` | No |  |
-| `location` | `dict` | Yes |  |
-| `suspicious_factor` | `dict` | Yes |  |
-
-### Operations
-
-#### `load(reqmatch, ctrl=None) -> dict`
-
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
-
-```python
-result = client.Ipn2().load({"ip": "ip"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `Ipn2Entity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## MxnEntity
 
 ```python
@@ -1054,7 +960,7 @@ mxn = client.Mxn()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `str` | Yes |  |
-| `mx_record` | `list` | Yes |  |
+| `mx_records` | `list` | Yes |  |
 
 ### Operations
 
@@ -1160,12 +1066,12 @@ rate_limit_info_dto = client.RateLimitInfoDto()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_api` | `dict` | Yes |  |
-| `interval_second` | `int` | Yes |  |
+| `interval_seconds` | `int` | Yes |  |
 | `ip_api` | `dict` | Yes |  |
 | `next_renewal_date` | `str` | No |  |
 | `plan_id` | `str` | Yes |  |
 | `plan_name` | `str` | No |  |
-| `status` | `Any` | No |  |
+| `status` | `str | None` | No |  |
 
 ### Operations
 
@@ -1216,10 +1122,10 @@ reverse = client.Reverse()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hostname` | `Any` | No |  |
+| `hostname` | `str | None` | No |  |
 | `ip` | `str` | Yes |  |
 | `ptr_record` | `str` | No |  |
-| `ttl` | `Any` | No |  |
+| `ttl` | `int | None` | No |  |
 
 ### Operations
 
@@ -1270,11 +1176,8 @@ risk_score = client.RiskScore()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `Any` | No |  |
-| `factor` | `dict` | Yes |  |
-| `ip` | `Any` | No |  |
-| `risk_level` | `str` | Yes |  |
-| `score` | `float` | Yes |  |
+| `email_factors` | `None` | Yes |  |
+| `ip_factors` | `None` | Yes |  |
 
 ### Operations
 
@@ -1469,9 +1372,9 @@ whoi = client.Whoi()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `str` | Yes |  |
-| `error` | `Any` | No |  |
+| `error` | `str | None` | No |  |
 | `expires_on` | `str` | No |  |
-| `name_server` | `list` | Yes |  |
+| `name_servers` | `list` | Yes |  |
 | `raw` | `str` | Yes |  |
 | `registered_on` | `str` | No |  |
 | `registrar` | `Any` | No |  |

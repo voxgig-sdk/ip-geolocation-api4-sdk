@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from ipgeolocationapi4_sdk.utility.voxgig_struct import voxgig_struct as vs
 from ipgeolocationapi4_sdk import IpGeolocationApi4SDK
-from core import helpers
+from ipgeolocationapi4_sdk.core import helpers
 from test import runner
 
 
@@ -20,11 +20,18 @@ class TestIpnDirect:
             return
         client = setup["client"]
 
+        params = {}
+        query = {}
+        if setup["live"]:
+            params["ip"] = "203.0.113.195"
+        else:
+            params["ip"] = "direct01"
 
         result = client.direct({
-            "path": "api/v1/ip",
+            "path": "api/v1/ip/{ip}",
             "method": "GET",
-            "params": {},
+            "params": params,
+            "query": query,
         })
         if setup["live"]:
             # Live mode is lenient: synthetic IDs frequently 4xx. Skip
@@ -56,11 +63,11 @@ def _ipn_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "IPGEOLOCATIONAPI__TEST_IPN_ENTID": {},
-        "IPGEOLOCATIONAPI__TEST_LIVE": "FALSE",
+        "IP_GEOLOCATION_API4_TEST_IPN_ENTID": {},
+        "IP_GEOLOCATION_API4_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("IPGEOLOCATIONAPI__TEST_LIVE") == "TRUE"
+    live = env.get("IP_GEOLOCATION_API4_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

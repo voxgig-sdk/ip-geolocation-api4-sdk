@@ -6,7 +6,7 @@
         "ip": "s33",
         "isp": "s34",
         "location": {},
-        "suspicious_factor": {},
+        "suspicious_factors": {},
         "id": "IPN00"
       },
       "IPN01": {
@@ -14,7 +14,7 @@
         "ip": "s65",
         "isp": "s66",
         "location": {},
-        "suspicious_factor": {},
+        "suspicious_factors": {},
         "id": "IPN01"
       },
       "IPN02": {
@@ -22,7 +22,7 @@
         "ip": "s97",
         "isp": "s98",
         "location": {},
-        "suspicious_factor": {},
+        "suspicious_factors": {},
         "id": "IPN02"
       }
     }
@@ -34,7 +34,7 @@
         "ip": "sc9",
         "isp": "sca",
         "location": {},
-        "suspicious_factor": {}
+        "suspicious_factors": {}
       }
     }
   }

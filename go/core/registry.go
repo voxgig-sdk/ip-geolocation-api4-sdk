@@ -34,8 +34,6 @@ var NewIpReputationEntityFunc func(client *IpGeolocationApi4SDK, entopts map[str
 
 var NewIpnEntityFunc func(client *IpGeolocationApi4SDK, entopts map[string]any) IpGeolocationApi4Entity
 
-var NewIpn2EntityFunc func(client *IpGeolocationApi4SDK, entopts map[string]any) IpGeolocationApi4Entity
-
 var NewMxnEntityFunc func(client *IpGeolocationApi4SDK, entopts map[string]any) IpGeolocationApi4Entity
 
 var NewPaddleControllerEntityFunc func(client *IpGeolocationApi4SDK, entopts map[string]any) IpGeolocationApi4Entity

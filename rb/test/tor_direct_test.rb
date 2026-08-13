@@ -67,11 +67,11 @@ def tor_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "IPGEOLOCATIONAPI__TEST_TOR_ENTID" => {},
-    "IPGEOLOCATIONAPI__TEST_LIVE" => "FALSE",
+    "IP_GEOLOCATION_API4_TEST_TOR_ENTID" => {},
+    "IP_GEOLOCATION_API4_TEST_LIVE" => "FALSE",
   })
 
-  live = env["IPGEOLOCATIONAPI__TEST_LIVE"] == "TRUE"
+  live = env["IP_GEOLOCATION_API4_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

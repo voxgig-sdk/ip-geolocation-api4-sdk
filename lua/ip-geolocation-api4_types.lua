@@ -11,7 +11,7 @@
 ---@field email string
 ---@field free boolean
 ---@field gravatar? any
----@field has_mx_record boolean
+---@field has_mx_records boolean
 ---@field reachable string
 ---@field role_account boolean
 ---@field smtp? any
@@ -22,110 +22,98 @@
 ---@field id string
 
 ---@class ApiUsageStatsModel
----@field api_key string
----@field api_type string
----@field auth_type string
----@field avg_request_duration_nano? any
----@field batch_operation number
----@field batch_tokens_consumed number
----@field created_at? any
----@field hour_bucket string
----@field id? any
----@field min_remaining_quota? any
----@field peak_remaining_quota? any
----@field plan_id string
----@field quota_consumed number
----@field rate_limited_request number
----@field successful_request number
----@field total_request number
----@field updated_at? any
+---@field apiKey string
+---@field apiType string
+---@field authType string
+---@field avgRequestDurationNanos? number|nil
+---@field batchOperations number
+---@field batchTokensConsumed number
+---@field createdAt? string|nil
+---@field hourBucket string
+---@field id? number|nil
+---@field minRemainingQuota? number|nil
+---@field peakRemainingQuota? number|nil
+---@field planId string
+---@field quotaConsumed number
+---@field rateLimitedRequests number
+---@field successfulRequests number
+---@field totalRequests number
+---@field updatedAt? string|nil
 
 ---@class ApiUsageStatsModelLoadMatch
----@field api_key? string
----@field api_type? string
----@field auth_type? string
----@field avg_request_duration_nano? any
----@field batch_operation? number
----@field batch_tokens_consumed? number
----@field created_at? any
----@field hour_bucket? string
----@field id any
----@field min_remaining_quota? any
----@field peak_remaining_quota? any
----@field plan_id? string
----@field quota_consumed? number
----@field rate_limited_request? number
----@field successful_request? number
----@field total_request? number
----@field updated_at? any
+---@field apiKey? string
+---@field apiType? string
+---@field authType? string
+---@field avgRequestDurationNanos? number|nil
+---@field batchOperations? number
+---@field batchTokensConsumed? number
+---@field createdAt? string|nil
+---@field hourBucket? string
+---@field id number|nil
+---@field minRemainingQuota? number|nil
+---@field peakRemainingQuota? number|nil
+---@field planId? string
+---@field quotaConsumed? number
+---@field rateLimitedRequests? number
+---@field successfulRequests? number
+---@field totalRequests? number
+---@field updatedAt? string|nil
 
 ---@class ApiUsageSummary
----@field api_key string
----@field api_type string
----@field avg_request_duration_m? any
----@field batch_operation number
----@field period_end string
----@field period_start string
----@field quota_consumed number
----@field rate_limited_request number
----@field successful_request number
----@field total_request number
+---@field apiKey string
+---@field apiType string
+---@field avgRequestDurationMs? number|nil
+---@field batchOperations number
+---@field periodEnd string
+---@field periodStart string
+---@field quotaConsumed number
+---@field rateLimitedRequests number
+---@field successfulRequests number
+---@field totalRequests number
 
 ---@class ApiUsageSummaryLoadMatch
----@field api_key? string
----@field api_type? string
----@field avg_request_duration_m? any
----@field batch_operation? number
----@field period_end? string
----@field period_start? string
----@field quota_consumed? number
----@field rate_limited_request? number
----@field successful_request? number
----@field total_request? number
+---@field apiKey? string
+---@field apiType? string
+---@field avgRequestDurationMs? number|nil
+---@field batchOperations? number
+---@field periodEnd? string
+---@field periodStart? string
+---@field quotaConsumed? number
+---@field rateLimitedRequests? number
+---@field successfulRequests? number
+---@field totalRequests? number
 
 ---@class Asn
----@field asn? any
----@field country? any
+---@field asn? number|nil
+---@field country? string|nil
 ---@field country_code? string
 ---@field ip string
 ---@field is_datacenter boolean
----@field network? any
----@field organization? any
+---@field network? string|nil
+---@field organization? string|nil
 
 ---@class AsnLoadMatch
 ---@field id string
 
 ---@class Batch
----@field email table
----@field failed_lookup number
----@field failed_validation number
+---@field emails table
 ---@field ips table
----@field result table
----@field successful_lookup number
----@field successful_validation number
----@field total_processed number
 
 ---@class BatchCreateData
----@field email table
----@field failed_lookup number
----@field failed_validation number
+---@field emails table
 ---@field ips table
----@field result table
----@field successful_lookup number
----@field successful_validation number
----@field total_processed number
 
 ---@class BatchEmailValidationResponseDto
----@field failed_validation number
----@field result table
----@field successful_validation number
----@field total_processed number
+---@field failed_validations? number
+---@field results? table
+---@field successful_validations? number
+---@field total_processed? number
 
 ---@class BatchEmailValidationResponseDtoCreateData
----@field failed_validation number
----@field result table
----@field successful_validation number
----@field total_processed number
+---@field failed_validations? number
+---@field results? table
+---@field successful_validations? number
+---@field total_processed? number
 
 ---@class CacheManagement
 
@@ -135,19 +123,19 @@
 ---@class CacheManagementRemoveMatch
 
 ---@class DomainAnalysi
----@field domain table
+---@field domains table
 
 ---@class DomainAnalysiLoadMatch
 ---@field domain string
 
 ---@class DomainAnalysiCreateData
----@field domain table
+---@field domains table
 
 ---@class DomainReputationV1Dto
 ---@field domain string
 ---@field is_disposable_email_domain boolean
 ---@field is_valid boolean
----@field resolved_ip table
+---@field resolved_ips table
 ---@field threat table
 
 ---@class DomainReputationV1DtoLoadMatch
@@ -155,20 +143,18 @@
 
 ---@class Email
 ---@field email string
----@field factor table
----@field has_mx_record boolean
----@field ip? any
+---@field email_factors nil
+---@field has_mx_records boolean
+---@field ip_factors nil
 ---@field is_disposable boolean
----@field mx_record table
----@field risk_level string
----@field score number
+---@field mx_records table
 ---@field syntax table
 
 ---@class EmailLoadMatch
 ---@field id string
 
 ---@class Forward
----@field address table
+---@field addresses table
 ---@field hostname string
 
 ---@class ForwardLoadMatch
@@ -180,42 +166,25 @@
 ---@field ip? string
 
 ---@class IpReputation
----@field email? any
----@field factor table
----@field ip? any
----@field risk_level string
----@field score number
+---@field email_factors nil
+---@field ip_factors nil
 
 ---@class IpReputationLoadMatch
 ---@field id string
 
 ---@class Ipn
----@field asn? any
+---@field asn? string|nil
 ---@field ip string
----@field isp? any
+---@field isp? string|nil
 ---@field location table
----@field suspicious_factor table
+---@field suspicious_factors table
 
 ---@class IpnLoadMatch
----@field asn? any
 ---@field ip? string
----@field isp? any
----@field location? table
----@field suspicious_factor? table
-
----@class Ipn2
----@field asn? any
----@field ip string
----@field isp? any
----@field location table
----@field suspicious_factor table
-
----@class Ipn2LoadMatch
----@field ip string
 
 ---@class Mxn
 ---@field domain string
----@field mx_record table
+---@field mx_records table
 
 ---@class MxnLoadMatch
 ---@field domain string
@@ -228,37 +197,34 @@
 
 ---@class RateLimitInfoDto
 ---@field email_api table
----@field interval_second number
+---@field interval_seconds number
 ---@field ip_api table
 ---@field next_renewal_date? string
 ---@field plan_id string
 ---@field plan_name? string
----@field status? any
+---@field status? string|nil
 
 ---@class RateLimitInfoDtoLoadMatch
 ---@field email_api? table
----@field interval_second? number
+---@field interval_seconds? number
 ---@field ip_api? table
 ---@field next_renewal_date? string
 ---@field plan_id? string
 ---@field plan_name? string
----@field status? any
+---@field status? string|nil
 
 ---@class Reverse
----@field hostname? any
+---@field hostname? string|nil
 ---@field ip string
 ---@field ptr_record? string
----@field ttl? any
+---@field ttl? number|nil
 
 ---@class ReverseLoadMatch
 ---@field id string
 
 ---@class RiskScore
----@field email? any
----@field factor table
----@field ip? any
----@field risk_level string
----@field score number
+---@field email_factors nil
+---@field ip_factors nil
 
 ---@class RiskScoreLoadMatch
 ---@field id? string
@@ -281,9 +247,9 @@
 
 ---@class Whoi
 ---@field domain string
----@field error? any
+---@field error? string|nil
 ---@field expires_on? string
----@field name_server table
+---@field name_servers table
 ---@field raw string
 ---@field registered_on? string
 ---@field registrar? any

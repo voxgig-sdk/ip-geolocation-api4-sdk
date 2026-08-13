@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import IpGeolocationApi4Control
-from core.error import IpGeolocationApi4Error
-from core.result import IpGeolocationApi4Result
-from core.spec import IpGeolocationApi4Spec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import IpGeolocationApi4Control
+from projectname_sdk.core.error import IpGeolocationApi4Error
+from projectname_sdk.core.result import IpGeolocationApi4Result
+from projectname_sdk.core.spec import IpGeolocationApi4Spec
 
 
 # True when this SDK was generated with the named feature.

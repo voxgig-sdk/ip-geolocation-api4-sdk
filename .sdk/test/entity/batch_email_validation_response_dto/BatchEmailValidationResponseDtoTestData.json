@@ -2,23 +2,23 @@
   "existing": {
     "batch_email_validation_response_dto": {
       "BATCH_EMAIL_VALIDATION_RESPONSE_DTO00": {
-        "failed_validation": "s28",
-        "result": {},
-        "successful_validation": "s2a",
+        "failed_validations": "s28",
+        "results": {},
+        "successful_validations": "s2a",
         "total_processed": "s2b",
         "id": "BATCH_EMAIL_VALIDATION_RESPONSE_DTO00"
       },
       "BATCH_EMAIL_VALIDATION_RESPONSE_DTO01": {
-        "failed_validation": "s50",
-        "result": {},
-        "successful_validation": "s52",
+        "failed_validations": "s50",
+        "results": {},
+        "successful_validations": "s52",
         "total_processed": "s53",
         "id": "BATCH_EMAIL_VALIDATION_RESPONSE_DTO01"
       },
       "BATCH_EMAIL_VALIDATION_RESPONSE_DTO02": {
-        "failed_validation": "s78",
-        "result": {},
-        "successful_validation": "s7a",
+        "failed_validations": "s78",
+        "results": {},
+        "successful_validations": "s7a",
         "total_processed": "s7b",
         "id": "BATCH_EMAIL_VALIDATION_RESPONSE_DTO02"
       }
@@ -27,9 +27,9 @@
   "new": {
     "batch_email_validation_response_dto": {
       "batch_email_validation_response_dto_ref01": {
-        "failed_validation": "sa0",
-        "result": {},
-        "successful_validation": "sa2",
+        "failed_validations": "sa0",
+        "results": {},
+        "successful_validations": "sa2",
         "total_processed": "sa3"
       }
     }

@@ -7,41 +7,23 @@ main: kit: entity: email: {
   fields: [
     {
       name: "email"
-      op: {
-        load: {
-          req: false
-          type: [
-            "`$ONE`"
-            [
-              "`$STRING`"
-              "`$NULL`"
-            ]
-          ]
-        }
-      }
       req: true
       type: "`$STRING`"
     }
     {
-      name: "factor"
+      name: "email_factors"
       req: true
-      type: "`$OBJECT`"
+      type: "`$NULL`"
     }
     {
-      name: "has_mx_record"
+      name: "has_mx_records"
       req: true
       type: "`$BOOLEAN`"
     }
     {
-      name: "ip"
-      req: false
-      type: [
-        "`$ONE`"
-        [
-          "`$STRING`"
-          "`$NULL`"
-        ]
-      ]
+      name: "ip_factors"
+      req: true
+      type: "`$NULL`"
     }
     {
       name: "is_disposable"
@@ -49,19 +31,9 @@ main: kit: entity: email: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "mx_record"
+      name: "mx_records"
       req: true
       type: "`$ARRAY`"
-    }
-    {
-      name: "risk_level"
-      req: true
-      type: "`$STRING`"
-    }
-    {
-      name: "score"
-      req: true
-      type: "`$NUMBER`"
     }
     {
       name: "syntax"
@@ -145,7 +117,7 @@ main: kit: entity: email: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.factors`"
           }
         }
       ]

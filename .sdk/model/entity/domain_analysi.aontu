@@ -6,7 +6,7 @@ main: kit: entity: domain_analysi: {
 
   fields: [
     {
-      name: "domain"
+      name: "domains"
       req: true
       type: "`$ARRAY`"
     }

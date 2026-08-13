@@ -39,7 +39,7 @@ client = IpGeolocationApi4SDK()
 ### 3. Load a domainanalysi
 
 DomainAnalysi is nested under domain, so provide the `domain`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -56,8 +56,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    advanced = client.Advanced().load({"id": "example_id"})
-    print(advanced)
+    riskscore = client.RiskScore().load()
+    print(riskscore)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -123,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = IpGeolocationApi4SDK.test()
 
-# Entity ops return the bare record and raise on error.
-advanced = client.Advanced().load({"id": "test01"})
-# advanced contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+riskscore = client.RiskScore().load({"id": "test01"})
+# riskscore contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -215,7 +216,6 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `IpInfoV0` | `(data) -> IpInfoV0Entity` | Create an IpInfoV0 entity instance. |
 | `IpReputation` | `(data) -> IpReputationEntity` | Create an IpReputation entity instance. |
 | `Ipn` | `(data) -> IpnEntity` | Create an Ipn entity instance. |
-| `Ipn2` | `(data) -> Ipn2Entity` | Create an Ipn2 entity instance. |
 | `Mxn` | `(data) -> MxnEntity` | Create a Mxn entity instance. |
 | `PaddleController` | `(data) -> PaddleControllerEntity` | Create a PaddleController entity instance. |
 | `RateLimitInfoDto` | `(data) -> RateLimitInfoDtoEntity` | Create a RateLimitInfoDto entity instance. |
@@ -244,7 +244,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -270,7 +270,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | `email` |  |
 | `free` |  |
 | `gravatar` |  |
-| `has_mx_record` |  |
+| `has_mx_records` |  |
 | `reachable` |  |
 | `role_account` |  |
 | `smtp` |  |
@@ -285,23 +285,23 @@ API path: `/api/v1/email/advanced/{email}`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `auth_type` |  |
-| `avg_request_duration_nano` |  |
-| `batch_operation` |  |
-| `batch_tokens_consumed` |  |
-| `created_at` |  |
-| `hour_bucket` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `authType` |  |
+| `avgRequestDurationNanos` |  |
+| `batchOperations` |  |
+| `batchTokensConsumed` |  |
+| `createdAt` |  |
+| `hourBucket` |  |
 | `id` |  |
-| `min_remaining_quota` |  |
-| `peak_remaining_quota` |  |
-| `plan_id` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
-| `updated_at` |  |
+| `minRemainingQuota` |  |
+| `peakRemainingQuota` |  |
+| `planId` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
+| `updatedAt` |  |
 
 Operations: Load.
 
@@ -311,16 +311,16 @@ API path: `/api/v1/usage/stats`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `avg_request_duration_m` |  |
-| `batch_operation` |  |
-| `period_end` |  |
-| `period_start` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `avgRequestDurationMs` |  |
+| `batchOperations` |  |
+| `periodEnd` |  |
+| `periodStart` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
 
 Operations: Load.
 
@@ -346,14 +346,8 @@ API path: `/api/v1/asn/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `failed_lookup` |  |
-| `failed_validation` |  |
+| `emails` |  |
 | `ips` |  |
-| `result` |  |
-| `successful_lookup` |  |
-| `successful_validation` |  |
-| `total_processed` |  |
 
 Operations: Create.
 
@@ -363,9 +357,9 @@ API path: `/api/v1/email/advanced/batch`
 
 | Field | Description |
 | --- | --- |
-| `failed_validation` |  |
-| `result` |  |
-| `successful_validation` |  |
+| `failed_validations` |  |
+| `results` |  |
+| `successful_validations` |  |
 | `total_processed` |  |
 
 Operations: Create.
@@ -385,7 +379,7 @@ API path: `/management/cache/domain-age/check/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 
 Operations: Create, Load.
 
@@ -398,7 +392,7 @@ API path: `/api/v1/domain/age/batch`
 | `domain` |  |
 | `is_disposable_email_domain` |  |
 | `is_valid` |  |
-| `resolved_ip` |  |
+| `resolved_ips` |  |
 | `threat` |  |
 
 Operations: Load.
@@ -410,13 +404,11 @@ API path: `/api/v1/domain/reputation/{domain}`
 | Field | Description |
 | --- | --- |
 | `email` |  |
-| `factor` |  |
-| `has_mx_record` |  |
-| `ip` |  |
+| `email_factors` |  |
+| `has_mx_records` |  |
+| `ip_factors` |  |
 | `is_disposable` |  |
-| `mx_record` |  |
-| `risk_level` |  |
-| `score` |  |
+| `mx_records` |  |
 | `syntax` |  |
 
 Operations: Load.
@@ -427,7 +419,7 @@ API path: `/api/v1/email/{email}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
+| `addresses` |  |
 | `hostname` |  |
 
 Operations: Load.
@@ -447,11 +439,8 @@ API path: `/api/json/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: Load.
 
@@ -465,21 +454,7 @@ API path: `/api/v1/ip-reputation/{ip}`
 | `ip` |  |
 | `isp` |  |
 | `location` |  |
-| `suspicious_factor` |  |
-
-Operations: Load.
-
-API path: `/api/v1/ip`
-
-#### Ipn2
-
-| Field | Description |
-| --- | --- |
-| `asn` |  |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `suspicious_factor` |  |
+| `suspicious_factors` |  |
 
 Operations: Load.
 
@@ -490,7 +465,7 @@ API path: `/api/v1/ip/{ip}`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `mx_record` |  |
+| `mx_records` |  |
 
 Operations: Load.
 
@@ -510,7 +485,7 @@ API path: `/month-sub`
 | Field | Description |
 | --- | --- |
 | `email_api` |  |
-| `interval_second` |  |
+| `interval_seconds` |  |
 | `ip_api` |  |
 | `next_renewal_date` |  |
 | `plan_id` |  |
@@ -538,11 +513,8 @@ API path: `/api/v1/dns/reverse/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: Load.
 
@@ -585,7 +557,7 @@ API path: `/api/v1/usage/current-month`
 | `domain` |  |
 | `error` |  |
 | `expires_on` |  |
-| `name_server` |  |
+| `name_servers` |  |
 | `raw` |  |
 | `registered_on` |  |
 | `registrar` |  |
@@ -619,7 +591,7 @@ Create an instance: `advanced = client.Advanced()`
 | `email` | `str` |  |
 | `free` | `bool` |  |
 | `gravatar` | `Any` |  |
-| `has_mx_record` | `bool` |  |
+| `has_mx_records` | `bool` |  |
 | `reachable` | `str` |  |
 | `role_account` | `bool` |  |
 | `smtp` | `Any` |  |
@@ -647,23 +619,23 @@ Create an instance: `api_usage_stats_model = client.ApiUsageStatsModel()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `str` |  |
-| `api_type` | `str` |  |
-| `auth_type` | `str` |  |
-| `avg_request_duration_nano` | `Any` |  |
-| `batch_operation` | `int` |  |
-| `batch_tokens_consumed` | `int` |  |
-| `created_at` | `Any` |  |
-| `hour_bucket` | `str` |  |
-| `id` | `Any` |  |
-| `min_remaining_quota` | `Any` |  |
-| `peak_remaining_quota` | `Any` |  |
-| `plan_id` | `str` |  |
-| `quota_consumed` | `int` |  |
-| `rate_limited_request` | `int` |  |
-| `successful_request` | `int` |  |
-| `total_request` | `int` |  |
-| `updated_at` | `Any` |  |
+| `apiKey` | `str` |  |
+| `apiType` | `str` |  |
+| `authType` | `str` |  |
+| `avgRequestDurationNanos` | `int | None` |  |
+| `batchOperations` | `int` |  |
+| `batchTokensConsumed` | `int` |  |
+| `createdAt` | `str | None` |  |
+| `hourBucket` | `str` |  |
+| `id` | `int | None` |  |
+| `minRemainingQuota` | `int | None` |  |
+| `peakRemainingQuota` | `int | None` |  |
+| `planId` | `str` |  |
+| `quotaConsumed` | `int` |  |
+| `rateLimitedRequests` | `int` |  |
+| `successfulRequests` | `int` |  |
+| `totalRequests` | `int` |  |
+| `updatedAt` | `str | None` |  |
 
 #### Example: Load
 
@@ -686,16 +658,16 @@ Create an instance: `api_usage_summary = client.ApiUsageSummary()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `str` |  |
-| `api_type` | `str` |  |
-| `avg_request_duration_m` | `Any` |  |
-| `batch_operation` | `int` |  |
-| `period_end` | `str` |  |
-| `period_start` | `str` |  |
-| `quota_consumed` | `int` |  |
-| `rate_limited_request` | `int` |  |
-| `successful_request` | `int` |  |
-| `total_request` | `int` |  |
+| `apiKey` | `str` |  |
+| `apiType` | `str` |  |
+| `avgRequestDurationMs` | `float | None` |  |
+| `batchOperations` | `int` |  |
+| `periodEnd` | `str` |  |
+| `periodStart` | `str` |  |
+| `quotaConsumed` | `int` |  |
+| `rateLimitedRequests` | `int` |  |
+| `successfulRequests` | `int` |  |
+| `totalRequests` | `int` |  |
 
 #### Example: Load
 
@@ -718,13 +690,13 @@ Create an instance: `asn = client.Asn()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | `Any` |  |
-| `country` | `Any` |  |
+| `asn` | `int | None` |  |
+| `country` | `str | None` |  |
 | `country_code` | `str` |  |
 | `ip` | `str` |  |
 | `is_datacenter` | `bool` |  |
-| `network` | `Any` |  |
-| `organization` | `Any` |  |
+| `network` | `str | None` |  |
+| `organization` | `str | None` |  |
 
 #### Example: Load
 
@@ -747,27 +719,15 @@ Create an instance: `batch = client.Batch()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `list` |  |
-| `failed_lookup` | `int` |  |
-| `failed_validation` | `int` |  |
+| `emails` | `list` |  |
 | `ips` | `list` |  |
-| `result` | `dict` |  |
-| `successful_lookup` | `int` |  |
-| `successful_validation` | `int` |  |
-| `total_processed` | `int` |  |
 
 #### Example: Create
 
 ```python
 batch = client.Batch().create({
-    "email": [],  # list
-    "failed_lookup": 1,  # int
-    "failed_validation": 1,  # int
+    "emails": [],  # list
     "ips": [],  # list
-    "result": {},  # dict
-    "successful_lookup": 1,  # int
-    "successful_validation": 1,  # int
-    "total_processed": 1,  # int
 })
 ```
 
@@ -786,19 +746,15 @@ Create an instance: `batch_email_validation_response_dto = client.BatchEmailVali
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `failed_validation` | `int` |  |
-| `result` | `dict` |  |
-| `successful_validation` | `int` |  |
+| `failed_validations` | `int` |  |
+| `results` | `dict` |  |
+| `successful_validations` | `int` |  |
 | `total_processed` | `int` |  |
 
 #### Example: Create
 
 ```python
 batch_email_validation_response_dto = client.BatchEmailValidationResponseDto().create({
-    "failed_validation": 1,  # int
-    "result": {},  # dict
-    "successful_validation": 1,  # int
-    "total_processed": 1,  # int
 })
 ```
 
@@ -836,7 +792,7 @@ Create an instance: `domain_analysi = client.DomainAnalysi()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `list` |  |
+| `domains` | `list` |  |
 
 #### Example: Load
 
@@ -848,7 +804,7 @@ domain_analysi = client.DomainAnalysi().load({"domain": "domain"})
 
 ```python
 domain_analysi = client.DomainAnalysi().create({
-    "domain": [],  # list
+    "domains": [],  # list
 })
 ```
 
@@ -870,7 +826,7 @@ Create an instance: `domain_reputation_v1_dto = client.DomainReputationV1Dto()`
 | `domain` | `str` |  |
 | `is_disposable_email_domain` | `bool` |  |
 | `is_valid` | `bool` |  |
-| `resolved_ip` | `list` |  |
+| `resolved_ips` | `list` |  |
 | `threat` | `dict` |  |
 
 #### Example: Load
@@ -895,13 +851,11 @@ Create an instance: `email = client.Email()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `str` |  |
-| `factor` | `dict` |  |
-| `has_mx_record` | `bool` |  |
-| `ip` | `Any` |  |
+| `email_factors` | `None` |  |
+| `has_mx_records` | `bool` |  |
+| `ip_factors` | `None` |  |
 | `is_disposable` | `bool` |  |
-| `mx_record` | `list` |  |
-| `risk_level` | `str` |  |
-| `score` | `float` |  |
+| `mx_records` | `list` |  |
 | `syntax` | `dict` |  |
 
 #### Example: Load
@@ -925,7 +879,7 @@ Create an instance: `forward = client.Forward()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `list` |  |
+| `addresses` | `list` |  |
 | `hostname` | `str` |  |
 
 #### Example: Load
@@ -966,11 +920,8 @@ Create an instance: `ip_reputation = client.IpReputation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `Any` |  |
-| `factor` | `dict` |  |
-| `ip` | `Any` |  |
-| `risk_level` | `str` |  |
-| `score` | `float` |  |
+| `email_factors` | `None` |  |
+| `ip_factors` | `None` |  |
 
 #### Example: Load
 
@@ -993,43 +944,16 @@ Create an instance: `ipn = client.Ipn()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | `Any` |  |
+| `asn` | `str | None` |  |
 | `ip` | `str` |  |
-| `isp` | `Any` |  |
+| `isp` | `str | None` |  |
 | `location` | `dict` |  |
-| `suspicious_factor` | `dict` |  |
+| `suspicious_factors` | `dict` |  |
 
 #### Example: Load
 
 ```python
 ipn = client.Ipn().load()
-```
-
-
-### Ipn2
-
-Create an instance: `ipn2 = client.Ipn2()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `asn` | `Any` |  |
-| `ip` | `str` |  |
-| `isp` | `Any` |  |
-| `location` | `dict` |  |
-| `suspicious_factor` | `dict` |  |
-
-#### Example: Load
-
-```python
-ipn2 = client.Ipn2().load({"ip": "ip"})
 ```
 
 
@@ -1048,7 +972,7 @@ Create an instance: `mxn = client.Mxn()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `str` |  |
-| `mx_record` | `list` |  |
+| `mx_records` | `list` |  |
 
 #### Example: Load
 
@@ -1097,12 +1021,12 @@ Create an instance: `rate_limit_info_dto = client.RateLimitInfoDto()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_api` | `dict` |  |
-| `interval_second` | `int` |  |
+| `interval_seconds` | `int` |  |
 | `ip_api` | `dict` |  |
 | `next_renewal_date` | `str` |  |
 | `plan_id` | `str` |  |
 | `plan_name` | `str` |  |
-| `status` | `Any` |  |
+| `status` | `str | None` |  |
 
 #### Example: Load
 
@@ -1125,10 +1049,10 @@ Create an instance: `reverse = client.Reverse()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hostname` | `Any` |  |
+| `hostname` | `str | None` |  |
 | `ip` | `str` |  |
 | `ptr_record` | `str` |  |
-| `ttl` | `Any` |  |
+| `ttl` | `int | None` |  |
 
 #### Example: Load
 
@@ -1151,11 +1075,8 @@ Create an instance: `risk_score = client.RiskScore()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `Any` |  |
-| `factor` | `dict` |  |
-| `ip` | `Any` |  |
-| `risk_level` | `str` |  |
-| `score` | `float` |  |
+| `email_factors` | `None` |  |
+| `ip_factors` | `None` |  |
 
 #### Example: Load
 
@@ -1238,9 +1159,9 @@ Create an instance: `whoi = client.Whoi()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `str` |  |
-| `error` | `Any` |  |
+| `error` | `str | None` |  |
 | `expires_on` | `str` |  |
-| `name_server` | `list` |  |
+| `name_servers` | `list` |  |
 | `raw` | `str` |  |
 | `registered_on` | `str` |  |
 | `registrar` | `Any` |  |
@@ -1329,11 +1250,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-advanced = client.Advanced()
-advanced.load({"id": "example_id"})
+riskscore = client.RiskScore()
+riskscore.load()
 
-# advanced.data_get() now returns the advanced data from the last load
-# advanced.match_get() returns the last match criteria
+# riskscore.data_get() now returns the riskscore data from the last load
+# riskscore.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

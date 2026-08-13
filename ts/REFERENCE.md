@@ -216,18 +216,6 @@ Create a new `Ipn` entity instance.
 
 **Returns:** `IpnEntity` instance.
 
-#### `Ipn2(data?: object)`
-
-Create a new `Ipn2` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `Ipn2Entity` instance.
-
 #### `Mxn(data?: object)`
 
 Create a new `Mxn` entity instance.
@@ -396,7 +384,7 @@ const advanced = client.Advanced()
 | `email` | `string` | Yes |  |
 | `free` | `boolean` | Yes |  |
 | `gravatar` | `any` | No |  |
-| `has_mx_record` | `boolean` | Yes |  |
+| `has_mx_records` | `boolean` | Yes |  |
 | `reachable` | `string` | Yes |  |
 | `role_account` | `boolean` | Yes |  |
 | `smtp` | `any` | No |  |
@@ -451,23 +439,23 @@ const api_usage_stats_model = client.ApiUsageStatsModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string` | Yes |  |
-| `api_type` | `string` | Yes |  |
-| `auth_type` | `string` | Yes |  |
-| `avg_request_duration_nano` | `any` | No |  |
-| `batch_operation` | `number` | Yes |  |
-| `batch_tokens_consumed` | `number` | Yes |  |
-| `created_at` | `any` | No |  |
-| `hour_bucket` | `string` | Yes |  |
-| `id` | `any` | No |  |
-| `min_remaining_quota` | `any` | No |  |
-| `peak_remaining_quota` | `any` | No |  |
-| `plan_id` | `string` | Yes |  |
-| `quota_consumed` | `number` | Yes |  |
-| `rate_limited_request` | `number` | Yes |  |
-| `successful_request` | `number` | Yes |  |
-| `total_request` | `number` | Yes |  |
-| `updated_at` | `any` | No |  |
+| `apiKey` | `string` | Yes |  |
+| `apiType` | `string` | Yes |  |
+| `authType` | `string` | Yes |  |
+| `avgRequestDurationNanos` | `number | null` | No |  |
+| `batchOperations` | `number` | Yes |  |
+| `batchTokensConsumed` | `number` | Yes |  |
+| `createdAt` | `string | null` | No |  |
+| `hourBucket` | `string` | Yes |  |
+| `id` | `number | null` | No |  |
+| `minRemainingQuota` | `number | null` | No |  |
+| `peakRemainingQuota` | `number | null` | No |  |
+| `planId` | `string` | Yes |  |
+| `quotaConsumed` | `number` | Yes |  |
+| `rateLimitedRequests` | `number` | Yes |  |
+| `successfulRequests` | `number` | Yes |  |
+| `totalRequests` | `number` | Yes |  |
+| `updatedAt` | `string | null` | No |  |
 
 ### Operations
 
@@ -517,16 +505,16 @@ const api_usage_summary = client.ApiUsageSummary()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string` | Yes |  |
-| `api_type` | `string` | Yes |  |
-| `avg_request_duration_m` | `any` | No |  |
-| `batch_operation` | `number` | Yes |  |
-| `period_end` | `string` | Yes |  |
-| `period_start` | `string` | Yes |  |
-| `quota_consumed` | `number` | Yes |  |
-| `rate_limited_request` | `number` | Yes |  |
-| `successful_request` | `number` | Yes |  |
-| `total_request` | `number` | Yes |  |
+| `apiKey` | `string` | Yes |  |
+| `apiType` | `string` | Yes |  |
+| `avgRequestDurationMs` | `number | null` | No |  |
+| `batchOperations` | `number` | Yes |  |
+| `periodEnd` | `string` | Yes |  |
+| `periodStart` | `string` | Yes |  |
+| `quotaConsumed` | `number` | Yes |  |
+| `rateLimitedRequests` | `number` | Yes |  |
+| `successfulRequests` | `number` | Yes |  |
+| `totalRequests` | `number` | Yes |  |
 
 ### Operations
 
@@ -576,13 +564,13 @@ const asn = client.Asn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `any` | No |  |
-| `country` | `any` | No |  |
+| `asn` | `number | null` | No |  |
+| `country` | `string | null` | No |  |
 | `country_code` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_datacenter` | `boolean` | Yes |  |
-| `network` | `any` | No |  |
-| `organization` | `any` | No |  |
+| `network` | `string | null` | No |  |
+| `organization` | `string | null` | No |  |
 
 ### Operations
 
@@ -632,14 +620,8 @@ const batch = client.Batch()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `any[]` | Yes |  |
-| `failed_lookup` | `number` | Yes |  |
-| `failed_validation` | `number` | Yes |  |
+| `emails` | `any[]` | Yes |  |
 | `ips` | `any[]` | Yes |  |
-| `result` | `Record<string, any>` | Yes |  |
-| `successful_lookup` | `number` | Yes |  |
-| `successful_validation` | `number` | Yes |  |
-| `total_processed` | `number` | Yes |  |
 
 ### Operations
 
@@ -649,14 +631,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Batch().create({
-  email: [],
-  failed_lookup: 1,
-  failed_validation: 1,
+  emails: [],
   ips: [],
-  result: {},
-  successful_lookup: 1,
-  successful_validation: 1,
-  total_processed: 1,
 })
 ```
 
@@ -698,10 +674,10 @@ const batch_email_validation_response_dto = client.BatchEmailValidationResponseD
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `failed_validation` | `number` | Yes |  |
-| `result` | `Record<string, any>` | Yes |  |
-| `successful_validation` | `number` | Yes |  |
-| `total_processed` | `number` | Yes |  |
+| `failed_validations` | `number` | No |  |
+| `results` | `Record<string, any>` | No |  |
+| `successful_validations` | `number` | No |  |
+| `total_processed` | `number` | No |  |
 
 ### Operations
 
@@ -711,10 +687,6 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.BatchEmailValidationResponseDto().create({
-  failed_validation: 1,
-  result: {},
-  successful_validation: 1,
-  total_processed: 1,
 })
 ```
 
@@ -808,7 +780,7 @@ const domain_analysi = client.DomainAnalysi()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `any[]` | Yes |  |
+| `domains` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -818,7 +790,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.DomainAnalysi().create({
-  domain: [],
+  domains: [],
 })
 ```
 
@@ -871,7 +843,7 @@ const domain_reputation_v1_dto = client.DomainReputationV1Dto()
 | `domain` | `string` | Yes |  |
 | `is_disposable_email_domain` | `boolean` | Yes |  |
 | `is_valid` | `boolean` | Yes |  |
-| `resolved_ip` | `any[]` | Yes |  |
+| `resolved_ips` | `any[]` | Yes |  |
 | `threat` | `Record<string, any>` | Yes |  |
 
 ### Operations
@@ -923,28 +895,12 @@ const email = client.Email()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email` | `string` | Yes |  |
-| `factor` | `Record<string, any>` | Yes |  |
-| `has_mx_record` | `boolean` | Yes |  |
-| `ip` | `any` | No |  |
+| `email_factors` | `null` | Yes |  |
+| `has_mx_records` | `boolean` | Yes |  |
+| `ip_factors` | `null` | Yes |  |
 | `is_disposable` | `boolean` | Yes |  |
-| `mx_record` | `any[]` | Yes |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `number` | Yes |  |
+| `mx_records` | `any[]` | Yes |  |
 | `syntax` | `Record<string, any>` | Yes |  |
-
-### Field Usage by Operation
-
-| Field | load |
-| --- | --- |
-| `email` | Yes |
-| `factor` | - |
-| `has_mx_record` | - |
-| `ip` | - |
-| `is_disposable` | - |
-| `mx_record` | - |
-| `risk_level` | - |
-| `score` | - |
-| `syntax` | - |
 
 ### Operations
 
@@ -994,7 +950,7 @@ const forward = client.Forward()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `any[]` | Yes |  |
+| `addresses` | `any[]` | Yes |  |
 | `hostname` | `string` | Yes |  |
 
 ### Operations
@@ -1089,11 +1045,8 @@ const ip_reputation = client.IpReputation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `any` | No |  |
-| `factor` | `Record<string, any>` | Yes |  |
-| `ip` | `any` | No |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `number` | Yes |  |
+| `email_factors` | `null` | Yes |  |
+| `ip_factors` | `null` | Yes |  |
 
 ### Operations
 
@@ -1143,11 +1096,11 @@ const ipn = client.Ipn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `any` | No |  |
+| `asn` | `string | null` | No |  |
 | `ip` | `string` | Yes |  |
-| `isp` | `any` | No |  |
+| `isp` | `string | null` | No |  |
 | `location` | `Record<string, any>` | Yes |  |
-| `suspicious_factor` | `Record<string, any>` | Yes |  |
+| `suspicious_factors` | `Record<string, any>` | Yes |  |
 
 ### Operations
 
@@ -1187,60 +1140,6 @@ Return a copy of the entity options.
 
 ---
 
-## Ipn2Entity
-
-```ts
-const ipn2 = client.Ipn2()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `asn` | `any` | No |  |
-| `ip` | `string` | Yes |  |
-| `isp` | `any` | No |  |
-| `location` | `Record<string, any>` | Yes |  |
-| `suspicious_factor` | `Record<string, any>` | Yes |  |
-
-### Operations
-
-#### `load(match: object, ctrl?: object)`
-
-Load a single entity matching the given criteria.
-
-```ts
-const result = await client.Ipn2().load({ ip: 'ip' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `Ipn2Entity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `IpGeolocationApi4SDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## MxnEntity
 
 ```ts
@@ -1252,7 +1151,7 @@ const mxn = client.Mxn()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `mx_record` | `any[]` | Yes |  |
+| `mx_records` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -1356,12 +1255,12 @@ const rate_limit_info_dto = client.RateLimitInfoDto()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_api` | `Record<string, any>` | Yes |  |
-| `interval_second` | `number` | Yes |  |
+| `interval_seconds` | `number` | Yes |  |
 | `ip_api` | `Record<string, any>` | Yes |  |
 | `next_renewal_date` | `string` | No |  |
 | `plan_id` | `string` | Yes |  |
 | `plan_name` | `string` | No |  |
-| `status` | `any` | No |  |
+| `status` | `string | null` | No |  |
 
 ### Operations
 
@@ -1411,10 +1310,10 @@ const reverse = client.Reverse()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `hostname` | `any` | No |  |
+| `hostname` | `string | null` | No |  |
 | `ip` | `string` | Yes |  |
 | `ptr_record` | `string` | No |  |
-| `ttl` | `any` | No |  |
+| `ttl` | `number | null` | No |  |
 
 ### Operations
 
@@ -1464,11 +1363,8 @@ const risk_score = client.RiskScore()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `any` | No |  |
-| `factor` | `Record<string, any>` | Yes |  |
-| `ip` | `any` | No |  |
-| `risk_level` | `string` | Yes |  |
-| `score` | `number` | Yes |  |
+| `email_factors` | `null` | Yes |  |
+| `ip_factors` | `null` | Yes |  |
 
 ### Operations
 
@@ -1659,9 +1555,9 @@ const whoi = client.Whoi()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | Yes |  |
-| `error` | `any` | No |  |
+| `error` | `string | null` | No |  |
 | `expires_on` | `string` | No |  |
-| `name_server` | `any[]` | Yes |  |
+| `name_servers` | `any[]` | Yes |  |
 | `raw` | `string` | Yes |  |
 | `registered_on` | `string` | No |  |
 | `registrar` | `any` | No |  |

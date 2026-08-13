@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local advanced, err = client:Advanced():load({ id = "example_id" })
+local riskscore, err = client:RiskScore():load()
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Advanced():load({ id = "test01" })
+local result, err = client:RiskScore():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -201,7 +201,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `IpInfoV0` | `(data) -> IpInfoV0Entity` | Create an IpInfoV0 entity instance. |
 | `IpReputation` | `(data) -> IpReputationEntity` | Create an IpReputation entity instance. |
 | `Ipn` | `(data) -> IpnEntity` | Create an Ipn entity instance. |
-| `Ipn2` | `(data) -> Ipn2Entity` | Create an Ipn2 entity instance. |
 | `Mxn` | `(data) -> MxnEntity` | Create a Mxn entity instance. |
 | `PaddleController` | `(data) -> PaddleControllerEntity` | Create a PaddleController entity instance. |
 | `RateLimitInfoDto` | `(data) -> RateLimitInfoDtoEntity` | Create a RateLimitInfoDto entity instance. |
@@ -256,7 +255,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `email` |  |
 | `free` |  |
 | `gravatar` |  |
-| `has_mx_record` |  |
+| `has_mx_records` |  |
 | `reachable` |  |
 | `role_account` |  |
 | `smtp` |  |
@@ -271,23 +270,23 @@ API path: `/api/v1/email/advanced/{email}`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `auth_type` |  |
-| `avg_request_duration_nano` |  |
-| `batch_operation` |  |
-| `batch_tokens_consumed` |  |
-| `created_at` |  |
-| `hour_bucket` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `authType` |  |
+| `avgRequestDurationNanos` |  |
+| `batchOperations` |  |
+| `batchTokensConsumed` |  |
+| `createdAt` |  |
+| `hourBucket` |  |
 | `id` |  |
-| `min_remaining_quota` |  |
-| `peak_remaining_quota` |  |
-| `plan_id` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
-| `updated_at` |  |
+| `minRemainingQuota` |  |
+| `peakRemainingQuota` |  |
+| `planId` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
+| `updatedAt` |  |
 
 Operations: Load.
 
@@ -297,16 +296,16 @@ API path: `/api/v1/usage/stats`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `avg_request_duration_m` |  |
-| `batch_operation` |  |
-| `period_end` |  |
-| `period_start` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `avgRequestDurationMs` |  |
+| `batchOperations` |  |
+| `periodEnd` |  |
+| `periodStart` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
 
 Operations: Load.
 
@@ -332,14 +331,8 @@ API path: `/api/v1/asn/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `failed_lookup` |  |
-| `failed_validation` |  |
+| `emails` |  |
 | `ips` |  |
-| `result` |  |
-| `successful_lookup` |  |
-| `successful_validation` |  |
-| `total_processed` |  |
 
 Operations: Create.
 
@@ -349,9 +342,9 @@ API path: `/api/v1/email/advanced/batch`
 
 | Field | Description |
 | --- | --- |
-| `failed_validation` |  |
-| `result` |  |
-| `successful_validation` |  |
+| `failed_validations` |  |
+| `results` |  |
+| `successful_validations` |  |
 | `total_processed` |  |
 
 Operations: Create.
@@ -371,7 +364,7 @@ API path: `/management/cache/domain-age/check/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 
 Operations: Create, Load.
 
@@ -384,7 +377,7 @@ API path: `/api/v1/domain/age/batch`
 | `domain` |  |
 | `is_disposable_email_domain` |  |
 | `is_valid` |  |
-| `resolved_ip` |  |
+| `resolved_ips` |  |
 | `threat` |  |
 
 Operations: Load.
@@ -396,13 +389,11 @@ API path: `/api/v1/domain/reputation/{domain}`
 | Field | Description |
 | --- | --- |
 | `email` |  |
-| `factor` |  |
-| `has_mx_record` |  |
-| `ip` |  |
+| `email_factors` |  |
+| `has_mx_records` |  |
+| `ip_factors` |  |
 | `is_disposable` |  |
-| `mx_record` |  |
-| `risk_level` |  |
-| `score` |  |
+| `mx_records` |  |
 | `syntax` |  |
 
 Operations: Load.
@@ -413,7 +404,7 @@ API path: `/api/v1/email/{email}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
+| `addresses` |  |
 | `hostname` |  |
 
 Operations: Load.
@@ -433,11 +424,8 @@ API path: `/api/json/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: Load.
 
@@ -451,21 +439,7 @@ API path: `/api/v1/ip-reputation/{ip}`
 | `ip` |  |
 | `isp` |  |
 | `location` |  |
-| `suspicious_factor` |  |
-
-Operations: Load.
-
-API path: `/api/v1/ip`
-
-#### Ipn2
-
-| Field | Description |
-| --- | --- |
-| `asn` |  |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `suspicious_factor` |  |
+| `suspicious_factors` |  |
 
 Operations: Load.
 
@@ -476,7 +450,7 @@ API path: `/api/v1/ip/{ip}`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `mx_record` |  |
+| `mx_records` |  |
 
 Operations: Load.
 
@@ -496,7 +470,7 @@ API path: `/month-sub`
 | Field | Description |
 | --- | --- |
 | `email_api` |  |
-| `interval_second` |  |
+| `interval_seconds` |  |
 | `ip_api` |  |
 | `next_renewal_date` |  |
 | `plan_id` |  |
@@ -524,11 +498,8 @@ API path: `/api/v1/dns/reverse/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: Load.
 
@@ -571,7 +542,7 @@ API path: `/api/v1/usage/current-month`
 | `domain` |  |
 | `error` |  |
 | `expires_on` |  |
-| `name_server` |  |
+| `name_servers` |  |
 | `raw` |  |
 | `registered_on` |  |
 | `registrar` |  |
@@ -605,7 +576,7 @@ Create an instance: `local advanced = client:Advanced(nil)`
 | `email` | `string` |  |
 | `free` | `boolean` |  |
 | `gravatar` | `any` |  |
-| `has_mx_record` | `boolean` |  |
+| `has_mx_records` | `boolean` |  |
 | `reachable` | `string` |  |
 | `role_account` | `boolean` |  |
 | `smtp` | `any` |  |
@@ -633,23 +604,23 @@ Create an instance: `local api_usage_stats_model = client:ApiUsageStatsModel(nil
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `string` |  |
-| `api_type` | `string` |  |
-| `auth_type` | `string` |  |
-| `avg_request_duration_nano` | `any` |  |
-| `batch_operation` | `number` |  |
-| `batch_tokens_consumed` | `number` |  |
-| `created_at` | `any` |  |
-| `hour_bucket` | `string` |  |
-| `id` | `any` |  |
-| `min_remaining_quota` | `any` |  |
-| `peak_remaining_quota` | `any` |  |
-| `plan_id` | `string` |  |
-| `quota_consumed` | `number` |  |
-| `rate_limited_request` | `number` |  |
-| `successful_request` | `number` |  |
-| `total_request` | `number` |  |
-| `updated_at` | `any` |  |
+| `apiKey` | `string` |  |
+| `apiType` | `string` |  |
+| `authType` | `string` |  |
+| `avgRequestDurationNanos` | `number|nil` |  |
+| `batchOperations` | `number` |  |
+| `batchTokensConsumed` | `number` |  |
+| `createdAt` | `string|nil` |  |
+| `hourBucket` | `string` |  |
+| `id` | `number|nil` |  |
+| `minRemainingQuota` | `number|nil` |  |
+| `peakRemainingQuota` | `number|nil` |  |
+| `planId` | `string` |  |
+| `quotaConsumed` | `number` |  |
+| `rateLimitedRequests` | `number` |  |
+| `successfulRequests` | `number` |  |
+| `totalRequests` | `number` |  |
+| `updatedAt` | `string|nil` |  |
 
 #### Example: Load
 
@@ -672,16 +643,16 @@ Create an instance: `local api_usage_summary = client:ApiUsageSummary(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `string` |  |
-| `api_type` | `string` |  |
-| `avg_request_duration_m` | `any` |  |
-| `batch_operation` | `number` |  |
-| `period_end` | `string` |  |
-| `period_start` | `string` |  |
-| `quota_consumed` | `number` |  |
-| `rate_limited_request` | `number` |  |
-| `successful_request` | `number` |  |
-| `total_request` | `number` |  |
+| `apiKey` | `string` |  |
+| `apiType` | `string` |  |
+| `avgRequestDurationMs` | `number|nil` |  |
+| `batchOperations` | `number` |  |
+| `periodEnd` | `string` |  |
+| `periodStart` | `string` |  |
+| `quotaConsumed` | `number` |  |
+| `rateLimitedRequests` | `number` |  |
+| `successfulRequests` | `number` |  |
+| `totalRequests` | `number` |  |
 
 #### Example: Load
 
@@ -704,13 +675,13 @@ Create an instance: `local asn = client:Asn(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | `any` |  |
-| `country` | `any` |  |
+| `asn` | `number|nil` |  |
+| `country` | `string|nil` |  |
 | `country_code` | `string` |  |
 | `ip` | `string` |  |
 | `is_datacenter` | `boolean` |  |
-| `network` | `any` |  |
-| `organization` | `any` |  |
+| `network` | `string|nil` |  |
+| `organization` | `string|nil` |  |
 
 #### Example: Load
 
@@ -733,27 +704,15 @@ Create an instance: `local batch = client:Batch(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `table` |  |
-| `failed_lookup` | `number` |  |
-| `failed_validation` | `number` |  |
+| `emails` | `table` |  |
 | `ips` | `table` |  |
-| `result` | `table` |  |
-| `successful_lookup` | `number` |  |
-| `successful_validation` | `number` |  |
-| `total_processed` | `number` |  |
 
 #### Example: Create
 
 ```lua
 local batch, err = client:Batch():create({
-  email = {}, -- table
-  failed_lookup = 1, -- number
-  failed_validation = 1, -- number
+  emails = {}, -- table
   ips = {}, -- table
-  result = {}, -- table
-  successful_lookup = 1, -- number
-  successful_validation = 1, -- number
-  total_processed = 1, -- number
 })
 ```
 
@@ -772,19 +731,15 @@ Create an instance: `local batch_email_validation_response_dto = client:BatchEma
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `failed_validation` | `number` |  |
-| `result` | `table` |  |
-| `successful_validation` | `number` |  |
+| `failed_validations` | `number` |  |
+| `results` | `table` |  |
+| `successful_validations` | `number` |  |
 | `total_processed` | `number` |  |
 
 #### Example: Create
 
 ```lua
 local batch_email_validation_response_dto, err = client:BatchEmailValidationResponseDto():create({
-  failed_validation = 1, -- number
-  result = {}, -- table
-  successful_validation = 1, -- number
-  total_processed = 1, -- number
 })
 ```
 
@@ -822,7 +777,7 @@ Create an instance: `local domain_analysi = client:DomainAnalysi(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `table` |  |
+| `domains` | `table` |  |
 
 #### Example: Load
 
@@ -834,7 +789,7 @@ local domain_analysi, err = client:DomainAnalysi():load({ domain = "domain" })
 
 ```lua
 local domain_analysi, err = client:DomainAnalysi():create({
-  domain = {}, -- table
+  domains = {}, -- table
 })
 ```
 
@@ -856,7 +811,7 @@ Create an instance: `local domain_reputation_v1_dto = client:DomainReputationV1D
 | `domain` | `string` |  |
 | `is_disposable_email_domain` | `boolean` |  |
 | `is_valid` | `boolean` |  |
-| `resolved_ip` | `table` |  |
+| `resolved_ips` | `table` |  |
 | `threat` | `table` |  |
 
 #### Example: Load
@@ -881,13 +836,11 @@ Create an instance: `local email = client:Email(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` |  |
-| `factor` | `table` |  |
-| `has_mx_record` | `boolean` |  |
-| `ip` | `any` |  |
+| `email_factors` | `nil` |  |
+| `has_mx_records` | `boolean` |  |
+| `ip_factors` | `nil` |  |
 | `is_disposable` | `boolean` |  |
-| `mx_record` | `table` |  |
-| `risk_level` | `string` |  |
-| `score` | `number` |  |
+| `mx_records` | `table` |  |
 | `syntax` | `table` |  |
 
 #### Example: Load
@@ -911,7 +864,7 @@ Create an instance: `local forward = client:Forward(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `table` |  |
+| `addresses` | `table` |  |
 | `hostname` | `string` |  |
 
 #### Example: Load
@@ -952,11 +905,8 @@ Create an instance: `local ip_reputation = client:IpReputation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `any` |  |
-| `factor` | `table` |  |
-| `ip` | `any` |  |
-| `risk_level` | `string` |  |
-| `score` | `number` |  |
+| `email_factors` | `nil` |  |
+| `ip_factors` | `nil` |  |
 
 #### Example: Load
 
@@ -979,43 +929,16 @@ Create an instance: `local ipn = client:Ipn(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | `any` |  |
+| `asn` | `string|nil` |  |
 | `ip` | `string` |  |
-| `isp` | `any` |  |
+| `isp` | `string|nil` |  |
 | `location` | `table` |  |
-| `suspicious_factor` | `table` |  |
+| `suspicious_factors` | `table` |  |
 
 #### Example: Load
 
 ```lua
 local ipn, err = client:Ipn():load()
-```
-
-
-### Ipn2
-
-Create an instance: `local ipn2 = client:Ipn2(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `asn` | `any` |  |
-| `ip` | `string` |  |
-| `isp` | `any` |  |
-| `location` | `table` |  |
-| `suspicious_factor` | `table` |  |
-
-#### Example: Load
-
-```lua
-local ipn2, err = client:Ipn2():load({ ip = "ip" })
 ```
 
 
@@ -1034,7 +957,7 @@ Create an instance: `local mxn = client:Mxn(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `mx_record` | `table` |  |
+| `mx_records` | `table` |  |
 
 #### Example: Load
 
@@ -1083,12 +1006,12 @@ Create an instance: `local rate_limit_info_dto = client:RateLimitInfoDto(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_api` | `table` |  |
-| `interval_second` | `number` |  |
+| `interval_seconds` | `number` |  |
 | `ip_api` | `table` |  |
 | `next_renewal_date` | `string` |  |
 | `plan_id` | `string` |  |
 | `plan_name` | `string` |  |
-| `status` | `any` |  |
+| `status` | `string|nil` |  |
 
 #### Example: Load
 
@@ -1111,10 +1034,10 @@ Create an instance: `local reverse = client:Reverse(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `hostname` | `any` |  |
+| `hostname` | `string|nil` |  |
 | `ip` | `string` |  |
 | `ptr_record` | `string` |  |
-| `ttl` | `any` |  |
+| `ttl` | `number|nil` |  |
 
 #### Example: Load
 
@@ -1137,11 +1060,8 @@ Create an instance: `local risk_score = client:RiskScore(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `any` |  |
-| `factor` | `table` |  |
-| `ip` | `any` |  |
-| `risk_level` | `string` |  |
-| `score` | `number` |  |
+| `email_factors` | `nil` |  |
+| `ip_factors` | `nil` |  |
 
 #### Example: Load
 
@@ -1224,9 +1144,9 @@ Create an instance: `local whoi = client:Whoi(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `error` | `any` |  |
+| `error` | `string|nil` |  |
 | `expires_on` | `string` |  |
-| `name_server` | `table` |  |
+| `name_servers` | `table` |  |
 | `raw` | `string` |  |
 | `registered_on` | `string` |  |
 | `registrar` | `any` |  |
@@ -1316,11 +1236,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local advanced = client:Advanced()
-advanced:load({ id = "example_id" })
+local riskscore = client:RiskScore()
+riskscore:load()
 
--- advanced:data_get() now returns the advanced data from the last load
--- advanced:match_get() returns the last match criteria
+-- riskscore:data_get() now returns the riskscore data from the last load
+-- riskscore:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

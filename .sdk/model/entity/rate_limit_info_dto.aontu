@@ -11,7 +11,7 @@ main: kit: entity: rate_limit_info_dto: {
       type: "`$OBJECT`"
     }
     {
-      name: "interval_second"
+      name: "interval_seconds"
       req: true
       type: "`$INTEGER`"
     }

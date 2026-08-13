@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import IpGeolocationApi4SDK
-from core.error import IpGeolocationApi4Error
-from core.result import IpGeolocationApi4Result
-from core.response import IpGeolocationApi4Response
-from core.spec import IpGeolocationApi4Spec
-from feature.base_feature import IpGeolocationApi4BaseFeature
+from projectname_sdk.core.error import IpGeolocationApi4Error
+from projectname_sdk.core.result import IpGeolocationApi4Result
+from projectname_sdk.core.response import IpGeolocationApi4Response
+from projectname_sdk.core.spec import IpGeolocationApi4Spec
+from projectname_sdk.feature.base_feature import IpGeolocationApi4BaseFeature
 
 
 def _client():

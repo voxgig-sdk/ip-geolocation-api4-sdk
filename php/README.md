@@ -37,7 +37,7 @@ DomainAnalysi is nested under domain, so provide the `domain`.
 
 ```php
 try {
-    // load() returns the bare DomainAnalysi record (throws on error).
+    // load() returns the ENTITY — call data_get() for the DomainAnalysi record (throws on error).
     $domainanalysi = $client->DomainAnalysi()->load(["domain" => "example_domain"]);
     print_r($domainanalysi);
 } catch (\Throwable $err) {
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $advanced = $client->Advanced()->load(["id" => "example_id"]);
+    $riskscore = $client->RiskScore()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,12 +125,13 @@ data via the `entity` option so offline calls resolve without a live server:
 
 ```php
 $client = IpGeolocationApi4SDK::test([
-    "entity" => ["advanced" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["riskscore" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
-$advanced = $client->Advanced()->load(["id" => "test01"]);
-print_r($advanced);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$riskscore = $client->RiskScore()->load(["id" => "test01"]);
+print_r($riskscore);
 ```
 
 ### Use a custom fetch function
@@ -223,7 +224,6 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `IpInfoV0` | `($data): IpInfoV0Entity` | Create an IpInfoV0 entity instance. |
 | `IpReputation` | `($data): IpReputationEntity` | Create an IpReputation entity instance. |
 | `Ipn` | `($data): IpnEntity` | Create an Ipn entity instance. |
-| `Ipn2` | `($data): Ipn2Entity` | Create an Ipn2 entity instance. |
 | `Mxn` | `($data): MxnEntity` | Create a Mxn entity instance. |
 | `PaddleController` | `($data): PaddleControllerEntity` | Create a PaddleController entity instance. |
 | `RateLimitInfoDto` | `($data): RateLimitInfoDtoEntity` | Create a RateLimitInfoDto entity instance. |
@@ -252,7 +252,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -278,7 +278,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `email` |  |
 | `free` |  |
 | `gravatar` |  |
-| `has_mx_record` |  |
+| `has_mx_records` |  |
 | `reachable` |  |
 | `role_account` |  |
 | `smtp` |  |
@@ -293,23 +293,23 @@ API path: `/api/v1/email/advanced/{email}`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `auth_type` |  |
-| `avg_request_duration_nano` |  |
-| `batch_operation` |  |
-| `batch_tokens_consumed` |  |
-| `created_at` |  |
-| `hour_bucket` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `authType` |  |
+| `avgRequestDurationNanos` |  |
+| `batchOperations` |  |
+| `batchTokensConsumed` |  |
+| `createdAt` |  |
+| `hourBucket` |  |
 | `id` |  |
-| `min_remaining_quota` |  |
-| `peak_remaining_quota` |  |
-| `plan_id` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
-| `updated_at` |  |
+| `minRemainingQuota` |  |
+| `peakRemainingQuota` |  |
+| `planId` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
+| `updatedAt` |  |
 
 Operations: Load.
 
@@ -319,16 +319,16 @@ API path: `/api/v1/usage/stats`
 
 | Field | Description |
 | --- | --- |
-| `api_key` |  |
-| `api_type` |  |
-| `avg_request_duration_m` |  |
-| `batch_operation` |  |
-| `period_end` |  |
-| `period_start` |  |
-| `quota_consumed` |  |
-| `rate_limited_request` |  |
-| `successful_request` |  |
-| `total_request` |  |
+| `apiKey` |  |
+| `apiType` |  |
+| `avgRequestDurationMs` |  |
+| `batchOperations` |  |
+| `periodEnd` |  |
+| `periodStart` |  |
+| `quotaConsumed` |  |
+| `rateLimitedRequests` |  |
+| `successfulRequests` |  |
+| `totalRequests` |  |
 
 Operations: Load.
 
@@ -354,14 +354,8 @@ API path: `/api/v1/asn/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `failed_lookup` |  |
-| `failed_validation` |  |
+| `emails` |  |
 | `ips` |  |
-| `result` |  |
-| `successful_lookup` |  |
-| `successful_validation` |  |
-| `total_processed` |  |
 
 Operations: Create.
 
@@ -371,9 +365,9 @@ API path: `/api/v1/email/advanced/batch`
 
 | Field | Description |
 | --- | --- |
-| `failed_validation` |  |
-| `result` |  |
-| `successful_validation` |  |
+| `failed_validations` |  |
+| `results` |  |
+| `successful_validations` |  |
 | `total_processed` |  |
 
 Operations: Create.
@@ -393,7 +387,7 @@ API path: `/management/cache/domain-age/check/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
+| `domains` |  |
 
 Operations: Create, Load.
 
@@ -406,7 +400,7 @@ API path: `/api/v1/domain/age/batch`
 | `domain` |  |
 | `is_disposable_email_domain` |  |
 | `is_valid` |  |
-| `resolved_ip` |  |
+| `resolved_ips` |  |
 | `threat` |  |
 
 Operations: Load.
@@ -418,13 +412,11 @@ API path: `/api/v1/domain/reputation/{domain}`
 | Field | Description |
 | --- | --- |
 | `email` |  |
-| `factor` |  |
-| `has_mx_record` |  |
-| `ip` |  |
+| `email_factors` |  |
+| `has_mx_records` |  |
+| `ip_factors` |  |
 | `is_disposable` |  |
-| `mx_record` |  |
-| `risk_level` |  |
-| `score` |  |
+| `mx_records` |  |
 | `syntax` |  |
 
 Operations: Load.
@@ -435,7 +427,7 @@ API path: `/api/v1/email/{email}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
+| `addresses` |  |
 | `hostname` |  |
 
 Operations: Load.
@@ -455,11 +447,8 @@ API path: `/api/json/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: Load.
 
@@ -473,21 +462,7 @@ API path: `/api/v1/ip-reputation/{ip}`
 | `ip` |  |
 | `isp` |  |
 | `location` |  |
-| `suspicious_factor` |  |
-
-Operations: Load.
-
-API path: `/api/v1/ip`
-
-#### Ipn2
-
-| Field | Description |
-| --- | --- |
-| `asn` |  |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `suspicious_factor` |  |
+| `suspicious_factors` |  |
 
 Operations: Load.
 
@@ -498,7 +473,7 @@ API path: `/api/v1/ip/{ip}`
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `mx_record` |  |
+| `mx_records` |  |
 
 Operations: Load.
 
@@ -518,7 +493,7 @@ API path: `/month-sub`
 | Field | Description |
 | --- | --- |
 | `email_api` |  |
-| `interval_second` |  |
+| `interval_seconds` |  |
 | `ip_api` |  |
 | `next_renewal_date` |  |
 | `plan_id` |  |
@@ -546,11 +521,8 @@ API path: `/api/v1/dns/reverse/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `factor` |  |
-| `ip` |  |
-| `risk_level` |  |
-| `score` |  |
+| `email_factors` |  |
+| `ip_factors` |  |
 
 Operations: Load.
 
@@ -593,7 +565,7 @@ API path: `/api/v1/usage/current-month`
 | `domain` |  |
 | `error` |  |
 | `expires_on` |  |
-| `name_server` |  |
+| `name_servers` |  |
 | `raw` |  |
 | `registered_on` |  |
 | `registrar` |  |
@@ -627,7 +599,7 @@ Create an instance: `$advanced = $client->Advanced();`
 | `email` | `string` |  |
 | `free` | `bool` |  |
 | `gravatar` | `mixed` |  |
-| `has_mx_record` | `bool` |  |
+| `has_mx_records` | `bool` |  |
 | `reachable` | `string` |  |
 | `role_account` | `bool` |  |
 | `smtp` | `mixed` |  |
@@ -637,7 +609,7 @@ Create an instance: `$advanced = $client->Advanced();`
 #### Example: Load
 
 ```php
-// load() returns the bare Advanced record (throws on error).
+// load() returns the ENTITY — call data_get() for the Advanced record (throws on error).
 $advanced = $client->Advanced()->load(["id" => "advanced_id"]);
 ```
 
@@ -656,28 +628,28 @@ Create an instance: `$api_usage_stats_model = $client->ApiUsageStatsModel();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `string` |  |
-| `api_type` | `string` |  |
-| `auth_type` | `string` |  |
-| `avg_request_duration_nano` | `mixed` |  |
-| `batch_operation` | `int` |  |
-| `batch_tokens_consumed` | `int` |  |
-| `created_at` | `mixed` |  |
-| `hour_bucket` | `string` |  |
+| `apiKey` | `string` |  |
+| `apiType` | `string` |  |
+| `authType` | `string` |  |
+| `avgRequestDurationNanos` | `mixed` |  |
+| `batchOperations` | `int` |  |
+| `batchTokensConsumed` | `int` |  |
+| `createdAt` | `mixed` |  |
+| `hourBucket` | `string` |  |
 | `id` | `mixed` |  |
-| `min_remaining_quota` | `mixed` |  |
-| `peak_remaining_quota` | `mixed` |  |
-| `plan_id` | `string` |  |
-| `quota_consumed` | `int` |  |
-| `rate_limited_request` | `int` |  |
-| `successful_request` | `int` |  |
-| `total_request` | `int` |  |
-| `updated_at` | `mixed` |  |
+| `minRemainingQuota` | `mixed` |  |
+| `peakRemainingQuota` | `mixed` |  |
+| `planId` | `string` |  |
+| `quotaConsumed` | `int` |  |
+| `rateLimitedRequests` | `int` |  |
+| `successfulRequests` | `int` |  |
+| `totalRequests` | `int` |  |
+| `updatedAt` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare ApiUsageStatsModel record (throws on error).
+// load() returns the ENTITY — call data_get() for the ApiUsageStatsModel record (throws on error).
 $api_usage_stats_model = $client->ApiUsageStatsModel()->load(["id" => "api_usage_stats_model_id"]);
 ```
 
@@ -696,21 +668,21 @@ Create an instance: `$api_usage_summary = $client->ApiUsageSummary();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `api_key` | `string` |  |
-| `api_type` | `string` |  |
-| `avg_request_duration_m` | `mixed` |  |
-| `batch_operation` | `int` |  |
-| `period_end` | `string` |  |
-| `period_start` | `string` |  |
-| `quota_consumed` | `int` |  |
-| `rate_limited_request` | `int` |  |
-| `successful_request` | `int` |  |
-| `total_request` | `int` |  |
+| `apiKey` | `string` |  |
+| `apiType` | `string` |  |
+| `avgRequestDurationMs` | `mixed` |  |
+| `batchOperations` | `int` |  |
+| `periodEnd` | `string` |  |
+| `periodStart` | `string` |  |
+| `quotaConsumed` | `int` |  |
+| `rateLimitedRequests` | `int` |  |
+| `successfulRequests` | `int` |  |
+| `totalRequests` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare ApiUsageSummary record (throws on error).
+// load() returns the ENTITY — call data_get() for the ApiUsageSummary record (throws on error).
 $api_usage_summary = $client->ApiUsageSummary()->load();
 ```
 
@@ -740,7 +712,7 @@ Create an instance: `$asn = $client->Asn();`
 #### Example: Load
 
 ```php
-// load() returns the bare Asn record (throws on error).
+// load() returns the ENTITY — call data_get() for the Asn record (throws on error).
 $asn = $client->Asn()->load(["id" => "asn_id"]);
 ```
 
@@ -759,27 +731,15 @@ Create an instance: `$batch = $client->Batch();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `array` |  |
-| `failed_lookup` | `int` |  |
-| `failed_validation` | `int` |  |
+| `emails` | `array` |  |
 | `ips` | `array` |  |
-| `result` | `array` |  |
-| `successful_lookup` | `int` |  |
-| `successful_validation` | `int` |  |
-| `total_processed` | `int` |  |
 
 #### Example: Create
 
 ```php
 $batch = $client->Batch()->create([
-    "email" => null, // array
-    "failed_lookup" => null, // int
-    "failed_validation" => null, // int
+    "emails" => null, // array
     "ips" => null, // array
-    "result" => null, // array
-    "successful_lookup" => null, // int
-    "successful_validation" => null, // int
-    "total_processed" => null, // int
 ]);
 ```
 
@@ -798,19 +758,15 @@ Create an instance: `$batch_email_validation_response_dto = $client->BatchEmailV
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `failed_validation` | `int` |  |
-| `result` | `array` |  |
-| `successful_validation` | `int` |  |
+| `failed_validations` | `int` |  |
+| `results` | `array` |  |
+| `successful_validations` | `int` |  |
 | `total_processed` | `int` |  |
 
 #### Example: Create
 
 ```php
 $batch_email_validation_response_dto = $client->BatchEmailValidationResponseDto()->create([
-    "failed_validation" => null, // int
-    "result" => null, // array
-    "successful_validation" => null, // int
-    "total_processed" => null, // int
 ]);
 ```
 
@@ -829,7 +785,7 @@ Create an instance: `$cache_management = $client->CacheManagement();`
 #### Example: Load
 
 ```php
-// load() returns the bare CacheManagement record (throws on error).
+// load() returns the ENTITY — call data_get() for the CacheManagement record (throws on error).
 $cache_management = $client->CacheManagement()->load();
 ```
 
@@ -849,12 +805,12 @@ Create an instance: `$domain_analysi = $client->DomainAnalysi();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `array` |  |
+| `domains` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare DomainAnalysi record (throws on error).
+// load() returns the ENTITY — call data_get() for the DomainAnalysi record (throws on error).
 $domain_analysi = $client->DomainAnalysi()->load(["domain" => "domain"]);
 ```
 
@@ -862,7 +818,7 @@ $domain_analysi = $client->DomainAnalysi()->load(["domain" => "domain"]);
 
 ```php
 $domain_analysi = $client->DomainAnalysi()->create([
-    "domain" => null, // array
+    "domains" => null, // array
 ]);
 ```
 
@@ -884,13 +840,13 @@ Create an instance: `$domain_reputation_v1_dto = $client->DomainReputationV1Dto(
 | `domain` | `string` |  |
 | `is_disposable_email_domain` | `bool` |  |
 | `is_valid` | `bool` |  |
-| `resolved_ip` | `array` |  |
+| `resolved_ips` | `array` |  |
 | `threat` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare DomainReputationV1Dto record (throws on error).
+// load() returns the ENTITY — call data_get() for the DomainReputationV1Dto record (throws on error).
 $domain_reputation_v1_dto = $client->DomainReputationV1Dto()->load(["domain" => "domain"]);
 ```
 
@@ -910,19 +866,17 @@ Create an instance: `$email = $client->Email();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` |  |
-| `factor` | `array` |  |
-| `has_mx_record` | `bool` |  |
-| `ip` | `mixed` |  |
+| `email_factors` | `null` |  |
+| `has_mx_records` | `bool` |  |
+| `ip_factors` | `null` |  |
 | `is_disposable` | `bool` |  |
-| `mx_record` | `array` |  |
-| `risk_level` | `string` |  |
-| `score` | `float` |  |
+| `mx_records` | `array` |  |
 | `syntax` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Email record (throws on error).
+// load() returns the ENTITY — call data_get() for the Email record (throws on error).
 $email = $client->Email()->load(["id" => "email_id"]);
 ```
 
@@ -941,13 +895,13 @@ Create an instance: `$forward = $client->Forward();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `array` |  |
+| `addresses` | `array` |  |
 | `hostname` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Forward record (throws on error).
+// load() returns the ENTITY — call data_get() for the Forward record (throws on error).
 $forward = $client->Forward()->load(["id" => "forward_id"]);
 ```
 
@@ -965,7 +919,7 @@ Create an instance: `$ip_info_v0 = $client->IpInfoV0();`
 #### Example: Load
 
 ```php
-// load() returns the bare IpInfoV0 record (throws on error).
+// load() returns the ENTITY — call data_get() for the IpInfoV0 record (throws on error).
 $ip_info_v0 = $client->IpInfoV0()->load();
 ```
 
@@ -984,16 +938,13 @@ Create an instance: `$ip_reputation = $client->IpReputation();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `mixed` |  |
-| `factor` | `array` |  |
-| `ip` | `mixed` |  |
-| `risk_level` | `string` |  |
-| `score` | `float` |  |
+| `email_factors` | `null` |  |
+| `ip_factors` | `null` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare IpReputation record (throws on error).
+// load() returns the ENTITY — call data_get() for the IpReputation record (throws on error).
 $ip_reputation = $client->IpReputation()->load(["id" => "ip_reputation_id"]);
 ```
 
@@ -1016,41 +967,13 @@ Create an instance: `$ipn = $client->Ipn();`
 | `ip` | `string` |  |
 | `isp` | `mixed` |  |
 | `location` | `array` |  |
-| `suspicious_factor` | `array` |  |
+| `suspicious_factors` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Ipn record (throws on error).
+// load() returns the ENTITY — call data_get() for the Ipn record (throws on error).
 $ipn = $client->Ipn()->load();
-```
-
-
-### Ipn2
-
-Create an instance: `$ipn2 = $client->Ipn2();`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `asn` | `mixed` |  |
-| `ip` | `string` |  |
-| `isp` | `mixed` |  |
-| `location` | `array` |  |
-| `suspicious_factor` | `array` |  |
-
-#### Example: Load
-
-```php
-// load() returns the bare Ipn2 record (throws on error).
-$ipn2 = $client->Ipn2()->load(["ip" => "ip"]);
 ```
 
 
@@ -1069,12 +992,12 @@ Create an instance: `$mxn = $client->Mxn();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `mx_record` | `array` |  |
+| `mx_records` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Mxn record (throws on error).
+// load() returns the ENTITY — call data_get() for the Mxn record (throws on error).
 $mxn = $client->Mxn()->load(["domain" => "domain"]);
 ```
 
@@ -1093,7 +1016,7 @@ Create an instance: `$paddle_controller = $client->PaddleController();`
 #### Example: Load
 
 ```php
-// load() returns the bare PaddleController record (throws on error).
+// load() returns the ENTITY — call data_get() for the PaddleController record (throws on error).
 $paddle_controller = $client->PaddleController()->load();
 ```
 
@@ -1120,7 +1043,7 @@ Create an instance: `$rate_limit_info_dto = $client->RateLimitInfoDto();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_api` | `array` |  |
-| `interval_second` | `int` |  |
+| `interval_seconds` | `int` |  |
 | `ip_api` | `array` |  |
 | `next_renewal_date` | `string` |  |
 | `plan_id` | `string` |  |
@@ -1130,7 +1053,7 @@ Create an instance: `$rate_limit_info_dto = $client->RateLimitInfoDto();`
 #### Example: Load
 
 ```php
-// load() returns the bare RateLimitInfoDto record (throws on error).
+// load() returns the ENTITY — call data_get() for the RateLimitInfoDto record (throws on error).
 $rate_limit_info_dto = $client->RateLimitInfoDto()->load();
 ```
 
@@ -1157,7 +1080,7 @@ Create an instance: `$reverse = $client->Reverse();`
 #### Example: Load
 
 ```php
-// load() returns the bare Reverse record (throws on error).
+// load() returns the ENTITY — call data_get() for the Reverse record (throws on error).
 $reverse = $client->Reverse()->load(["id" => "reverse_id"]);
 ```
 
@@ -1176,16 +1099,13 @@ Create an instance: `$risk_score = $client->RiskScore();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `mixed` |  |
-| `factor` | `array` |  |
-| `ip` | `mixed` |  |
-| `risk_level` | `string` |  |
-| `score` | `float` |  |
+| `email_factors` | `null` |  |
+| `ip_factors` | `null` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare RiskScore record (throws on error).
+// load() returns the ENTITY — call data_get() for the RiskScore record (throws on error).
 $risk_score = $client->RiskScore()->load(["id" => "risk_score_id"]);
 ```
 
@@ -1203,7 +1123,7 @@ Create an instance: `$status = $client->Status();`
 #### Example: Load
 
 ```php
-// load() returns the bare Status record (throws on error).
+// load() returns the ENTITY — call data_get() for the Status record (throws on error).
 $status = $client->Status()->load();
 ```
 
@@ -1229,7 +1149,7 @@ Create an instance: `$tor = $client->Tor();`
 #### Example: Load
 
 ```php
-// load() returns the bare Tor record (throws on error).
+// load() returns the ENTITY — call data_get() for the Tor record (throws on error).
 $tor = $client->Tor()->load(["id" => "tor_id"]);
 ```
 
@@ -1247,7 +1167,7 @@ Create an instance: `$usage_statistic = $client->UsageStatistic();`
 #### Example: Load
 
 ```php
-// load() returns the bare UsageStatistic record (throws on error).
+// load() returns the ENTITY — call data_get() for the UsageStatistic record (throws on error).
 $usage_statistic = $client->UsageStatistic()->load();
 ```
 
@@ -1269,7 +1189,7 @@ Create an instance: `$whoi = $client->Whoi();`
 | `domain` | `string` |  |
 | `error` | `mixed` |  |
 | `expires_on` | `string` |  |
-| `name_server` | `array` |  |
+| `name_servers` | `array` |  |
 | `raw` | `string` |  |
 | `registered_on` | `string` |  |
 | `registrar` | `mixed` |  |
@@ -1279,7 +1199,7 @@ Create an instance: `$whoi = $client->Whoi();`
 #### Example: Load
 
 ```php
-// load() returns the bare Whoi record (throws on error).
+// load() returns the ENTITY — call data_get() for the Whoi record (throws on error).
 $whoi = $client->Whoi()->load(["id" => "whoi_id"]);
 ```
 
@@ -1360,11 +1280,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$advanced = $client->Advanced();
-$advanced->load(["id" => "example_id"]);
+$riskscore = $client->RiskScore();
+$riskscore->load();
 
-// $advanced->data_get() now returns the advanced data from the last load
-// $advanced->match_get() returns the last match criteria
+// $riskscore->data_get() now returns the riskscore data from the last load
+// $riskscore->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

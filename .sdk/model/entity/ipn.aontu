@@ -38,7 +38,7 @@ main: kit: entity: ipn: {
       type: "`$OBJECT`"
     }
     {
-      name: "suspicious_factor"
+      name: "suspicious_factors"
       req: true
       type: "`$OBJECT`"
     }
@@ -49,6 +49,37 @@ main: kit: entity: ipn: {
     load: {
       name: "load"
       points: [
+        {
+          args: {
+            params: [
+              {
+                example: "203.0.113.195"
+                kind: "param"
+                name: "ip"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/ip/{ip}"
+          parts: [
+            "api"
+            "v1"
+            "ip"
+            "{ip}"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
         {
           method: "GET"
           orig: "/api/v1/ip"
@@ -64,6 +95,14 @@ main: kit: entity: ipn: {
         }
       ]
     }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "ip"
+      ]
+    ]
   }
 
 

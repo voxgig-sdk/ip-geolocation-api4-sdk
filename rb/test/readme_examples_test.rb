@@ -56,7 +56,6 @@ class ReadmeExamplesTest < Minitest::Test
     "IpInfoV0" => "ip_info_v0",
     "IpReputation" => "ip_reputation",
     "Ipn" => "ipn",
-    "Ipn2" => "ipn2",
     "Mxn" => "mxn",
     "PaddleController" => "paddle_controller",
     "RateLimitInfoDto" => "rate_limit_info_dto",
