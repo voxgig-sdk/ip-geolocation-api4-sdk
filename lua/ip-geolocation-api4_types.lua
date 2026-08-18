@@ -118,7 +118,7 @@
 ---@class CacheManagement
 
 ---@class CacheManagementLoadMatch
----@field domain? string
+---@field domain string
 
 ---@class CacheManagementRemoveMatch
 
@@ -163,7 +163,7 @@
 ---@class IpInfoV0
 
 ---@class IpInfoV0LoadMatch
----@field ip? string
+---@field ip string
 
 ---@class IpReputation
 ---@field email_factors nil
@@ -180,7 +180,7 @@
 ---@field suspicious_factors table
 
 ---@class IpnLoadMatch
----@field ip? string
+---@field ip string
 
 ---@class Mxn
 ---@field domain string
@@ -227,7 +227,7 @@
 ---@field ip_factors nil
 
 ---@class RiskScoreLoadMatch
----@field id? string
+---@field id string
 
 ---@class Status
 

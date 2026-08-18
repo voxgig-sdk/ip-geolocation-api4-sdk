@@ -151,7 +151,7 @@ type CacheManagement struct {
 
 // CacheManagementLoadMatch is the typed request payload for CacheManagement.LoadTyped.
 type CacheManagementLoadMatch struct {
-	Domain *string `json:"domain,omitempty"`
+	Domain string `json:"domain"`
 }
 
 // CacheManagementRemoveMatch is the typed request payload for CacheManagement.RemoveTyped.
@@ -220,7 +220,7 @@ type IpInfoV0 struct {
 
 // IpInfoV0LoadMatch is the typed request payload for IpInfoV0.LoadTyped.
 type IpInfoV0LoadMatch struct {
-	Ip *string `json:"ip,omitempty"`
+	Ip string `json:"ip"`
 }
 
 // IpReputation is the typed data model for the ip_reputation entity.
@@ -245,7 +245,7 @@ type Ipn struct {
 
 // IpnLoadMatch is the typed request payload for Ipn.LoadTyped.
 type IpnLoadMatch struct {
-	Ip *string `json:"ip,omitempty"`
+	Ip string `json:"ip"`
 }
 
 // Mxn is the typed data model for the mxn entity.
@@ -314,7 +314,7 @@ type RiskScore struct {
 
 // RiskScoreLoadMatch is the typed request payload for RiskScore.LoadTyped.
 type RiskScoreLoadMatch struct {
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 }
 
 // Status is the typed data model for the status entity.

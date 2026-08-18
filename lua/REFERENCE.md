@@ -541,7 +541,7 @@ local cache_management = client:CacheManagement(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CacheManagement():load()
+local result, err = client:CacheManagement():load({ domain = "domain" })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -824,7 +824,7 @@ local ip_info_v0 = client:IpInfoV0(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:IpInfoV0():load()
+local result, err = client:IpInfoV0():load({ ip = "ip" })
 ```
 
 ### Common Methods
@@ -933,7 +933,7 @@ local ipn = client:Ipn(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Ipn():load()
+local result, err = client:Ipn():load({ ip = "ip" })
 ```
 
 ### Common Methods

@@ -36,15 +36,15 @@ from ipgeolocationapi4_sdk import IpGeolocationApi4SDK
 client = IpGeolocationApi4SDK()
 ```
 
-### 3. Load a domainanalysi
+### 3. Load a cachemanagement
 
-DomainAnalysi is nested under domain, so provide the `domain`.
+CacheManagement is nested under domain, so provide the `domain`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    domainanalysi = client.DomainAnalysi().load({"domain": "example_domain"})
-    print(domainanalysi)
+    cachemanagement = client.CacheManagement().load({"domain": "example_domain"})
+    print(cachemanagement)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -56,7 +56,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    riskscore = client.RiskScore().load()
+    riskscore = client.RiskScore().load({"id": "example_id"})
     print(riskscore)
 except Exception as err:
     print(f"load failed: {err}")
@@ -773,7 +773,7 @@ Create an instance: `cache_management = client.CacheManagement()`
 #### Example: Load
 
 ```python
-cache_management = client.CacheManagement().load()
+cache_management = client.CacheManagement().load({"domain": "domain"})
 ```
 
 
@@ -902,7 +902,7 @@ Create an instance: `ip_info_v0 = client.IpInfoV0()`
 #### Example: Load
 
 ```python
-ip_info_v0 = client.IpInfoV0().load()
+ip_info_v0 = client.IpInfoV0().load({"ip": "ip"})
 ```
 
 
@@ -953,7 +953,7 @@ Create an instance: `ipn = client.Ipn()`
 #### Example: Load
 
 ```python
-ipn = client.Ipn().load()
+ipn = client.Ipn().load({"ip": "ip"})
 ```
 
 
@@ -1251,7 +1251,7 @@ stores the returned data and match criteria internally.
 
 ```python
 riskscore = client.RiskScore()
-riskscore.load()
+riskscore.load({"id": "example_id"})
 
 # riskscore.data_get() now returns the riskscore data from the last load
 # riskscore.match_get() returns the last match criteria

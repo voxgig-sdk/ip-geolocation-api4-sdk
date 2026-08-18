@@ -33,17 +33,17 @@ import { IpGeolocationApi4SDK } from '@voxgig-sdk/ip-geolocation-api4'
 const client = new IpGeolocationApi4SDK()
 ```
 
-### 3. Load a domainanalysi
+### 3. Load a cachemanagement
 
-DomainAnalysi is nested under domain, so provide the `domain`.
+CacheManagement is nested under domain, so provide the `domain`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const domainanalysi = await client.DomainAnalysi().load({
+  const cachemanagement = await client.CacheManagement().load({
     domain: 'example_domain',
   })
-  console.log(domainanalysi)
+  console.log(cachemanagement)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -56,7 +56,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const riskscore = await client.RiskScore().load()
+  const riskscore = await client.RiskScore().load({ id: "example_id" })
   console.log(riskscore)
 } catch (err) {
   console.error('load failed:', err)
@@ -820,7 +820,7 @@ Create an instance: `const cache_management = client.CacheManagement()`
 #### Example: Load
 
 ```ts
-const cache_management = await client.CacheManagement().load()
+const cache_management = await client.CacheManagement().load({ domain: 'domain' })
 ```
 
 
@@ -949,7 +949,7 @@ Create an instance: `const ip_info_v0 = client.IpInfoV0()`
 #### Example: Load
 
 ```ts
-const ip_info_v0 = await client.IpInfoV0().load()
+const ip_info_v0 = await client.IpInfoV0().load({ ip: 'ip' })
 ```
 
 
@@ -1000,7 +1000,7 @@ Create an instance: `const ipn = client.Ipn()`
 #### Example: Load
 
 ```ts
-const ipn = await client.Ipn().load()
+const ipn = await client.Ipn().load({ ip: 'ip' })
 ```
 
 
@@ -1292,7 +1292,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const riskscore = client.RiskScore()
-await riskscore.load()
+await riskscore.load({ id: "example_id" })
 
 // riskscore.data() now returns the riskscore data from the last `load`
 // riskscore.match() returns { id: "example_id" }

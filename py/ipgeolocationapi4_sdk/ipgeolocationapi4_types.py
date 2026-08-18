@@ -156,7 +156,7 @@ class CacheManagement(TypedDict):
     pass
 
 
-class CacheManagementLoadMatch(TypedDict, total=False):
+class CacheManagementLoadMatch(TypedDict):
     domain: str
 
 
@@ -215,7 +215,7 @@ class IpInfoV0(TypedDict):
     pass
 
 
-class IpInfoV0LoadMatch(TypedDict, total=False):
+class IpInfoV0LoadMatch(TypedDict):
     ip: str
 
 
@@ -239,7 +239,7 @@ class Ipn(IpnRequired, total=False):
     isp: str | None
 
 
-class IpnLoadMatch(TypedDict, total=False):
+class IpnLoadMatch(TypedDict):
     ip: str
 
 
@@ -306,7 +306,7 @@ class RiskScore(TypedDict):
     ip_factors: None
 
 
-class RiskScoreLoadMatch(TypedDict, total=False):
+class RiskScoreLoadMatch(TypedDict):
     id: str
 
 

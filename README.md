@@ -120,11 +120,11 @@ import { IpGeolocationApi4SDK } from '@voxgig-sdk/ip-geolocation-api4'
 const client = new IpGeolocationApi4SDK()
 
 
-// Load a specific domainanalysi (returns a DomainAnalysi)
-const domainanalysi = await client.DomainAnalysi().load({
+// Load a specific cachemanagement (returns a CacheManagement)
+const cachemanagement = await client.CacheManagement().load({
   domain: 'example_domain',
 })
-console.log(domainanalysi)
+console.log(cachemanagement)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -229,14 +229,14 @@ import sdk "github.com/voxgig-sdk/ip-geolocation-api4-sdk/go"
 client := sdk.New()
 
 
-// Load a specific domainanalysi
-domainAnalysi, err := client.DomainAnalysi(nil).Load(
+// Load a specific cachemanagement
+cacheManagement, err := client.CacheManagement(nil).Load(
     map[string]any{"domain": "example_domain"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(domainAnalysi)
+fmt.Println(cacheManagement)
 ```
 
 ### Ruby

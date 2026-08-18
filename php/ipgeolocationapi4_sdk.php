@@ -40,7 +40,7 @@ class IpGeolocationApi4SDK
         $utility = new IpGeolocationApi4Utility();
         $this->_utility = $utility;
 
-        $config = IpGeolocationApi4Config::make_config();
+        $config = IpGeolocationApi4Config::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

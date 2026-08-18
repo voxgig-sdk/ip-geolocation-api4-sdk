@@ -130,7 +130,7 @@ export interface CacheManagement {
 }
 
 export interface CacheManagementLoadMatch {
-  domain?: string
+  domain: string
 }
 
 export interface CacheManagementRemoveMatch {
@@ -187,7 +187,7 @@ export interface IpInfoV0 {
 }
 
 export interface IpInfoV0LoadMatch {
-  ip?: string
+  ip: string
 }
 
 export interface IpReputation {
@@ -208,7 +208,7 @@ export interface Ipn {
 }
 
 export interface IpnLoadMatch {
-  ip?: string
+  ip: string
 }
 
 export interface Mxn {
@@ -266,7 +266,7 @@ export interface RiskScore {
 }
 
 export interface RiskScoreLoadMatch {
-  id?: string
+  id: string
 }
 
 export interface Status {

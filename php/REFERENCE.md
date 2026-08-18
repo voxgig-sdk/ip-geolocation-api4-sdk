@@ -543,7 +543,7 @@ $cache_management = $client->CacheManagement();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->CacheManagement()->load();
+$result = $client->CacheManagement()->load(["domain" => "domain"]);
 ```
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -826,7 +826,7 @@ $ip_info_v0 = $client->IpInfoV0();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->IpInfoV0()->load();
+$result = $client->IpInfoV0()->load(["ip" => "ip"]);
 ```
 
 ### Common Methods
@@ -935,7 +935,7 @@ $ipn = $client->Ipn();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Ipn()->load();
+$result = $client->Ipn()->load(["ip" => "ip"]);
 ```
 
 ### Common Methods

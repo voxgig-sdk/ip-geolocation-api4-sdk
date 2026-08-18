@@ -543,7 +543,7 @@ fmt.Println(cacheManagement.GetName()) // "cache_management"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CacheManagement(nil).Load(nil, nil)
+result, err := client.CacheManagement(nil).Load(map[string]any{"domain": "domain"}, nil)
 if err != nil {
     panic(err)
 }
@@ -829,7 +829,7 @@ fmt.Println(ipInfoV0.GetName()) // "ip_info_v0"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.IpInfoV0(nil).Load(nil, nil)
+result, err := client.IpInfoV0(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }
@@ -936,7 +936,7 @@ fmt.Println(ipn.GetName()) // "ipn"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Ipn(nil).Load(nil, nil)
+result, err := client.Ipn(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }

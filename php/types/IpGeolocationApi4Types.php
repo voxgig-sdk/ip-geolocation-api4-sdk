@@ -165,7 +165,7 @@ class CacheManagement
 /** Request payload for CacheManagement#load. */
 class CacheManagementLoadMatch
 {
-    public ?string $domain = null;
+    public string $domain;
 }
 
 /** Request payload for CacheManagement#remove. */
@@ -246,7 +246,7 @@ class IpInfoV0
 /** Request payload for IpInfoV0#load. */
 class IpInfoV0LoadMatch
 {
-    public ?string $ip = null;
+    public string $ip;
 }
 
 /** IpReputation entity data model. */
@@ -275,7 +275,7 @@ class Ipn
 /** Request payload for Ipn#load. */
 class IpnLoadMatch
 {
-    public ?string $ip = null;
+    public string $ip;
 }
 
 /** Mxn entity data model. */
@@ -355,7 +355,7 @@ class RiskScore
 /** Request payload for RiskScore#load. */
 class RiskScoreLoadMatch
 {
-    public ?string $id = null;
+    public string $id;
 }
 
 /** Status entity data model. */

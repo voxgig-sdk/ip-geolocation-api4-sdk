@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-riskscore, err := client.RiskScore(nil).Load(nil, nil)
+riskscore, err := client.RiskScore(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     // handle err
     return
@@ -813,7 +813,7 @@ Create an instance: `cacheManagement := client.CacheManagement(nil)`
 #### Example: Load
 
 ```go
-cacheManagement, err := client.CacheManagement(nil).Load(nil, nil)
+cacheManagement, err := client.CacheManagement(nil).Load(map[string]any{"domain": "domain"}, nil)
 if err != nil {
     panic(err)
 }
@@ -966,7 +966,7 @@ Create an instance: `ipInfoV0 := client.IpInfoV0(nil)`
 #### Example: Load
 
 ```go
-ipInfoV0, err := client.IpInfoV0(nil).Load(nil, nil)
+ipInfoV0, err := client.IpInfoV0(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1025,7 +1025,7 @@ Create an instance: `ipn := client.Ipn(nil)`
 #### Example: Load
 
 ```go
-ipn, err := client.Ipn(nil).Load(nil, nil)
+ipn, err := client.Ipn(nil).Load(map[string]any{"ip": "ip"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1365,7 +1365,7 @@ stores the returned data and match criteria internally.
 
 ```go
 riskscore := client.RiskScore(nil)
-riskscore.Load(nil, nil)
+riskscore.Load(map[string]any{"id": "example_id"}, nil)
 
 // riskscore.Data() now returns the riskscore data from the last load
 // riskscore.Match() returns the last match criteria

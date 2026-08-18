@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class IpGeolocationApi4Config
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -53,74 +76,52 @@ class IpGeolocationApi4Config
         'advanced' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'disposable',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'email',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'free',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'gravatar',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'has_mx_records',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'reachable',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'role_account',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'smtp',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'suggestion',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'syntax',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 9,
             ],
           ],
           'name' => 'advanced',
@@ -130,18 +131,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'test@yandex.ru',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'email',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -169,10 +167,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -182,30 +178,22 @@ class IpGeolocationApi4Config
         'api_usage_stats_model' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'apiKey',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'apiType',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'authType',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'avgRequestDurationNanos',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -213,26 +201,19 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'batchOperations',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'batchTokensConsumed',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'createdAt',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -240,19 +221,14 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'hourBucket',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'id',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -260,12 +236,9 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'minRemainingQuota',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -273,12 +246,9 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 9,
             ],
             [
-              'active' => true,
               'name' => 'peakRemainingQuota',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -286,47 +256,34 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 10,
             ],
             [
-              'active' => true,
               'name' => 'planId',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 11,
             ],
             [
-              'active' => true,
               'name' => 'quotaConsumed',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 12,
             ],
             [
-              'active' => true,
               'name' => 'rateLimitedRequests',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 13,
             ],
             [
-              'active' => true,
               'name' => 'successfulRequests',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 14,
             ],
             [
-              'active' => true,
               'name' => 'totalRequests',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 15,
             ],
             [
-              'active' => true,
               'name' => 'updatedAt',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -334,7 +291,6 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 16,
             ],
           ],
           'name' => 'api_usage_stats_model',
@@ -344,11 +300,9 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'your-api-key-here',
                         'kind' => 'query',
                         'name' => 'api_key',
@@ -357,16 +311,13 @@ class IpGeolocationApi4Config
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'IP',
                         'kind' => 'query',
                         'name' => 'api_type',
                         'orig' => 'api_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2025-11-04T00:00:00Z',
                         'kind' => 'query',
                         'name' => 'end_date',
@@ -375,7 +326,6 @@ class IpGeolocationApi4Config
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2025-11-01T00:00:00Z',
                         'kind' => 'query',
                         'name' => 'start_date',
@@ -406,10 +356,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -419,23 +367,17 @@ class IpGeolocationApi4Config
         'api_usage_summary' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'apiKey',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'apiType',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'avgRequestDurationMs',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -443,56 +385,41 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'batchOperations',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'periodEnd',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'periodStart',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'quotaConsumed',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'rateLimitedRequests',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'successfulRequests',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'totalRequests',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 9,
             ],
           ],
           'name' => 'api_usage_summary',
@@ -502,11 +429,9 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'your-api-key-here',
                         'kind' => 'query',
                         'name' => 'api_key',
@@ -515,16 +440,13 @@ class IpGeolocationApi4Config
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'IP',
                         'kind' => 'query',
                         'name' => 'api_type',
                         'orig' => 'api_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2025-11-04T00:00:00Z',
                         'kind' => 'query',
                         'name' => 'end_date',
@@ -533,7 +455,6 @@ class IpGeolocationApi4Config
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '2025-11-01T00:00:00Z',
                         'kind' => 'query',
                         'name' => 'start_date',
@@ -564,10 +485,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -577,9 +496,7 @@ class IpGeolocationApi4Config
         'asn' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'asn',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -587,12 +504,9 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -600,33 +514,23 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'country_code',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'is_datacenter',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'network',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -634,12 +538,9 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'organization',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -647,7 +548,6 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 6,
             ],
           ],
           'name' => 'asn',
@@ -657,18 +557,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '8.8.8.8',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -695,10 +592,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -708,18 +603,14 @@ class IpGeolocationApi4Config
         'batch' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'emails',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ips',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
           ],
           'name' => 'batch',
@@ -729,7 +620,6 @@ class IpGeolocationApi4Config
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -746,10 +636,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body.results`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -765,10 +653,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body.results`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -778,32 +664,20 @@ class IpGeolocationApi4Config
         'batch_email_validation_response_dto' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'failed_validations',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'results',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'successful_validations',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'total_processed',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'batch_email_validation_response_dto',
@@ -813,7 +687,6 @@ class IpGeolocationApi4Config
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -831,10 +704,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body.results`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -850,17 +721,14 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'domain',
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -883,10 +751,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -902,17 +768,14 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
             'remove' => [
               'input' => 'data',
               'name' => 'remove',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'DELETE',
@@ -927,10 +790,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'DELETE',
@@ -946,10 +807,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'remove',
             ],
           ],
           'relations' => [
@@ -963,11 +822,9 @@ class IpGeolocationApi4Config
         'domain_analysi' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'domains',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
           ],
           'name' => 'domain_analysi',
@@ -977,7 +834,6 @@ class IpGeolocationApi4Config
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -994,28 +850,23 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'google.com',
                         'kind' => 'param',
                         'name' => 'domain',
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1038,10 +889,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1055,39 +904,29 @@ class IpGeolocationApi4Config
         'domain_reputation_v1_dto' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'domain',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'is_disposable_email_domain',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'is_valid',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'resolved_ips',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'threat',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 4,
             ],
           ],
           'name' => 'domain_reputation_v1_dto',
@@ -1097,18 +936,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'example.com',
                         'kind' => 'param',
                         'name' => 'domain',
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1131,10 +967,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1148,53 +982,39 @@ class IpGeolocationApi4Config
         'email' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'email',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'email_factors',
               'req' => true,
               'type' => '`$NULL`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'has_mx_records',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'ip_factors',
               'req' => true,
               'type' => '`$NULL`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'is_disposable',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'mx_records',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'syntax',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 6,
             ],
           ],
           'name' => 'email',
@@ -1204,18 +1024,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'john.doe@company.com',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'email',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1242,21 +1059,17 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'john.doe@legitbusiness.com',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'email',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1284,10 +1097,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body.factors`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1297,18 +1108,14 @@ class IpGeolocationApi4Config
         'forward' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'addresses',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'hostname',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
           ],
           'name' => 'forward',
@@ -1318,18 +1125,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'dns.google',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'hostname',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1357,10 +1161,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1376,17 +1178,14 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1407,20 +1206,16 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1440,10 +1235,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1457,10 +1250,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1474,10 +1265,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 3,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1490,10 +1279,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 4,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1506,10 +1293,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 5,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1523,18 +1308,14 @@ class IpGeolocationApi4Config
         'ip_reputation' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'email_factors',
               'req' => true,
               'type' => '`$NULL`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ip_factors',
               'req' => true,
               'type' => '`$NULL`',
-              'index$' => 1,
             ],
           ],
           'name' => 'ip_reputation',
@@ -1544,18 +1325,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '203.0.113.195',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1582,10 +1360,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body.factors`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1595,9 +1371,7 @@ class IpGeolocationApi4Config
         'ipn' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'asn',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -1605,19 +1379,14 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'isp',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -1625,21 +1394,16 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'location',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'suspicious_factors',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 4,
             ],
           ],
           'name' => 'ipn',
@@ -1649,18 +1413,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '203.0.113.195',
                         'kind' => 'param',
                         'name' => 'ip',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1682,10 +1443,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1700,10 +1459,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1717,18 +1474,14 @@ class IpGeolocationApi4Config
         'mxn' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'domain',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'mx_records',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
           ],
           'name' => 'mxn',
@@ -1738,18 +1491,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'gmail.com',
                         'kind' => 'param',
                         'name' => 'domain',
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -1772,10 +1522,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1795,11 +1543,9 @@ class IpGeolocationApi4Config
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'http_entity',
                         'orig' => 'http_entity',
@@ -1823,17 +1569,14 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
             'load' => [
               'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -1846,10 +1589,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1859,51 +1600,35 @@ class IpGeolocationApi4Config
         'rate_limit_info_dto' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'email_api',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'interval_seconds',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'ip_api',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'next_renewal_date',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'plan_id',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'plan_name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'status',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -1911,7 +1636,6 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 6,
             ],
           ],
           'name' => 'rate_limit_info_dto',
@@ -1921,11 +1645,9 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'abcdef1234567890abcdef1234567890',
                         'kind' => 'query',
                         'name' => 'api_key',
@@ -1952,10 +1674,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1965,9 +1685,7 @@ class IpGeolocationApi4Config
         'reverse' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'hostname',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -1975,26 +1693,18 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'ptr_record',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'ttl',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2002,7 +1712,6 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 3,
             ],
           ],
           'name' => 'reverse',
@@ -2012,18 +1721,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '8.8.8.8',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2051,10 +1757,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2064,18 +1768,14 @@ class IpGeolocationApi4Config
         'risk_score' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'email_factors',
               'req' => true,
               'type' => '`$NULL`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ip_factors',
               'req' => true,
               'type' => '`$NULL`',
-              'index$' => 1,
             ],
           ],
           'name' => 'risk_score',
@@ -2085,28 +1785,23 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '203.0.113.195',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'suspicious.user@tempmail.com',
                         'kind' => 'query',
                         'name' => 'email',
                         'orig' => 'email',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2135,10 +1830,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body.factors`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2153,10 +1846,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body.factors`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2172,7 +1863,6 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -2186,10 +1876,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2199,25 +1887,19 @@ class IpGeolocationApi4Config
         'tor' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'ip',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'is_tor',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'tor_node_count',
               'req' => true,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
           ],
           'name' => 'tor',
@@ -2227,18 +1909,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => '185.220.101.50',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'ip',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2265,10 +1944,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2284,11 +1961,9 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'api_key',
                         'orig' => 'api_key',
@@ -2296,11 +1971,9 @@ class IpGeolocationApi4Config
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'api_type',
                         'orig' => 'api_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2324,14 +1997,11 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'api_key',
                         'orig' => 'api_key',
@@ -2339,11 +2009,9 @@ class IpGeolocationApi4Config
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'api_type',
                         'orig' => 'api_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -2367,10 +2035,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -2380,16 +2046,12 @@ class IpGeolocationApi4Config
         'whoi' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'domain',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'error',
-              'req' => false,
               'type' => [
                 '`$ONE`',
                 [
@@ -2397,56 +2059,37 @@ class IpGeolocationApi4Config
                   '`$NULL`',
                 ],
               ],
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'expires_on',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'name_servers',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'raw',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'registered_on',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'registrar',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'status',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'updated_on',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
           ],
           'name' => 'whoi',
@@ -2456,18 +2099,15 @@ class IpGeolocationApi4Config
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 'example.com',
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'domain',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -2495,10 +2135,8 @@ class IpGeolocationApi4Config
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [

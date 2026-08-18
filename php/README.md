@@ -31,15 +31,15 @@ require_once 'ipgeolocationapi4_sdk.php';
 $client = new IpGeolocationApi4SDK();
 ```
 
-### 3. Load a domainanalysi
+### 3. Load a cachemanagement
 
-DomainAnalysi is nested under domain, so provide the `domain`.
+CacheManagement is nested under domain, so provide the `domain`.
 
 ```php
 try {
-    // load() returns the ENTITY — call data_get() for the DomainAnalysi record (throws on error).
-    $domainanalysi = $client->DomainAnalysi()->load(["domain" => "example_domain"]);
-    print_r($domainanalysi);
+    // load() returns the ENTITY — call data_get() for the CacheManagement record (throws on error).
+    $cachemanagement = $client->CacheManagement()->load(["domain" => "example_domain"]);
+    print_r($cachemanagement);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $riskscore = $client->RiskScore()->load();
+    $riskscore = $client->RiskScore()->load(["id" => "example_id"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -786,7 +786,7 @@ Create an instance: `$cache_management = $client->CacheManagement();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the CacheManagement record (throws on error).
-$cache_management = $client->CacheManagement()->load();
+$cache_management = $client->CacheManagement()->load(["domain" => "domain"]);
 ```
 
 
@@ -920,7 +920,7 @@ Create an instance: `$ip_info_v0 = $client->IpInfoV0();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the IpInfoV0 record (throws on error).
-$ip_info_v0 = $client->IpInfoV0()->load();
+$ip_info_v0 = $client->IpInfoV0()->load(["ip" => "ip"]);
 ```
 
 
@@ -973,7 +973,7 @@ Create an instance: `$ipn = $client->Ipn();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Ipn record (throws on error).
-$ipn = $client->Ipn()->load();
+$ipn = $client->Ipn()->load(["ip" => "ip"]);
 ```
 
 
@@ -1281,7 +1281,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $riskscore = $client->RiskScore();
-$riskscore->load();
+$riskscore->load(["id" => "example_id"]);
 
 // $riskscore->data_get() now returns the riskscore data from the last load
 // $riskscore->match_get() returns the last match criteria

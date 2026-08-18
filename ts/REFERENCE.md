@@ -731,7 +731,7 @@ const cache_management = client.CacheManagement()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CacheManagement().load()
+const result = await client.CacheManagement().load({ domain: 'domain' })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -1004,7 +1004,7 @@ const ip_info_v0 = client.IpInfoV0()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.IpInfoV0().load()
+const result = await client.IpInfoV0().load({ ip: 'ip' })
 ```
 
 ### Common Methods
@@ -1109,7 +1109,7 @@ const ipn = client.Ipn()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Ipn().load()
+const result = await client.Ipn().load({ ip: 'ip' })
 ```
 
 ### Common Methods

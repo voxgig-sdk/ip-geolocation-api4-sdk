@@ -33,14 +33,14 @@ local sdk = require("ip-geolocation-api4_sdk")
 local client = sdk.new()
 ```
 
-### 3. Load a domainanalysi
+### 3. Load a cachemanagement
 
-DomainAnalysi is nested under domain, so provide the `domain`.
+CacheManagement is nested under domain, so provide the `domain`.
 
 ```lua
-local domainanalysi, err = client:DomainAnalysi():load({ domain = "example_domain" })
+local cachemanagement, err = client:CacheManagement():load({ domain = "example_domain" })
 if err then error(err) end
-print(domainanalysi)
+print(cachemanagement)
 ```
 
 
@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local riskscore, err = client:RiskScore():load()
+local riskscore, err = client:RiskScore():load({ id = "example_id" })
 if err then error(err) end
 ```
 
@@ -758,7 +758,7 @@ Create an instance: `local cache_management = client:CacheManagement(nil)`
 #### Example: Load
 
 ```lua
-local cache_management, err = client:CacheManagement():load()
+local cache_management, err = client:CacheManagement():load({ domain = "domain" })
 ```
 
 
@@ -887,7 +887,7 @@ Create an instance: `local ip_info_v0 = client:IpInfoV0(nil)`
 #### Example: Load
 
 ```lua
-local ip_info_v0, err = client:IpInfoV0():load()
+local ip_info_v0, err = client:IpInfoV0():load({ ip = "ip" })
 ```
 
 
@@ -938,7 +938,7 @@ Create an instance: `local ipn = client:Ipn(nil)`
 #### Example: Load
 
 ```lua
-local ipn, err = client:Ipn():load()
+local ipn, err = client:Ipn():load({ ip = "ip" })
 ```
 
 
@@ -1237,7 +1237,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local riskscore = client:RiskScore()
-riskscore:load()
+riskscore:load({ id = "example_id" })
 
 -- riskscore:data_get() now returns the riskscore data from the last load
 -- riskscore:match_get() returns the last match criteria

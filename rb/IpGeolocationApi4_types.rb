@@ -415,7 +415,7 @@ end
 # Request payload for CacheManagement#load.
 #
 # @!attribute [rw] domain
-#   @return [String, nil]
+#   @return [String]
 CacheManagementLoadMatch = Struct.new(
   :domain,
   keyword_init: true
@@ -557,7 +557,7 @@ end
 # Request payload for IpInfoV0#load.
 #
 # @!attribute [rw] ip
-#   @return [String, nil]
+#   @return [String]
 IpInfoV0LoadMatch = Struct.new(
   :ip,
   keyword_init: true
@@ -613,7 +613,7 @@ Ipn = Struct.new(
 # Request payload for Ipn#load.
 #
 # @!attribute [rw] ip
-#   @return [String, nil]
+#   @return [String]
 IpnLoadMatch = Struct.new(
   :ip,
   keyword_init: true
@@ -765,7 +765,7 @@ RiskScore = Struct.new(
 # Request payload for RiskScore#load.
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 RiskScoreLoadMatch = Struct.new(
   :id,
   keyword_init: true
