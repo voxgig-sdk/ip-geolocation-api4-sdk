@@ -180,16 +180,16 @@ $advanced = $client->Advanced();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disposable` | `bool` | Yes |  |
-| `email` | `string` | Yes |  |
-| `free` | `bool` | Yes |  |
+| `disposable` | `bool` | Yes | Indicates whether the email is from a disposable/temporary email service. |
+| `email` | `string` | Yes | The email address that was analyzed, returned in the original format provided. |
+| `free` | `bool` | Yes | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `mixed` | No |  |
-| `has_mx_records` | `bool` | Yes |  |
-| `reachable` | `string` | Yes |  |
-| `role_account` | `bool` | Yes |  |
+| `has_mx_records` | `bool` | Yes | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `reachable` | `string` | Yes | Overall reachability assessment. |
+| `role_account` | `bool` | Yes | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `mixed` | No |  |
-| `suggestion` | `string` | Yes |  |
-| `syntax` | `array` | Yes |  |
+| `suggestion` | `string` | Yes | Suggested correction for misspelled domains. |
+| `syntax` | `array` | Yes | Detailed syntax analysis of the email address components. |
 
 ### Operations
 
@@ -428,8 +428,8 @@ $batch = $client->Batch();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `emails` | `array` | Yes |  |
-| `ips` | `array` | Yes |  |
+| `emails` | `array` | Yes | List of email addresses to validate. |
+| `ips` | `array` | Yes | List of IP addresses to look up. |
 
 ### Operations
 
@@ -656,11 +656,11 @@ $domain_reputation_v1_dto = $client->DomainReputationV1Dto();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `string` | Yes |  |
-| `is_disposable_email_domain` | `bool` | Yes |  |
-| `is_valid` | `bool` | Yes |  |
-| `resolved_ips` | `array` | Yes |  |
-| `threat` | `array` | Yes |  |
+| `domain` | `string` | Yes | The normalized domain that was analyzed (lowercased, scheme/path stripped). |
+| `is_disposable_email_domain` | `bool` | Yes | Whether the domain is a known disposable/temporary email provider domain. |
+| `is_valid` | `bool` | Yes | Whether the input was a syntactically valid domain name. |
+| `resolved_ips` | `array` | Yes | DNS A/AAAA records the domain currently resolves to. |
+| `threat` | `array` | Yes | Threat-intelligence verdict for the domain itself (independent of its IPs). |
 
 ### Operations
 
@@ -712,13 +712,13 @@ $email = $client->Email();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `email_factors` | `null` | Yes |  |
-| `has_mx_records` | `bool` | Yes |  |
-| `ip_factors` | `null` | Yes |  |
-| `is_disposable` | `bool` | Yes |  |
-| `mx_records` | `array` | Yes |  |
-| `syntax` | `array` | Yes |  |
+| `email` | `string` | Yes | The email address that was analyzed, returned in normalized lowercase format. |
+| `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
+| `has_mx_records` | `bool` | Yes | Whether the email domain has valid MX records in DNS. |
+| `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
+| `is_disposable` | `bool` | Yes | Indicates whether the email address uses a disposable or temporary email service. |
+| `mx_records` | `array` | Yes | MX records for the email domain, sorted by priority ascending. |
+| `syntax` | `array` | Yes | Detailed syntax validation results and email component breakdown. |
 
 ### Operations
 
@@ -869,8 +869,8 @@ $ip_reputation = $client->IpReputation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_factors` | `null` | Yes |  |
-| `ip_factors` | `null` | Yes |  |
+| `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
+| `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
 
@@ -922,11 +922,11 @@ $ipn = $client->Ipn();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `mixed` | No |  |
-| `ip` | `string` | Yes |  |
-| `isp` | `mixed` | No |  |
-| `location` | `array` | Yes |  |
-| `suspicious_factors` | `array` | Yes |  |
+| `asn` | `mixed` | No | Autonomous System Number in AS<number> format. |
+| `ip` | `string` | Yes | The IP address that was analyzed, returned in standard format. |
+| `isp` | `mixed` | No | Internet Service Provider name derived from the ASN organization field. |
+| `location` | `array` | Yes | Geographic location and timezone information for the IP address. |
+| `suspicious_factors` | `array` | Yes | Comprehensive security threat analysis and suspicious activity indicators. |
 
 ### Operations
 
@@ -1086,13 +1086,13 @@ $rate_limit_info_dto = $client->RateLimitInfoDto();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_api` | `array` | Yes |  |
-| `interval_seconds` | `int` | Yes |  |
-| `ip_api` | `array` | Yes |  |
-| `next_renewal_date` | `string` | No |  |
-| `plan_id` | `string` | Yes |  |
-| `plan_name` | `string` | No |  |
-| `status` | `mixed` | No |  |
+| `email_api` | `array` | Yes | Email validation API rate limit information |
+| `interval_seconds` | `int` | Yes | Rate limit interval in seconds (time period for quota renewal) |
+| `ip_api` | `array` | Yes | IP lookup API rate limit information |
+| `next_renewal_date` | `string` | No | Next billing/renewal date when the quota will be reset (ISO 8601 date format) |
+| `plan_id` | `string` | Yes | Subscription plan ID or 'default' for free tier users |
+| `plan_name` | `string` | No | Human-readable plan name (if available) |
+| `status` | `mixed` | No | Subscription status (active, past_due, cancelled, etc.) |
 
 ### Operations
 
@@ -1199,8 +1199,8 @@ $risk_score = $client->RiskScore();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_factors` | `null` | Yes |  |
-| `ip_factors` | `null` | Yes |  |
+| `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
+| `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
 
@@ -1298,9 +1298,9 @@ $tor = $client->Tor();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | Yes |  |
-| `is_tor` | `bool` | Yes |  |
-| `tor_node_count` | `int` | Yes |  |
+| `ip` | `string` | Yes | The IP address that was checked |
+| `is_tor` | `bool` | Yes | Whether the IP is a known Tor exit node |
+| `tor_node_count` | `int` | Yes | Total number of currently known Tor exit nodes in the database |
 
 ### Operations
 

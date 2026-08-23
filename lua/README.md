@@ -251,16 +251,16 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `disposable` |  |
-| `email` |  |
-| `free` |  |
+| `disposable` | Indicates whether the email is from a disposable/temporary email service. |
+| `email` | The email address that was analyzed, returned in the original format provided. |
+| `free` | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` |  |
-| `has_mx_records` |  |
-| `reachable` |  |
-| `role_account` |  |
+| `has_mx_records` | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `reachable` | Overall reachability assessment. |
+| `role_account` | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` |  |
-| `suggestion` |  |
-| `syntax` |  |
+| `suggestion` | Suggested correction for misspelled domains. |
+| `syntax` | Detailed syntax analysis of the email address components. |
 
 Operations: Load.
 
@@ -331,8 +331,8 @@ API path: `/api/v1/asn/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `emails` |  |
-| `ips` |  |
+| `emails` | List of email addresses to validate. |
+| `ips` | List of IP addresses to look up. |
 
 Operations: Create.
 
@@ -374,11 +374,11 @@ API path: `/api/v1/domain/age/batch`
 
 | Field | Description |
 | --- | --- |
-| `domain` |  |
-| `is_disposable_email_domain` |  |
-| `is_valid` |  |
-| `resolved_ips` |  |
-| `threat` |  |
+| `domain` | The normalized domain that was analyzed (lowercased, scheme/path stripped). |
+| `is_disposable_email_domain` | Whether the domain is a known disposable/temporary email provider domain. |
+| `is_valid` | Whether the input was a syntactically valid domain name. |
+| `resolved_ips` | DNS A/AAAA records the domain currently resolves to. |
+| `threat` | Threat-intelligence verdict for the domain itself (independent of its IPs). |
 
 Operations: Load.
 
@@ -388,13 +388,13 @@ API path: `/api/v1/domain/reputation/{domain}`
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
-| `email_factors` |  |
-| `has_mx_records` |  |
-| `ip_factors` |  |
-| `is_disposable` |  |
-| `mx_records` |  |
-| `syntax` |  |
+| `email` | The email address that was analyzed, returned in normalized lowercase format. |
+| `email_factors` | Email-specific risk factors and validation results. |
+| `has_mx_records` | Whether the email domain has valid MX records in DNS. |
+| `ip_factors` | IP-specific risk factors and analysis results. |
+| `is_disposable` | Indicates whether the email address uses a disposable or temporary email service. |
+| `mx_records` | MX records for the email domain, sorted by priority ascending. |
+| `syntax` | Detailed syntax validation results and email component breakdown. |
 
 Operations: Load.
 
@@ -424,8 +424,8 @@ API path: `/api/json/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email_factors` |  |
-| `ip_factors` |  |
+| `email_factors` | Email-specific risk factors and validation results. |
+| `ip_factors` | IP-specific risk factors and analysis results. |
 
 Operations: Load.
 
@@ -435,11 +435,11 @@ API path: `/api/v1/ip-reputation/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `asn` |  |
-| `ip` |  |
-| `isp` |  |
-| `location` |  |
-| `suspicious_factors` |  |
+| `asn` | Autonomous System Number in AS<number> format. |
+| `ip` | The IP address that was analyzed, returned in standard format. |
+| `isp` | Internet Service Provider name derived from the ASN organization field. |
+| `location` | Geographic location and timezone information for the IP address. |
+| `suspicious_factors` | Comprehensive security threat analysis and suspicious activity indicators. |
 
 Operations: Load.
 
@@ -469,13 +469,13 @@ API path: `/month-sub`
 
 | Field | Description |
 | --- | --- |
-| `email_api` |  |
-| `interval_seconds` |  |
-| `ip_api` |  |
-| `next_renewal_date` |  |
-| `plan_id` |  |
-| `plan_name` |  |
-| `status` |  |
+| `email_api` | Email validation API rate limit information |
+| `interval_seconds` | Rate limit interval in seconds (time period for quota renewal) |
+| `ip_api` | IP lookup API rate limit information |
+| `next_renewal_date` | Next billing/renewal date when the quota will be reset (ISO 8601 date format) |
+| `plan_id` | Subscription plan ID or 'default' for free tier users |
+| `plan_name` | Human-readable plan name (if available) |
+| `status` | Subscription status (active, past_due, cancelled, etc.) |
 
 Operations: Load.
 
@@ -498,8 +498,8 @@ API path: `/api/v1/dns/reverse/{ip}`
 
 | Field | Description |
 | --- | --- |
-| `email_factors` |  |
-| `ip_factors` |  |
+| `email_factors` | Email-specific risk factors and validation results. |
+| `ip_factors` | IP-specific risk factors and analysis results. |
 
 Operations: Load.
 
@@ -518,9 +518,9 @@ API path: `/api/status`
 
 | Field | Description |
 | --- | --- |
-| `ip` |  |
-| `is_tor` |  |
-| `tor_node_count` |  |
+| `ip` | The IP address that was checked |
+| `is_tor` | Whether the IP is a known Tor exit node |
+| `tor_node_count` | Total number of currently known Tor exit nodes in the database |
 
 Operations: Load.
 
@@ -572,16 +572,16 @@ Create an instance: `local advanced = client:Advanced(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `disposable` | `boolean` |  |
-| `email` | `string` |  |
-| `free` | `boolean` |  |
+| `disposable` | `boolean` | Indicates whether the email is from a disposable/temporary email service. |
+| `email` | `string` | The email address that was analyzed, returned in the original format provided. |
+| `free` | `boolean` | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `any` |  |
-| `has_mx_records` | `boolean` |  |
-| `reachable` | `string` |  |
-| `role_account` | `boolean` |  |
+| `has_mx_records` | `boolean` | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `reachable` | `string` | Overall reachability assessment. |
+| `role_account` | `boolean` | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `any` |  |
-| `suggestion` | `string` |  |
-| `syntax` | `table` |  |
+| `suggestion` | `string` | Suggested correction for misspelled domains. |
+| `syntax` | `table` | Detailed syntax analysis of the email address components. |
 
 #### Example: Load
 
@@ -704,8 +704,8 @@ Create an instance: `local batch = client:Batch(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `emails` | `table` |  |
-| `ips` | `table` |  |
+| `emails` | `table` | List of email addresses to validate. |
+| `ips` | `table` | List of IP addresses to look up. |
 
 #### Example: Create
 
@@ -808,11 +808,11 @@ Create an instance: `local domain_reputation_v1_dto = client:DomainReputationV1D
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `domain` | `string` |  |
-| `is_disposable_email_domain` | `boolean` |  |
-| `is_valid` | `boolean` |  |
-| `resolved_ips` | `table` |  |
-| `threat` | `table` |  |
+| `domain` | `string` | The normalized domain that was analyzed (lowercased, scheme/path stripped). |
+| `is_disposable_email_domain` | `boolean` | Whether the domain is a known disposable/temporary email provider domain. |
+| `is_valid` | `boolean` | Whether the input was a syntactically valid domain name. |
+| `resolved_ips` | `table` | DNS A/AAAA records the domain currently resolves to. |
+| `threat` | `table` | Threat-intelligence verdict for the domain itself (independent of its IPs). |
 
 #### Example: Load
 
@@ -835,13 +835,13 @@ Create an instance: `local email = client:Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `string` |  |
-| `email_factors` | `nil` |  |
-| `has_mx_records` | `boolean` |  |
-| `ip_factors` | `nil` |  |
-| `is_disposable` | `boolean` |  |
-| `mx_records` | `table` |  |
-| `syntax` | `table` |  |
+| `email` | `string` | The email address that was analyzed, returned in normalized lowercase format. |
+| `email_factors` | `nil` | Email-specific risk factors and validation results. |
+| `has_mx_records` | `boolean` | Whether the email domain has valid MX records in DNS. |
+| `ip_factors` | `nil` | IP-specific risk factors and analysis results. |
+| `is_disposable` | `boolean` | Indicates whether the email address uses a disposable or temporary email service. |
+| `mx_records` | `table` | MX records for the email domain, sorted by priority ascending. |
+| `syntax` | `table` | Detailed syntax validation results and email component breakdown. |
 
 #### Example: Load
 
@@ -905,8 +905,8 @@ Create an instance: `local ip_reputation = client:IpReputation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email_factors` | `nil` |  |
-| `ip_factors` | `nil` |  |
+| `email_factors` | `nil` | Email-specific risk factors and validation results. |
+| `ip_factors` | `nil` | IP-specific risk factors and analysis results. |
 
 #### Example: Load
 
@@ -929,11 +929,11 @@ Create an instance: `local ipn = client:Ipn(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asn` | `string|nil` |  |
-| `ip` | `string` |  |
-| `isp` | `string|nil` |  |
-| `location` | `table` |  |
-| `suspicious_factors` | `table` |  |
+| `asn` | `string|nil` | Autonomous System Number in AS<number> format. |
+| `ip` | `string` | The IP address that was analyzed, returned in standard format. |
+| `isp` | `string|nil` | Internet Service Provider name derived from the ASN organization field. |
+| `location` | `table` | Geographic location and timezone information for the IP address. |
+| `suspicious_factors` | `table` | Comprehensive security threat analysis and suspicious activity indicators. |
 
 #### Example: Load
 
@@ -1005,13 +1005,13 @@ Create an instance: `local rate_limit_info_dto = client:RateLimitInfoDto(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email_api` | `table` |  |
-| `interval_seconds` | `number` |  |
-| `ip_api` | `table` |  |
-| `next_renewal_date` | `string` |  |
-| `plan_id` | `string` |  |
-| `plan_name` | `string` |  |
-| `status` | `string|nil` |  |
+| `email_api` | `table` | Email validation API rate limit information |
+| `interval_seconds` | `number` | Rate limit interval in seconds (time period for quota renewal) |
+| `ip_api` | `table` | IP lookup API rate limit information |
+| `next_renewal_date` | `string` | Next billing/renewal date when the quota will be reset (ISO 8601 date format) |
+| `plan_id` | `string` | Subscription plan ID or 'default' for free tier users |
+| `plan_name` | `string` | Human-readable plan name (if available) |
+| `status` | `string|nil` | Subscription status (active, past_due, cancelled, etc.) |
 
 #### Example: Load
 
@@ -1060,8 +1060,8 @@ Create an instance: `local risk_score = client:RiskScore(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email_factors` | `nil` |  |
-| `ip_factors` | `nil` |  |
+| `email_factors` | `nil` | Email-specific risk factors and validation results. |
+| `ip_factors` | `nil` | IP-specific risk factors and analysis results. |
 
 #### Example: Load
 
@@ -1101,9 +1101,9 @@ Create an instance: `local tor = client:Tor(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ip` | `string` |  |
-| `is_tor` | `boolean` |  |
-| `tor_node_count` | `number` |  |
+| `ip` | `string` | The IP address that was checked |
+| `is_tor` | `boolean` | Whether the IP is a known Tor exit node |
+| `tor_node_count` | `number` | Total number of currently known Tor exit nodes in the database |
 
 #### Example: Load
 

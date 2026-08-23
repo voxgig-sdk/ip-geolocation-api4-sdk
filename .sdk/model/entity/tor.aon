@@ -1,0 +1,75 @@
+# Entity: tor
+
+main: kit: entity: tor: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ip"
+      req: true
+      short: "The IP address that was checked"
+      type: "`$STRING`"
+    }
+    {
+      name: "is_tor"
+      req: true
+      short: "Whether the IP is a known Tor exit node"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "tor_node_count"
+      req: true
+      short: "Total number of currently known Tor exit nodes in the database"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "tor"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "185.220.101.50"
+                kind: "param"
+                name: "id"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/tor/{ip}"
+          parts: [
+            "api"
+            "v1"
+            "tor"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ip: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

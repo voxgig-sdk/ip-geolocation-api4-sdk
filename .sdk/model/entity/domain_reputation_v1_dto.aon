@@ -1,0 +1,91 @@
+# Entity: domain_reputation_v1_dto
+
+main: kit: entity: domain_reputation_v1_dto: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "domain"
+      req: true
+      short: "The normalized domain that was analyzed (lowercased, scheme/path stripped)."
+      type: "`$STRING`"
+    }
+    {
+      name: "is_disposable_email_domain"
+      req: true
+      short: "Whether the domain is a known disposable/temporary email provider domain."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "is_valid"
+      req: true
+      short: "Whether the input was a syntactically valid domain name."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "resolved_ips"
+      req: true
+      short: "DNS A/AAAA records the domain currently resolves to."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "threat"
+      req: true
+      short: "Threat-intelligence verdict for the domain itself (independent of its IPs)."
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "domain_reputation_v1_dto"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "example.com"
+                kind: "param"
+                name: "domain"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/domain/reputation/{domain}"
+          parts: [
+            "api"
+            "v1"
+            "domain"
+            "reputation"
+            "{domain}"
+          ]
+          select: {
+            exist: [
+              "domain"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "reputation"
+      ]
+    ]
+  }
+
+
+
+}

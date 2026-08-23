@@ -380,16 +380,16 @@ const advanced = client.Advanced()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disposable` | `boolean` | Yes |  |
-| `email` | `string` | Yes |  |
-| `free` | `boolean` | Yes |  |
+| `disposable` | `boolean` | Yes | Indicates whether the email is from a disposable/temporary email service. |
+| `email` | `string` | Yes | The email address that was analyzed, returned in the original format provided. |
+| `free` | `boolean` | Yes | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `any` | No |  |
-| `has_mx_records` | `boolean` | Yes |  |
-| `reachable` | `string` | Yes |  |
-| `role_account` | `boolean` | Yes |  |
+| `has_mx_records` | `boolean` | Yes | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `reachable` | `string` | Yes | Overall reachability assessment. |
+| `role_account` | `boolean` | Yes | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `any` | No |  |
-| `suggestion` | `string` | Yes |  |
-| `syntax` | `Record<string, any>` | Yes |  |
+| `suggestion` | `string` | Yes | Suggested correction for misspelled domains. |
+| `syntax` | `Record<string, any>` | Yes | Detailed syntax analysis of the email address components. |
 
 ### Operations
 
@@ -620,8 +620,8 @@ const batch = client.Batch()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `emails` | `any[]` | Yes |  |
-| `ips` | `any[]` | Yes |  |
+| `emails` | `any[]` | Yes | List of email addresses to validate. |
+| `ips` | `any[]` | Yes | List of IP addresses to look up. |
 
 ### Operations
 
@@ -840,11 +840,11 @@ const domain_reputation_v1_dto = client.DomainReputationV1Dto()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `string` | Yes |  |
-| `is_disposable_email_domain` | `boolean` | Yes |  |
-| `is_valid` | `boolean` | Yes |  |
-| `resolved_ips` | `any[]` | Yes |  |
-| `threat` | `Record<string, any>` | Yes |  |
+| `domain` | `string` | Yes | The normalized domain that was analyzed (lowercased, scheme/path stripped). |
+| `is_disposable_email_domain` | `boolean` | Yes | Whether the domain is a known disposable/temporary email provider domain. |
+| `is_valid` | `boolean` | Yes | Whether the input was a syntactically valid domain name. |
+| `resolved_ips` | `any[]` | Yes | DNS A/AAAA records the domain currently resolves to. |
+| `threat` | `Record<string, any>` | Yes | Threat-intelligence verdict for the domain itself (independent of its IPs). |
 
 ### Operations
 
@@ -894,13 +894,13 @@ const email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `email_factors` | `null` | Yes |  |
-| `has_mx_records` | `boolean` | Yes |  |
-| `ip_factors` | `null` | Yes |  |
-| `is_disposable` | `boolean` | Yes |  |
-| `mx_records` | `any[]` | Yes |  |
-| `syntax` | `Record<string, any>` | Yes |  |
+| `email` | `string` | Yes | The email address that was analyzed, returned in normalized lowercase format. |
+| `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
+| `has_mx_records` | `boolean` | Yes | Whether the email domain has valid MX records in DNS. |
+| `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
+| `is_disposable` | `boolean` | Yes | Indicates whether the email address uses a disposable or temporary email service. |
+| `mx_records` | `any[]` | Yes | MX records for the email domain, sorted by priority ascending. |
+| `syntax` | `Record<string, any>` | Yes | Detailed syntax validation results and email component breakdown. |
 
 ### Operations
 
@@ -1045,8 +1045,8 @@ const ip_reputation = client.IpReputation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_factors` | `null` | Yes |  |
-| `ip_factors` | `null` | Yes |  |
+| `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
+| `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
 
@@ -1096,11 +1096,11 @@ const ipn = client.Ipn()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `string | null` | No |  |
-| `ip` | `string` | Yes |  |
-| `isp` | `string | null` | No |  |
-| `location` | `Record<string, any>` | Yes |  |
-| `suspicious_factors` | `Record<string, any>` | Yes |  |
+| `asn` | `string | null` | No | Autonomous System Number in AS<number> format. |
+| `ip` | `string` | Yes | The IP address that was analyzed, returned in standard format. |
+| `isp` | `string | null` | No | Internet Service Provider name derived from the ASN organization field. |
+| `location` | `Record<string, any>` | Yes | Geographic location and timezone information for the IP address. |
+| `suspicious_factors` | `Record<string, any>` | Yes | Comprehensive security threat analysis and suspicious activity indicators. |
 
 ### Operations
 
@@ -1254,13 +1254,13 @@ const rate_limit_info_dto = client.RateLimitInfoDto()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_api` | `Record<string, any>` | Yes |  |
-| `interval_seconds` | `number` | Yes |  |
-| `ip_api` | `Record<string, any>` | Yes |  |
-| `next_renewal_date` | `string` | No |  |
-| `plan_id` | `string` | Yes |  |
-| `plan_name` | `string` | No |  |
-| `status` | `string | null` | No |  |
+| `email_api` | `Record<string, any>` | Yes | Email validation API rate limit information |
+| `interval_seconds` | `number` | Yes | Rate limit interval in seconds (time period for quota renewal) |
+| `ip_api` | `Record<string, any>` | Yes | IP lookup API rate limit information |
+| `next_renewal_date` | `string` | No | Next billing/renewal date when the quota will be reset (ISO 8601 date format) |
+| `plan_id` | `string` | Yes | Subscription plan ID or 'default' for free tier users |
+| `plan_name` | `string` | No | Human-readable plan name (if available) |
+| `status` | `string | null` | No | Subscription status (active, past_due, cancelled, etc.) |
 
 ### Operations
 
@@ -1363,8 +1363,8 @@ const risk_score = client.RiskScore()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_factors` | `null` | Yes |  |
-| `ip_factors` | `null` | Yes |  |
+| `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
+| `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
 
@@ -1458,9 +1458,9 @@ const tor = client.Tor()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | Yes |  |
-| `is_tor` | `boolean` | Yes |  |
-| `tor_node_count` | `number` | Yes |  |
+| `ip` | `string` | Yes | The IP address that was checked |
+| `is_tor` | `boolean` | Yes | Whether the IP is a known Tor exit node |
+| `tor_node_count` | `number` | Yes | Total number of currently known Tor exit nodes in the database |
 
 ### Operations
 

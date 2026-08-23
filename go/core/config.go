@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "IpGeolocationApi4",
+			"slug": "ip-geolocation-api4",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -56,16 +59,19 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "disposable",
 						"req": true,
+						"short": "Indicates whether the email is from a disposable/temporary email service.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "email",
 						"req": true,
+						"short": "The email address that was analyzed, returned in the original format provided.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "free",
 						"req": true,
+						"short": "Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.).",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
@@ -75,16 +81,19 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "has_mx_records",
 						"req": true,
+						"short": "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "reachable",
 						"req": true,
+						"short": "Overall reachability assessment.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "role_account",
 						"req": true,
+						"short": "Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.).",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
@@ -94,11 +103,13 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "suggestion",
 						"req": true,
+						"short": "Suggested correction for misspelled domains.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "syntax",
 						"req": true,
+						"short": "Detailed syntax analysis of the email address components.",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -583,11 +594,13 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "emails",
 						"req": true,
+						"short": "List of email addresses to validate.",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "ips",
 						"req": true,
+						"short": "List of IP addresses to look up.",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -884,26 +897,31 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "domain",
 						"req": true,
+						"short": "The normalized domain that was analyzed (lowercased, scheme/path stripped).",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "is_disposable_email_domain",
 						"req": true,
+						"short": "Whether the domain is a known disposable/temporary email provider domain.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "is_valid",
 						"req": true,
+						"short": "Whether the input was a syntactically valid domain name.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "resolved_ips",
 						"req": true,
+						"short": "DNS A/AAAA records the domain currently resolves to.",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "threat",
 						"req": true,
+						"short": "Threat-intelligence verdict for the domain itself (independent of its IPs).",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -962,36 +980,43 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "email",
 						"req": true,
+						"short": "The email address that was analyzed, returned in normalized lowercase format.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "email_factors",
 						"req": true,
+						"short": "Email-specific risk factors and validation results.",
 						"type": "`$NULL`",
 					},
 					map[string]any{
 						"name": "has_mx_records",
 						"req": true,
+						"short": "Whether the email domain has valid MX records in DNS.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "ip_factors",
 						"req": true,
+						"short": "IP-specific risk factors and analysis results.",
 						"type": "`$NULL`",
 					},
 					map[string]any{
 						"name": "is_disposable",
 						"req": true,
+						"short": "Indicates whether the email address uses a disposable or temporary email service.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "mx_records",
 						"req": true,
+						"short": "MX records for the email domain, sorted by priority ascending.",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "syntax",
 						"req": true,
+						"short": "Detailed syntax validation results and email component breakdown.",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -1288,11 +1313,13 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "email_factors",
 						"req": true,
+						"short": "Email-specific risk factors and validation results.",
 						"type": "`$NULL`",
 					},
 					map[string]any{
 						"name": "ip_factors",
 						"req": true,
+						"short": "IP-specific risk factors and analysis results.",
 						"type": "`$NULL`",
 					},
 				},
@@ -1350,6 +1377,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "asn",
+						"short": "Autonomous System Number in AS<number> format.",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -1361,10 +1389,12 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "ip",
 						"req": true,
+						"short": "The IP address that was analyzed, returned in standard format.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "isp",
+						"short": "Internet Service Provider name derived from the ASN organization field.",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -1376,11 +1406,13 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "location",
 						"req": true,
+						"short": "Geographic location and timezone information for the IP address.",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "suspicious_factors",
 						"req": true,
+						"short": "Comprehensive security threat analysis and suspicious activity indicators.",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -1580,33 +1612,40 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "email_api",
 						"req": true,
+						"short": "Email validation API rate limit information",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "interval_seconds",
 						"req": true,
+						"short": "Rate limit interval in seconds (time period for quota renewal)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "ip_api",
 						"req": true,
+						"short": "IP lookup API rate limit information",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "next_renewal_date",
+						"short": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "plan_id",
 						"req": true,
+						"short": "Subscription plan ID or 'default' for free tier users",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "plan_name",
+						"short": "Human-readable plan name (if available)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status",
+						"short": "Subscription status (active, past_due, cancelled, etc.)",
 						"type": []any{
 							"`$ONE`",
 							[]any{
@@ -1748,11 +1787,13 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "email_factors",
 						"req": true,
+						"short": "Email-specific risk factors and validation results.",
 						"type": "`$NULL`",
 					},
 					map[string]any{
 						"name": "ip_factors",
 						"req": true,
+						"short": "IP-specific risk factors and analysis results.",
 						"type": "`$NULL`",
 					},
 				},
@@ -1867,16 +1908,19 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "ip",
 						"req": true,
+						"short": "The IP address that was checked",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "is_tor",
 						"req": true,
+						"short": "Whether the IP is a known Tor exit node",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "tor_node_count",
 						"req": true,
+						"short": "Total number of currently known Tor exit nodes in the database",
 						"type": "`$INTEGER`",
 					},
 				},

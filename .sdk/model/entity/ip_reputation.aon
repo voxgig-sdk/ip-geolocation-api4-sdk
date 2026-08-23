@@ -1,0 +1,69 @@
+# Entity: ip_reputation
+
+main: kit: entity: ip_reputation: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "email_factors"
+      req: true
+      short: "Email-specific risk factors and validation results."
+      type: "`$NULL`"
+    }
+    {
+      name: "ip_factors"
+      req: true
+      short: "IP-specific risk factors and analysis results."
+      type: "`$NULL`"
+    }
+  ]
+
+  name: "ip_reputation"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "203.0.113.195"
+                kind: "param"
+                name: "id"
+                orig: "ip"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/ip-reputation/{ip}"
+          parts: [
+            "api"
+            "v1"
+            "ip-reputation"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              ip: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.factors`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

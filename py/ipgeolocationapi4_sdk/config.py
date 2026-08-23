@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "IpGeolocationApi4",
+            "slug": "ip-geolocation-api4",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -73,16 +76,19 @@ def make_config():
           {
             "name": "disposable",
             "req": True,
+            "short": "Indicates whether the email is from a disposable/temporary email service.",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "email",
             "req": True,
+            "short": "The email address that was analyzed, returned in the original format provided.",
             "type": "`$STRING`",
           },
           {
             "name": "free",
             "req": True,
+            "short": "Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.).",
             "type": "`$BOOLEAN`",
           },
           {
@@ -92,16 +98,19 @@ def make_config():
           {
             "name": "has_mx_records",
             "req": True,
+            "short": "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "reachable",
             "req": True,
+            "short": "Overall reachability assessment.",
             "type": "`$STRING`",
           },
           {
             "name": "role_account",
             "req": True,
+            "short": "Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.).",
             "type": "`$BOOLEAN`",
           },
           {
@@ -111,11 +120,13 @@ def make_config():
           {
             "name": "suggestion",
             "req": True,
+            "short": "Suggested correction for misspelled domains.",
             "type": "`$STRING`",
           },
           {
             "name": "syntax",
             "req": True,
+            "short": "Detailed syntax analysis of the email address components.",
             "type": "`$OBJECT`",
           },
         ],
@@ -600,11 +611,13 @@ def make_config():
           {
             "name": "emails",
             "req": True,
+            "short": "List of email addresses to validate.",
             "type": "`$ARRAY`",
           },
           {
             "name": "ips",
             "req": True,
+            "short": "List of IP addresses to look up.",
             "type": "`$ARRAY`",
           },
         ],
@@ -901,26 +914,31 @@ def make_config():
           {
             "name": "domain",
             "req": True,
+            "short": "The normalized domain that was analyzed (lowercased, scheme/path stripped).",
             "type": "`$STRING`",
           },
           {
             "name": "is_disposable_email_domain",
             "req": True,
+            "short": "Whether the domain is a known disposable/temporary email provider domain.",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "is_valid",
             "req": True,
+            "short": "Whether the input was a syntactically valid domain name.",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "resolved_ips",
             "req": True,
+            "short": "DNS A/AAAA records the domain currently resolves to.",
             "type": "`$ARRAY`",
           },
           {
             "name": "threat",
             "req": True,
+            "short": "Threat-intelligence verdict for the domain itself (independent of its IPs).",
             "type": "`$OBJECT`",
           },
         ],
@@ -979,36 +997,43 @@ def make_config():
           {
             "name": "email",
             "req": True,
+            "short": "The email address that was analyzed, returned in normalized lowercase format.",
             "type": "`$STRING`",
           },
           {
             "name": "email_factors",
             "req": True,
+            "short": "Email-specific risk factors and validation results.",
             "type": "`$NULL`",
           },
           {
             "name": "has_mx_records",
             "req": True,
+            "short": "Whether the email domain has valid MX records in DNS.",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "ip_factors",
             "req": True,
+            "short": "IP-specific risk factors and analysis results.",
             "type": "`$NULL`",
           },
           {
             "name": "is_disposable",
             "req": True,
+            "short": "Indicates whether the email address uses a disposable or temporary email service.",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "mx_records",
             "req": True,
+            "short": "MX records for the email domain, sorted by priority ascending.",
             "type": "`$ARRAY`",
           },
           {
             "name": "syntax",
             "req": True,
+            "short": "Detailed syntax validation results and email component breakdown.",
             "type": "`$OBJECT`",
           },
         ],
@@ -1305,11 +1330,13 @@ def make_config():
           {
             "name": "email_factors",
             "req": True,
+            "short": "Email-specific risk factors and validation results.",
             "type": "`$NULL`",
           },
           {
             "name": "ip_factors",
             "req": True,
+            "short": "IP-specific risk factors and analysis results.",
             "type": "`$NULL`",
           },
         ],
@@ -1367,6 +1394,7 @@ def make_config():
         "fields": [
           {
             "name": "asn",
+            "short": "Autonomous System Number in AS<number> format.",
             "type": [
               "`$ONE`",
               [
@@ -1378,10 +1406,12 @@ def make_config():
           {
             "name": "ip",
             "req": True,
+            "short": "The IP address that was analyzed, returned in standard format.",
             "type": "`$STRING`",
           },
           {
             "name": "isp",
+            "short": "Internet Service Provider name derived from the ASN organization field.",
             "type": [
               "`$ONE`",
               [
@@ -1393,11 +1423,13 @@ def make_config():
           {
             "name": "location",
             "req": True,
+            "short": "Geographic location and timezone information for the IP address.",
             "type": "`$OBJECT`",
           },
           {
             "name": "suspicious_factors",
             "req": True,
+            "short": "Comprehensive security threat analysis and suspicious activity indicators.",
             "type": "`$OBJECT`",
           },
         ],
@@ -1597,33 +1629,40 @@ def make_config():
           {
             "name": "email_api",
             "req": True,
+            "short": "Email validation API rate limit information",
             "type": "`$OBJECT`",
           },
           {
             "name": "interval_seconds",
             "req": True,
+            "short": "Rate limit interval in seconds (time period for quota renewal)",
             "type": "`$INTEGER`",
           },
           {
             "name": "ip_api",
             "req": True,
+            "short": "IP lookup API rate limit information",
             "type": "`$OBJECT`",
           },
           {
             "name": "next_renewal_date",
+            "short": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
             "type": "`$STRING`",
           },
           {
             "name": "plan_id",
             "req": True,
+            "short": "Subscription plan ID or 'default' for free tier users",
             "type": "`$STRING`",
           },
           {
             "name": "plan_name",
+            "short": "Human-readable plan name (if available)",
             "type": "`$STRING`",
           },
           {
             "name": "status",
+            "short": "Subscription status (active, past_due, cancelled, etc.)",
             "type": [
               "`$ONE`",
               [
@@ -1765,11 +1804,13 @@ def make_config():
           {
             "name": "email_factors",
             "req": True,
+            "short": "Email-specific risk factors and validation results.",
             "type": "`$NULL`",
           },
           {
             "name": "ip_factors",
             "req": True,
+            "short": "IP-specific risk factors and analysis results.",
             "type": "`$NULL`",
           },
         ],
@@ -1884,16 +1925,19 @@ def make_config():
           {
             "name": "ip",
             "req": True,
+            "short": "The IP address that was checked",
             "type": "`$STRING`",
           },
           {
             "name": "is_tor",
             "req": True,
+            "short": "Whether the IP is a known Tor exit node",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "tor_node_count",
             "req": True,
+            "short": "Total number of currently known Tor exit nodes in the database",
             "type": "`$INTEGER`",
           },
         ],

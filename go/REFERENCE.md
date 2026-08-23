@@ -186,16 +186,16 @@ fmt.Println(advanced.GetName()) // "advanced"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disposable` | `bool` | Yes |  |
-| `email` | `string` | Yes |  |
-| `free` | `bool` | Yes |  |
+| `disposable` | `bool` | Yes | Indicates whether the email is from a disposable/temporary email service. |
+| `email` | `string` | Yes | The email address that was analyzed, returned in the original format provided. |
+| `free` | `bool` | Yes | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `any` | No |  |
-| `has_mx_records` | `bool` | Yes |  |
-| `reachable` | `string` | Yes |  |
-| `role_account` | `bool` | Yes |  |
+| `has_mx_records` | `bool` | Yes | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `reachable` | `string` | Yes | Overall reachability assessment. |
+| `role_account` | `bool` | Yes | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `any` | No |  |
-| `suggestion` | `string` | Yes |  |
-| `syntax` | `map[string]any` | Yes |  |
+| `suggestion` | `string` | Yes | Suggested correction for misspelled domains. |
+| `syntax` | `map[string]any` | Yes | Detailed syntax analysis of the email address components. |
 
 ### Operations
 
@@ -430,8 +430,8 @@ fmt.Println(batch.GetName()) // "batch"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `emails` | `[]any` | Yes |  |
-| `ips` | `[]any` | Yes |  |
+| `emails` | `[]any` | Yes | List of email addresses to validate. |
+| `ips` | `[]any` | Yes | List of IP addresses to look up. |
 
 ### Operations
 
@@ -662,11 +662,11 @@ fmt.Println(domainReputationV1Dto.GetName()) // "domain_reputation_v1_dto"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `string` | Yes |  |
-| `is_disposable_email_domain` | `bool` | Yes |  |
-| `is_valid` | `bool` | Yes |  |
-| `resolved_ips` | `[]any` | Yes |  |
-| `threat` | `map[string]any` | Yes |  |
+| `domain` | `string` | Yes | The normalized domain that was analyzed (lowercased, scheme/path stripped). |
+| `is_disposable_email_domain` | `bool` | Yes | Whether the domain is a known disposable/temporary email provider domain. |
+| `is_valid` | `bool` | Yes | Whether the input was a syntactically valid domain name. |
+| `resolved_ips` | `[]any` | Yes | DNS A/AAAA records the domain currently resolves to. |
+| `threat` | `map[string]any` | Yes | Threat-intelligence verdict for the domain itself (independent of its IPs). |
 
 ### Operations
 
@@ -717,13 +717,13 @@ fmt.Println(email.GetName()) // "email"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `email_factors` | `any` | Yes |  |
-| `has_mx_records` | `bool` | Yes |  |
-| `ip_factors` | `any` | Yes |  |
-| `is_disposable` | `bool` | Yes |  |
-| `mx_records` | `[]any` | Yes |  |
-| `syntax` | `map[string]any` | Yes |  |
+| `email` | `string` | Yes | The email address that was analyzed, returned in normalized lowercase format. |
+| `email_factors` | `any` | Yes | Email-specific risk factors and validation results. |
+| `has_mx_records` | `bool` | Yes | Whether the email domain has valid MX records in DNS. |
+| `ip_factors` | `any` | Yes | IP-specific risk factors and analysis results. |
+| `is_disposable` | `bool` | Yes | Indicates whether the email address uses a disposable or temporary email service. |
+| `mx_records` | `[]any` | Yes | MX records for the email domain, sorted by priority ascending. |
+| `syntax` | `map[string]any` | Yes | Detailed syntax validation results and email component breakdown. |
 
 ### Operations
 
@@ -871,8 +871,8 @@ fmt.Println(ipReputation.GetName()) // "ip_reputation"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_factors` | `any` | Yes |  |
-| `ip_factors` | `any` | Yes |  |
+| `email_factors` | `any` | Yes | Email-specific risk factors and validation results. |
+| `ip_factors` | `any` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
 
@@ -923,11 +923,11 @@ fmt.Println(ipn.GetName()) // "ipn"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `any` | No |  |
-| `ip` | `string` | Yes |  |
-| `isp` | `any` | No |  |
-| `location` | `map[string]any` | Yes |  |
-| `suspicious_factors` | `map[string]any` | Yes |  |
+| `asn` | `any` | No | Autonomous System Number in AS<number> format. |
+| `ip` | `string` | Yes | The IP address that was analyzed, returned in standard format. |
+| `isp` | `any` | No | Internet Service Provider name derived from the ASN organization field. |
+| `location` | `map[string]any` | Yes | Geographic location and timezone information for the IP address. |
+| `suspicious_factors` | `map[string]any` | Yes | Comprehensive security threat analysis and suspicious activity indicators. |
 
 ### Operations
 
@@ -1088,13 +1088,13 @@ fmt.Println(rateLimitInfoDto.GetName()) // "rate_limit_info_dto"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_api` | `map[string]any` | Yes |  |
-| `interval_seconds` | `int` | Yes |  |
-| `ip_api` | `map[string]any` | Yes |  |
-| `next_renewal_date` | `string` | No |  |
-| `plan_id` | `string` | Yes |  |
-| `plan_name` | `string` | No |  |
-| `status` | `any` | No |  |
+| `email_api` | `map[string]any` | Yes | Email validation API rate limit information |
+| `interval_seconds` | `int` | Yes | Rate limit interval in seconds (time period for quota renewal) |
+| `ip_api` | `map[string]any` | Yes | IP lookup API rate limit information |
+| `next_renewal_date` | `string` | No | Next billing/renewal date when the quota will be reset (ISO 8601 date format) |
+| `plan_id` | `string` | Yes | Subscription plan ID or 'default' for free tier users |
+| `plan_name` | `string` | No | Human-readable plan name (if available) |
+| `status` | `any` | No | Subscription status (active, past_due, cancelled, etc.) |
 
 ### Operations
 
@@ -1199,8 +1199,8 @@ fmt.Println(riskScore.GetName()) // "risk_score"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_factors` | `any` | Yes |  |
-| `ip_factors` | `any` | Yes |  |
+| `email_factors` | `any` | Yes | Email-specific risk factors and validation results. |
+| `ip_factors` | `any` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
 
@@ -1296,9 +1296,9 @@ fmt.Println(tor.GetName()) // "tor"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `string` | Yes |  |
-| `is_tor` | `bool` | Yes |  |
-| `tor_node_count` | `int` | Yes |  |
+| `ip` | `string` | Yes | The IP address that was checked |
+| `is_tor` | `bool` | Yes | Whether the IP is a known Tor exit node |
+| `tor_node_count` | `int` | Yes | Total number of currently known Tor exit nodes in the database |
 
 ### Operations
 

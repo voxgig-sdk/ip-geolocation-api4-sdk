@@ -1,0 +1,116 @@
+# Entity: advanced
+
+main: kit: entity: advanced: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "disposable"
+      req: true
+      short: "Indicates whether the email is from a disposable/temporary email service."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "email"
+      req: true
+      short: "The email address that was analyzed, returned in the original format provided."
+      type: "`$STRING`"
+    }
+    {
+      name: "free"
+      req: true
+      short: "Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.)."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "gravatar"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "has_mx_records"
+      req: true
+      short: "Indicates whether the domain has valid MX (Mail Exchange) records configured."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "reachable"
+      req: true
+      short: "Overall reachability assessment."
+      type: "`$STRING`"
+    }
+    {
+      name: "role_account"
+      req: true
+      short: "Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.)."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "smtp"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "suggestion"
+      req: true
+      short: "Suggested correction for misspelled domains."
+      type: "`$STRING`"
+    }
+    {
+      name: "syntax"
+      req: true
+      short: "Detailed syntax analysis of the email address components."
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "advanced"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "test@yandex.ru"
+                kind: "param"
+                name: "id"
+                orig: "email"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/email/advanced/{email}"
+          parts: [
+            "api"
+            "v1"
+            "email"
+            "advanced"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              email: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'IpGeolocationApi4',
+        slug: "ip-geolocation-api4",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -123,16 +134,19 @@ class Config {
         {
           "name": "disposable",
           "req": true,
+          "short": "Indicates whether the email is from a disposable/temporary email service.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "email",
           "req": true,
+          "short": "The email address that was analyzed, returned in the original format provided.",
           "type": "`$STRING`"
         },
         {
           "name": "free",
           "req": true,
+          "short": "Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.).",
           "type": "`$BOOLEAN`"
         },
         {
@@ -142,16 +156,19 @@ class Config {
         {
           "name": "has_mx_records",
           "req": true,
+          "short": "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "reachable",
           "req": true,
+          "short": "Overall reachability assessment.",
           "type": "`$STRING`"
         },
         {
           "name": "role_account",
           "req": true,
+          "short": "Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.).",
           "type": "`$BOOLEAN`"
         },
         {
@@ -161,11 +178,13 @@ class Config {
         {
           "name": "suggestion",
           "req": true,
+          "short": "Suggested correction for misspelled domains.",
           "type": "`$STRING`"
         },
         {
           "name": "syntax",
           "req": true,
+          "short": "Detailed syntax analysis of the email address components.",
           "type": "`$OBJECT`"
         }
       ],
@@ -650,11 +669,13 @@ class Config {
         {
           "name": "emails",
           "req": true,
+          "short": "List of email addresses to validate.",
           "type": "`$ARRAY`"
         },
         {
           "name": "ips",
           "req": true,
+          "short": "List of IP addresses to look up.",
           "type": "`$ARRAY`"
         }
       ],
@@ -951,26 +972,31 @@ class Config {
         {
           "name": "domain",
           "req": true,
+          "short": "The normalized domain that was analyzed (lowercased, scheme/path stripped).",
           "type": "`$STRING`"
         },
         {
           "name": "is_disposable_email_domain",
           "req": true,
+          "short": "Whether the domain is a known disposable/temporary email provider domain.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "is_valid",
           "req": true,
+          "short": "Whether the input was a syntactically valid domain name.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "resolved_ips",
           "req": true,
+          "short": "DNS A/AAAA records the domain currently resolves to.",
           "type": "`$ARRAY`"
         },
         {
           "name": "threat",
           "req": true,
+          "short": "Threat-intelligence verdict for the domain itself (independent of its IPs).",
           "type": "`$OBJECT`"
         }
       ],
@@ -1029,36 +1055,43 @@ class Config {
         {
           "name": "email",
           "req": true,
+          "short": "The email address that was analyzed, returned in normalized lowercase format.",
           "type": "`$STRING`"
         },
         {
           "name": "email_factors",
           "req": true,
+          "short": "Email-specific risk factors and validation results.",
           "type": "`$NULL`"
         },
         {
           "name": "has_mx_records",
           "req": true,
+          "short": "Whether the email domain has valid MX records in DNS.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "ip_factors",
           "req": true,
+          "short": "IP-specific risk factors and analysis results.",
           "type": "`$NULL`"
         },
         {
           "name": "is_disposable",
           "req": true,
+          "short": "Indicates whether the email address uses a disposable or temporary email service.",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "mx_records",
           "req": true,
+          "short": "MX records for the email domain, sorted by priority ascending.",
           "type": "`$ARRAY`"
         },
         {
           "name": "syntax",
           "req": true,
+          "short": "Detailed syntax validation results and email component breakdown.",
           "type": "`$OBJECT`"
         }
       ],
@@ -1355,11 +1388,13 @@ class Config {
         {
           "name": "email_factors",
           "req": true,
+          "short": "Email-specific risk factors and validation results.",
           "type": "`$NULL`"
         },
         {
           "name": "ip_factors",
           "req": true,
+          "short": "IP-specific risk factors and analysis results.",
           "type": "`$NULL`"
         }
       ],
@@ -1417,6 +1452,7 @@ class Config {
       "fields": [
         {
           "name": "asn",
+          "short": "Autonomous System Number in AS<number> format.",
           "type": [
             "`$ONE`",
             [
@@ -1428,10 +1464,12 @@ class Config {
         {
           "name": "ip",
           "req": true,
+          "short": "The IP address that was analyzed, returned in standard format.",
           "type": "`$STRING`"
         },
         {
           "name": "isp",
+          "short": "Internet Service Provider name derived from the ASN organization field.",
           "type": [
             "`$ONE`",
             [
@@ -1443,11 +1481,13 @@ class Config {
         {
           "name": "location",
           "req": true,
+          "short": "Geographic location and timezone information for the IP address.",
           "type": "`$OBJECT`"
         },
         {
           "name": "suspicious_factors",
           "req": true,
+          "short": "Comprehensive security threat analysis and suspicious activity indicators.",
           "type": "`$OBJECT`"
         }
       ],
@@ -1647,33 +1687,40 @@ class Config {
         {
           "name": "email_api",
           "req": true,
+          "short": "Email validation API rate limit information",
           "type": "`$OBJECT`"
         },
         {
           "name": "interval_seconds",
           "req": true,
+          "short": "Rate limit interval in seconds (time period for quota renewal)",
           "type": "`$INTEGER`"
         },
         {
           "name": "ip_api",
           "req": true,
+          "short": "IP lookup API rate limit information",
           "type": "`$OBJECT`"
         },
         {
           "name": "next_renewal_date",
+          "short": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
           "type": "`$STRING`"
         },
         {
           "name": "plan_id",
           "req": true,
+          "short": "Subscription plan ID or 'default' for free tier users",
           "type": "`$STRING`"
         },
         {
           "name": "plan_name",
+          "short": "Human-readable plan name (if available)",
           "type": "`$STRING`"
         },
         {
           "name": "status",
+          "short": "Subscription status (active, past_due, cancelled, etc.)",
           "type": [
             "`$ONE`",
             [
@@ -1815,11 +1862,13 @@ class Config {
         {
           "name": "email_factors",
           "req": true,
+          "short": "Email-specific risk factors and validation results.",
           "type": "`$NULL`"
         },
         {
           "name": "ip_factors",
           "req": true,
+          "short": "IP-specific risk factors and analysis results.",
           "type": "`$NULL`"
         }
       ],
@@ -1934,16 +1983,19 @@ class Config {
         {
           "name": "ip",
           "req": true,
+          "short": "The IP address that was checked",
           "type": "`$STRING`"
         },
         {
           "name": "is_tor",
           "req": true,
+          "short": "Whether the IP is a known Tor exit node",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "tor_node_count",
           "req": true,
+          "short": "Total number of currently known Tor exit nodes in the database",
           "type": "`$INTEGER`"
         }
       ],

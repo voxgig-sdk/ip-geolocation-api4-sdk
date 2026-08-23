@@ -181,16 +181,16 @@ advanced = client.Advanced
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `disposable` | `Boolean` | Yes |  |
-| `email` | `String` | Yes |  |
-| `free` | `Boolean` | Yes |  |
+| `disposable` | `Boolean` | Yes | Indicates whether the email is from a disposable/temporary email service. |
+| `email` | `String` | Yes | The email address that was analyzed, returned in the original format provided. |
+| `free` | `Boolean` | Yes | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `Object` | No |  |
-| `has_mx_records` | `Boolean` | Yes |  |
-| `reachable` | `String` | Yes |  |
-| `role_account` | `Boolean` | Yes |  |
+| `has_mx_records` | `Boolean` | Yes | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `reachable` | `String` | Yes | Overall reachability assessment. |
+| `role_account` | `Boolean` | Yes | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `Object` | No |  |
-| `suggestion` | `String` | Yes |  |
-| `syntax` | `Hash` | Yes |  |
+| `suggestion` | `String` | Yes | Suggested correction for misspelled domains. |
+| `syntax` | `Hash` | Yes | Detailed syntax analysis of the email address components. |
 
 ### Operations
 
@@ -429,8 +429,8 @@ batch = client.Batch
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `emails` | `Array` | Yes |  |
-| `ips` | `Array` | Yes |  |
+| `emails` | `Array` | Yes | List of email addresses to validate. |
+| `ips` | `Array` | Yes | List of IP addresses to look up. |
 
 ### Operations
 
@@ -657,11 +657,11 @@ domain_reputation_v1_dto = client.DomainReputationV1Dto
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `domain` | `String` | Yes |  |
-| `is_disposable_email_domain` | `Boolean` | Yes |  |
-| `is_valid` | `Boolean` | Yes |  |
-| `resolved_ips` | `Array` | Yes |  |
-| `threat` | `Hash` | Yes |  |
+| `domain` | `String` | Yes | The normalized domain that was analyzed (lowercased, scheme/path stripped). |
+| `is_disposable_email_domain` | `Boolean` | Yes | Whether the domain is a known disposable/temporary email provider domain. |
+| `is_valid` | `Boolean` | Yes | Whether the input was a syntactically valid domain name. |
+| `resolved_ips` | `Array` | Yes | DNS A/AAAA records the domain currently resolves to. |
+| `threat` | `Hash` | Yes | Threat-intelligence verdict for the domain itself (independent of its IPs). |
 
 ### Operations
 
@@ -713,13 +713,13 @@ email = client.Email
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `String` | Yes |  |
-| `email_factors` | `NilClass` | Yes |  |
-| `has_mx_records` | `Boolean` | Yes |  |
-| `ip_factors` | `NilClass` | Yes |  |
-| `is_disposable` | `Boolean` | Yes |  |
-| `mx_records` | `Array` | Yes |  |
-| `syntax` | `Hash` | Yes |  |
+| `email` | `String` | Yes | The email address that was analyzed, returned in normalized lowercase format. |
+| `email_factors` | `NilClass` | Yes | Email-specific risk factors and validation results. |
+| `has_mx_records` | `Boolean` | Yes | Whether the email domain has valid MX records in DNS. |
+| `ip_factors` | `NilClass` | Yes | IP-specific risk factors and analysis results. |
+| `is_disposable` | `Boolean` | Yes | Indicates whether the email address uses a disposable or temporary email service. |
+| `mx_records` | `Array` | Yes | MX records for the email domain, sorted by priority ascending. |
+| `syntax` | `Hash` | Yes | Detailed syntax validation results and email component breakdown. |
 
 ### Operations
 
@@ -870,8 +870,8 @@ ip_reputation = client.IpReputation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_factors` | `NilClass` | Yes |  |
-| `ip_factors` | `NilClass` | Yes |  |
+| `email_factors` | `NilClass` | Yes | Email-specific risk factors and validation results. |
+| `ip_factors` | `NilClass` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
 
@@ -923,11 +923,11 @@ ipn = client.Ipn
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asn` | `Object` | No |  |
-| `ip` | `String` | Yes |  |
-| `isp` | `Object` | No |  |
-| `location` | `Hash` | Yes |  |
-| `suspicious_factors` | `Hash` | Yes |  |
+| `asn` | `Object` | No | Autonomous System Number in AS<number> format. |
+| `ip` | `String` | Yes | The IP address that was analyzed, returned in standard format. |
+| `isp` | `Object` | No | Internet Service Provider name derived from the ASN organization field. |
+| `location` | `Hash` | Yes | Geographic location and timezone information for the IP address. |
+| `suspicious_factors` | `Hash` | Yes | Comprehensive security threat analysis and suspicious activity indicators. |
 
 ### Operations
 
@@ -1087,13 +1087,13 @@ rate_limit_info_dto = client.RateLimitInfoDto
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_api` | `Hash` | Yes |  |
-| `interval_seconds` | `Integer` | Yes |  |
-| `ip_api` | `Hash` | Yes |  |
-| `next_renewal_date` | `String` | No |  |
-| `plan_id` | `String` | Yes |  |
-| `plan_name` | `String` | No |  |
-| `status` | `Object` | No |  |
+| `email_api` | `Hash` | Yes | Email validation API rate limit information |
+| `interval_seconds` | `Integer` | Yes | Rate limit interval in seconds (time period for quota renewal) |
+| `ip_api` | `Hash` | Yes | IP lookup API rate limit information |
+| `next_renewal_date` | `String` | No | Next billing/renewal date when the quota will be reset (ISO 8601 date format) |
+| `plan_id` | `String` | Yes | Subscription plan ID or 'default' for free tier users |
+| `plan_name` | `String` | No | Human-readable plan name (if available) |
+| `status` | `Object` | No | Subscription status (active, past_due, cancelled, etc.) |
 
 ### Operations
 
@@ -1200,8 +1200,8 @@ risk_score = client.RiskScore
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email_factors` | `NilClass` | Yes |  |
-| `ip_factors` | `NilClass` | Yes |  |
+| `email_factors` | `NilClass` | Yes | Email-specific risk factors and validation results. |
+| `ip_factors` | `NilClass` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
 
@@ -1299,9 +1299,9 @@ tor = client.Tor
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ip` | `String` | Yes |  |
-| `is_tor` | `Boolean` | Yes |  |
-| `tor_node_count` | `Integer` | Yes |  |
+| `ip` | `String` | Yes | The IP address that was checked |
+| `is_tor` | `Boolean` | Yes | Whether the IP is a known Tor exit node |
+| `tor_node_count` | `Integer` | Yes | Total number of currently known Tor exit nodes in the database |
 
 ### Operations
 

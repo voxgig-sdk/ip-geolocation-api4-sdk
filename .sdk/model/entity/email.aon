@@ -1,0 +1,136 @@
+# Entity: email
+
+main: kit: entity: email: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "email"
+      req: true
+      short: "The email address that was analyzed, returned in normalized lowercase format."
+      type: "`$STRING`"
+    }
+    {
+      name: "email_factors"
+      req: true
+      short: "Email-specific risk factors and validation results."
+      type: "`$NULL`"
+    }
+    {
+      name: "has_mx_records"
+      req: true
+      short: "Whether the email domain has valid MX records in DNS."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "ip_factors"
+      req: true
+      short: "IP-specific risk factors and analysis results."
+      type: "`$NULL`"
+    }
+    {
+      name: "is_disposable"
+      req: true
+      short: "Indicates whether the email address uses a disposable or temporary email service."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "mx_records"
+      req: true
+      short: "MX records for the email domain, sorted by priority ascending."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "syntax"
+      req: true
+      short: "Detailed syntax validation results and email component breakdown."
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "email"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "john.doe@company.com"
+                kind: "param"
+                name: "id"
+                orig: "email"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/email/{email}"
+          parts: [
+            "api"
+            "v1"
+            "email"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              email: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "john.doe@legitbusiness.com"
+                kind: "param"
+                name: "id"
+                orig: "email"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/v1/risk-score/email/{email}"
+          parts: [
+            "api"
+            "v1"
+            "risk-score"
+            "email"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              email: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.factors`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
