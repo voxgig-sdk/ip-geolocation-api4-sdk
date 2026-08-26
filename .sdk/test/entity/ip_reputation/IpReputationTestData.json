@@ -2,27 +2,27 @@
   "existing": {
     "ip_reputation": {
       "IP_REPUTATION00": {
-        "email_factors": "s14",
-        "ip_factors": "s15",
-        "id": "IP_REPUTATION00"
+        "email_factors": "s1e",
+        "id": "IP_REPUTATION00",
+        "ip_factors": "s20"
       },
       "IP_REPUTATION01": {
-        "email_factors": "s28",
-        "ip_factors": "s29",
-        "id": "IP_REPUTATION01"
+        "email_factors": "s3c",
+        "id": "IP_REPUTATION01",
+        "ip_factors": "s3e"
       },
       "IP_REPUTATION02": {
-        "email_factors": "s3c",
-        "ip_factors": "s3d",
-        "id": "IP_REPUTATION02"
+        "email_factors": "s5a",
+        "id": "IP_REPUTATION02",
+        "ip_factors": "s5c"
       }
     }
   },
   "new": {
     "ip_reputation": {
       "ip_reputation_ref01": {
-        "email_factors": "s50",
-        "ip_factors": "s51"
+        "email_factors": "s78",
+        "ip_factors": "s7a"
       }
     }
   }

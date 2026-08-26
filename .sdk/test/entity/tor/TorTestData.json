@@ -2,31 +2,31 @@
   "existing": {
     "tor": {
       "TOR00": {
-        "ip": "s1e",
-        "is_tor": false,
-        "tor_node_count": "s20",
-        "id": "TOR00"
+        "id": "TOR00",
+        "ip": "s29",
+        "is_tor": true,
+        "tor_node_count": "s2b"
       },
       "TOR01": {
-        "ip": "s3c",
-        "is_tor": false,
-        "tor_node_count": "s3e",
-        "id": "TOR01"
+        "id": "TOR01",
+        "ip": "s51",
+        "is_tor": true,
+        "tor_node_count": "s53"
       },
       "TOR02": {
-        "ip": "s5a",
-        "is_tor": false,
-        "tor_node_count": "s5c",
-        "id": "TOR02"
+        "id": "TOR02",
+        "ip": "s79",
+        "is_tor": true,
+        "tor_node_count": "s7b"
       }
     }
   },
   "new": {
     "tor": {
       "tor_ref01": {
-        "ip": "s78",
-        "is_tor": false,
-        "tor_node_count": "s7a"
+        "ip": "sa1",
+        "is_tor": true,
+        "tor_node_count": "sa3"
       }
     }
   }

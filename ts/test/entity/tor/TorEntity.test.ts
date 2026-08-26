@@ -59,9 +59,12 @@ describe('TorEntity', async () => {
 
     let tor_ref01_data = Object.values(setup.data.existing.tor)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const tor_ref01_ent = client.Tor()
+    const tor_ref01_match_dt0: any = {}
+    tor_ref01_match_dt0.id = tor_ref01_data.id
+    const tor_ref01_data_dt0 = (await tor_ref01_ent.load(tor_ref01_match_dt0)).data()
+    assert(tor_ref01_data_dt0.id === tor_ref01_data.id)
 
 
   })

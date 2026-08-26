@@ -48,9 +48,13 @@ class TestRiskScoreEntity:
 
         # LOAD
         risk_score_ref01_ent = client.RiskScore(None)
-        risk_score_ref01_match_dt0 = {}
+        risk_score_ref01_match_dt0 = {
+            "id": risk_score_ref01_data["id"],
+        }
         risk_score_ref01_data_dt0_loaded = risk_score_ref01_ent.load(risk_score_ref01_match_dt0, None)
-        assert risk_score_ref01_data_dt0_loaded is not None
+        risk_score_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(risk_score_ref01_data_dt0_loaded))
+        assert risk_score_ref01_data_dt0_load_result is not None
+        assert risk_score_ref01_data_dt0_load_result["id"] == risk_score_ref01_data["id"]
 
 
 

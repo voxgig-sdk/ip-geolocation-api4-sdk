@@ -48,9 +48,13 @@ class TestForwardEntity:
 
         # LOAD
         forward_ref01_ent = client.Forward(None)
-        forward_ref01_match_dt0 = {}
+        forward_ref01_match_dt0 = {
+            "id": forward_ref01_data["id"],
+        }
         forward_ref01_data_dt0_loaded = forward_ref01_ent.load(forward_ref01_match_dt0, None)
-        assert forward_ref01_data_dt0_loaded is not None
+        forward_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(forward_ref01_data_dt0_loaded))
+        assert forward_ref01_data_dt0_load_result is not None
+        assert forward_ref01_data_dt0_load_result["id"] == forward_ref01_data["id"]
 
 
 

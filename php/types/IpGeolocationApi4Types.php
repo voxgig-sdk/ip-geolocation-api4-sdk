@@ -20,6 +20,7 @@ class Advanced
     public bool $free;
     public mixed $gravatar = null;
     public bool $has_mx_records;
+    public ?string $id = null;
     public string $reachable;
     public bool $role_account;
     public mixed $smtp = null;
@@ -113,6 +114,7 @@ class Asn
     public mixed $asn = null;
     public mixed $country = null;
     public ?string $country_code = null;
+    public ?string $id = null;
     public string $ip;
     public bool $is_datacenter;
     public mixed $network = null;
@@ -213,6 +215,7 @@ class Email
     public string $email;
     public mixed $email_factors;
     public bool $has_mx_records;
+    public ?string $id = null;
     public mixed $ip_factors;
     public bool $is_disposable;
     public array $mx_records;
@@ -230,6 +233,7 @@ class Forward
 {
     public array $addresses;
     public string $hostname;
+    public ?string $id = null;
 }
 
 /** Request payload for Forward#load. */
@@ -253,6 +257,7 @@ class IpInfoV0LoadMatch
 class IpReputation
 {
     public mixed $email_factors;
+    public ?string $id = null;
     public mixed $ip_factors;
 }
 
@@ -334,6 +339,7 @@ class RateLimitInfoDtoLoadMatch
 class Reverse
 {
     public mixed $hostname = null;
+    public ?string $id = null;
     public string $ip;
     public ?string $ptr_record = null;
     public mixed $ttl = null;
@@ -349,6 +355,7 @@ class ReverseLoadMatch
 class RiskScore
 {
     public mixed $email_factors;
+    public ?string $id = null;
     public mixed $ip_factors;
 }
 
@@ -371,6 +378,7 @@ class StatusLoadMatch
 /** Tor entity data model. */
 class Tor
 {
+    public ?string $id = null;
     public string $ip;
     public bool $is_tor;
     public int $tor_node_count;
@@ -398,6 +406,7 @@ class Whoi
     public string $domain;
     public mixed $error = null;
     public ?string $expires_on = null;
+    public ?string $id = null;
     public array $name_servers;
     public string $raw;
     public ?string $registered_on = null;

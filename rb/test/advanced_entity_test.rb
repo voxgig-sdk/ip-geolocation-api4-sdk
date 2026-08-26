@@ -41,9 +41,13 @@ class AdvancedEntityTest < Minitest::Test
 
     # LOAD
     advanced_ref01_ent = client.Advanced(nil)
-    advanced_ref01_match_dt0 = {}
+    advanced_ref01_match_dt0 = {
+      "id" => advanced_ref01_data["id"],
+    }
     advanced_ref01_data_dt0_loaded = advanced_ref01_ent.load(advanced_ref01_match_dt0, nil)
-    assert !advanced_ref01_data_dt0_loaded.nil?
+    advanced_ref01_data_dt0_load_result = Helpers.to_map(advanced_ref01_data_dt0_loaded.respond_to?(:data_get) ? advanced_ref01_data_dt0_loaded.data_get : advanced_ref01_data_dt0_loaded)
+    assert !advanced_ref01_data_dt0_load_result.nil?
+    assert_equal advanced_ref01_data_dt0_load_result["id"], advanced_ref01_data["id"]
 
   end
 end

@@ -48,9 +48,13 @@ class TestWhoiEntity:
 
         # LOAD
         whoi_ref01_ent = client.Whoi(None)
-        whoi_ref01_match_dt0 = {}
+        whoi_ref01_match_dt0 = {
+            "id": whoi_ref01_data["id"],
+        }
         whoi_ref01_data_dt0_loaded = whoi_ref01_ent.load(whoi_ref01_match_dt0, None)
-        assert whoi_ref01_data_dt0_loaded is not None
+        whoi_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(whoi_ref01_data_dt0_loaded))
+        assert whoi_ref01_data_dt0_load_result is not None
+        assert whoi_ref01_data_dt0_load_result["id"] == whoi_ref01_data["id"]
 
 
 

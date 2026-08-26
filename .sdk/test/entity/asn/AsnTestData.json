@@ -2,47 +2,47 @@
   "existing": {
     "asn": {
       "ASN00": {
-        "asn": "s46",
-        "country": "s47",
-        "country_code": "s48",
-        "ip": "s49",
-        "is_datacenter": true,
-        "network": "s4b",
-        "organization": "s4c",
-        "id": "ASN00"
+        "asn": "s50",
+        "country": "s51",
+        "country_code": "s52",
+        "id": "ASN00",
+        "ip": "s54",
+        "is_datacenter": false,
+        "network": "s56",
+        "organization": "s57"
       },
       "ASN01": {
-        "asn": "s8c",
-        "country": "s8d",
-        "country_code": "s8e",
-        "ip": "s8f",
-        "is_datacenter": true,
-        "network": "s91",
-        "organization": "s92",
-        "id": "ASN01"
+        "asn": "sa0",
+        "country": "sa1",
+        "country_code": "sa2",
+        "id": "ASN01",
+        "ip": "sa4",
+        "is_datacenter": false,
+        "network": "sa6",
+        "organization": "sa7"
       },
       "ASN02": {
-        "asn": "sd2",
-        "country": "sd3",
-        "country_code": "sd4",
-        "ip": "sd5",
-        "is_datacenter": true,
-        "network": "sd7",
-        "organization": "sd8",
-        "id": "ASN02"
+        "asn": "sf0",
+        "country": "sf1",
+        "country_code": "sf2",
+        "id": "ASN02",
+        "ip": "sf4",
+        "is_datacenter": false,
+        "network": "sf6",
+        "organization": "sf7"
       }
     }
   },
   "new": {
     "asn": {
       "asn_ref01": {
-        "asn": "s118",
-        "country": "s119",
-        "country_code": "s11a",
-        "ip": "s11b",
-        "is_datacenter": true,
-        "network": "s11d",
-        "organization": "s11e"
+        "asn": "s140",
+        "country": "s141",
+        "country_code": "s142",
+        "ip": "s144",
+        "is_datacenter": false,
+        "network": "s146",
+        "organization": "s147"
       }
     }
   }

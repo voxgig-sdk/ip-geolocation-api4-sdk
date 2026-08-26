@@ -44,10 +44,14 @@ describe("IpReputationEntity", function()
 
     -- LOAD
     local ip_reputation_ref01_ent = client:IpReputation(nil)
-    local ip_reputation_ref01_match_dt0 = {}
+    local ip_reputation_ref01_match_dt0 = {
+      id = ip_reputation_ref01_data["id"],
+    }
     local ip_reputation_ref01_data_dt0_loaded, err = ip_reputation_ref01_ent:load(ip_reputation_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(ip_reputation_ref01_data_dt0_loaded)
+    local ip_reputation_ref01_data_dt0_load_result = helpers.to_map(type(ip_reputation_ref01_data_dt0_loaded) == 'table' and ip_reputation_ref01_data_dt0_loaded.data_get and ip_reputation_ref01_data_dt0_loaded:data_get() or ip_reputation_ref01_data_dt0_loaded)
+    assert.is_not_nil(ip_reputation_ref01_data_dt0_load_result)
+    assert.are.equal(ip_reputation_ref01_data_dt0_load_result["id"], ip_reputation_ref01_data["id"])
 
   end)
 end)

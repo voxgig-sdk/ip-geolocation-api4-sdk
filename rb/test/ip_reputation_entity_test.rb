@@ -41,9 +41,13 @@ class IpReputationEntityTest < Minitest::Test
 
     # LOAD
     ip_reputation_ref01_ent = client.IpReputation(nil)
-    ip_reputation_ref01_match_dt0 = {}
+    ip_reputation_ref01_match_dt0 = {
+      "id" => ip_reputation_ref01_data["id"],
+    }
     ip_reputation_ref01_data_dt0_loaded = ip_reputation_ref01_ent.load(ip_reputation_ref01_match_dt0, nil)
-    assert !ip_reputation_ref01_data_dt0_loaded.nil?
+    ip_reputation_ref01_data_dt0_load_result = Helpers.to_map(ip_reputation_ref01_data_dt0_loaded.respond_to?(:data_get) ? ip_reputation_ref01_data_dt0_loaded.data_get : ip_reputation_ref01_data_dt0_loaded)
+    assert !ip_reputation_ref01_data_dt0_load_result.nil?
+    assert_equal ip_reputation_ref01_data_dt0_load_result["id"], ip_reputation_ref01_data["id"]
 
   end
 end

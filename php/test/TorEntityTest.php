@@ -48,9 +48,13 @@ class TorEntityTest extends TestCase
 
         // LOAD
         $tor_ref01_ent = $client->Tor(null);
-        $tor_ref01_match_dt0 = [];
+        $tor_ref01_match_dt0 = [
+            "id" => $tor_ref01_data["id"],
+        ];
         $tor_ref01_data_dt0_loaded = $tor_ref01_ent->load($tor_ref01_match_dt0, null);
-        $this->assertNotNull($tor_ref01_data_dt0_loaded);
+        $tor_ref01_data_dt0_load_result = Helpers::to_map(is_object($tor_ref01_data_dt0_loaded) && method_exists($tor_ref01_data_dt0_loaded, 'data_get') ? $tor_ref01_data_dt0_loaded->data_get() : $tor_ref01_data_dt0_loaded);
+        $this->assertNotNull($tor_ref01_data_dt0_load_result);
+        $this->assertEquals($tor_ref01_data_dt0_load_result["id"], $tor_ref01_data["id"]);
 
     }
 }

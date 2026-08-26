@@ -48,9 +48,13 @@ class AsnEntityTest extends TestCase
 
         // LOAD
         $asn_ref01_ent = $client->Asn(null);
-        $asn_ref01_match_dt0 = [];
+        $asn_ref01_match_dt0 = [
+            "id" => $asn_ref01_data["id"],
+        ];
         $asn_ref01_data_dt0_loaded = $asn_ref01_ent->load($asn_ref01_match_dt0, null);
-        $this->assertNotNull($asn_ref01_data_dt0_loaded);
+        $asn_ref01_data_dt0_load_result = Helpers::to_map(is_object($asn_ref01_data_dt0_loaded) && method_exists($asn_ref01_data_dt0_loaded, 'data_get') ? $asn_ref01_data_dt0_loaded->data_get() : $asn_ref01_data_dt0_loaded);
+        $this->assertNotNull($asn_ref01_data_dt0_load_result);
+        $this->assertEquals($asn_ref01_data_dt0_load_result["id"], $asn_ref01_data["id"]);
 
     }
 }

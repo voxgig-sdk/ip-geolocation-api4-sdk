@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -158,6 +159,10 @@ class Config {
           "req": true,
           "short": "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
           "type": "`$BOOLEAN`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "reachable",
@@ -581,6 +586,10 @@ class Config {
         },
         {
           "name": "country_code",
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {
@@ -1071,6 +1080,10 @@ class Config {
           "type": "`$BOOLEAN`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "ip_factors",
           "req": true,
           "short": "IP-specific risk factors and analysis results.",
@@ -1193,6 +1206,10 @@ class Config {
         {
           "name": "hostname",
           "req": true,
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         }
       ],
@@ -1390,6 +1407,10 @@ class Config {
           "req": true,
           "short": "Email-specific risk factors and validation results.",
           "type": "`$NULL`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "ip_factors",
@@ -1787,6 +1808,10 @@ class Config {
           ]
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "ip",
           "req": true,
           "type": "`$STRING`"
@@ -1864,6 +1889,10 @@ class Config {
           "req": true,
           "short": "Email-specific risk factors and validation results.",
           "type": "`$NULL`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "ip_factors",
@@ -1980,6 +2009,10 @@ class Config {
     },
     "tor": {
       "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        },
         {
           "name": "ip",
           "req": true,
@@ -2159,6 +2192,10 @@ class Config {
         },
         {
           "name": "expires_on",
+          "type": "`$STRING`"
+        },
+        {
+          "name": "id",
           "type": "`$STRING`"
         },
         {

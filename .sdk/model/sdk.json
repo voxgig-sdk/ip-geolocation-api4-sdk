@@ -68,6 +68,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "reachable",
               "req": true,
               "short": "Overall reachability assessment.",
@@ -101,6 +107,10 @@
               "type": "`$OBJECT`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "advanced",
           "op": {
             "load": {
@@ -568,6 +578,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "ip",
               "req": true,
               "type": "`$STRING`"
@@ -603,6 +619,10 @@
               ]
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "asn",
           "op": {
             "load": {
@@ -1119,6 +1139,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "ip_factors",
               "req": true,
               "short": "IP-specific risk factors and analysis results.",
@@ -1146,6 +1172,10 @@
               "type": "`$OBJECT`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "email",
           "op": {
             "load": {
@@ -1255,8 +1285,18 @@
               "name": "hostname",
               "req": true,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "forward",
           "op": {
             "load": {
@@ -1473,12 +1513,22 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "ip_factors",
               "req": true,
               "short": "IP-specific risk factors and analysis results.",
               "type": "`$NULL`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "ip_reputation",
           "op": {
             "load": {
@@ -1922,6 +1972,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "ip",
               "req": true,
               "type": "`$STRING`"
@@ -1945,6 +2001,10 @@
               ]
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "reverse",
           "op": {
             "load": {
@@ -2013,12 +2073,22 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "ip_factors",
               "req": true,
               "short": "IP-specific risk factors and analysis results.",
               "type": "`$NULL`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "risk_score",
           "op": {
             "load": {
@@ -2143,6 +2213,12 @@
           "fields": [
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "ip",
               "req": true,
               "short": "The IP address that was checked",
@@ -2163,6 +2239,10 @@
               "type": "`$INTEGER`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "tor",
           "op": {
             "load": {
@@ -2350,6 +2430,12 @@
             },
             {
               "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
               "name": "name_servers",
               "req": true,
               "type": "`$ARRAY`"
@@ -2385,6 +2471,10 @@
               "type": "`$STRING`"
             }
           ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
           "name": "whoi",
           "op": {
             "load": {
@@ -2532,6 +2622,7 @@
             }
           },
           "title": "In-memory mock transport for testing without a live server",
+          "transport": "base",
           "version": "0.0.1"
         }
       },
@@ -3311,6 +3402,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -3369,6 +3461,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -3443,6 +3536,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -3523,6 +3617,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -3581,6 +3676,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -3645,6 +3741,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -3714,6 +3811,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""
@@ -3788,6 +3886,7 @@
           "origname": "",
           "output": {
             "adopt": false,
+            "create": true,
             "path": "",
             "repo": "",
             "sdkrel": ""

@@ -44,10 +44,14 @@ describe("ForwardEntity", function()
 
     -- LOAD
     local forward_ref01_ent = client:Forward(nil)
-    local forward_ref01_match_dt0 = {}
+    local forward_ref01_match_dt0 = {
+      id = forward_ref01_data["id"],
+    }
     local forward_ref01_data_dt0_loaded, err = forward_ref01_ent:load(forward_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(forward_ref01_data_dt0_loaded)
+    local forward_ref01_data_dt0_load_result = helpers.to_map(type(forward_ref01_data_dt0_loaded) == 'table' and forward_ref01_data_dt0_loaded.data_get and forward_ref01_data_dt0_loaded:data_get() or forward_ref01_data_dt0_loaded)
+    assert.is_not_nil(forward_ref01_data_dt0_load_result)
+    assert.are.equal(forward_ref01_data_dt0_load_result["id"], forward_ref01_data["id"])
 
   end)
 end)

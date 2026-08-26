@@ -29,6 +29,7 @@ class AdvancedRequired(TypedDict):
 
 class Advanced(AdvancedRequired, total=False):
     gravatar: Any
+    id: str
     smtp: Any
 
 
@@ -120,6 +121,7 @@ class Asn(AsnRequired, total=False):
     asn: int | None
     country: str | None
     country_code: str
+    id: str
     network: str | None
     organization: str | None
 
@@ -188,7 +190,7 @@ class DomainReputationV1DtoLoadMatch(TypedDict):
     domain: str
 
 
-class Email(TypedDict):
+class EmailRequired(TypedDict):
     email: str
     email_factors: None
     has_mx_records: bool
@@ -198,13 +200,21 @@ class Email(TypedDict):
     syntax: dict
 
 
+class Email(EmailRequired, total=False):
+    id: str
+
+
 class EmailLoadMatch(TypedDict):
     id: str
 
 
-class Forward(TypedDict):
+class ForwardRequired(TypedDict):
     addresses: list
     hostname: str
+
+
+class Forward(ForwardRequired, total=False):
+    id: str
 
 
 class ForwardLoadMatch(TypedDict):
@@ -219,9 +229,13 @@ class IpInfoV0LoadMatch(TypedDict):
     ip: str
 
 
-class IpReputation(TypedDict):
+class IpReputationRequired(TypedDict):
     email_factors: None
     ip_factors: None
+
+
+class IpReputation(IpReputationRequired, total=False):
+    id: str
 
 
 class IpReputationLoadMatch(TypedDict):
@@ -293,6 +307,7 @@ class ReverseRequired(TypedDict):
 
 class Reverse(ReverseRequired, total=False):
     hostname: str | None
+    id: str
     ptr_record: str
     ttl: int | None
 
@@ -301,9 +316,13 @@ class ReverseLoadMatch(TypedDict):
     id: str
 
 
-class RiskScore(TypedDict):
+class RiskScoreRequired(TypedDict):
     email_factors: None
     ip_factors: None
+
+
+class RiskScore(RiskScoreRequired, total=False):
+    id: str
 
 
 class RiskScoreLoadMatch(TypedDict):
@@ -318,10 +337,14 @@ class StatusLoadMatch(TypedDict):
     pass
 
 
-class Tor(TypedDict):
+class TorRequired(TypedDict):
     ip: str
     is_tor: bool
     tor_node_count: int
+
+
+class Tor(TorRequired, total=False):
+    id: str
 
 
 class TorLoadMatch(TypedDict):
@@ -346,6 +369,7 @@ class WhoiRequired(TypedDict):
 class Whoi(WhoiRequired, total=False):
     error: str | None
     expires_on: str
+    id: str
     registered_on: str
     registrar: Any
     updated_on: str

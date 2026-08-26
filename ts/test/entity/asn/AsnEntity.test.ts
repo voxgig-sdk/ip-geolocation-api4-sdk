@@ -59,9 +59,12 @@ describe('AsnEntity', async () => {
 
     let asn_ref01_data = Object.values(setup.data.existing.asn)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const asn_ref01_ent = client.Asn()
+    const asn_ref01_match_dt0: any = {}
+    asn_ref01_match_dt0.id = asn_ref01_data.id
+    const asn_ref01_data_dt0 = (await asn_ref01_ent.load(asn_ref01_match_dt0)).data()
+    assert(asn_ref01_data_dt0.id === asn_ref01_data.id)
 
 
   })

@@ -48,9 +48,13 @@ class TestAdvancedEntity:
 
         # LOAD
         advanced_ref01_ent = client.Advanced(None)
-        advanced_ref01_match_dt0 = {}
+        advanced_ref01_match_dt0 = {
+            "id": advanced_ref01_data["id"],
+        }
         advanced_ref01_data_dt0_loaded = advanced_ref01_ent.load(advanced_ref01_match_dt0, None)
-        assert advanced_ref01_data_dt0_loaded is not None
+        advanced_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(advanced_ref01_data_dt0_loaded))
+        assert advanced_ref01_data_dt0_load_result is not None
+        assert advanced_ref01_data_dt0_load_result["id"] == advanced_ref01_data["id"]
 
 
 

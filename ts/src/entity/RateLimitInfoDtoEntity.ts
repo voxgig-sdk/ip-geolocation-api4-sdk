@@ -43,7 +43,8 @@ class RateLimitInfoDtoEntity extends IpGeolocationApi4EntityBase<RateLimitInfoDt
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

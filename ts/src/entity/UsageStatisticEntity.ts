@@ -43,7 +43,8 @@ class UsageStatisticEntity extends IpGeolocationApi4EntityBase<UsageStatistic> {
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

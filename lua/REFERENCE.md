@@ -183,6 +183,7 @@ local advanced = client:Advanced(nil)
 | `free` | `boolean` | Yes | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `any` | No |  |
 | `has_mx_records` | `boolean` | Yes | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` | `string` | No |  |
 | `reachable` | `string` | Yes | Overall reachability assessment. |
 | `role_account` | `boolean` | Yes | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `any` | No |  |
@@ -264,7 +265,7 @@ local api_usage_stats_model = client:ApiUsageStatsModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ApiUsageStatsModel():load({ id = "api_usage_stats_model_id" })
+local result, err = client:ApiUsageStatsModel():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -371,6 +372,7 @@ local asn = client:Asn(nil)
 | `asn` | `number|nil` | No |  |
 | `country` | `string|nil` | No |  |
 | `country_code` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_datacenter` | `boolean` | Yes |  |
 | `network` | `string|nil` | No |  |
@@ -713,6 +715,7 @@ local email = client:Email(nil)
 | `email` | `string` | Yes | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | `nil` | Yes | Email-specific risk factors and validation results. |
 | `has_mx_records` | `boolean` | Yes | Whether the email domain has valid MX records in DNS. |
+| `id` | `string` | No |  |
 | `ip_factors` | `nil` | Yes | IP-specific risk factors and analysis results. |
 | `is_disposable` | `boolean` | Yes | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | `table` | Yes | MX records for the email domain, sorted by priority ascending. |
@@ -770,6 +773,7 @@ local forward = client:Forward(nil)
 | --- | --- | --- | --- |
 | `addresses` | `table` | Yes |  |
 | `hostname` | `string` | Yes |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -868,6 +872,7 @@ local ip_reputation = client:IpReputation(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_factors` | `nil` | Yes | Email-specific risk factors and validation results. |
+| `id` | `string` | No |  |
 | `ip_factors` | `nil` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
@@ -1143,6 +1148,7 @@ local reverse = client:Reverse(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `hostname` | `string|nil` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `ptr_record` | `string` | No |  |
 | `ttl` | `number|nil` | No |  |
@@ -1198,6 +1204,7 @@ local risk_score = client:RiskScore(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_factors` | `nil` | Yes | Email-specific risk factors and validation results. |
+| `id` | `string` | No |  |
 | `ip_factors` | `nil` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
@@ -1296,6 +1303,7 @@ local tor = client:Tor(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes | The IP address that was checked |
 | `is_tor` | `boolean` | Yes | Whether the IP is a known Tor exit node |
 | `tor_node_count` | `number` | Yes | Total number of currently known Tor exit nodes in the database |
@@ -1399,6 +1407,7 @@ local whoi = client:Whoi(nil)
 | `domain` | `string` | Yes |  |
 | `error` | `string|nil` | No |  |
 | `expires_on` | `string` | No |  |
+| `id` | `string` | No |  |
 | `name_servers` | `table` | Yes |  |
 | `raw` | `string` | Yes |  |
 | `registered_on` | `string` | No |  |

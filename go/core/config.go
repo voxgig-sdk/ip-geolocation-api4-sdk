@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -83,6 +84,10 @@ func MakeConfig() map[string]any {
 						"req": true,
 						"short": "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
 						"type": "`$BOOLEAN`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "reachable",
@@ -506,6 +511,10 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "country_code",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -996,6 +1005,10 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "ip_factors",
 						"req": true,
 						"short": "IP-specific risk factors and analysis results.",
@@ -1118,6 +1131,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "hostname",
 						"req": true,
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 				},
@@ -1315,6 +1332,10 @@ func MakeConfig() map[string]any {
 						"req": true,
 						"short": "Email-specific risk factors and validation results.",
 						"type": "`$NULL`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ip_factors",
@@ -1712,6 +1733,10 @@ func MakeConfig() map[string]any {
 						},
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "ip",
 						"req": true,
 						"type": "`$STRING`",
@@ -1789,6 +1814,10 @@ func MakeConfig() map[string]any {
 						"req": true,
 						"short": "Email-specific risk factors and validation results.",
 						"type": "`$NULL`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ip_factors",
@@ -1905,6 +1934,10 @@ func MakeConfig() map[string]any {
 			},
 			"tor": map[string]any{
 				"fields": []any{
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
 					map[string]any{
 						"name": "ip",
 						"req": true,
@@ -2084,6 +2117,10 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "expires_on",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{

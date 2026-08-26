@@ -44,10 +44,14 @@ describe("AdvancedEntity", function()
 
     -- LOAD
     local advanced_ref01_ent = client:Advanced(nil)
-    local advanced_ref01_match_dt0 = {}
+    local advanced_ref01_match_dt0 = {
+      id = advanced_ref01_data["id"],
+    }
     local advanced_ref01_data_dt0_loaded, err = advanced_ref01_ent:load(advanced_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(advanced_ref01_data_dt0_loaded)
+    local advanced_ref01_data_dt0_load_result = helpers.to_map(type(advanced_ref01_data_dt0_loaded) == 'table' and advanced_ref01_data_dt0_loaded.data_get and advanced_ref01_data_dt0_loaded:data_get() or advanced_ref01_data_dt0_loaded)
+    assert.is_not_nil(advanced_ref01_data_dt0_load_result)
+    assert.are.equal(advanced_ref01_data_dt0_load_result["id"], advanced_ref01_data["id"])
 
   end)
 end)

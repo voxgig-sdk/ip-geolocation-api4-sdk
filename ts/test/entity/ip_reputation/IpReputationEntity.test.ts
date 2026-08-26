@@ -59,9 +59,12 @@ describe('IpReputationEntity', async () => {
 
     let ip_reputation_ref01_data = Object.values(setup.data.existing.ip_reputation)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const ip_reputation_ref01_ent = client.IpReputation()
+    const ip_reputation_ref01_match_dt0: any = {}
+    ip_reputation_ref01_match_dt0.id = ip_reputation_ref01_data.id
+    const ip_reputation_ref01_data_dt0 = (await ip_reputation_ref01_ent.load(ip_reputation_ref01_match_dt0)).data()
+    assert(ip_reputation_ref01_data_dt0.id === ip_reputation_ref01_data.id)
 
 
   })

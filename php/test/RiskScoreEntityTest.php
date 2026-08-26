@@ -48,9 +48,13 @@ class RiskScoreEntityTest extends TestCase
 
         // LOAD
         $risk_score_ref01_ent = $client->RiskScore(null);
-        $risk_score_ref01_match_dt0 = [];
+        $risk_score_ref01_match_dt0 = [
+            "id" => $risk_score_ref01_data["id"],
+        ];
         $risk_score_ref01_data_dt0_loaded = $risk_score_ref01_ent->load($risk_score_ref01_match_dt0, null);
-        $this->assertNotNull($risk_score_ref01_data_dt0_loaded);
+        $risk_score_ref01_data_dt0_load_result = Helpers::to_map(is_object($risk_score_ref01_data_dt0_loaded) && method_exists($risk_score_ref01_data_dt0_loaded, 'data_get') ? $risk_score_ref01_data_dt0_loaded->data_get() : $risk_score_ref01_data_dt0_loaded);
+        $this->assertNotNull($risk_score_ref01_data_dt0_load_result);
+        $this->assertEquals($risk_score_ref01_data_dt0_load_result["id"], $risk_score_ref01_data["id"]);
 
     }
 }

@@ -61,13 +61,19 @@ func TestRiskScoreEntity(t *testing.T) {
 
 		// LOAD
 		riskScoreRef01Ent := client.RiskScore(nil)
-		riskScoreRef01MatchDt0 := map[string]any{}
+		riskScoreRef01MatchDt0 := map[string]any{
+			"id": riskScoreRef01Data["id"],
+		}
 		riskScoreRef01DataDt0Loaded, err := riskScoreRef01Ent.Load(riskScoreRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if riskScoreRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		riskScoreRef01DataDt0LoadResult := core.ToMapAny(entityData(riskScoreRef01DataDt0Loaded))
+		if riskScoreRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if riskScoreRef01DataDt0LoadResult["id"] != riskScoreRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

@@ -35,6 +35,11 @@ main: kit: entity: advanced: {
       type: "`$BOOLEAN`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "reachable"
       req: true
       short: "Overall reachability assessment."
@@ -64,6 +69,11 @@ main: kit: entity: advanced: {
       type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "advanced"
   op: {

@@ -15,7 +15,17 @@ main: kit: entity: forward: {
       req: true
       type: "`$STRING`"
     }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "forward"
   op: {

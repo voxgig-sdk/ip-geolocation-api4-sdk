@@ -48,9 +48,13 @@ class TestTorEntity:
 
         # LOAD
         tor_ref01_ent = client.Tor(None)
-        tor_ref01_match_dt0 = {}
+        tor_ref01_match_dt0 = {
+            "id": tor_ref01_data["id"],
+        }
         tor_ref01_data_dt0_loaded = tor_ref01_ent.load(tor_ref01_match_dt0, None)
-        assert tor_ref01_data_dt0_loaded is not None
+        tor_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(tor_ref01_data_dt0_loaded))
+        assert tor_ref01_data_dt0_load_result is not None
+        assert tor_ref01_data_dt0_load_result["id"] == tor_ref01_data["id"]
 
 
 

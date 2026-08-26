@@ -48,9 +48,13 @@ class TestReverseEntity:
 
         # LOAD
         reverse_ref01_ent = client.Reverse(None)
-        reverse_ref01_match_dt0 = {}
+        reverse_ref01_match_dt0 = {
+            "id": reverse_ref01_data["id"],
+        }
         reverse_ref01_data_dt0_loaded = reverse_ref01_ent.load(reverse_ref01_match_dt0, None)
-        assert reverse_ref01_data_dt0_loaded is not None
+        reverse_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(reverse_ref01_data_dt0_loaded))
+        assert reverse_ref01_data_dt0_load_result is not None
+        assert reverse_ref01_data_dt0_load_result["id"] == reverse_ref01_data["id"]
 
 
 

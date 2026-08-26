@@ -44,10 +44,14 @@ describe("WhoiEntity", function()
 
     -- LOAD
     local whoi_ref01_ent = client:Whoi(nil)
-    local whoi_ref01_match_dt0 = {}
+    local whoi_ref01_match_dt0 = {
+      id = whoi_ref01_data["id"],
+    }
     local whoi_ref01_data_dt0_loaded, err = whoi_ref01_ent:load(whoi_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(whoi_ref01_data_dt0_loaded)
+    local whoi_ref01_data_dt0_load_result = helpers.to_map(type(whoi_ref01_data_dt0_loaded) == 'table' and whoi_ref01_data_dt0_loaded.data_get and whoi_ref01_data_dt0_loaded:data_get() or whoi_ref01_data_dt0_loaded)
+    assert.is_not_nil(whoi_ref01_data_dt0_load_result)
+    assert.are.equal(whoi_ref01_data_dt0_load_result["id"], whoi_ref01_data["id"])
 
   end)
 end)

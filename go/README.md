@@ -287,6 +287,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"free"` | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `"gravatar"` |  |
 | `"has_mx_records"` | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `"id"` |  |
 | `"reachable"` | Overall reachability assessment. |
 | `"role_account"` | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `"smtp"` |  |
@@ -349,6 +350,7 @@ API path: `/api/v1/usage/summary`
 | `"asn"` |  |
 | `"country"` |  |
 | `"country_code"` |  |
+| `"id"` |  |
 | `"ip"` |  |
 | `"is_datacenter"` |  |
 | `"network"` |  |
@@ -422,6 +424,7 @@ API path: `/api/v1/domain/reputation/{domain}`
 | `"email"` | The email address that was analyzed, returned in normalized lowercase format. |
 | `"email_factors"` | Email-specific risk factors and validation results. |
 | `"has_mx_records"` | Whether the email domain has valid MX records in DNS. |
+| `"id"` |  |
 | `"ip_factors"` | IP-specific risk factors and analysis results. |
 | `"is_disposable"` | Indicates whether the email address uses a disposable or temporary email service. |
 | `"mx_records"` | MX records for the email domain, sorted by priority ascending. |
@@ -437,6 +440,7 @@ API path: `/api/v1/email/{email}`
 | --- | --- |
 | `"addresses"` |  |
 | `"hostname"` |  |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -456,6 +460,7 @@ API path: `/api/json/{ip}`
 | Field | Description |
 | --- | --- |
 | `"email_factors"` | Email-specific risk factors and validation results. |
+| `"id"` |  |
 | `"ip_factors"` | IP-specific risk factors and analysis results. |
 
 Operations: Load.
@@ -517,6 +522,7 @@ API path: `/api/v1/ratelimit`
 | Field | Description |
 | --- | --- |
 | `"hostname"` |  |
+| `"id"` |  |
 | `"ip"` |  |
 | `"ptr_record"` |  |
 | `"ttl"` |  |
@@ -530,6 +536,7 @@ API path: `/api/v1/dns/reverse/{ip}`
 | Field | Description |
 | --- | --- |
 | `"email_factors"` | Email-specific risk factors and validation results. |
+| `"id"` |  |
 | `"ip_factors"` | IP-specific risk factors and analysis results. |
 
 Operations: Load.
@@ -549,6 +556,7 @@ API path: `/api/status`
 
 | Field | Description |
 | --- | --- |
+| `"id"` |  |
 | `"ip"` | The IP address that was checked |
 | `"is_tor"` | Whether the IP is a known Tor exit node |
 | `"tor_node_count"` | Total number of currently known Tor exit nodes in the database |
@@ -573,6 +581,7 @@ API path: `/api/v1/usage/current-month`
 | `"domain"` |  |
 | `"error"` |  |
 | `"expires_on"` |  |
+| `"id"` |  |
 | `"name_servers"` |  |
 | `"raw"` |  |
 | `"registered_on"` |  |
@@ -608,6 +617,7 @@ Create an instance: `advanced := client.Advanced(nil)`
 | `free` | `bool` | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `any` |  |
 | `has_mx_records` | `bool` | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` | `string` |  |
 | `reachable` | `string` | Overall reachability assessment. |
 | `role_account` | `bool` | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `any` |  |
@@ -660,7 +670,7 @@ Create an instance: `apiUsageStatsModel := client.ApiUsageStatsModel(nil)`
 #### Example: Load
 
 ```go
-apiUsageStatsModel, err := client.ApiUsageStatsModel(nil).Load(map[string]any{"id": "api_usage_stats_model_id"}, nil)
+apiUsageStatsModel, err := client.ApiUsageStatsModel(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -721,6 +731,7 @@ Create an instance: `asn := client.Asn(nil)`
 | `asn` | `any` |  |
 | `country` | `any` |  |
 | `country_code` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_datacenter` | `bool` |  |
 | `network` | `any` |  |
@@ -909,6 +920,7 @@ Create an instance: `email := client.Email(nil)`
 | `email` | `string` | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | `any` | Email-specific risk factors and validation results. |
 | `has_mx_records` | `bool` | Whether the email domain has valid MX records in DNS. |
+| `id` | `string` |  |
 | `ip_factors` | `any` | IP-specific risk factors and analysis results. |
 | `is_disposable` | `bool` | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | `[]any` | MX records for the email domain, sorted by priority ascending. |
@@ -941,6 +953,7 @@ Create an instance: `forward := client.Forward(nil)`
 | --- | --- | --- |
 | `addresses` | `[]any` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -989,6 +1002,7 @@ Create an instance: `ipReputation := client.IpReputation(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_factors` | `any` | Email-specific risk factors and validation results. |
+| `id` | `string` |  |
 | `ip_factors` | `any` | IP-specific risk factors and analysis results. |
 
 #### Example: Load
@@ -1142,6 +1156,7 @@ Create an instance: `reverse := client.Reverse(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `hostname` | `any` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `ptr_record` | `string` |  |
 | `ttl` | `any` |  |
@@ -1172,6 +1187,7 @@ Create an instance: `riskScore := client.RiskScore(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_factors` | `any` | Email-specific risk factors and validation results. |
+| `id` | `string` |  |
 | `ip_factors` | `any` | IP-specific risk factors and analysis results. |
 
 #### Example: Load
@@ -1220,6 +1236,7 @@ Create an instance: `tor := client.Tor(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The IP address that was checked |
 | `is_tor` | `bool` | Whether the IP is a known Tor exit node |
 | `tor_node_count` | `int` | Total number of currently known Tor exit nodes in the database |
@@ -1273,6 +1290,7 @@ Create an instance: `whoi := client.Whoi(nil)`
 | `domain` | `string` |  |
 | `error` | `any` |  |
 | `expires_on` | `string` |  |
+| `id` | `string` |  |
 | `name_servers` | `[]any` |  |
 | `raw` | `string` |  |
 | `registered_on` | `string` |  |

@@ -48,9 +48,13 @@ class TestIpReputationEntity:
 
         # LOAD
         ip_reputation_ref01_ent = client.IpReputation(None)
-        ip_reputation_ref01_match_dt0 = {}
+        ip_reputation_ref01_match_dt0 = {
+            "id": ip_reputation_ref01_data["id"],
+        }
         ip_reputation_ref01_data_dt0_loaded = ip_reputation_ref01_ent.load(ip_reputation_ref01_match_dt0, None)
-        assert ip_reputation_ref01_data_dt0_loaded is not None
+        ip_reputation_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(ip_reputation_ref01_data_dt0_loaded))
+        assert ip_reputation_ref01_data_dt0_load_result is not None
+        assert ip_reputation_ref01_data_dt0_load_result["id"] == ip_reputation_ref01_data["id"]
 
 
 

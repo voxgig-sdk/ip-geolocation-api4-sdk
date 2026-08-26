@@ -59,9 +59,12 @@ describe('ForwardEntity', async () => {
 
     let forward_ref01_data = Object.values(setup.data.existing.forward)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const forward_ref01_ent = client.Forward()
+    const forward_ref01_match_dt0: any = {}
+    forward_ref01_match_dt0.id = forward_ref01_data.id
+    const forward_ref01_data_dt0 = (await forward_ref01_ent.load(forward_ref01_match_dt0)).data()
+    assert(forward_ref01_data_dt0.id === forward_ref01_data.id)
 
 
   })

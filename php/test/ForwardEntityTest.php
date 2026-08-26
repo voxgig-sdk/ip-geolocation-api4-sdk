@@ -48,9 +48,13 @@ class ForwardEntityTest extends TestCase
 
         // LOAD
         $forward_ref01_ent = $client->Forward(null);
-        $forward_ref01_match_dt0 = [];
+        $forward_ref01_match_dt0 = [
+            "id" => $forward_ref01_data["id"],
+        ];
         $forward_ref01_data_dt0_loaded = $forward_ref01_ent->load($forward_ref01_match_dt0, null);
-        $this->assertNotNull($forward_ref01_data_dt0_loaded);
+        $forward_ref01_data_dt0_load_result = Helpers::to_map(is_object($forward_ref01_data_dt0_loaded) && method_exists($forward_ref01_data_dt0_loaded, 'data_get') ? $forward_ref01_data_dt0_loaded->data_get() : $forward_ref01_data_dt0_loaded);
+        $this->assertNotNull($forward_ref01_data_dt0_load_result);
+        $this->assertEquals($forward_ref01_data_dt0_load_result["id"], $forward_ref01_data["id"]);
 
     }
 }

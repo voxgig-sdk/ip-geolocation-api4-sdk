@@ -61,13 +61,19 @@ func TestAsnEntity(t *testing.T) {
 
 		// LOAD
 		asnRef01Ent := client.Asn(nil)
-		asnRef01MatchDt0 := map[string]any{}
+		asnRef01MatchDt0 := map[string]any{
+			"id": asnRef01Data["id"],
+		}
 		asnRef01DataDt0Loaded, err := asnRef01Ent.Load(asnRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if asnRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		asnRef01DataDt0LoadResult := core.ToMapAny(entityData(asnRef01DataDt0Loaded))
+		if asnRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if asnRef01DataDt0LoadResult["id"] != asnRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

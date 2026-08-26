@@ -6,6 +6,11 @@ main: kit: entity: tor: {
 
   fields: [
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: true
       short: "The IP address that was checked"
@@ -24,6 +29,11 @@ main: kit: entity: tor: {
       type: "`$INTEGER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "tor"
   op: {

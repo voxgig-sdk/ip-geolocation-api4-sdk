@@ -12,6 +12,7 @@
 ---@field free boolean
 ---@field gravatar? any
 ---@field has_mx_records boolean
+---@field id? string
 ---@field reachable string
 ---@field role_account boolean
 ---@field smtp? any
@@ -87,6 +88,7 @@
 ---@field asn? number|nil
 ---@field country? string|nil
 ---@field country_code? string
+---@field id? string
 ---@field ip string
 ---@field is_datacenter boolean
 ---@field network? string|nil
@@ -145,6 +147,7 @@
 ---@field email string
 ---@field email_factors nil
 ---@field has_mx_records boolean
+---@field id? string
 ---@field ip_factors nil
 ---@field is_disposable boolean
 ---@field mx_records table
@@ -156,6 +159,7 @@
 ---@class Forward
 ---@field addresses table
 ---@field hostname string
+---@field id? string
 
 ---@class ForwardLoadMatch
 ---@field id string
@@ -167,6 +171,7 @@
 
 ---@class IpReputation
 ---@field email_factors nil
+---@field id? string
 ---@field ip_factors nil
 
 ---@class IpReputationLoadMatch
@@ -215,6 +220,7 @@
 
 ---@class Reverse
 ---@field hostname? string|nil
+---@field id? string
 ---@field ip string
 ---@field ptr_record? string
 ---@field ttl? number|nil
@@ -224,6 +230,7 @@
 
 ---@class RiskScore
 ---@field email_factors nil
+---@field id? string
 ---@field ip_factors nil
 
 ---@class RiskScoreLoadMatch
@@ -234,6 +241,7 @@
 ---@class StatusLoadMatch
 
 ---@class Tor
+---@field id? string
 ---@field ip string
 ---@field is_tor boolean
 ---@field tor_node_count number
@@ -249,6 +257,7 @@
 ---@field domain string
 ---@field error? string|nil
 ---@field expires_on? string
+---@field id? string
 ---@field name_servers table
 ---@field raw string
 ---@field registered_on? string

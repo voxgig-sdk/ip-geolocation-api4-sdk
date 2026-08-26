@@ -41,9 +41,13 @@ class WhoiEntityTest < Minitest::Test
 
     # LOAD
     whoi_ref01_ent = client.Whoi(nil)
-    whoi_ref01_match_dt0 = {}
+    whoi_ref01_match_dt0 = {
+      "id" => whoi_ref01_data["id"],
+    }
     whoi_ref01_data_dt0_loaded = whoi_ref01_ent.load(whoi_ref01_match_dt0, nil)
-    assert !whoi_ref01_data_dt0_loaded.nil?
+    whoi_ref01_data_dt0_load_result = Helpers.to_map(whoi_ref01_data_dt0_loaded.respond_to?(:data_get) ? whoi_ref01_data_dt0_loaded.data_get : whoi_ref01_data_dt0_loaded)
+    assert !whoi_ref01_data_dt0_load_result.nil?
+    assert_equal whoi_ref01_data_dt0_load_result["id"], whoi_ref01_data["id"]
 
   end
 end

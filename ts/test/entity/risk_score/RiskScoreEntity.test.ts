@@ -59,9 +59,12 @@ describe('RiskScoreEntity', async () => {
 
     let risk_score_ref01_data = Object.values(setup.data.existing.risk_score)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const risk_score_ref01_ent = client.RiskScore()
+    const risk_score_ref01_match_dt0: any = {}
+    risk_score_ref01_match_dt0.id = risk_score_ref01_data.id
+    const risk_score_ref01_data_dt0 = (await risk_score_ref01_ent.load(risk_score_ref01_match_dt0)).data()
+    assert(risk_score_ref01_data_dt0.id === risk_score_ref01_data.id)
 
 
   })

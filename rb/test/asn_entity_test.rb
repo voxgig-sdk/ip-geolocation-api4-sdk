@@ -41,9 +41,13 @@ class AsnEntityTest < Minitest::Test
 
     # LOAD
     asn_ref01_ent = client.Asn(nil)
-    asn_ref01_match_dt0 = {}
+    asn_ref01_match_dt0 = {
+      "id" => asn_ref01_data["id"],
+    }
     asn_ref01_data_dt0_loaded = asn_ref01_ent.load(asn_ref01_match_dt0, nil)
-    assert !asn_ref01_data_dt0_loaded.nil?
+    asn_ref01_data_dt0_load_result = Helpers.to_map(asn_ref01_data_dt0_loaded.respond_to?(:data_get) ? asn_ref01_data_dt0_loaded.data_get : asn_ref01_data_dt0_loaded)
+    assert !asn_ref01_data_dt0_load_result.nil?
+    assert_equal asn_ref01_data_dt0_load_result["id"], asn_ref01_data["id"]
 
   end
 end

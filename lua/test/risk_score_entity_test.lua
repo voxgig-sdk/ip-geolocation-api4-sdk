@@ -44,10 +44,14 @@ describe("RiskScoreEntity", function()
 
     -- LOAD
     local risk_score_ref01_ent = client:RiskScore(nil)
-    local risk_score_ref01_match_dt0 = {}
+    local risk_score_ref01_match_dt0 = {
+      id = risk_score_ref01_data["id"],
+    }
     local risk_score_ref01_data_dt0_loaded, err = risk_score_ref01_ent:load(risk_score_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(risk_score_ref01_data_dt0_loaded)
+    local risk_score_ref01_data_dt0_load_result = helpers.to_map(type(risk_score_ref01_data_dt0_loaded) == 'table' and risk_score_ref01_data_dt0_loaded.data_get and risk_score_ref01_data_dt0_loaded:data_get() or risk_score_ref01_data_dt0_loaded)
+    assert.is_not_nil(risk_score_ref01_data_dt0_load_result)
+    assert.are.equal(risk_score_ref01_data_dt0_load_result["id"], risk_score_ref01_data["id"])
 
   end)
 end)

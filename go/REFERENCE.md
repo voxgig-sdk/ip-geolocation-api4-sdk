@@ -191,6 +191,7 @@ fmt.Println(advanced.GetName()) // "advanced"
 | `free` | `bool` | Yes | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `any` | No |  |
 | `has_mx_records` | `bool` | Yes | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` | `string` | No |  |
 | `reachable` | `string` | Yes | Overall reachability assessment. |
 | `role_account` | `bool` | Yes | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `any` | No |  |
@@ -271,7 +272,7 @@ fmt.Println(apiUsageStatsModel.GetName()) // "api_usage_stats_model"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ApiUsageStatsModel(nil).Load(map[string]any{"id": "api_usage_stats_model_id"}, nil)
+result, err := client.ApiUsageStatsModel(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -376,6 +377,7 @@ fmt.Println(asn.GetName()) // "asn"
 | `asn` | `any` | No |  |
 | `country` | `any` | No |  |
 | `country_code` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_datacenter` | `bool` | Yes |  |
 | `network` | `any` | No |  |
@@ -720,6 +722,7 @@ fmt.Println(email.GetName()) // "email"
 | `email` | `string` | Yes | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | `any` | Yes | Email-specific risk factors and validation results. |
 | `has_mx_records` | `bool` | Yes | Whether the email domain has valid MX records in DNS. |
+| `id` | `string` | No |  |
 | `ip_factors` | `any` | Yes | IP-specific risk factors and analysis results. |
 | `is_disposable` | `bool` | Yes | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | `[]any` | Yes | MX records for the email domain, sorted by priority ascending. |
@@ -776,6 +779,7 @@ fmt.Println(forward.GetName()) // "forward"
 | --- | --- | --- | --- |
 | `addresses` | `[]any` | Yes |  |
 | `hostname` | `string` | Yes |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -872,6 +876,7 @@ fmt.Println(ipReputation.GetName()) // "ip_reputation"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_factors` | `any` | Yes | Email-specific risk factors and validation results. |
+| `id` | `string` | No |  |
 | `ip_factors` | `any` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
@@ -1146,6 +1151,7 @@ fmt.Println(reverse.GetName()) // "reverse"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `hostname` | `any` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `ptr_record` | `string` | No |  |
 | `ttl` | `any` | No |  |
@@ -1200,6 +1206,7 @@ fmt.Println(riskScore.GetName()) // "risk_score"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_factors` | `any` | Yes | Email-specific risk factors and validation results. |
+| `id` | `string` | No |  |
 | `ip_factors` | `any` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
@@ -1296,6 +1303,7 @@ fmt.Println(tor.GetName()) // "tor"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes | The IP address that was checked |
 | `is_tor` | `bool` | Yes | Whether the IP is a known Tor exit node |
 | `tor_node_count` | `int` | Yes | Total number of currently known Tor exit nodes in the database |
@@ -1397,6 +1405,7 @@ fmt.Println(whoi.GetName()) // "whoi"
 | `domain` | `string` | Yes |  |
 | `error` | `any` | No |  |
 | `expires_on` | `string` | No |  |
+| `id` | `string` | No |  |
 | `name_servers` | `[]any` | Yes |  |
 | `raw` | `string` | Yes |  |
 | `registered_on` | `string` | No |  |

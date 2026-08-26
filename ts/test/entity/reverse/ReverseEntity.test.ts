@@ -59,9 +59,12 @@ describe('ReverseEntity', async () => {
 
     let reverse_ref01_data = Object.values(setup.data.existing.reverse)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const reverse_ref01_ent = client.Reverse()
+    const reverse_ref01_match_dt0: any = {}
+    reverse_ref01_match_dt0.id = reverse_ref01_data.id
+    const reverse_ref01_data_dt0 = (await reverse_ref01_ent.load(reverse_ref01_match_dt0)).data()
+    assert(reverse_ref01_data_dt0.id === reverse_ref01_data.id)
 
 
   })

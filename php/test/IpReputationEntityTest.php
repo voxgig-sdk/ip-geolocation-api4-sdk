@@ -48,9 +48,13 @@ class IpReputationEntityTest extends TestCase
 
         // LOAD
         $ip_reputation_ref01_ent = $client->IpReputation(null);
-        $ip_reputation_ref01_match_dt0 = [];
+        $ip_reputation_ref01_match_dt0 = [
+            "id" => $ip_reputation_ref01_data["id"],
+        ];
         $ip_reputation_ref01_data_dt0_loaded = $ip_reputation_ref01_ent->load($ip_reputation_ref01_match_dt0, null);
-        $this->assertNotNull($ip_reputation_ref01_data_dt0_loaded);
+        $ip_reputation_ref01_data_dt0_load_result = Helpers::to_map(is_object($ip_reputation_ref01_data_dt0_loaded) && method_exists($ip_reputation_ref01_data_dt0_loaded, 'data_get') ? $ip_reputation_ref01_data_dt0_loaded->data_get() : $ip_reputation_ref01_data_dt0_loaded);
+        $this->assertNotNull($ip_reputation_ref01_data_dt0_load_result);
+        $this->assertEquals($ip_reputation_ref01_data_dt0_load_result["id"], $ip_reputation_ref01_data["id"]);
 
     }
 }

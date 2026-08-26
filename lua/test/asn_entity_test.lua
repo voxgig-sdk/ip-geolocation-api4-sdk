@@ -44,10 +44,14 @@ describe("AsnEntity", function()
 
     -- LOAD
     local asn_ref01_ent = client:Asn(nil)
-    local asn_ref01_match_dt0 = {}
+    local asn_ref01_match_dt0 = {
+      id = asn_ref01_data["id"],
+    }
     local asn_ref01_data_dt0_loaded, err = asn_ref01_ent:load(asn_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(asn_ref01_data_dt0_loaded)
+    local asn_ref01_data_dt0_load_result = helpers.to_map(type(asn_ref01_data_dt0_loaded) == 'table' and asn_ref01_data_dt0_loaded.data_get and asn_ref01_data_dt0_loaded:data_get() or asn_ref01_data_dt0_loaded)
+    assert.is_not_nil(asn_ref01_data_dt0_load_result)
+    assert.are.equal(asn_ref01_data_dt0_load_result["id"], asn_ref01_data["id"])
 
   end)
 end)

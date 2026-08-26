@@ -61,13 +61,19 @@ func TestReverseEntity(t *testing.T) {
 
 		// LOAD
 		reverseRef01Ent := client.Reverse(nil)
-		reverseRef01MatchDt0 := map[string]any{}
+		reverseRef01MatchDt0 := map[string]any{
+			"id": reverseRef01Data["id"],
+		}
 		reverseRef01DataDt0Loaded, err := reverseRef01Ent.Load(reverseRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if reverseRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		reverseRef01DataDt0LoadResult := core.ToMapAny(entityData(reverseRef01DataDt0Loaded))
+		if reverseRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if reverseRef01DataDt0LoadResult["id"] != reverseRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

@@ -44,10 +44,14 @@ describe("ReverseEntity", function()
 
     -- LOAD
     local reverse_ref01_ent = client:Reverse(nil)
-    local reverse_ref01_match_dt0 = {}
+    local reverse_ref01_match_dt0 = {
+      id = reverse_ref01_data["id"],
+    }
     local reverse_ref01_data_dt0_loaded, err = reverse_ref01_ent:load(reverse_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(reverse_ref01_data_dt0_loaded)
+    local reverse_ref01_data_dt0_load_result = helpers.to_map(type(reverse_ref01_data_dt0_loaded) == 'table' and reverse_ref01_data_dt0_loaded.data_get and reverse_ref01_data_dt0_loaded:data_get() or reverse_ref01_data_dt0_loaded)
+    assert.is_not_nil(reverse_ref01_data_dt0_load_result)
+    assert.are.equal(reverse_ref01_data_dt0_load_result["id"], reverse_ref01_data["id"])
 
   end)
 end)

@@ -61,13 +61,19 @@ func TestTorEntity(t *testing.T) {
 
 		// LOAD
 		torRef01Ent := client.Tor(nil)
-		torRef01MatchDt0 := map[string]any{}
+		torRef01MatchDt0 := map[string]any{
+			"id": torRef01Data["id"],
+		}
 		torRef01DataDt0Loaded, err := torRef01Ent.Load(torRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if torRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		torRef01DataDt0LoadResult := core.ToMapAny(entityData(torRef01DataDt0Loaded))
+		if torRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if torRef01DataDt0LoadResult["id"] != torRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

@@ -185,6 +185,7 @@ $advanced = $client->Advanced();
 | `free` | `bool` | Yes | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `mixed` | No |  |
 | `has_mx_records` | `bool` | Yes | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` | `string` | No |  |
 | `reachable` | `string` | Yes | Overall reachability assessment. |
 | `role_account` | `bool` | Yes | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `mixed` | No |  |
@@ -266,7 +267,7 @@ $api_usage_stats_model = $client->ApiUsageStatsModel();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->ApiUsageStatsModel()->load(["id" => "api_usage_stats_model_id"]);
+$result = $client->ApiUsageStatsModel()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -373,6 +374,7 @@ $asn = $client->Asn();
 | `asn` | `mixed` | No |  |
 | `country` | `mixed` | No |  |
 | `country_code` | `string` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `is_datacenter` | `bool` | Yes |  |
 | `network` | `mixed` | No |  |
@@ -715,6 +717,7 @@ $email = $client->Email();
 | `email` | `string` | Yes | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
 | `has_mx_records` | `bool` | Yes | Whether the email domain has valid MX records in DNS. |
+| `id` | `string` | No |  |
 | `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
 | `is_disposable` | `bool` | Yes | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | `array` | Yes | MX records for the email domain, sorted by priority ascending. |
@@ -772,6 +775,7 @@ $forward = $client->Forward();
 | --- | --- | --- | --- |
 | `addresses` | `array` | Yes |  |
 | `hostname` | `string` | Yes |  |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -870,6 +874,7 @@ $ip_reputation = $client->IpReputation();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
+| `id` | `string` | No |  |
 | `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
@@ -1145,6 +1150,7 @@ $reverse = $client->Reverse();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `hostname` | `mixed` | No |  |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes |  |
 | `ptr_record` | `string` | No |  |
 | `ttl` | `mixed` | No |  |
@@ -1200,6 +1206,7 @@ $risk_score = $client->RiskScore();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_factors` | `null` | Yes | Email-specific risk factors and validation results. |
+| `id` | `string` | No |  |
 | `ip_factors` | `null` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
@@ -1298,6 +1305,7 @@ $tor = $client->Tor();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `string` | No |  |
 | `ip` | `string` | Yes | The IP address that was checked |
 | `is_tor` | `bool` | Yes | Whether the IP is a known Tor exit node |
 | `tor_node_count` | `int` | Yes | Total number of currently known Tor exit nodes in the database |
@@ -1401,6 +1409,7 @@ $whoi = $client->Whoi();
 | `domain` | `string` | Yes |  |
 | `error` | `mixed` | No |  |
 | `expires_on` | `string` | No |  |
+| `id` | `string` | No |  |
 | `name_servers` | `array` | Yes |  |
 | `raw` | `string` | Yes |  |
 | `registered_on` | `string` | No |  |

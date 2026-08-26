@@ -48,9 +48,13 @@ class WhoiEntityTest extends TestCase
 
         // LOAD
         $whoi_ref01_ent = $client->Whoi(null);
-        $whoi_ref01_match_dt0 = [];
+        $whoi_ref01_match_dt0 = [
+            "id" => $whoi_ref01_data["id"],
+        ];
         $whoi_ref01_data_dt0_loaded = $whoi_ref01_ent->load($whoi_ref01_match_dt0, null);
-        $this->assertNotNull($whoi_ref01_data_dt0_loaded);
+        $whoi_ref01_data_dt0_load_result = Helpers::to_map(is_object($whoi_ref01_data_dt0_loaded) && method_exists($whoi_ref01_data_dt0_loaded, 'data_get') ? $whoi_ref01_data_dt0_loaded->data_get() : $whoi_ref01_data_dt0_loaded);
+        $this->assertNotNull($whoi_ref01_data_dt0_load_result);
+        $this->assertEquals($whoi_ref01_data_dt0_load_result["id"], $whoi_ref01_data["id"]);
 
     }
 }

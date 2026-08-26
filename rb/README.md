@@ -269,6 +269,7 @@ returns a result `Hash` with these keys:
 | `free` | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` |  |
 | `has_mx_records` | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` |  |
 | `reachable` | Overall reachability assessment. |
 | `role_account` | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` |  |
@@ -331,6 +332,7 @@ API path: `/api/v1/usage/summary`
 | `asn` |  |
 | `country` |  |
 | `country_code` |  |
+| `id` |  |
 | `ip` |  |
 | `is_datacenter` |  |
 | `network` |  |
@@ -404,6 +406,7 @@ API path: `/api/v1/domain/reputation/{domain}`
 | `email` | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | Email-specific risk factors and validation results. |
 | `has_mx_records` | Whether the email domain has valid MX records in DNS. |
+| `id` |  |
 | `ip_factors` | IP-specific risk factors and analysis results. |
 | `is_disposable` | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | MX records for the email domain, sorted by priority ascending. |
@@ -419,6 +422,7 @@ API path: `/api/v1/email/{email}`
 | --- | --- |
 | `addresses` |  |
 | `hostname` |  |
+| `id` |  |
 
 Operations: Load.
 
@@ -438,6 +442,7 @@ API path: `/api/json/{ip}`
 | Field | Description |
 | --- | --- |
 | `email_factors` | Email-specific risk factors and validation results. |
+| `id` |  |
 | `ip_factors` | IP-specific risk factors and analysis results. |
 
 Operations: Load.
@@ -499,6 +504,7 @@ API path: `/api/v1/ratelimit`
 | Field | Description |
 | --- | --- |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `ptr_record` |  |
 | `ttl` |  |
@@ -512,6 +518,7 @@ API path: `/api/v1/dns/reverse/{ip}`
 | Field | Description |
 | --- | --- |
 | `email_factors` | Email-specific risk factors and validation results. |
+| `id` |  |
 | `ip_factors` | IP-specific risk factors and analysis results. |
 
 Operations: Load.
@@ -531,6 +538,7 @@ API path: `/api/status`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The IP address that was checked |
 | `is_tor` | Whether the IP is a known Tor exit node |
 | `tor_node_count` | Total number of currently known Tor exit nodes in the database |
@@ -555,6 +563,7 @@ API path: `/api/v1/usage/current-month`
 | `domain` |  |
 | `error` |  |
 | `expires_on` |  |
+| `id` |  |
 | `name_servers` |  |
 | `raw` |  |
 | `registered_on` |  |
@@ -590,6 +599,7 @@ Create an instance: `advanced = client.Advanced`
 | `free` | `Boolean` | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `Object` |  |
 | `has_mx_records` | `Boolean` | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` | `String` |  |
 | `reachable` | `String` | Overall reachability assessment. |
 | `role_account` | `Boolean` | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `Object` |  |
@@ -640,7 +650,7 @@ Create an instance: `api_usage_stats_model = client.ApiUsageStatsModel`
 
 ```ruby
 # load returns the ENTITY — call data_get for the ApiUsageStatsModel record (raises on error).
-api_usage_stats_model = client.ApiUsageStatsModel.load({ "id" => "api_usage_stats_model_id" })
+api_usage_stats_model = client.ApiUsageStatsModel.load({ "id" => 1 })
 ```
 
 
@@ -694,6 +704,7 @@ Create an instance: `asn = client.Asn`
 | `asn` | `Object` |  |
 | `country` | `Object` |  |
 | `country_code` | `String` |  |
+| `id` | `String` |  |
 | `ip` | `String` |  |
 | `is_datacenter` | `Boolean` |  |
 | `network` | `Object` |  |
@@ -858,6 +869,7 @@ Create an instance: `email = client.Email`
 | `email` | `String` | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | `NilClass` | Email-specific risk factors and validation results. |
 | `has_mx_records` | `Boolean` | Whether the email domain has valid MX records in DNS. |
+| `id` | `String` |  |
 | `ip_factors` | `NilClass` | IP-specific risk factors and analysis results. |
 | `is_disposable` | `Boolean` | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | `Array` | MX records for the email domain, sorted by priority ascending. |
@@ -887,6 +899,7 @@ Create an instance: `forward = client.Forward`
 | --- | --- | --- |
 | `addresses` | `Array` |  |
 | `hostname` | `String` |  |
+| `id` | `String` |  |
 
 #### Example: Load
 
@@ -929,6 +942,7 @@ Create an instance: `ip_reputation = client.IpReputation`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_factors` | `NilClass` | Email-specific risk factors and validation results. |
+| `id` | `String` |  |
 | `ip_factors` | `NilClass` | IP-specific risk factors and analysis results. |
 
 #### Example: Load
@@ -1063,6 +1077,7 @@ Create an instance: `reverse = client.Reverse`
 | Field | Type | Description |
 | --- | --- | --- |
 | `hostname` | `Object` |  |
+| `id` | `String` |  |
 | `ip` | `String` |  |
 | `ptr_record` | `String` |  |
 | `ttl` | `Object` |  |
@@ -1090,6 +1105,7 @@ Create an instance: `risk_score = client.RiskScore`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_factors` | `NilClass` | Email-specific risk factors and validation results. |
+| `id` | `String` |  |
 | `ip_factors` | `NilClass` | IP-specific risk factors and analysis results. |
 
 #### Example: Load
@@ -1132,6 +1148,7 @@ Create an instance: `tor = client.Tor`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `String` |  |
 | `ip` | `String` | The IP address that was checked |
 | `is_tor` | `Boolean` | Whether the IP is a known Tor exit node |
 | `tor_node_count` | `Integer` | Total number of currently known Tor exit nodes in the database |
@@ -1179,6 +1196,7 @@ Create an instance: `whoi = client.Whoi`
 | `domain` | `String` |  |
 | `error` | `Object` |  |
 | `expires_on` | `String` |  |
+| `id` | `String` |  |
 | `name_servers` | `Array` |  |
 | `raw` | `String` |  |
 | `registered_on` | `String` |  |

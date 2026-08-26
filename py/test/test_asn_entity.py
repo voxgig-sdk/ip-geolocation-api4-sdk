@@ -48,9 +48,13 @@ class TestAsnEntity:
 
         # LOAD
         asn_ref01_ent = client.Asn(None)
-        asn_ref01_match_dt0 = {}
+        asn_ref01_match_dt0 = {
+            "id": asn_ref01_data["id"],
+        }
         asn_ref01_data_dt0_loaded = asn_ref01_ent.load(asn_ref01_match_dt0, None)
-        assert asn_ref01_data_dt0_loaded is not None
+        asn_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(asn_ref01_data_dt0_loaded))
+        assert asn_ref01_data_dt0_load_result is not None
+        assert asn_ref01_data_dt0_load_result["id"] == asn_ref01_data["id"]
 
 
 

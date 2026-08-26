@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -100,6 +101,10 @@ def make_config():
             "req": True,
             "short": "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
             "type": "`$BOOLEAN`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "reachable",
@@ -523,6 +528,10 @@ def make_config():
           },
           {
             "name": "country_code",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -1013,6 +1022,10 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "ip_factors",
             "req": True,
             "short": "IP-specific risk factors and analysis results.",
@@ -1135,6 +1148,10 @@ def make_config():
           {
             "name": "hostname",
             "req": True,
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
         ],
@@ -1332,6 +1349,10 @@ def make_config():
             "req": True,
             "short": "Email-specific risk factors and validation results.",
             "type": "`$NULL`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "ip_factors",
@@ -1729,6 +1750,10 @@ def make_config():
             ],
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "ip",
             "req": True,
             "type": "`$STRING`",
@@ -1806,6 +1831,10 @@ def make_config():
             "req": True,
             "short": "Email-specific risk factors and validation results.",
             "type": "`$NULL`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "ip_factors",
@@ -1922,6 +1951,10 @@ def make_config():
       },
       "tor": {
         "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
           {
             "name": "ip",
             "req": True,
@@ -2101,6 +2134,10 @@ def make_config():
           },
           {
             "name": "expires_on",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {

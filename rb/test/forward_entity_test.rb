@@ -41,9 +41,13 @@ class ForwardEntityTest < Minitest::Test
 
     # LOAD
     forward_ref01_ent = client.Forward(nil)
-    forward_ref01_match_dt0 = {}
+    forward_ref01_match_dt0 = {
+      "id" => forward_ref01_data["id"],
+    }
     forward_ref01_data_dt0_loaded = forward_ref01_ent.load(forward_ref01_match_dt0, nil)
-    assert !forward_ref01_data_dt0_loaded.nil?
+    forward_ref01_data_dt0_load_result = Helpers.to_map(forward_ref01_data_dt0_loaded.respond_to?(:data_get) ? forward_ref01_data_dt0_loaded.data_get : forward_ref01_data_dt0_loaded)
+    assert !forward_ref01_data_dt0_load_result.nil?
+    assert_equal forward_ref01_data_dt0_load_result["id"], forward_ref01_data["id"]
 
   end
 end

@@ -186,6 +186,7 @@ advanced = client.Advanced
 | `free` | `Boolean` | Yes | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `Object` | No |  |
 | `has_mx_records` | `Boolean` | Yes | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` | `String` | No |  |
 | `reachable` | `String` | Yes | Overall reachability assessment. |
 | `role_account` | `Boolean` | Yes | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `Object` | No |  |
@@ -267,7 +268,7 @@ api_usage_stats_model = client.ApiUsageStatsModel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ApiUsageStatsModel.load({ "id" => "api_usage_stats_model_id" })
+result = client.ApiUsageStatsModel.load({ "id" => 1 })
 ```
 
 ### Common Methods
@@ -374,6 +375,7 @@ asn = client.Asn
 | `asn` | `Object` | No |  |
 | `country` | `Object` | No |  |
 | `country_code` | `String` | No |  |
+| `id` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `is_datacenter` | `Boolean` | Yes |  |
 | `network` | `Object` | No |  |
@@ -716,6 +718,7 @@ email = client.Email
 | `email` | `String` | Yes | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | `NilClass` | Yes | Email-specific risk factors and validation results. |
 | `has_mx_records` | `Boolean` | Yes | Whether the email domain has valid MX records in DNS. |
+| `id` | `String` | No |  |
 | `ip_factors` | `NilClass` | Yes | IP-specific risk factors and analysis results. |
 | `is_disposable` | `Boolean` | Yes | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | `Array` | Yes | MX records for the email domain, sorted by priority ascending. |
@@ -773,6 +776,7 @@ forward = client.Forward
 | --- | --- | --- | --- |
 | `addresses` | `Array` | Yes |  |
 | `hostname` | `String` | Yes |  |
+| `id` | `String` | No |  |
 
 ### Operations
 
@@ -871,6 +875,7 @@ ip_reputation = client.IpReputation
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_factors` | `NilClass` | Yes | Email-specific risk factors and validation results. |
+| `id` | `String` | No |  |
 | `ip_factors` | `NilClass` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
@@ -1146,6 +1151,7 @@ reverse = client.Reverse
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `hostname` | `Object` | No |  |
+| `id` | `String` | No |  |
 | `ip` | `String` | Yes |  |
 | `ptr_record` | `String` | No |  |
 | `ttl` | `Object` | No |  |
@@ -1201,6 +1207,7 @@ risk_score = client.RiskScore
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `email_factors` | `NilClass` | Yes | Email-specific risk factors and validation results. |
+| `id` | `String` | No |  |
 | `ip_factors` | `NilClass` | Yes | IP-specific risk factors and analysis results. |
 
 ### Operations
@@ -1299,6 +1306,7 @@ tor = client.Tor
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `id` | `String` | No |  |
 | `ip` | `String` | Yes | The IP address that was checked |
 | `is_tor` | `Boolean` | Yes | Whether the IP is a known Tor exit node |
 | `tor_node_count` | `Integer` | Yes | Total number of currently known Tor exit nodes in the database |
@@ -1402,6 +1410,7 @@ whoi = client.Whoi
 | `domain` | `String` | Yes |  |
 | `error` | `Object` | No |  |
 | `expires_on` | `String` | No |  |
+| `id` | `String` | No |  |
 | `name_servers` | `Array` | Yes |  |
 | `raw` | `String` | Yes |  |
 | `registered_on` | `String` | No |  |

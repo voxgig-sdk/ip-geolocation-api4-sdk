@@ -61,13 +61,19 @@ func TestAdvancedEntity(t *testing.T) {
 
 		// LOAD
 		advancedRef01Ent := client.Advanced(nil)
-		advancedRef01MatchDt0 := map[string]any{}
+		advancedRef01MatchDt0 := map[string]any{
+			"id": advancedRef01Data["id"],
+		}
 		advancedRef01DataDt0Loaded, err := advancedRef01Ent.Load(advancedRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if advancedRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		advancedRef01DataDt0LoadResult := core.ToMapAny(entityData(advancedRef01DataDt0Loaded))
+		if advancedRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if advancedRef01DataDt0LoadResult["id"] != advancedRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

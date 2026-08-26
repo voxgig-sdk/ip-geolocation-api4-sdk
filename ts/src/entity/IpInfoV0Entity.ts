@@ -43,7 +43,8 @@ class IpInfoV0Entity extends IpGeolocationApi4EntityBase<IpInfoV0> {
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

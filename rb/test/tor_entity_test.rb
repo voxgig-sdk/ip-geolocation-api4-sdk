@@ -41,9 +41,13 @@ class TorEntityTest < Minitest::Test
 
     # LOAD
     tor_ref01_ent = client.Tor(nil)
-    tor_ref01_match_dt0 = {}
+    tor_ref01_match_dt0 = {
+      "id" => tor_ref01_data["id"],
+    }
     tor_ref01_data_dt0_loaded = tor_ref01_ent.load(tor_ref01_match_dt0, nil)
-    assert !tor_ref01_data_dt0_loaded.nil?
+    tor_ref01_data_dt0_load_result = Helpers.to_map(tor_ref01_data_dt0_loaded.respond_to?(:data_get) ? tor_ref01_data_dt0_loaded.data_get : tor_ref01_data_dt0_loaded)
+    assert !tor_ref01_data_dt0_load_result.nil?
+    assert_equal tor_ref01_data_dt0_load_result["id"], tor_ref01_data["id"]
 
   end
 end

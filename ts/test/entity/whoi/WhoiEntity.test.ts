@@ -59,9 +59,12 @@ describe('WhoiEntity', async () => {
 
     let whoi_ref01_data = Object.values(setup.data.existing.whoi)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const whoi_ref01_ent = client.Whoi()
+    const whoi_ref01_match_dt0: any = {}
+    whoi_ref01_match_dt0.id = whoi_ref01_data.id
+    const whoi_ref01_data_dt0 = (await whoi_ref01_ent.load(whoi_ref01_match_dt0)).data()
+    assert(whoi_ref01_data_dt0.id === whoi_ref01_data.id)
 
 
   })

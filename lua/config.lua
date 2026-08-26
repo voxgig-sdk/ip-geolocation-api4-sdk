@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -79,6 +80,10 @@ local function make_config()
             ["req"] = true,
             ["short"] = "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
             ["type"] = "`$BOOLEAN`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "reachable",
@@ -502,6 +507,10 @@ local function make_config()
           },
           {
             ["name"] = "country_code",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
@@ -992,6 +1001,10 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "ip_factors",
             ["req"] = true,
             ["short"] = "IP-specific risk factors and analysis results.",
@@ -1114,6 +1127,10 @@ local function make_config()
           {
             ["name"] = "hostname",
             ["req"] = true,
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
         },
@@ -1311,6 +1328,10 @@ local function make_config()
             ["req"] = true,
             ["short"] = "Email-specific risk factors and validation results.",
             ["type"] = "`$NULL`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip_factors",
@@ -1708,6 +1729,10 @@ local function make_config()
             },
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "ip",
             ["req"] = true,
             ["type"] = "`$STRING`",
@@ -1785,6 +1810,10 @@ local function make_config()
             ["req"] = true,
             ["short"] = "Email-specific risk factors and validation results.",
             ["type"] = "`$NULL`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip_factors",
@@ -1901,6 +1930,10 @@ local function make_config()
       },
       ["tor"] = {
         ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
           {
             ["name"] = "ip",
             ["req"] = true,
@@ -2080,6 +2113,10 @@ local function make_config()
           },
           {
             ["name"] = "expires_on",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {

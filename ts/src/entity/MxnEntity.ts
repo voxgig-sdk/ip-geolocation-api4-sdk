@@ -43,7 +43,8 @@ class MxnEntity extends IpGeolocationApi4EntityBase<Mxn> {
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

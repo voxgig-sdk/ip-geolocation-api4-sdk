@@ -12,12 +12,22 @@ main: kit: entity: ip_reputation: {
       type: "`$NULL`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip_factors"
       req: true
       short: "IP-specific risk factors and analysis results."
       type: "`$NULL`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "ip_reputation"
   op: {

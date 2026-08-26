@@ -17,6 +17,11 @@ main: kit: entity: reverse: {
       ]
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip"
       req: true
       type: "`$STRING`"
@@ -38,6 +43,11 @@ main: kit: entity: reverse: {
       ]
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "reverse"
   op: {

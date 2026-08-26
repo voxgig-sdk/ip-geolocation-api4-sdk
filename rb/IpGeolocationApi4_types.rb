@@ -25,6 +25,9 @@
 # @!attribute [rw] has_mx_records
 #   @return [Boolean]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] reachable
 #   @return [String]
 #
@@ -45,6 +48,7 @@ Advanced = Struct.new(
   :free,
   :gravatar,
   :has_mx_records,
+  :id,
   :reachable,
   :role_account,
   :smtp,
@@ -309,6 +313,9 @@ ApiUsageSummaryLoadMatch = Struct.new(
 # @!attribute [rw] country_code
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String]
 #
@@ -324,6 +331,7 @@ Asn = Struct.new(
   :asn,
   :country,
   :country_code,
+  :id,
   :ip,
   :is_datacenter,
   :network,
@@ -497,6 +505,9 @@ DomainReputationV1DtoLoadMatch = Struct.new(
 # @!attribute [rw] has_mx_records
 #   @return [Boolean]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip_factors
 #   @return [NilClass]
 #
@@ -512,6 +523,7 @@ Email = Struct.new(
   :email,
   :email_factors,
   :has_mx_records,
+  :id,
   :ip_factors,
   :is_disposable,
   :mx_records,
@@ -535,9 +547,13 @@ EmailLoadMatch = Struct.new(
 #
 # @!attribute [rw] hostname
 #   @return [String]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
 Forward = Struct.new(
   :addresses,
   :hostname,
+  :id,
   keyword_init: true
 )
 
@@ -568,10 +584,14 @@ IpInfoV0LoadMatch = Struct.new(
 # @!attribute [rw] email_factors
 #   @return [NilClass]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip_factors
 #   @return [NilClass]
 IpReputation = Struct.new(
   :email_factors,
+  :id,
   :ip_factors,
   keyword_init: true
 )
@@ -724,6 +744,9 @@ RateLimitInfoDtoLoadMatch = Struct.new(
 # @!attribute [rw] hostname
 #   @return [Object, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String]
 #
@@ -734,6 +757,7 @@ RateLimitInfoDtoLoadMatch = Struct.new(
 #   @return [Object, nil]
 Reverse = Struct.new(
   :hostname,
+  :id,
   :ip,
   :ptr_record,
   :ttl,
@@ -754,10 +778,14 @@ ReverseLoadMatch = Struct.new(
 # @!attribute [rw] email_factors
 #   @return [NilClass]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip_factors
 #   @return [NilClass]
 RiskScore = Struct.new(
   :email_factors,
+  :id,
   :ip_factors,
   keyword_init: true
 )
@@ -781,6 +809,9 @@ end
 
 # Tor entity data model.
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] ip
 #   @return [String]
 #
@@ -790,6 +821,7 @@ end
 # @!attribute [rw] tor_node_count
 #   @return [Integer]
 Tor = Struct.new(
+  :id,
   :ip,
   :is_tor,
   :tor_node_count,
@@ -824,6 +856,9 @@ end
 # @!attribute [rw] expires_on
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] name_servers
 #   @return [Array]
 #
@@ -845,6 +880,7 @@ Whoi = Struct.new(
   :domain,
   :error,
   :expires_on,
+  :id,
   :name_servers,
   :raw,
   :registered_on,

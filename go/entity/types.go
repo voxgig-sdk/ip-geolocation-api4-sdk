@@ -19,6 +19,7 @@ type Advanced struct {
 	Free bool `json:"free"`
 	Gravatar *any `json:"gravatar,omitempty"`
 	HasMxRecords bool `json:"has_mx_records"`
+	Id *string `json:"id,omitempty"`
 	Reachable string `json:"reachable"`
 	RoleAccount bool `json:"role_account"`
 	Smtp *any `json:"smtp,omitempty"`
@@ -106,6 +107,7 @@ type Asn struct {
 	Asn *any `json:"asn,omitempty"`
 	Country *any `json:"country,omitempty"`
 	CountryCode *string `json:"country_code,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Ip string `json:"ip"`
 	IsDatacenter bool `json:"is_datacenter"`
 	Network *any `json:"network,omitempty"`
@@ -192,6 +194,7 @@ type Email struct {
 	Email string `json:"email"`
 	EmailFactors any `json:"email_factors"`
 	HasMxRecords bool `json:"has_mx_records"`
+	Id *string `json:"id,omitempty"`
 	IpFactors any `json:"ip_factors"`
 	IsDisposable bool `json:"is_disposable"`
 	MxRecords []any `json:"mx_records"`
@@ -207,6 +210,7 @@ type EmailLoadMatch struct {
 type Forward struct {
 	Addresses []any `json:"addresses"`
 	Hostname string `json:"hostname"`
+	Id *string `json:"id,omitempty"`
 }
 
 // ForwardLoadMatch is the typed request payload for Forward.LoadTyped.
@@ -226,6 +230,7 @@ type IpInfoV0LoadMatch struct {
 // IpReputation is the typed data model for the ip_reputation entity.
 type IpReputation struct {
 	EmailFactors any `json:"email_factors"`
+	Id *string `json:"id,omitempty"`
 	IpFactors any `json:"ip_factors"`
 }
 
@@ -296,6 +301,7 @@ type RateLimitInfoDtoLoadMatch struct {
 // Reverse is the typed data model for the reverse entity.
 type Reverse struct {
 	Hostname *any `json:"hostname,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Ip string `json:"ip"`
 	PtrRecord *string `json:"ptr_record,omitempty"`
 	Ttl *any `json:"ttl,omitempty"`
@@ -309,6 +315,7 @@ type ReverseLoadMatch struct {
 // RiskScore is the typed data model for the risk_score entity.
 type RiskScore struct {
 	EmailFactors any `json:"email_factors"`
+	Id *string `json:"id,omitempty"`
 	IpFactors any `json:"ip_factors"`
 }
 
@@ -327,6 +334,7 @@ type StatusLoadMatch struct {
 
 // Tor is the typed data model for the tor entity.
 type Tor struct {
+	Id *string `json:"id,omitempty"`
 	Ip string `json:"ip"`
 	IsTor bool `json:"is_tor"`
 	TorNodeCount int `json:"tor_node_count"`
@@ -350,6 +358,7 @@ type Whoi struct {
 	Domain string `json:"domain"`
 	Error *any `json:"error,omitempty"`
 	ExpiresOn *string `json:"expires_on,omitempty"`
+	Id *string `json:"id,omitempty"`
 	NameServers []any `json:"name_servers"`
 	Raw string `json:"raw"`
 	RegisteredOn *string `json:"registered_on,omitempty"`

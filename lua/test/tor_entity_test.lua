@@ -44,10 +44,14 @@ describe("TorEntity", function()
 
     -- LOAD
     local tor_ref01_ent = client:Tor(nil)
-    local tor_ref01_match_dt0 = {}
+    local tor_ref01_match_dt0 = {
+      id = tor_ref01_data["id"],
+    }
     local tor_ref01_data_dt0_loaded, err = tor_ref01_ent:load(tor_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(tor_ref01_data_dt0_loaded)
+    local tor_ref01_data_dt0_load_result = helpers.to_map(type(tor_ref01_data_dt0_loaded) == 'table' and tor_ref01_data_dt0_loaded.data_get and tor_ref01_data_dt0_loaded:data_get() or tor_ref01_data_dt0_loaded)
+    assert.is_not_nil(tor_ref01_data_dt0_load_result)
+    assert.are.equal(tor_ref01_data_dt0_load_result["id"], tor_ref01_data["id"])
 
   end)
 end)

@@ -61,13 +61,19 @@ func TestIpReputationEntity(t *testing.T) {
 
 		// LOAD
 		ipReputationRef01Ent := client.IpReputation(nil)
-		ipReputationRef01MatchDt0 := map[string]any{}
+		ipReputationRef01MatchDt0 := map[string]any{
+			"id": ipReputationRef01Data["id"],
+		}
 		ipReputationRef01DataDt0Loaded, err := ipReputationRef01Ent.Load(ipReputationRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if ipReputationRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		ipReputationRef01DataDt0LoadResult := core.ToMapAny(entityData(ipReputationRef01DataDt0Loaded))
+		if ipReputationRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if ipReputationRef01DataDt0LoadResult["id"] != ipReputationRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

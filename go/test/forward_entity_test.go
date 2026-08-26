@@ -61,13 +61,19 @@ func TestForwardEntity(t *testing.T) {
 
 		// LOAD
 		forwardRef01Ent := client.Forward(nil)
-		forwardRef01MatchDt0 := map[string]any{}
+		forwardRef01MatchDt0 := map[string]any{
+			"id": forwardRef01Data["id"],
+		}
 		forwardRef01DataDt0Loaded, err := forwardRef01Ent.Load(forwardRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if forwardRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		forwardRef01DataDt0LoadResult := core.ToMapAny(entityData(forwardRef01DataDt0Loaded))
+		if forwardRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if forwardRef01DataDt0LoadResult["id"] != forwardRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

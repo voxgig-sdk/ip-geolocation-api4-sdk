@@ -11,6 +11,7 @@ export interface Advanced {
   free: boolean
   gravatar?: any
   has_mx_records: boolean
+  id?: string
   reachable: string
   role_account: boolean
   smtp?: any
@@ -92,6 +93,7 @@ export interface Asn {
   asn?: number | null
   country?: string | null
   country_code?: string
+  id?: string
   ip: string
   is_datacenter: boolean
   network?: string | null
@@ -164,6 +166,7 @@ export interface Email {
   email: string
   email_factors: null
   has_mx_records: boolean
+  id?: string
   ip_factors: null
   is_disposable: boolean
   mx_records: any[]
@@ -177,6 +180,7 @@ export interface EmailLoadMatch {
 export interface Forward {
   addresses: any[]
   hostname: string
+  id?: string
 }
 
 export interface ForwardLoadMatch {
@@ -192,6 +196,7 @@ export interface IpInfoV0LoadMatch {
 
 export interface IpReputation {
   email_factors: null
+  id?: string
   ip_factors: null
 }
 
@@ -251,6 +256,7 @@ export interface RateLimitInfoDtoLoadMatch {
 
 export interface Reverse {
   hostname?: string | null
+  id?: string
   ip: string
   ptr_record?: string
   ttl?: number | null
@@ -262,6 +268,7 @@ export interface ReverseLoadMatch {
 
 export interface RiskScore {
   email_factors: null
+  id?: string
   ip_factors: null
 }
 
@@ -276,6 +283,7 @@ export interface StatusLoadMatch {
 }
 
 export interface Tor {
+  id?: string
   ip: string
   is_tor: boolean
   tor_node_count: number
@@ -295,6 +303,7 @@ export interface Whoi {
   domain: string
   error?: string | null
   expires_on?: string
+  id?: string
   name_servers: any[]
   raw: string
   registered_on?: string

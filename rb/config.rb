@@ -28,6 +28,7 @@ module IpGeolocationApi4Config
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -91,6 +92,10 @@ module IpGeolocationApi4Config
               "req" => true,
               "short" => "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
               "type" => "`$BOOLEAN`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "reachable",
@@ -514,6 +519,10 @@ module IpGeolocationApi4Config
             },
             {
               "name" => "country_code",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -1004,6 +1013,10 @@ module IpGeolocationApi4Config
               "type" => "`$BOOLEAN`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "ip_factors",
               "req" => true,
               "short" => "IP-specific risk factors and analysis results.",
@@ -1126,6 +1139,10 @@ module IpGeolocationApi4Config
             {
               "name" => "hostname",
               "req" => true,
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
           ],
@@ -1323,6 +1340,10 @@ module IpGeolocationApi4Config
               "req" => true,
               "short" => "Email-specific risk factors and validation results.",
               "type" => "`$NULL`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "ip_factors",
@@ -1720,6 +1741,10 @@ module IpGeolocationApi4Config
               ],
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "ip",
               "req" => true,
               "type" => "`$STRING`",
@@ -1797,6 +1822,10 @@ module IpGeolocationApi4Config
               "req" => true,
               "short" => "Email-specific risk factors and validation results.",
               "type" => "`$NULL`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "ip_factors",
@@ -1913,6 +1942,10 @@ module IpGeolocationApi4Config
         },
         "tor" => {
           "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
             {
               "name" => "ip",
               "req" => true,
@@ -2092,6 +2125,10 @@ module IpGeolocationApi4Config
             },
             {
               "name" => "expires_on",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {

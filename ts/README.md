@@ -148,7 +148,7 @@ await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -318,6 +318,7 @@ The `prepare()` method returns:
 | `free` | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` |  |
 | `has_mx_records` | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` |  |
 | `reachable` | Overall reachability assessment. |
 | `role_account` | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` |  |
@@ -380,6 +381,7 @@ API path: `/api/v1/usage/summary`
 | `asn` |  |
 | `country` |  |
 | `country_code` |  |
+| `id` |  |
 | `ip` |  |
 | `is_datacenter` |  |
 | `network` |  |
@@ -453,6 +455,7 @@ API path: `/api/v1/domain/reputation/{domain}`
 | `email` | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | Email-specific risk factors and validation results. |
 | `has_mx_records` | Whether the email domain has valid MX records in DNS. |
+| `id` |  |
 | `ip_factors` | IP-specific risk factors and analysis results. |
 | `is_disposable` | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | MX records for the email domain, sorted by priority ascending. |
@@ -468,6 +471,7 @@ API path: `/api/v1/email/{email}`
 | --- | --- |
 | `addresses` |  |
 | `hostname` |  |
+| `id` |  |
 
 Operations: load.
 
@@ -487,6 +491,7 @@ API path: `/api/json/{ip}`
 | Field | Description |
 | --- | --- |
 | `email_factors` | Email-specific risk factors and validation results. |
+| `id` |  |
 | `ip_factors` | IP-specific risk factors and analysis results. |
 
 Operations: load.
@@ -548,6 +553,7 @@ API path: `/api/v1/ratelimit`
 | Field | Description |
 | --- | --- |
 | `hostname` |  |
+| `id` |  |
 | `ip` |  |
 | `ptr_record` |  |
 | `ttl` |  |
@@ -561,6 +567,7 @@ API path: `/api/v1/dns/reverse/{ip}`
 | Field | Description |
 | --- | --- |
 | `email_factors` | Email-specific risk factors and validation results. |
+| `id` |  |
 | `ip_factors` | IP-specific risk factors and analysis results. |
 
 Operations: load.
@@ -580,6 +587,7 @@ API path: `/api/status`
 
 | Field | Description |
 | --- | --- |
+| `id` |  |
 | `ip` | The IP address that was checked |
 | `is_tor` | Whether the IP is a known Tor exit node |
 | `tor_node_count` | Total number of currently known Tor exit nodes in the database |
@@ -604,6 +612,7 @@ API path: `/api/v1/usage/current-month`
 | `domain` |  |
 | `error` |  |
 | `expires_on` |  |
+| `id` |  |
 | `name_servers` |  |
 | `raw` |  |
 | `registered_on` |  |
@@ -639,6 +648,7 @@ Create an instance: `const advanced = client.Advanced()`
 | `free` | `boolean` | Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.). |
 | `gravatar` | `any` |  |
 | `has_mx_records` | `boolean` | Indicates whether the domain has valid MX (Mail Exchange) records configured. |
+| `id` | `string` |  |
 | `reachable` | `string` | Overall reachability assessment. |
 | `role_account` | `boolean` | Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.). |
 | `smtp` | `any` |  |
@@ -687,7 +697,7 @@ Create an instance: `const api_usage_stats_model = client.ApiUsageStatsModel()`
 #### Example: Load
 
 ```ts
-const api_usage_stats_model = await client.ApiUsageStatsModel().load({ id: 'api_usage_stats_model_id' })
+const api_usage_stats_model = await client.ApiUsageStatsModel().load({ id: 1 })
 ```
 
 
@@ -740,6 +750,7 @@ Create an instance: `const asn = client.Asn()`
 | `asn` | `number | null` |  |
 | `country` | `string | null` |  |
 | `country_code` | `string` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `is_datacenter` | `boolean` |  |
 | `network` | `string | null` |  |
@@ -900,6 +911,7 @@ Create an instance: `const email = client.Email()`
 | `email` | `string` | The email address that was analyzed, returned in normalized lowercase format. |
 | `email_factors` | `null` | Email-specific risk factors and validation results. |
 | `has_mx_records` | `boolean` | Whether the email domain has valid MX records in DNS. |
+| `id` | `string` |  |
 | `ip_factors` | `null` | IP-specific risk factors and analysis results. |
 | `is_disposable` | `boolean` | Indicates whether the email address uses a disposable or temporary email service. |
 | `mx_records` | `any[]` | MX records for the email domain, sorted by priority ascending. |
@@ -928,6 +940,7 @@ Create an instance: `const forward = client.Forward()`
 | --- | --- | --- |
 | `addresses` | `any[]` |  |
 | `hostname` | `string` |  |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -968,6 +981,7 @@ Create an instance: `const ip_reputation = client.IpReputation()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_factors` | `null` | Email-specific risk factors and validation results. |
+| `id` | `string` |  |
 | `ip_factors` | `null` | IP-specific risk factors and analysis results. |
 
 #### Example: Load
@@ -1097,6 +1111,7 @@ Create an instance: `const reverse = client.Reverse()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `hostname` | `string | null` |  |
+| `id` | `string` |  |
 | `ip` | `string` |  |
 | `ptr_record` | `string` |  |
 | `ttl` | `number | null` |  |
@@ -1123,6 +1138,7 @@ Create an instance: `const risk_score = client.RiskScore()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email_factors` | `null` | Email-specific risk factors and validation results. |
+| `id` | `string` |  |
 | `ip_factors` | `null` | IP-specific risk factors and analysis results. |
 
 #### Example: Load
@@ -1163,6 +1179,7 @@ Create an instance: `const tor = client.Tor()`
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `id` | `string` |  |
 | `ip` | `string` | The IP address that was checked |
 | `is_tor` | `boolean` | Whether the IP is a known Tor exit node |
 | `tor_node_count` | `number` | Total number of currently known Tor exit nodes in the database |
@@ -1208,6 +1225,7 @@ Create an instance: `const whoi = client.Whoi()`
 | `domain` | `string` |  |
 | `error` | `string | null` |  |
 | `expires_on` | `string` |  |
+| `id` | `string` |  |
 | `name_servers` | `any[]` |  |
 | `raw` | `string` |  |
 | `registered_on` | `string` |  |

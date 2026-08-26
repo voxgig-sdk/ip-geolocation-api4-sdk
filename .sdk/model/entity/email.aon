@@ -24,6 +24,11 @@ main: kit: entity: email: {
       type: "`$BOOLEAN`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "ip_factors"
       req: true
       short: "IP-specific risk factors and analysis results."
@@ -48,6 +53,11 @@ main: kit: entity: email: {
       type: "`$OBJECT`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "email"
   op: {

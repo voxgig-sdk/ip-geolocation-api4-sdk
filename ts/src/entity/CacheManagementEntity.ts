@@ -44,7 +44,8 @@ class CacheManagementEntity extends IpGeolocationApi4EntityBase<CacheManagement>
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,
@@ -178,7 +179,8 @@ class CacheManagementEntity extends IpGeolocationApi4EntityBase<CacheManagement>
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,

@@ -61,13 +61,19 @@ func TestWhoiEntity(t *testing.T) {
 
 		// LOAD
 		whoiRef01Ent := client.Whoi(nil)
-		whoiRef01MatchDt0 := map[string]any{}
+		whoiRef01MatchDt0 := map[string]any{
+			"id": whoiRef01Data["id"],
+		}
 		whoiRef01DataDt0Loaded, err := whoiRef01Ent.Load(whoiRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if whoiRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		whoiRef01DataDt0LoadResult := core.ToMapAny(entityData(whoiRef01DataDt0Loaded))
+		if whoiRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if whoiRef01DataDt0LoadResult["id"] != whoiRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
