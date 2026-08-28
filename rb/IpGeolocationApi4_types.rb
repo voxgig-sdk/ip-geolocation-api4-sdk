@@ -141,74 +141,22 @@ ApiUsageStatsModel = Struct.new(
 
 # Request payload for ApiUsageStatsModel#load.
 #
-# @!attribute [rw] apiKey
+# @!attribute [rw] api_key
+#   @return [String]
+#
+# @!attribute [rw] api_type
 #   @return [String, nil]
 #
-# @!attribute [rw] apiType
-#   @return [String, nil]
+# @!attribute [rw] end_date
+#   @return [String]
 #
-# @!attribute [rw] authType
-#   @return [String, nil]
-#
-# @!attribute [rw] avgRequestDurationNanos
-#   @return [Object, nil]
-#
-# @!attribute [rw] batchOperations
-#   @return [Integer, nil]
-#
-# @!attribute [rw] batchTokensConsumed
-#   @return [Integer, nil]
-#
-# @!attribute [rw] createdAt
-#   @return [Object, nil]
-#
-# @!attribute [rw] hourBucket
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Object]
-#
-# @!attribute [rw] minRemainingQuota
-#   @return [Object, nil]
-#
-# @!attribute [rw] peakRemainingQuota
-#   @return [Object, nil]
-#
-# @!attribute [rw] planId
-#   @return [String, nil]
-#
-# @!attribute [rw] quotaConsumed
-#   @return [Integer, nil]
-#
-# @!attribute [rw] rateLimitedRequests
-#   @return [Integer, nil]
-#
-# @!attribute [rw] successfulRequests
-#   @return [Integer, nil]
-#
-# @!attribute [rw] totalRequests
-#   @return [Integer, nil]
-#
-# @!attribute [rw] updatedAt
-#   @return [Object, nil]
+# @!attribute [rw] start_date
+#   @return [String]
 ApiUsageStatsModelLoadMatch = Struct.new(
-  :apiKey,
-  :apiType,
-  :authType,
-  :avgRequestDurationNanos,
-  :batchOperations,
-  :batchTokensConsumed,
-  :createdAt,
-  :hourBucket,
-  :id,
-  :minRemainingQuota,
-  :peakRemainingQuota,
-  :planId,
-  :quotaConsumed,
-  :rateLimitedRequests,
-  :successfulRequests,
-  :totalRequests,
-  :updatedAt,
+  :api_key,
+  :api_type,
+  :end_date,
+  :start_date,
   keyword_init: true
 )
 
@@ -259,46 +207,22 @@ ApiUsageSummary = Struct.new(
 
 # Request payload for ApiUsageSummary#load.
 #
-# @!attribute [rw] apiKey
+# @!attribute [rw] api_key
+#   @return [String]
+#
+# @!attribute [rw] api_type
 #   @return [String, nil]
 #
-# @!attribute [rw] apiType
-#   @return [String, nil]
+# @!attribute [rw] end_date
+#   @return [String]
 #
-# @!attribute [rw] avgRequestDurationMs
-#   @return [Object, nil]
-#
-# @!attribute [rw] batchOperations
-#   @return [Integer, nil]
-#
-# @!attribute [rw] periodEnd
-#   @return [String, nil]
-#
-# @!attribute [rw] periodStart
-#   @return [String, nil]
-#
-# @!attribute [rw] quotaConsumed
-#   @return [Integer, nil]
-#
-# @!attribute [rw] rateLimitedRequests
-#   @return [Integer, nil]
-#
-# @!attribute [rw] successfulRequests
-#   @return [Integer, nil]
-#
-# @!attribute [rw] totalRequests
-#   @return [Integer, nil]
+# @!attribute [rw] start_date
+#   @return [String]
 ApiUsageSummaryLoadMatch = Struct.new(
-  :apiKey,
-  :apiType,
-  :avgRequestDurationMs,
-  :batchOperations,
-  :periodEnd,
-  :periodStart,
-  :quotaConsumed,
-  :rateLimitedRequests,
-  :successfulRequests,
-  :totalRequests,
+  :api_key,
+  :api_type,
+  :end_date,
+  :start_date,
   keyword_init: true
 )
 
@@ -670,8 +594,13 @@ class PaddleControllerLoadMatch
 end
 
 # Request payload for PaddleController#create.
-class PaddleControllerCreateData
-end
+#
+# @!attribute [rw] http_entity
+#   @return [String]
+PaddleControllerCreateData = Struct.new(
+  :http_entity,
+  keyword_init: true
+)
 
 # RateLimitInfoDto entity data model.
 #
@@ -708,34 +637,10 @@ RateLimitInfoDto = Struct.new(
 
 # Request payload for RateLimitInfoDto#load.
 #
-# @!attribute [rw] email_api
-#   @return [Hash, nil]
-#
-# @!attribute [rw] interval_seconds
-#   @return [Integer, nil]
-#
-# @!attribute [rw] ip_api
-#   @return [Hash, nil]
-#
-# @!attribute [rw] next_renewal_date
-#   @return [String, nil]
-#
-# @!attribute [rw] plan_id
-#   @return [String, nil]
-#
-# @!attribute [rw] plan_name
-#   @return [String, nil]
-#
-# @!attribute [rw] status
-#   @return [Object, nil]
+# @!attribute [rw] api_key
+#   @return [String]
 RateLimitInfoDtoLoadMatch = Struct.new(
-  :email_api,
-  :interval_seconds,
-  :ip_api,
-  :next_renewal_date,
-  :plan_id,
-  :plan_name,
-  :status,
+  :api_key,
   keyword_init: true
 )
 
@@ -794,8 +699,12 @@ RiskScore = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] email
+#   @return [String, nil]
 RiskScoreLoadMatch = Struct.new(
   :id,
+  :email,
   keyword_init: true
 )
 
@@ -842,8 +751,17 @@ class UsageStatistic
 end
 
 # Request payload for UsageStatistic#load.
-class UsageStatisticLoadMatch
-end
+#
+# @!attribute [rw] api_key
+#   @return [String]
+#
+# @!attribute [rw] api_type
+#   @return [String, nil]
+UsageStatisticLoadMatch = Struct.new(
+  :api_key,
+  :api_type,
+  keyword_init: true
+)
 
 # Whoi entity data model.
 #

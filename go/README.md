@@ -670,7 +670,7 @@ Create an instance: `apiUsageStatsModel := client.ApiUsageStatsModel(nil)`
 #### Example: Load
 
 ```go
-apiUsageStatsModel, err := client.ApiUsageStatsModel(nil).Load(map[string]any{"id": 1}, nil)
+apiUsageStatsModel, err := client.ApiUsageStatsModel(nil).Load(map[string]any{"api_key": "api_key", "end_date": "end_date", "start_date": "start_date"}, nil)
 if err != nil {
     panic(err)
 }
@@ -706,7 +706,7 @@ Create an instance: `apiUsageSummary := client.ApiUsageSummary(nil)`
 #### Example: Load
 
 ```go
-apiUsageSummary, err := client.ApiUsageSummary(nil).Load(nil, nil)
+apiUsageSummary, err := client.ApiUsageSummary(nil).Load(map[string]any{"api_key": "api_key", "end_date": "end_date", "start_date": "start_date"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1100,6 +1100,7 @@ fmt.Println(paddleController) // the loaded record
 
 ```go
 result, err := client.PaddleController(nil).Create(map[string]any{
+    "http_entity": "example_http_entity",
 }, nil)
 if err != nil {
     panic(err)
@@ -1133,7 +1134,7 @@ Create an instance: `rateLimitInfoDto := client.RateLimitInfoDto(nil)`
 #### Example: Load
 
 ```go
-rateLimitInfoDto, err := client.RateLimitInfoDto(nil).Load(nil, nil)
+rateLimitInfoDto, err := client.RateLimitInfoDto(nil).Load(map[string]any{"api_key": "api_key"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1265,7 +1266,7 @@ Create an instance: `usageStatistic := client.UsageStatistic(nil)`
 #### Example: Load
 
 ```go
-usageStatistic, err := client.UsageStatistic(nil).Load(nil, nil)
+usageStatistic, err := client.UsageStatistic(nil).Load(map[string]any{"api_key": "api_key"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1307,6 +1308,29 @@ if err != nil {
 }
 fmt.Println(whoi) // the loaded record
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

@@ -650,7 +650,7 @@ Create an instance: `api_usage_stats_model = client.ApiUsageStatsModel`
 
 ```ruby
 # load returns the ENTITY — call data_get for the ApiUsageStatsModel record (raises on error).
-api_usage_stats_model = client.ApiUsageStatsModel.load({ "id" => 1 })
+api_usage_stats_model = client.ApiUsageStatsModel.load({ "api_key" => "api_key", "end_date" => "end_date", "start_date" => "start_date" })
 ```
 
 
@@ -683,7 +683,7 @@ Create an instance: `api_usage_summary = client.ApiUsageSummary`
 
 ```ruby
 # load returns the ENTITY — call data_get for the ApiUsageSummary record (raises on error).
-api_usage_summary = client.ApiUsageSummary.load()
+api_usage_summary = client.ApiUsageSummary.load({ "api_key" => "api_key", "end_date" => "end_date", "start_date" => "start_date" })
 ```
 
 
@@ -1028,6 +1028,7 @@ paddle_controller = client.PaddleController.load()
 
 ```ruby
 paddle_controller = client.PaddleController.create({
+  "http_entity" => "example_http_entity", # String
 })
 ```
 
@@ -1058,7 +1059,7 @@ Create an instance: `rate_limit_info_dto = client.RateLimitInfoDto`
 
 ```ruby
 # load returns the ENTITY — call data_get for the RateLimitInfoDto record (raises on error).
-rate_limit_info_dto = client.RateLimitInfoDto.load()
+rate_limit_info_dto = client.RateLimitInfoDto.load({ "api_key" => "api_key" })
 ```
 
 
@@ -1175,7 +1176,7 @@ Create an instance: `usage_statistic = client.UsageStatistic`
 
 ```ruby
 # load returns the ENTITY — call data_get for the UsageStatistic record (raises on error).
-usage_statistic = client.UsageStatistic.load()
+usage_statistic = client.UsageStatistic.load({ "api_key" => "api_key" })
 ```
 
 
@@ -1210,6 +1211,29 @@ Create an instance: `whoi = client.Whoi`
 # load returns the ENTITY — call data_get for the Whoi record (raises on error).
 whoi = client.Whoi.load({ "id" => "whoi_id" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

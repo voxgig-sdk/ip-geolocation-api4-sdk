@@ -61,26 +61,13 @@ class ApiUsageStatsModel(ApiUsageStatsModelRequired, total=False):
 
 
 class ApiUsageStatsModelLoadMatchRequired(TypedDict):
-    id: int | None
+    api_key: str
+    end_date: str
+    start_date: str
 
 
 class ApiUsageStatsModelLoadMatch(ApiUsageStatsModelLoadMatchRequired, total=False):
-    apiKey: str
-    apiType: str
-    authType: str
-    avgRequestDurationNanos: int | None
-    batchOperations: int
-    batchTokensConsumed: int
-    createdAt: str | None
-    hourBucket: str
-    minRemainingQuota: int | None
-    peakRemainingQuota: int | None
-    planId: str
-    quotaConsumed: int
-    rateLimitedRequests: int
-    successfulRequests: int
-    totalRequests: int
-    updatedAt: str | None
+    api_type: str
 
 
 class ApiUsageSummaryRequired(TypedDict):
@@ -99,17 +86,14 @@ class ApiUsageSummary(ApiUsageSummaryRequired, total=False):
     avgRequestDurationMs: float | None
 
 
-class ApiUsageSummaryLoadMatch(TypedDict, total=False):
-    apiKey: str
-    apiType: str
-    avgRequestDurationMs: float | None
-    batchOperations: int
-    periodEnd: str
-    periodStart: str
-    quotaConsumed: int
-    rateLimitedRequests: int
-    successfulRequests: int
-    totalRequests: int
+class ApiUsageSummaryLoadMatchRequired(TypedDict):
+    api_key: str
+    end_date: str
+    start_date: str
+
+
+class ApiUsageSummaryLoadMatch(ApiUsageSummaryLoadMatchRequired, total=False):
+    api_type: str
 
 
 class AsnRequired(TypedDict):
@@ -275,7 +259,7 @@ class PaddleControllerLoadMatch(TypedDict):
 
 
 class PaddleControllerCreateData(TypedDict):
-    pass
+    http_entity: str
 
 
 class RateLimitInfoDtoRequired(TypedDict):
@@ -291,14 +275,8 @@ class RateLimitInfoDto(RateLimitInfoDtoRequired, total=False):
     status: str | None
 
 
-class RateLimitInfoDtoLoadMatch(TypedDict, total=False):
-    email_api: dict
-    interval_seconds: int
-    ip_api: dict
-    next_renewal_date: str
-    plan_id: str
-    plan_name: str
-    status: str | None
+class RateLimitInfoDtoLoadMatch(TypedDict):
+    api_key: str
 
 
 class ReverseRequired(TypedDict):
@@ -325,8 +303,12 @@ class RiskScore(RiskScoreRequired, total=False):
     id: str
 
 
-class RiskScoreLoadMatch(TypedDict):
+class RiskScoreLoadMatchRequired(TypedDict):
     id: str
+
+
+class RiskScoreLoadMatch(RiskScoreLoadMatchRequired, total=False):
+    email: str
 
 
 class Status(TypedDict):
@@ -355,8 +337,12 @@ class UsageStatistic(TypedDict):
     pass
 
 
-class UsageStatisticLoadMatch(TypedDict):
-    pass
+class UsageStatisticLoadMatchRequired(TypedDict):
+    api_key: str
+
+
+class UsageStatisticLoadMatch(UsageStatisticLoadMatchRequired, total=False):
+    api_type: str
 
 
 class WhoiRequired(TypedDict):

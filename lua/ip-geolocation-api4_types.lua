@@ -42,23 +42,10 @@
 ---@field updatedAt? string|nil
 
 ---@class ApiUsageStatsModelLoadMatch
----@field apiKey? string
----@field apiType? string
----@field authType? string
----@field avgRequestDurationNanos? number|nil
----@field batchOperations? number
----@field batchTokensConsumed? number
----@field createdAt? string|nil
----@field hourBucket? string
----@field id number|nil
----@field minRemainingQuota? number|nil
----@field peakRemainingQuota? number|nil
----@field planId? string
----@field quotaConsumed? number
----@field rateLimitedRequests? number
----@field successfulRequests? number
----@field totalRequests? number
----@field updatedAt? string|nil
+---@field api_key string
+---@field api_type? string
+---@field end_date string
+---@field start_date string
 
 ---@class ApiUsageSummary
 ---@field apiKey string
@@ -73,16 +60,10 @@
 ---@field totalRequests number
 
 ---@class ApiUsageSummaryLoadMatch
----@field apiKey? string
----@field apiType? string
----@field avgRequestDurationMs? number|nil
----@field batchOperations? number
----@field periodEnd? string
----@field periodStart? string
----@field quotaConsumed? number
----@field rateLimitedRequests? number
----@field successfulRequests? number
----@field totalRequests? number
+---@field api_key string
+---@field api_type? string
+---@field end_date string
+---@field start_date string
 
 ---@class Asn
 ---@field asn? number|nil
@@ -199,6 +180,7 @@
 ---@class PaddleControllerLoadMatch
 
 ---@class PaddleControllerCreateData
+---@field http_entity string
 
 ---@class RateLimitInfoDto
 ---@field email_api table
@@ -210,13 +192,7 @@
 ---@field status? string|nil
 
 ---@class RateLimitInfoDtoLoadMatch
----@field email_api? table
----@field interval_seconds? number
----@field ip_api? table
----@field next_renewal_date? string
----@field plan_id? string
----@field plan_name? string
----@field status? string|nil
+---@field api_key string
 
 ---@class Reverse
 ---@field hostname? string|nil
@@ -235,6 +211,7 @@
 
 ---@class RiskScoreLoadMatch
 ---@field id string
+---@field email? string
 
 ---@class Status
 
@@ -252,6 +229,8 @@
 ---@class UsageStatistic
 
 ---@class UsageStatisticLoadMatch
+---@field api_key string
+---@field api_type? string
 
 ---@class Whoi
 ---@field domain string

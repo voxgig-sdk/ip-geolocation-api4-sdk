@@ -44,23 +44,10 @@ export interface ApiUsageStatsModel {
 }
 
 export interface ApiUsageStatsModelLoadMatch {
-  apiKey?: string
-  apiType?: string
-  authType?: string
-  avgRequestDurationNanos?: number | null
-  batchOperations?: number
-  batchTokensConsumed?: number
-  createdAt?: string | null
-  hourBucket?: string
-  id: number | null
-  minRemainingQuota?: number | null
-  peakRemainingQuota?: number | null
-  planId?: string
-  quotaConsumed?: number
-  rateLimitedRequests?: number
-  successfulRequests?: number
-  totalRequests?: number
-  updatedAt?: string | null
+  api_key: string
+  api_type?: string
+  end_date: string
+  start_date: string
 }
 
 export interface ApiUsageSummary {
@@ -77,16 +64,10 @@ export interface ApiUsageSummary {
 }
 
 export interface ApiUsageSummaryLoadMatch {
-  apiKey?: string
-  apiType?: string
-  avgRequestDurationMs?: number | null
-  batchOperations?: number
-  periodEnd?: string
-  periodStart?: string
-  quotaConsumed?: number
-  rateLimitedRequests?: number
-  successfulRequests?: number
-  totalRequests?: number
+  api_key: string
+  api_type?: string
+  end_date: string
+  start_date: string
 }
 
 export interface Asn {
@@ -232,6 +213,7 @@ export interface PaddleControllerLoadMatch {
 }
 
 export interface PaddleControllerCreateData {
+  http_entity: string
 }
 
 export interface RateLimitInfoDto {
@@ -245,13 +227,7 @@ export interface RateLimitInfoDto {
 }
 
 export interface RateLimitInfoDtoLoadMatch {
-  email_api?: Record<string, any>
-  interval_seconds?: number
-  ip_api?: Record<string, any>
-  next_renewal_date?: string
-  plan_id?: string
-  plan_name?: string
-  status?: string | null
+  api_key: string
 }
 
 export interface Reverse {
@@ -274,6 +250,7 @@ export interface RiskScore {
 
 export interface RiskScoreLoadMatch {
   id: string
+  email?: string
 }
 
 export interface Status {
@@ -297,6 +274,8 @@ export interface UsageStatistic {
 }
 
 export interface UsageStatisticLoadMatch {
+  api_key: string
+  api_type?: string
 }
 
 export interface Whoi {

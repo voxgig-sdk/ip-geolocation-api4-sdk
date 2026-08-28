@@ -697,7 +697,7 @@ Create an instance: `const api_usage_stats_model = client.ApiUsageStatsModel()`
 #### Example: Load
 
 ```ts
-const api_usage_stats_model = await client.ApiUsageStatsModel().load({ id: 1 })
+const api_usage_stats_model = await client.ApiUsageStatsModel().load({ api_key: 'api_key', end_date: 'end_date', start_date: 'start_date' })
 ```
 
 
@@ -729,7 +729,7 @@ Create an instance: `const api_usage_summary = client.ApiUsageSummary()`
 #### Example: Load
 
 ```ts
-const api_usage_summary = await client.ApiUsageSummary().load()
+const api_usage_summary = await client.ApiUsageSummary().load({ api_key: 'api_key', end_date: 'end_date', start_date: 'start_date' })
 ```
 
 
@@ -1063,6 +1063,7 @@ const paddle_controller = await client.PaddleController().load()
 
 ```ts
 const paddle_controller = await client.PaddleController().create({
+  http_entity: 'example_http_entity',
 })
 ```
 
@@ -1092,7 +1093,7 @@ Create an instance: `const rate_limit_info_dto = client.RateLimitInfoDto()`
 #### Example: Load
 
 ```ts
-const rate_limit_info_dto = await client.RateLimitInfoDto().load()
+const rate_limit_info_dto = await client.RateLimitInfoDto().load({ api_key: 'api_key' })
 ```
 
 
@@ -1204,7 +1205,7 @@ Create an instance: `const usage_statistic = client.UsageStatistic()`
 #### Example: Load
 
 ```ts
-const usage_statistic = await client.UsageStatistic().load()
+const usage_statistic = await client.UsageStatistic().load({ api_key: 'api_key' })
 ```
 
 
@@ -1238,6 +1239,29 @@ Create an instance: `const whoi = client.Whoi()`
 ```ts
 const whoi = await client.Whoi().load({ id: 'whoi_id' })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

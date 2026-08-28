@@ -268,7 +268,7 @@ api_usage_stats_model = client.ApiUsageStatsModel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ApiUsageStatsModel.load({ "id" => 1 })
+result = client.ApiUsageStatsModel.load({ "api_key" => "api_key", "end_date" => "end_date", "start_date" => "start_date" })
 ```
 
 ### Common Methods
@@ -329,7 +329,7 @@ api_usage_summary = client.ApiUsageSummary
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ApiUsageSummary.load()
+result = client.ApiUsageSummary.load({ "api_key" => "api_key", "end_date" => "end_date", "start_date" => "start_date" })
 ```
 
 ### Common Methods
@@ -1041,6 +1041,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.PaddleController.create({
+  "http_entity" => "example_http_entity", # String
 })
 ```
 
@@ -1107,7 +1108,7 @@ rate_limit_info_dto = client.RateLimitInfoDto
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.RateLimitInfoDto.load()
+result = client.RateLimitInfoDto.load({ "api_key" => "api_key" })
 ```
 
 ### Common Methods
@@ -1364,7 +1365,7 @@ usage_statistic = client.UsageStatistic
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.UsageStatistic.load()
+result = client.UsageStatistic.load({ "api_key" => "api_key" })
 ```
 
 ### Common Methods
@@ -1474,4 +1475,42 @@ client = IpGeolocationApi4SDK.new({
   },
 })
 ```
+
+
+### Configuring features
+
+Each feature is inactive until switched on, and an SDK with no feature
+configured does no feature work at all. Every option below keeps its default
+unless you name it.
+
+The array form of \`feature\` is significant: several features wrap the
+transport, and the order you list them in is the order they nest.
+
+#### `test`
+
+In-memory mock transport for testing without a live server.
+
+**Configuration**
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Options above are those the model carries a default for. A feature may
+also accept callback options — a `sink` to receive each record, for
+instance — which have no default and are covered in the full feature
+reference.
+
+**Usage**
+
+Set `feature.test.active` to true in the client options, and override any option above in the same entry. Every option keeps
+its default unless you name it.
+
+**Considerations**
+
+- Attaches to pipeline hooks, not the transport, so activation order does
+  not change what it observes.
+- Installs the BASE transport that the wrapping features wrap, so it must be
+  activated before them.
+- Inactive by default: leaving it out costs nothing at runtime.
 

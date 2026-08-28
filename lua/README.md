@@ -635,7 +635,7 @@ Create an instance: `local api_usage_stats_model = client:ApiUsageStatsModel(nil
 #### Example: Load
 
 ```lua
-local api_usage_stats_model, err = client:ApiUsageStatsModel():load({ id = 1 })
+local api_usage_stats_model, err = client:ApiUsageStatsModel():load({ api_key = "api_key", end_date = "end_date", start_date = "start_date" })
 ```
 
 
@@ -667,7 +667,7 @@ Create an instance: `local api_usage_summary = client:ApiUsageSummary(nil)`
 #### Example: Load
 
 ```lua
-local api_usage_summary, err = client:ApiUsageSummary():load()
+local api_usage_summary, err = client:ApiUsageSummary():load({ api_key = "api_key", end_date = "end_date", start_date = "start_date" })
 ```
 
 
@@ -1001,6 +1001,7 @@ local paddle_controller, err = client:PaddleController():load()
 
 ```lua
 local paddle_controller, err = client:PaddleController():create({
+  http_entity = "example_http_entity", -- string
 })
 ```
 
@@ -1030,7 +1031,7 @@ Create an instance: `local rate_limit_info_dto = client:RateLimitInfoDto(nil)`
 #### Example: Load
 
 ```lua
-local rate_limit_info_dto, err = client:RateLimitInfoDto():load()
+local rate_limit_info_dto, err = client:RateLimitInfoDto():load({ api_key = "api_key" })
 ```
 
 
@@ -1142,7 +1143,7 @@ Create an instance: `local usage_statistic = client:UsageStatistic(nil)`
 #### Example: Load
 
 ```lua
-local usage_statistic, err = client:UsageStatistic():load()
+local usage_statistic, err = client:UsageStatistic():load({ api_key = "api_key" })
 ```
 
 
@@ -1176,6 +1177,29 @@ Create an instance: `local whoi = client:Whoi(nil)`
 ```lua
 local whoi, err = client:Whoi():load({ id = "whoi_id" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

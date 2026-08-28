@@ -59,23 +59,10 @@ class ApiUsageStatsModel
 /** Request payload for ApiUsageStatsModel#load. */
 class ApiUsageStatsModelLoadMatch
 {
-    public ?string $apiKey = null;
-    public ?string $apiType = null;
-    public ?string $authType = null;
-    public mixed $avgRequestDurationNanos = null;
-    public ?int $batchOperations = null;
-    public ?int $batchTokensConsumed = null;
-    public mixed $createdAt = null;
-    public ?string $hourBucket = null;
-    public mixed $id;
-    public mixed $minRemainingQuota = null;
-    public mixed $peakRemainingQuota = null;
-    public ?string $planId = null;
-    public ?int $quotaConsumed = null;
-    public ?int $rateLimitedRequests = null;
-    public ?int $successfulRequests = null;
-    public ?int $totalRequests = null;
-    public mixed $updatedAt = null;
+    public string $api_key;
+    public ?string $api_type = null;
+    public string $end_date;
+    public string $start_date;
 }
 
 /** ApiUsageSummary entity data model. */
@@ -96,16 +83,10 @@ class ApiUsageSummary
 /** Request payload for ApiUsageSummary#load. */
 class ApiUsageSummaryLoadMatch
 {
-    public ?string $apiKey = null;
-    public ?string $apiType = null;
-    public mixed $avgRequestDurationMs = null;
-    public ?int $batchOperations = null;
-    public ?string $periodEnd = null;
-    public ?string $periodStart = null;
-    public ?int $quotaConsumed = null;
-    public ?int $rateLimitedRequests = null;
-    public ?int $successfulRequests = null;
-    public ?int $totalRequests = null;
+    public string $api_key;
+    public ?string $api_type = null;
+    public string $end_date;
+    public string $start_date;
 }
 
 /** Asn entity data model. */
@@ -309,6 +290,7 @@ class PaddleControllerLoadMatch
 /** Request payload for PaddleController#create. */
 class PaddleControllerCreateData
 {
+    public string $http_entity;
 }
 
 /** RateLimitInfoDto entity data model. */
@@ -326,13 +308,7 @@ class RateLimitInfoDto
 /** Request payload for RateLimitInfoDto#load. */
 class RateLimitInfoDtoLoadMatch
 {
-    public ?array $email_api = null;
-    public ?int $interval_seconds = null;
-    public ?array $ip_api = null;
-    public ?string $next_renewal_date = null;
-    public ?string $plan_id = null;
-    public ?string $plan_name = null;
-    public mixed $status = null;
+    public string $api_key;
 }
 
 /** Reverse entity data model. */
@@ -363,6 +339,7 @@ class RiskScore
 class RiskScoreLoadMatch
 {
     public string $id;
+    public ?string $email = null;
 }
 
 /** Status entity data model. */
@@ -398,6 +375,8 @@ class UsageStatistic
 /** Request payload for UsageStatistic#load. */
 class UsageStatisticLoadMatch
 {
+    public string $api_key;
+    public ?string $api_type = null;
 }
 
 /** Whoi entity data model. */

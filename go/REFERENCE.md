@@ -272,7 +272,7 @@ fmt.Println(apiUsageStatsModel.GetName()) // "api_usage_stats_model"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ApiUsageStatsModel(nil).Load(map[string]any{"id": 1}, nil)
+result, err := client.ApiUsageStatsModel(nil).Load(map[string]any{"api_key": "api_key", "end_date": "end_date", "start_date": "start_date"}, nil)
 if err != nil {
     panic(err)
 }
@@ -332,7 +332,7 @@ fmt.Println(apiUsageSummary.GetName()) // "api_usage_summary"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ApiUsageSummary(nil).Load(nil, nil)
+result, err := client.ApiUsageSummary(nil).Load(map[string]any{"api_key": "api_key", "end_date": "end_date", "start_date": "start_date"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1051,6 +1051,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.PaddleController(nil).Create(map[string]any{
+    "http_entity": "example_http_entity",
 }, nil)
 if err != nil {
     panic(err)
@@ -1108,7 +1109,7 @@ fmt.Println(rateLimitInfoDto.GetName()) // "rate_limit_info_dto"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.RateLimitInfoDto(nil).Load(nil, nil)
+result, err := client.RateLimitInfoDto(nil).Load(map[string]any{"api_key": "api_key"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1360,7 +1361,7 @@ fmt.Println(usageStatistic.GetName()) // "usage_statistic"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.UsageStatistic(nil).Load(nil, nil)
+result, err := client.UsageStatistic(nil).Load(map[string]any{"api_key": "api_key"}, nil)
 if err != nil {
     panic(err)
 }
@@ -1467,4 +1468,42 @@ client := sdk.NewIpGeolocationApi4SDK(map[string]any{
     },
 })
 ```
+
+
+### Configuring features
+
+Each feature is inactive until switched on, and an SDK with no feature
+configured does no feature work at all. Every option below keeps its default
+unless you name it.
+
+The array form of \`feature\` is significant: several features wrap the
+transport, and the order you list them in is the order they nest.
+
+#### `test`
+
+In-memory mock transport for testing without a live server.
+
+**Configuration**
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Options above are those the model carries a default for. A feature may
+also accept callback options — a `sink` to receive each record, for
+instance — which have no default and are covered in the full feature
+reference.
+
+**Usage**
+
+Set `feature.test.active` to true in the client options, and override any option above in the same entry. Every option keeps
+its default unless you name it.
+
+**Considerations**
+
+- Attaches to pipeline hooks, not the transport, so activation order does
+  not change what it observes.
+- Installs the BASE transport that the wrapping features wrap, so it must be
+  activated before them.
+- Inactive by default: leaving it out costs nothing at runtime.
 

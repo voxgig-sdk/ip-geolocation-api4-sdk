@@ -55,23 +55,10 @@ type ApiUsageStatsModel struct {
 
 // ApiUsageStatsModelLoadMatch is the typed request payload for ApiUsageStatsModel.LoadTyped.
 type ApiUsageStatsModelLoadMatch struct {
-	ApiKey *string `json:"apiKey,omitempty"`
-	ApiType *string `json:"apiType,omitempty"`
-	AuthType *string `json:"authType,omitempty"`
-	AvgRequestDurationNanos *any `json:"avgRequestDurationNanos,omitempty"`
-	BatchOperations *int `json:"batchOperations,omitempty"`
-	BatchTokensConsumed *int `json:"batchTokensConsumed,omitempty"`
-	CreatedAt *any `json:"createdAt,omitempty"`
-	HourBucket *string `json:"hourBucket,omitempty"`
-	Id any `json:"id"`
-	MinRemainingQuota *any `json:"minRemainingQuota,omitempty"`
-	PeakRemainingQuota *any `json:"peakRemainingQuota,omitempty"`
-	PlanId *string `json:"planId,omitempty"`
-	QuotaConsumed *int `json:"quotaConsumed,omitempty"`
-	RateLimitedRequests *int `json:"rateLimitedRequests,omitempty"`
-	SuccessfulRequests *int `json:"successfulRequests,omitempty"`
-	TotalRequests *int `json:"totalRequests,omitempty"`
-	UpdatedAt *any `json:"updatedAt,omitempty"`
+	ApiKey string `json:"api_key"`
+	ApiType *string `json:"api_type,omitempty"`
+	EndDate string `json:"end_date"`
+	StartDate string `json:"start_date"`
 }
 
 // ApiUsageSummary is the typed data model for the api_usage_summary entity.
@@ -90,16 +77,10 @@ type ApiUsageSummary struct {
 
 // ApiUsageSummaryLoadMatch is the typed request payload for ApiUsageSummary.LoadTyped.
 type ApiUsageSummaryLoadMatch struct {
-	ApiKey *string `json:"apiKey,omitempty"`
-	ApiType *string `json:"apiType,omitempty"`
-	AvgRequestDurationMs *any `json:"avgRequestDurationMs,omitempty"`
-	BatchOperations *int `json:"batchOperations,omitempty"`
-	PeriodEnd *string `json:"periodEnd,omitempty"`
-	PeriodStart *string `json:"periodStart,omitempty"`
-	QuotaConsumed *int `json:"quotaConsumed,omitempty"`
-	RateLimitedRequests *int `json:"rateLimitedRequests,omitempty"`
-	SuccessfulRequests *int `json:"successfulRequests,omitempty"`
-	TotalRequests *int `json:"totalRequests,omitempty"`
+	ApiKey string `json:"api_key"`
+	ApiType *string `json:"api_type,omitempty"`
+	EndDate string `json:"end_date"`
+	StartDate string `json:"start_date"`
 }
 
 // Asn is the typed data model for the asn entity.
@@ -274,6 +255,7 @@ type PaddleControllerLoadMatch struct {
 
 // PaddleControllerCreateData is the typed request payload for PaddleController.CreateTyped.
 type PaddleControllerCreateData struct {
+	HttpEntity string `json:"http_entity"`
 }
 
 // RateLimitInfoDto is the typed data model for the rate_limit_info_dto entity.
@@ -289,13 +271,7 @@ type RateLimitInfoDto struct {
 
 // RateLimitInfoDtoLoadMatch is the typed request payload for RateLimitInfoDto.LoadTyped.
 type RateLimitInfoDtoLoadMatch struct {
-	EmailApi *map[string]any `json:"email_api,omitempty"`
-	IntervalSeconds *int `json:"interval_seconds,omitempty"`
-	IpApi *map[string]any `json:"ip_api,omitempty"`
-	NextRenewalDate *string `json:"next_renewal_date,omitempty"`
-	PlanId *string `json:"plan_id,omitempty"`
-	PlanName *string `json:"plan_name,omitempty"`
-	Status *any `json:"status,omitempty"`
+	ApiKey string `json:"api_key"`
 }
 
 // Reverse is the typed data model for the reverse entity.
@@ -322,6 +298,7 @@ type RiskScore struct {
 // RiskScoreLoadMatch is the typed request payload for RiskScore.LoadTyped.
 type RiskScoreLoadMatch struct {
 	Id string `json:"id"`
+	Email *string `json:"email,omitempty"`
 }
 
 // Status is the typed data model for the status entity.
@@ -351,6 +328,8 @@ type UsageStatistic struct {
 
 // UsageStatisticLoadMatch is the typed request payload for UsageStatistic.LoadTyped.
 type UsageStatisticLoadMatch struct {
+	ApiKey string `json:"api_key"`
+	ApiType *string `json:"api_type,omitempty"`
 }
 
 // Whoi is the typed data model for the whoi entity.
