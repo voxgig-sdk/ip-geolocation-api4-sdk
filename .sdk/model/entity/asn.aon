@@ -6,6 +6,7 @@ main: kit: entity: asn: {
 
   fields: [
     {
+      format: "int64"
       name: "asn"
       req: false
       type: [
@@ -96,17 +97,25 @@ main: kit: entity: asn: {
           }
           method: "GET"
           orig: "/api/v1/asn/{ip}"
-          parts: [
-            "api"
-            "v1"
-            "asn"
-            "{id}"
-          ]
           rename: {
             param: {
               ip: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "asn"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

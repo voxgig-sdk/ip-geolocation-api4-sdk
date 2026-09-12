@@ -35,13 +35,25 @@ main: kit: entity: batch_email_validation_response_dto: {
         {
           method: "POST"
           orig: "/api/v1/email/advanced/batch/csv"
-          parts: [
-            "api"
-            "v1"
-            "email"
-            "advanced"
-            "batch"
-            "csv"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "email"
+            }
+            {
+              lit: "advanced"
+            }
+            {
+              lit: "batch"
+            }
+            {
+              lit: "csv"
+            }
           ]
           transform: {
             req: "`reqdata`"

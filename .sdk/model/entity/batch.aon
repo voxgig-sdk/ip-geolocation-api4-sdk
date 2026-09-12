@@ -27,12 +27,22 @@ main: kit: entity: batch: {
         {
           method: "POST"
           orig: "/api/v1/email/advanced/batch"
-          parts: [
-            "api"
-            "v1"
-            "email"
-            "advanced"
-            "batch"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "email"
+            }
+            {
+              lit: "advanced"
+            }
+            {
+              lit: "batch"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -42,11 +52,19 @@ main: kit: entity: batch: {
         {
           method: "POST"
           orig: "/api/v1/ip/batch"
-          parts: [
-            "api"
-            "v1"
-            "ip"
-            "batch"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ip"
+            }
+            {
+              lit: "batch"
+            }
           ]
           transform: {
             req: "`reqdata`"

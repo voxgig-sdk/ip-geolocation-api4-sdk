@@ -126,6 +126,10 @@ module IpGeolocationApi4Config
               "type" => "`$OBJECT`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "advanced",
           "op" => {
             "load" => {
@@ -148,18 +152,28 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/email/advanced/{email}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "email",
-                    "advanced",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "email" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "email",
+                    },
+                    {
+                      "lit" => "advanced",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -169,6 +183,13 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "email",
+                    "advanced",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -195,6 +216,7 @@ module IpGeolocationApi4Config
               "type" => "`$STRING`",
             },
             {
+              "format" => "int64",
               "name" => "avgRequestDurationNanos",
               "type" => [
                 "`$ONE`",
@@ -205,16 +227,19 @@ module IpGeolocationApi4Config
               ],
             },
             {
+              "format" => "int32",
               "name" => "batchOperations",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int32",
               "name" => "batchTokensConsumed",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "type" => [
                 "`$ONE`",
@@ -225,11 +250,13 @@ module IpGeolocationApi4Config
               ],
             },
             {
+              "format" => "date-time",
               "name" => "hourBucket",
               "req" => true,
               "type" => "`$STRING`",
             },
             {
+              "format" => "int64",
               "name" => "id",
               "type" => [
                 "`$ONE`",
@@ -240,6 +267,7 @@ module IpGeolocationApi4Config
               ],
             },
             {
+              "format" => "int32",
               "name" => "minRemainingQuota",
               "type" => [
                 "`$ONE`",
@@ -250,6 +278,7 @@ module IpGeolocationApi4Config
               ],
             },
             {
+              "format" => "int32",
               "name" => "peakRemainingQuota",
               "type" => [
                 "`$ONE`",
@@ -265,26 +294,31 @@ module IpGeolocationApi4Config
               "type" => "`$STRING`",
             },
             {
+              "format" => "int32",
               "name" => "quotaConsumed",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int32",
               "name" => "rateLimitedRequests",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int32",
               "name" => "successfulRequests",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int32",
               "name" => "totalRequests",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date-time",
               "name" => "updatedAt",
               "type" => [
                 "`$ONE`",
@@ -295,6 +329,10 @@ module IpGeolocationApi4Config
               ],
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "api_usage_stats_model",
           "op" => {
             "load" => {
@@ -340,11 +378,19 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/usage/stats",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "usage",
-                    "stats",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "usage",
+                    },
+                    {
+                      "lit" => "stats",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -358,6 +404,12 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "usage",
+                    "stats",
+                  ],
                 },
               ],
             },
@@ -379,6 +431,7 @@ module IpGeolocationApi4Config
               "type" => "`$STRING`",
             },
             {
+              "format" => "double",
               "name" => "avgRequestDurationMs",
               "type" => [
                 "`$ONE`",
@@ -389,36 +442,43 @@ module IpGeolocationApi4Config
               ],
             },
             {
+              "format" => "int64",
               "name" => "batchOperations",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "date-time",
               "name" => "periodEnd",
               "req" => true,
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "periodStart",
               "req" => true,
               "type" => "`$STRING`",
             },
             {
+              "format" => "int64",
               "name" => "quotaConsumed",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int64",
               "name" => "rateLimitedRequests",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int64",
               "name" => "successfulRequests",
               "req" => true,
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "int64",
               "name" => "totalRequests",
               "req" => true,
               "type" => "`$INTEGER`",
@@ -469,11 +529,19 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/usage/summary",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "usage",
-                    "summary",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "usage",
+                    },
+                    {
+                      "lit" => "summary",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -487,6 +555,12 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "usage",
+                    "summary",
+                  ],
                 },
               ],
             },
@@ -498,6 +572,7 @@ module IpGeolocationApi4Config
         "asn" => {
           "fields" => [
             {
+              "format" => "int64",
               "name" => "asn",
               "type" => [
                 "`$ONE`",
@@ -556,6 +631,10 @@ module IpGeolocationApi4Config
               ],
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "asn",
           "op" => {
             "load" => {
@@ -578,17 +657,25 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/asn/{ip}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "asn",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "ip" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "asn",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -598,6 +685,12 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "asn",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -632,6 +725,28 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/email/advanced/batch",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "email",
+                    },
+                    {
+                      "lit" => "advanced",
+                    },
+                    {
+                      "lit" => "batch",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.results`",
+                  },
                   "parts" => [
                     "api",
                     "v1",
@@ -639,28 +754,37 @@ module IpGeolocationApi4Config
                     "advanced",
                     "batch",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.results`",
-                  },
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/ip/batch",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "ip",
-                    "batch",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "ip",
+                    },
+                    {
+                      "lit" => "batch",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.results`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "ip",
+                    "batch",
+                  ],
                 },
               ],
             },
@@ -699,6 +823,31 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/email/advanced/batch/csv",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "email",
+                    },
+                    {
+                      "lit" => "advanced",
+                    },
+                    {
+                      "lit" => "batch",
+                    },
+                    {
+                      "lit" => "csv",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.results`",
+                  },
                   "parts" => [
                     "api",
                     "v1",
@@ -707,11 +856,6 @@ module IpGeolocationApi4Config
                     "batch",
                     "csv",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.results`",
-                  },
                 },
               ],
             },
@@ -743,12 +887,22 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/management/cache/domain-age/check/{domain}",
-                  "parts" => [
-                    "management",
-                    "cache",
-                    "domain-age",
-                    "check",
-                    "{domain}",
+                  "segments" => [
+                    {
+                      "lit" => "management",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "domain-age",
+                    },
+                    {
+                      "lit" => "check",
+                    },
+                    {
+                      "var" => "domain",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -759,23 +913,44 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "management",
+                    "cache",
+                    "domain-age",
+                    "check",
+                    "{domain}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/management/cache/domain-age/stats",
-                  "parts" => [
-                    "management",
-                    "cache",
-                    "domain-age",
-                    "stats",
+                  "segments" => [
+                    {
+                      "lit" => "management",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "domain-age",
+                    },
+                    {
+                      "lit" => "stats",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "management",
+                    "cache",
+                    "domain-age",
+                    "stats",
+                  ],
                 },
               ],
             },
@@ -788,33 +963,58 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/management/cache/domain-age",
-                  "parts" => [
-                    "management",
-                    "cache",
-                    "domain-age",
+                  "segments" => [
+                    {
+                      "lit" => "management",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "domain-age",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "management",
+                    "cache",
+                    "domain-age",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/management/cache/domain-age/all",
-                  "parts" => [
-                    "management",
-                    "cache",
-                    "domain-age",
-                    "all",
+                  "segments" => [
+                    {
+                      "lit" => "management",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "domain-age",
+                    },
+                    {
+                      "lit" => "all",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "management",
+                    "cache",
+                    "domain-age",
+                    "all",
+                  ],
                 },
               ],
             },
@@ -846,6 +1046,28 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api/v1/domain/age/batch",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "domain",
+                    },
+                    {
+                      "lit" => "age",
+                    },
+                    {
+                      "lit" => "batch",
+                    },
+                  ],
+                  "select" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "parts" => [
                     "api",
                     "v1",
@@ -853,11 +1075,6 @@ module IpGeolocationApi4Config
                     "age",
                     "batch",
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                 },
               ],
             },
@@ -881,12 +1098,22 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/domain/age/{domain}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "domain",
-                    "age",
-                    "{domain}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "domain",
+                    },
+                    {
+                      "lit" => "age",
+                    },
+                    {
+                      "var" => "domain",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -897,6 +1124,13 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "domain",
+                    "age",
+                    "{domain}",
+                  ],
                 },
               ],
             },
@@ -964,12 +1198,22 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/domain/reputation/{domain}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "domain",
-                    "reputation",
-                    "{domain}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "domain",
+                    },
+                    {
+                      "lit" => "reputation",
+                    },
+                    {
+                      "var" => "domain",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -980,6 +1224,13 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "domain",
+                    "reputation",
+                    "{domain}",
+                  ],
                 },
               ],
             },
@@ -1041,6 +1292,10 @@ module IpGeolocationApi4Config
               "type" => "`$OBJECT`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "email",
           "op" => {
             "load" => {
@@ -1063,17 +1318,25 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/email/{email}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "email",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "email" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "email",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1083,6 +1346,12 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "email",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {
@@ -1100,18 +1369,28 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/risk-score/email/{email}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "risk-score",
-                    "email",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "email" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "risk-score",
+                    },
+                    {
+                      "lit" => "email",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1121,6 +1400,13 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body.factors`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "risk-score",
+                    "email",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1146,6 +1432,10 @@ module IpGeolocationApi4Config
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "forward",
           "op" => {
             "load" => {
@@ -1168,18 +1458,28 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/dns/forward/{hostname}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "dns",
-                    "forward",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "hostname" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "dns",
+                    },
+                    {
+                      "lit" => "forward",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1189,6 +1489,13 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "dns",
+                    "forward",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1220,10 +1527,16 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/json/{ip}",
-                  "parts" => [
-                    "api",
-                    "json",
-                    "{ip}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "json",
+                    },
+                    {
+                      "var" => "ip",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1234,6 +1547,11 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "json",
+                    "{ip}",
+                  ],
                 },
                 {
                   "args" => {
@@ -1250,9 +1568,13 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/json/{ip}",
-                  "parts" => [
-                    "json",
-                    "{ip}",
+                  "segments" => [
+                    {
+                      "lit" => "json",
+                    },
+                    {
+                      "var" => "ip",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1263,64 +1585,94 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "json",
+                    "{ip}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/json",
-                  "parts" => [
-                    "api",
-                    "json",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "json",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "json",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/json/",
-                  "parts" => [
-                    "api",
-                    "json",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "json",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "json",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/json",
-                  "parts" => [
-                    "json",
+                  "segments" => [
+                    {
+                      "lit" => "json",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "json",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/json/",
-                  "parts" => [
-                    "json",
+                  "segments" => [
+                    {
+                      "lit" => "json",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "json",
+                  ],
                 },
               ],
             },
@@ -1352,6 +1704,10 @@ module IpGeolocationApi4Config
               "type" => "`$NULL`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "ip_reputation",
           "op" => {
             "load" => {
@@ -1374,17 +1730,25 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/ip-reputation/{ip}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "ip-reputation",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "ip" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "ip-reputation",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1394,6 +1758,12 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body.factors`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "ip-reputation",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1467,11 +1837,19 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/ip/{ip}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "ip",
-                    "{ip}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "ip",
+                    },
+                    {
+                      "var" => "ip",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1482,22 +1860,39 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "ip",
+                    "{ip}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/ip",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "ip",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "ip",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "ip",
+                  ],
                 },
               ],
             },
@@ -1545,12 +1940,22 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/dns/mx/{domain}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "dns",
-                    "mx",
-                    "{domain}",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "dns",
+                    },
+                    {
+                      "lit" => "mx",
+                    },
+                    {
+                      "var" => "domain",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1561,6 +1966,13 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "dns",
+                    "mx",
+                    "{domain}",
+                  ],
                 },
               ],
             },
@@ -1596,8 +2008,10 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/month-sub",
-                  "parts" => [
-                    "month-sub",
+                  "segments" => [
+                    {
+                      "lit" => "month-sub",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1608,6 +2022,9 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "month-sub",
+                  ],
                 },
               ],
             },
@@ -1620,14 +2037,19 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/month-sub",
-                  "parts" => [
-                    "month-sub",
+                  "segments" => [
+                    {
+                      "lit" => "month-sub",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "month-sub",
+                  ],
                 },
               ],
             },
@@ -1645,6 +2067,7 @@ module IpGeolocationApi4Config
               "type" => "`$OBJECT`",
             },
             {
+              "format" => "int64",
               "name" => "interval_seconds",
               "req" => true,
               "short" => "Rate limit interval in seconds (time period for quota renewal)",
@@ -1657,6 +2080,7 @@ module IpGeolocationApi4Config
               "type" => "`$OBJECT`",
             },
             {
+              "format" => "date",
               "name" => "next_renewal_date",
               "short" => "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
               "type" => "`$STRING`",
@@ -1706,10 +2130,16 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/ratelimit",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "ratelimit",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "ratelimit",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1720,6 +2150,11 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "ratelimit",
+                  ],
                 },
               ],
             },
@@ -1754,6 +2189,7 @@ module IpGeolocationApi4Config
               "type" => "`$STRING`",
             },
             {
+              "format" => "int64",
               "name" => "ttl",
               "type" => [
                 "`$ONE`",
@@ -1764,6 +2200,10 @@ module IpGeolocationApi4Config
               ],
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "reverse",
           "op" => {
             "load" => {
@@ -1786,18 +2226,28 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/dns/reverse/{ip}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "dns",
-                    "reverse",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "ip" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "dns",
+                    },
+                    {
+                      "lit" => "reverse",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1807,6 +2257,13 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "dns",
+                    "reverse",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1834,6 +2291,10 @@ module IpGeolocationApi4Config
               "type" => "`$NULL`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "risk_score",
           "op" => {
             "load" => {
@@ -1865,17 +2326,25 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/risk-score/{ip}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "risk-score",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "ip" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "risk-score",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "email",
@@ -1886,22 +2355,39 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body.factors`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "risk-score",
+                    "{id}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/risk-score",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "risk-score",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "risk-score",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.factors`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "risk-score",
+                  ],
                 },
               ],
             },
@@ -1923,15 +2409,23 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/status",
-                  "parts" => [
-                    "api",
-                    "status",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "status",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "status",
+                  ],
                 },
               ],
             },
@@ -1959,12 +2453,17 @@ module IpGeolocationApi4Config
               "type" => "`$BOOLEAN`",
             },
             {
+              "format" => "int32",
               "name" => "tor_node_count",
               "req" => true,
               "short" => "Total number of currently known Tor exit nodes in the database",
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "tor",
           "op" => {
             "load" => {
@@ -1987,17 +2486,25 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/tor/{ip}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "tor",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "ip" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "tor",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -2007,6 +2514,12 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "tor",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -2044,11 +2557,19 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/usage/current-month",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "usage",
-                    "current-month",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "usage",
+                    },
+                    {
+                      "lit" => "current-month",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2060,6 +2581,12 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "usage",
+                    "current-month",
+                  ],
                 },
                 {
                   "args" => {
@@ -2082,11 +2609,19 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/usage/recent",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "usage",
-                    "recent",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "usage",
+                    },
+                    {
+                      "lit" => "recent",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -2098,6 +2633,12 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "usage",
+                    "recent",
+                  ],
                 },
               ],
             },
@@ -2159,6 +2700,10 @@ module IpGeolocationApi4Config
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "whoi",
           "op" => {
             "load" => {
@@ -2181,18 +2726,28 @@ module IpGeolocationApi4Config
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/v1/dns/whois/{domain}",
-                  "parts" => [
-                    "api",
-                    "v1",
-                    "dns",
-                    "whois",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "domain" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "dns",
+                    },
+                    {
+                      "lit" => "whois",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -2202,6 +2757,13 @@ module IpGeolocationApi4Config
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "v1",
+                    "dns",
+                    "whois",
+                    "{id}",
+                  ],
                 },
               ],
             },

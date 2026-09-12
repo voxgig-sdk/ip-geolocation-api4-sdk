@@ -12,6 +12,7 @@ main: kit: entity: rate_limit_info_dto: {
       type: "`$OBJECT`"
     }
     {
+      format: "int64"
       name: "interval_seconds"
       req: true
       short: "Rate limit interval in seconds (time period for quota renewal)"
@@ -24,6 +25,7 @@ main: kit: entity: rate_limit_info_dto: {
       type: "`$OBJECT`"
     }
     {
+      format: "date"
       name: "next_renewal_date"
       req: false
       short: "Next billing/renewal date when the quota will be reset (ISO 8601 date format)"
@@ -75,10 +77,16 @@ main: kit: entity: rate_limit_info_dto: {
           }
           method: "GET"
           orig: "/api/v1/ratelimit"
-          parts: [
-            "api"
-            "v1"
-            "ratelimit"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ratelimit"
+            }
           ]
           select: {
             exist: [

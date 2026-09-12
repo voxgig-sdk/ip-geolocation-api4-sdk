@@ -23,12 +23,22 @@ main: kit: entity: cache_management: {
           }
           method: "GET"
           orig: "/management/cache/domain-age/check/{domain}"
-          parts: [
-            "management"
-            "cache"
-            "domain-age"
-            "check"
-            "{domain}"
+          segments: [
+            {
+              lit: "management"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "domain-age"
+            }
+            {
+              lit: "check"
+            }
+            {
+              var: "domain"
+            }
           ]
           select: {
             exist: [
@@ -43,11 +53,19 @@ main: kit: entity: cache_management: {
         {
           method: "GET"
           orig: "/management/cache/domain-age/stats"
-          parts: [
-            "management"
-            "cache"
-            "domain-age"
-            "stats"
+          segments: [
+            {
+              lit: "management"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "domain-age"
+            }
+            {
+              lit: "stats"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -62,10 +80,16 @@ main: kit: entity: cache_management: {
         {
           method: "DELETE"
           orig: "/management/cache/domain-age"
-          parts: [
-            "management"
-            "cache"
-            "domain-age"
+          segments: [
+            {
+              lit: "management"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "domain-age"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -75,11 +99,19 @@ main: kit: entity: cache_management: {
         {
           method: "DELETE"
           orig: "/management/cache/domain-age/all"
-          parts: [
-            "management"
-            "cache"
-            "domain-age"
-            "all"
+          segments: [
+            {
+              lit: "management"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "domain-age"
+            }
+            {
+              lit: "all"
+            }
           ]
           transform: {
             req: "`reqdata`"

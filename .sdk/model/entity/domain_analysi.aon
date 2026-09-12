@@ -20,12 +20,22 @@ main: kit: entity: domain_analysi: {
         {
           method: "POST"
           orig: "/api/v1/domain/age/batch"
-          parts: [
-            "api"
-            "v1"
-            "domain"
-            "age"
-            "batch"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "domain"
+            }
+            {
+              lit: "age"
+            }
+            {
+              lit: "batch"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -52,12 +62,22 @@ main: kit: entity: domain_analysi: {
           }
           method: "GET"
           orig: "/api/v1/domain/age/{domain}"
-          parts: [
-            "api"
-            "v1"
-            "domain"
-            "age"
-            "{domain}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "domain"
+            }
+            {
+              lit: "age"
+            }
+            {
+              var: "domain"
+            }
           ]
           select: {
             exist: [

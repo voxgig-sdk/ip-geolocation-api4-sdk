@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -193,6 +204,10 @@ class Config {
           "type": "`$OBJECT`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "advanced",
       "op": {
         "load": {
@@ -215,18 +230,28 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/email/advanced/{email}",
-              "parts": [
-                "api",
-                "v1",
-                "email",
-                "advanced",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "email": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "email"
+                },
+                {
+                  "lit": "advanced"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -235,7 +260,14 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "email",
+                "advanced",
+                "{id}"
+              ]
             }
           ]
         }
@@ -262,6 +294,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "int64",
           "name": "avgRequestDurationNanos",
           "type": [
             "`$ONE`",
@@ -272,16 +305,19 @@ class Config {
           ]
         },
         {
+          "format": "int32",
           "name": "batchOperations",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "int32",
           "name": "batchTokensConsumed",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "date-time",
           "name": "createdAt",
           "type": [
             "`$ONE`",
@@ -292,11 +328,13 @@ class Config {
           ]
         },
         {
+          "format": "date-time",
           "name": "hourBucket",
           "req": true,
           "type": "`$STRING`"
         },
         {
+          "format": "int64",
           "name": "id",
           "type": [
             "`$ONE`",
@@ -307,6 +345,7 @@ class Config {
           ]
         },
         {
+          "format": "int32",
           "name": "minRemainingQuota",
           "type": [
             "`$ONE`",
@@ -317,6 +356,7 @@ class Config {
           ]
         },
         {
+          "format": "int32",
           "name": "peakRemainingQuota",
           "type": [
             "`$ONE`",
@@ -332,26 +372,31 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "int32",
           "name": "quotaConsumed",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "int32",
           "name": "rateLimitedRequests",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "int32",
           "name": "successfulRequests",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "int32",
           "name": "totalRequests",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "date-time",
           "name": "updatedAt",
           "type": [
             "`$ONE`",
@@ -362,6 +407,10 @@ class Config {
           ]
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "api_usage_stats_model",
       "op": {
         "load": {
@@ -407,11 +456,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/usage/stats",
-              "parts": [
-                "api",
-                "v1",
-                "usage",
-                "stats"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "usage"
+                },
+                {
+                  "lit": "stats"
+                }
               ],
               "select": {
                 "exist": [
@@ -424,7 +481,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "usage",
+                "stats"
+              ]
             }
           ]
         }
@@ -446,6 +509,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "avgRequestDurationMs",
           "type": [
             "`$ONE`",
@@ -456,36 +520,43 @@ class Config {
           ]
         },
         {
+          "format": "int64",
           "name": "batchOperations",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "date-time",
           "name": "periodEnd",
           "req": true,
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "periodStart",
           "req": true,
           "type": "`$STRING`"
         },
         {
+          "format": "int64",
           "name": "quotaConsumed",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "int64",
           "name": "rateLimitedRequests",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "int64",
           "name": "successfulRequests",
           "req": true,
           "type": "`$INTEGER`"
         },
         {
+          "format": "int64",
           "name": "totalRequests",
           "req": true,
           "type": "`$INTEGER`"
@@ -536,11 +607,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/usage/summary",
-              "parts": [
-                "api",
-                "v1",
-                "usage",
-                "summary"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "usage"
+                },
+                {
+                  "lit": "summary"
+                }
               ],
               "select": {
                 "exist": [
@@ -553,7 +632,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "usage",
+                "summary"
+              ]
             }
           ]
         }
@@ -565,6 +650,7 @@ class Config {
     "asn": {
       "fields": [
         {
+          "format": "int64",
           "name": "asn",
           "type": [
             "`$ONE`",
@@ -623,6 +709,10 @@ class Config {
           ]
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "asn",
       "op": {
         "load": {
@@ -645,17 +735,25 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/asn/{ip}",
-              "parts": [
-                "api",
-                "v1",
-                "asn",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "ip": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "asn"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -664,7 +762,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "asn",
+                "{id}"
+              ]
             }
           ]
         }
@@ -699,35 +803,66 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/api/v1/email/advanced/batch",
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "email"
+                },
+                {
+                  "lit": "advanced"
+                },
+                {
+                  "lit": "batch"
+                }
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.results`"
+              },
               "parts": [
                 "api",
                 "v1",
                 "email",
                 "advanced",
                 "batch"
-              ],
-              "select": {},
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.results`"
-              }
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/api/v1/ip/batch",
-              "parts": [
-                "api",
-                "v1",
-                "ip",
-                "batch"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "ip"
+                },
+                {
+                  "lit": "batch"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.results`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "ip",
+                "batch"
+              ]
             }
           ]
         }
@@ -766,6 +901,31 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/api/v1/email/advanced/batch/csv",
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "email"
+                },
+                {
+                  "lit": "advanced"
+                },
+                {
+                  "lit": "batch"
+                },
+                {
+                  "lit": "csv"
+                }
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.results`"
+              },
               "parts": [
                 "api",
                 "v1",
@@ -773,12 +933,7 @@ class Config {
                 "advanced",
                 "batch",
                 "csv"
-              ],
-              "select": {},
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.results`"
-              }
+              ]
             }
           ]
         }
@@ -810,12 +965,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/management/cache/domain-age/check/{domain}",
-              "parts": [
-                "management",
-                "cache",
-                "domain-age",
-                "check",
-                "{domain}"
+              "segments": [
+                {
+                  "lit": "management"
+                },
+                {
+                  "lit": "cache"
+                },
+                {
+                  "lit": "domain-age"
+                },
+                {
+                  "lit": "check"
+                },
+                {
+                  "var": "domain"
+                }
               ],
               "select": {
                 "exist": [
@@ -825,24 +990,45 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "management",
+                "cache",
+                "domain-age",
+                "check",
+                "{domain}"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/management/cache/domain-age/stats",
-              "parts": [
-                "management",
-                "cache",
-                "domain-age",
-                "stats"
+              "segments": [
+                {
+                  "lit": "management"
+                },
+                {
+                  "lit": "cache"
+                },
+                {
+                  "lit": "domain-age"
+                },
+                {
+                  "lit": "stats"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "management",
+                "cache",
+                "domain-age",
+                "stats"
+              ]
             }
           ]
         },
@@ -855,33 +1041,58 @@ class Config {
               "kind": "http",
               "method": "DELETE",
               "orig": "/management/cache/domain-age",
-              "parts": [
-                "management",
-                "cache",
-                "domain-age"
+              "segments": [
+                {
+                  "lit": "management"
+                },
+                {
+                  "lit": "cache"
+                },
+                {
+                  "lit": "domain-age"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "management",
+                "cache",
+                "domain-age"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "DELETE",
               "orig": "/management/cache/domain-age/all",
-              "parts": [
-                "management",
-                "cache",
-                "domain-age",
-                "all"
+              "segments": [
+                {
+                  "lit": "management"
+                },
+                {
+                  "lit": "cache"
+                },
+                {
+                  "lit": "domain-age"
+                },
+                {
+                  "lit": "all"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "management",
+                "cache",
+                "domain-age",
+                "all"
+              ]
             }
           ]
         }
@@ -913,18 +1124,35 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/api/v1/domain/age/batch",
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "domain"
+                },
+                {
+                  "lit": "age"
+                },
+                {
+                  "lit": "batch"
+                }
+              ],
+              "select": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
               "parts": [
                 "api",
                 "v1",
                 "domain",
                 "age",
                 "batch"
-              ],
-              "select": {},
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              }
+              ]
             }
           ]
         },
@@ -948,12 +1176,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/domain/age/{domain}",
-              "parts": [
-                "api",
-                "v1",
-                "domain",
-                "age",
-                "{domain}"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "domain"
+                },
+                {
+                  "lit": "age"
+                },
+                {
+                  "var": "domain"
+                }
               ],
               "select": {
                 "exist": [
@@ -963,7 +1201,14 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "domain",
+                "age",
+                "{domain}"
+              ]
             }
           ]
         }
@@ -1031,12 +1276,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/domain/reputation/{domain}",
-              "parts": [
-                "api",
-                "v1",
-                "domain",
-                "reputation",
-                "{domain}"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "domain"
+                },
+                {
+                  "lit": "reputation"
+                },
+                {
+                  "var": "domain"
+                }
               ],
               "select": {
                 "exist": [
@@ -1046,7 +1301,14 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "domain",
+                "reputation",
+                "{domain}"
+              ]
             }
           ]
         }
@@ -1108,6 +1370,10 @@ class Config {
           "type": "`$OBJECT`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "email",
       "op": {
         "load": {
@@ -1130,17 +1396,25 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/email/{email}",
-              "parts": [
-                "api",
-                "v1",
-                "email",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "email": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "email"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -1149,7 +1423,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "email",
+                "{id}"
+              ]
             },
             {
               "args": {
@@ -1167,18 +1447,28 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/risk-score/email/{email}",
-              "parts": [
-                "api",
-                "v1",
-                "risk-score",
-                "email",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "email": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "risk-score"
+                },
+                {
+                  "lit": "email"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -1187,7 +1477,14 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.factors`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "risk-score",
+                "email",
+                "{id}"
+              ]
             }
           ]
         }
@@ -1213,6 +1510,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "forward",
       "op": {
         "load": {
@@ -1235,18 +1536,28 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/dns/forward/{hostname}",
-              "parts": [
-                "api",
-                "v1",
-                "dns",
-                "forward",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "hostname": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "dns"
+                },
+                {
+                  "lit": "forward"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -1255,7 +1566,14 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "dns",
+                "forward",
+                "{id}"
+              ]
             }
           ]
         }
@@ -1287,10 +1605,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/json/{ip}",
-              "parts": [
-                "api",
-                "json",
-                "{ip}"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "json"
+                },
+                {
+                  "var": "ip"
+                }
               ],
               "select": {
                 "exist": [
@@ -1300,7 +1624,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "json",
+                "{ip}"
+              ]
             },
             {
               "args": {
@@ -1317,9 +1646,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/json/{ip}",
-              "parts": [
-                "json",
-                "{ip}"
+              "segments": [
+                {
+                  "lit": "json"
+                },
+                {
+                  "var": "ip"
+                }
               ],
               "select": {
                 "exist": [
@@ -1329,65 +1662,95 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "json",
+                "{ip}"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/api/json",
-              "parts": [
-                "api",
-                "json"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "json"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/api/json/",
-              "parts": [
-                "api",
-                "json"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "json"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/json",
-              "parts": [
-                "json"
+              "segments": [
+                {
+                  "lit": "json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "json"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/json/",
-              "parts": [
-                "json"
+              "segments": [
+                {
+                  "lit": "json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "json"
+              ]
             }
           ]
         }
@@ -1419,6 +1782,10 @@ class Config {
           "type": "`$NULL`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "ip_reputation",
       "op": {
         "load": {
@@ -1441,17 +1808,25 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/ip-reputation/{ip}",
-              "parts": [
-                "api",
-                "v1",
-                "ip-reputation",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "ip": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "ip-reputation"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -1460,7 +1835,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.factors`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "ip-reputation",
+                "{id}"
+              ]
             }
           ]
         }
@@ -1534,11 +1915,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/ip/{ip}",
-              "parts": [
-                "api",
-                "v1",
-                "ip",
-                "{ip}"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "ip"
+                },
+                {
+                  "var": "ip"
+                }
               ],
               "select": {
                 "exist": [
@@ -1548,23 +1937,40 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "ip",
+                "{ip}"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/ip",
-              "parts": [
-                "api",
-                "v1",
-                "ip"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "ip"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "ip"
+              ]
             }
           ]
         }
@@ -1612,12 +2018,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/dns/mx/{domain}",
-              "parts": [
-                "api",
-                "v1",
-                "dns",
-                "mx",
-                "{domain}"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "dns"
+                },
+                {
+                  "lit": "mx"
+                },
+                {
+                  "var": "domain"
+                }
               ],
               "select": {
                 "exist": [
@@ -1627,7 +2043,14 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "dns",
+                "mx",
+                "{domain}"
+              ]
             }
           ]
         }
@@ -1663,8 +2086,10 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/month-sub",
-              "parts": [
-                "month-sub"
+              "segments": [
+                {
+                  "lit": "month-sub"
+                }
               ],
               "select": {
                 "exist": [
@@ -1674,7 +2099,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "month-sub"
+              ]
             }
           ]
         },
@@ -1687,14 +2115,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/month-sub",
-              "parts": [
-                "month-sub"
+              "segments": [
+                {
+                  "lit": "month-sub"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "month-sub"
+              ]
             }
           ]
         }
@@ -1712,6 +2145,7 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
+          "format": "int64",
           "name": "interval_seconds",
           "req": true,
           "short": "Rate limit interval in seconds (time period for quota renewal)",
@@ -1724,6 +2158,7 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
+          "format": "date",
           "name": "next_renewal_date",
           "short": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
           "type": "`$STRING`"
@@ -1773,10 +2208,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/ratelimit",
-              "parts": [
-                "api",
-                "v1",
-                "ratelimit"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "ratelimit"
+                }
               ],
               "select": {
                 "exist": [
@@ -1786,7 +2227,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "ratelimit"
+              ]
             }
           ]
         }
@@ -1821,6 +2267,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "int64",
           "name": "ttl",
           "type": [
             "`$ONE`",
@@ -1831,6 +2278,10 @@ class Config {
           ]
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "reverse",
       "op": {
         "load": {
@@ -1853,18 +2304,28 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/dns/reverse/{ip}",
-              "parts": [
-                "api",
-                "v1",
-                "dns",
-                "reverse",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "ip": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "dns"
+                },
+                {
+                  "lit": "reverse"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -1873,7 +2334,14 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "dns",
+                "reverse",
+                "{id}"
+              ]
             }
           ]
         }
@@ -1901,6 +2369,10 @@ class Config {
           "type": "`$NULL`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "risk_score",
       "op": {
         "load": {
@@ -1932,17 +2404,25 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/risk-score/{ip}",
-              "parts": [
-                "api",
-                "v1",
-                "risk-score",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "ip": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "risk-score"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "email",
@@ -1952,23 +2432,40 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.factors`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "risk-score",
+                "{id}"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/risk-score",
-              "parts": [
-                "api",
-                "v1",
-                "risk-score"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "risk-score"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.factors`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "risk-score"
+              ]
             }
           ]
         }
@@ -1990,15 +2487,23 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/status",
-              "parts": [
-                "api",
-                "status"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "status"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "status"
+              ]
             }
           ]
         }
@@ -2026,12 +2531,17 @@ class Config {
           "type": "`$BOOLEAN`"
         },
         {
+          "format": "int32",
           "name": "tor_node_count",
           "req": true,
           "short": "Total number of currently known Tor exit nodes in the database",
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "tor",
       "op": {
         "load": {
@@ -2054,17 +2564,25 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/tor/{ip}",
-              "parts": [
-                "api",
-                "v1",
-                "tor",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "ip": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "tor"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -2073,7 +2591,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "tor",
+                "{id}"
+              ]
             }
           ]
         }
@@ -2111,11 +2635,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/usage/current-month",
-              "parts": [
-                "api",
-                "v1",
-                "usage",
-                "current-month"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "usage"
+                },
+                {
+                  "lit": "current-month"
+                }
               ],
               "select": {
                 "exist": [
@@ -2126,7 +2658,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "usage",
+                "current-month"
+              ]
             },
             {
               "args": {
@@ -2149,11 +2687,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/usage/recent",
-              "parts": [
-                "api",
-                "v1",
-                "usage",
-                "recent"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "usage"
+                },
+                {
+                  "lit": "recent"
+                }
               ],
               "select": {
                 "exist": [
@@ -2164,7 +2710,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "usage",
+                "recent"
+              ]
             }
           ]
         }
@@ -2226,6 +2778,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "whoi",
       "op": {
         "load": {
@@ -2248,18 +2804,28 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/v1/dns/whois/{domain}",
-              "parts": [
-                "api",
-                "v1",
-                "dns",
-                "whois",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "domain": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "dns"
+                },
+                {
+                  "lit": "whois"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -2268,7 +2834,14 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "v1",
+                "dns",
+                "whois",
+                "{id}"
+              ]
             }
           ]
         }
@@ -2284,6 +2857,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

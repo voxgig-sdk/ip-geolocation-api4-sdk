@@ -32,6 +32,7 @@ main: kit: entity: reverse: {
       type: "`$STRING`"
     }
     {
+      format: "int64"
       name: "ttl"
       req: false
       type: [
@@ -69,18 +70,28 @@ main: kit: entity: reverse: {
           }
           method: "GET"
           orig: "/api/v1/dns/reverse/{ip}"
-          parts: [
-            "api"
-            "v1"
-            "dns"
-            "reverse"
-            "{id}"
-          ]
           rename: {
             param: {
               ip: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "dns"
+            }
+            {
+              lit: "reverse"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

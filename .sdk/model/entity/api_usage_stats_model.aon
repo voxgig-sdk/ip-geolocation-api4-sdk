@@ -21,6 +21,7 @@ main: kit: entity: api_usage_stats_model: {
       type: "`$STRING`"
     }
     {
+      format: "int64"
       name: "avgRequestDurationNanos"
       req: false
       type: [
@@ -32,16 +33,19 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
+      format: "int32"
       name: "batchOperations"
       req: true
       type: "`$INTEGER`"
     }
     {
+      format: "int32"
       name: "batchTokensConsumed"
       req: true
       type: "`$INTEGER`"
     }
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       type: [
@@ -53,11 +57,13 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
+      format: "date-time"
       name: "hourBucket"
       req: true
       type: "`$STRING`"
     }
     {
+      format: "int64"
       name: "id"
       req: false
       type: [
@@ -69,6 +75,7 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
+      format: "int32"
       name: "minRemainingQuota"
       req: false
       type: [
@@ -80,6 +87,7 @@ main: kit: entity: api_usage_stats_model: {
       ]
     }
     {
+      format: "int32"
       name: "peakRemainingQuota"
       req: false
       type: [
@@ -96,26 +104,31 @@ main: kit: entity: api_usage_stats_model: {
       type: "`$STRING`"
     }
     {
+      format: "int32"
       name: "quotaConsumed"
       req: true
       type: "`$INTEGER`"
     }
     {
+      format: "int32"
       name: "rateLimitedRequests"
       req: true
       type: "`$INTEGER`"
     }
     {
+      format: "int32"
       name: "successfulRequests"
       req: true
       type: "`$INTEGER`"
     }
     {
+      format: "int32"
       name: "totalRequests"
       req: true
       type: "`$INTEGER`"
     }
     {
+      format: "date-time"
       name: "updatedAt"
       req: false
       type: [
@@ -177,11 +190,19 @@ main: kit: entity: api_usage_stats_model: {
           }
           method: "GET"
           orig: "/api/v1/usage/stats"
-          parts: [
-            "api"
-            "v1"
-            "usage"
-            "stats"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "usage"
+            }
+            {
+              lit: "stats"
+            }
           ]
           select: {
             exist: [

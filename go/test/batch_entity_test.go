@@ -52,7 +52,7 @@ func TestBatchEntity(t *testing.T) {
 		// CREATE
 		batchRef01Ent := client.Batch(nil)
 		batchRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "batch"}, setup.data), "batch_ref01"))
+			vs.GetPath(setup.data, []any{"new", "batch"}), "batch_ref01"))
 
 		batchRef01DataResult, err := batchRef01Ent.Create(batchRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func batchBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"batch01", "batch02", "batch03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -118,10 +118,22 @@ func batchBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IP_GEOLOCATION_API4_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpGeolocationApi4SDK(core.ToMapAny(mergedOpts))
 	}

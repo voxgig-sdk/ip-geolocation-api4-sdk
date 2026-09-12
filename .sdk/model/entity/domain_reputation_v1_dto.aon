@@ -57,12 +57,22 @@ main: kit: entity: domain_reputation_v1_dto: {
           }
           method: "GET"
           orig: "/api/v1/domain/reputation/{domain}"
-          parts: [
-            "api"
-            "v1"
-            "domain"
-            "reputation"
-            "{domain}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "domain"
+            }
+            {
+              lit: "reputation"
+            }
+            {
+              var: "domain"
+            }
           ]
           select: {
             exist: [

@@ -23,10 +23,16 @@ main: kit: entity: ip_info_v0: {
           }
           method: "GET"
           orig: "/api/json/{ip}"
-          parts: [
-            "api"
-            "json"
-            "{ip}"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "json"
+            }
+            {
+              var: "ip"
+            }
           ]
           select: {
             exist: [
@@ -52,9 +58,13 @@ main: kit: entity: ip_info_v0: {
           }
           method: "GET"
           orig: "/json/{ip}"
-          parts: [
-            "json"
-            "{ip}"
+          segments: [
+            {
+              lit: "json"
+            }
+            {
+              var: "ip"
+            }
           ]
           select: {
             exist: [
@@ -69,9 +79,13 @@ main: kit: entity: ip_info_v0: {
         {
           method: "GET"
           orig: "/api/json"
-          parts: [
-            "api"
-            "json"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "json"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -81,9 +95,13 @@ main: kit: entity: ip_info_v0: {
         {
           method: "GET"
           orig: "/api/json/"
-          parts: [
-            "api"
-            "json"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "json"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -93,8 +111,10 @@ main: kit: entity: ip_info_v0: {
         {
           method: "GET"
           orig: "/json"
-          parts: [
-            "json"
+          segments: [
+            {
+              lit: "json"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -104,8 +124,10 @@ main: kit: entity: ip_info_v0: {
         {
           method: "GET"
           orig: "/json/"
-          parts: [
-            "json"
+          segments: [
+            {
+              lit: "json"
+            }
           ]
           transform: {
             req: "`reqdata`"

@@ -135,18 +135,28 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/email/advanced/{email}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "email",
-                    "advanced",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "email": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "email"
+                    },
+                    {
+                      "lit": "advanced"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -190,6 +200,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "avgRequestDurationNanos",
               "req": false,
               "type": [
@@ -202,18 +213,21 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "batchOperations",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "int32",
               "name": "batchTokensConsumed",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "createdAt",
               "req": false,
               "type": [
@@ -226,12 +240,14 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "hourBucket",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
+              "format": "int64",
               "name": "id",
               "req": false,
               "type": [
@@ -244,6 +260,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "minRemainingQuota",
               "req": false,
               "type": [
@@ -256,6 +273,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "peakRemainingQuota",
               "req": false,
               "type": [
@@ -274,30 +292,35 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "quotaConsumed",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "int32",
               "name": "rateLimitedRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "int32",
               "name": "successfulRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "int32",
               "name": "totalRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "updatedAt",
               "req": false,
               "type": [
@@ -364,11 +387,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/usage/stats",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "usage",
-                    "stats"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "usage"
+                    },
+                    {
+                      "lit": "stats"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -410,6 +441,7 @@
             },
             {
               "active": true,
+              "format": "double",
               "name": "avgRequestDurationMs",
               "req": false,
               "type": [
@@ -422,42 +454,49 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "batchOperations",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "periodEnd",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "periodStart",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
+              "format": "int64",
               "name": "quotaConsumed",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "int64",
               "name": "rateLimitedRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "int64",
               "name": "successfulRequests",
               "req": true,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
+              "format": "int64",
               "name": "totalRequests",
               "req": true,
               "type": "`$INTEGER`"
@@ -514,11 +553,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/usage/summary",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "usage",
-                    "summary"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "usage"
+                    },
+                    {
+                      "lit": "summary"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -548,6 +595,7 @@
           "fields": [
             {
               "active": true,
+              "format": "int64",
               "name": "asn",
               "req": false,
               "type": [
@@ -647,17 +695,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/asn/{ip}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "asn",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "ip": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "asn"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -708,12 +764,22 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/email/advanced/batch",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "email",
-                    "advanced",
-                    "batch"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "email"
+                    },
+                    {
+                      "lit": "advanced"
+                    },
+                    {
+                      "lit": "batch"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -727,11 +793,19 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/ip/batch",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "ip",
-                    "batch"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "ip"
+                    },
+                    {
+                      "lit": "batch"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -789,13 +863,25 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/email/advanced/batch/csv",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "email",
-                    "advanced",
-                    "batch",
-                    "csv"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "email"
+                    },
+                    {
+                      "lit": "advanced"
+                    },
+                    {
+                      "lit": "batch"
+                    },
+                    {
+                      "lit": "csv"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -839,12 +925,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/management/cache/domain-age/check/{domain}",
-                  "parts": [
-                    "management",
-                    "cache",
-                    "domain-age",
-                    "check",
-                    "{domain}"
+                  "segments": [
+                    {
+                      "lit": "management"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "domain-age"
+                    },
+                    {
+                      "lit": "check"
+                    },
+                    {
+                      "var": "domain"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -862,11 +958,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/management/cache/domain-age/stats",
-                  "parts": [
-                    "management",
-                    "cache",
-                    "domain-age",
-                    "stats"
+                  "segments": [
+                    {
+                      "lit": "management"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "domain-age"
+                    },
+                    {
+                      "lit": "stats"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -886,10 +990,16 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/management/cache/domain-age",
-                  "parts": [
-                    "management",
-                    "cache",
-                    "domain-age"
+                  "segments": [
+                    {
+                      "lit": "management"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "domain-age"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -903,11 +1013,19 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/management/cache/domain-age/all",
-                  "parts": [
-                    "management",
-                    "cache",
-                    "domain-age",
-                    "all"
+                  "segments": [
+                    {
+                      "lit": "management"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "domain-age"
+                    },
+                    {
+                      "lit": "all"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -951,12 +1069,22 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api/v1/domain/age/batch",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "domain",
-                    "age",
-                    "batch"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "domain"
+                    },
+                    {
+                      "lit": "age"
+                    },
+                    {
+                      "lit": "batch"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -988,12 +1116,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/domain/age/{domain}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "domain",
-                    "age",
-                    "{domain}"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "domain"
+                    },
+                    {
+                      "lit": "age"
+                    },
+                    {
+                      "var": "domain"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1082,12 +1220,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/domain/reputation/{domain}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "domain",
-                    "reputation",
-                    "{domain}"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "domain"
+                    },
+                    {
+                      "lit": "reputation"
+                    },
+                    {
+                      "var": "domain"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1200,17 +1348,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/email/{email}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "email",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "email": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "email"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1239,18 +1395,28 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/risk-score/email/{email}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "risk-score",
-                    "email",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "email": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "risk-score"
+                    },
+                    {
+                      "lit": "email"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1321,18 +1487,28 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/dns/forward/{hostname}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "dns",
-                    "forward",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "hostname": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "dns"
+                    },
+                    {
+                      "lit": "forward"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1379,10 +1555,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/json/{ip}",
-                  "parts": [
-                    "api",
-                    "json",
-                    "{ip}"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "json"
+                    },
+                    {
+                      "var": "ip"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1411,9 +1593,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/json/{ip}",
-                  "parts": [
-                    "json",
-                    "{ip}"
+                  "segments": [
+                    {
+                      "lit": "json"
+                    },
+                    {
+                      "var": "ip"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1431,9 +1617,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/json",
-                  "parts": [
-                    "api",
-                    "json"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1447,9 +1637,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/json/",
-                  "parts": [
-                    "api",
-                    "json"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1463,8 +1657,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/json",
-                  "parts": [
-                    "json"
+                  "segments": [
+                    {
+                      "lit": "json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1478,8 +1674,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/json/",
-                  "parts": [
-                    "json"
+                  "segments": [
+                    {
+                      "lit": "json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1553,17 +1751,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/ip-reputation/{ip}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "ip-reputation",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "ip": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "ip-reputation"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1659,11 +1865,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/ip/{ip}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "ip",
-                    "{ip}"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "ip"
+                    },
+                    {
+                      "var": "ip"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1681,10 +1895,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/ip",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "ip"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "ip"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1746,12 +1966,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/dns/mx/{domain}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "dns",
-                    "mx",
-                    "{domain}"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "dns"
+                    },
+                    {
+                      "lit": "mx"
+                    },
+                    {
+                      "var": "domain"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1803,8 +2033,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/month-sub",
-                  "parts": [
-                    "month-sub"
+                  "segments": [
+                    {
+                      "lit": "month-sub"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1828,8 +2060,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/month-sub",
-                  "parts": [
-                    "month-sub"
+                  "segments": [
+                    {
+                      "lit": "month-sub"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1859,6 +2093,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "interval_seconds",
               "req": true,
               "short": "Rate limit interval in seconds (time period for quota renewal)",
@@ -1873,6 +2108,7 @@
             },
             {
               "active": true,
+              "format": "date",
               "name": "next_renewal_date",
               "req": false,
               "short": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
@@ -1930,10 +2166,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/ratelimit",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "ratelimit"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "ratelimit"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1990,6 +2232,7 @@
             },
             {
               "active": true,
+              "format": "int64",
               "name": "ttl",
               "req": false,
               "type": [
@@ -2029,18 +2272,28 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/dns/reverse/{ip}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "dns",
-                    "reverse",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "ip": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "dns"
+                    },
+                    {
+                      "lit": "reverse"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -2124,17 +2377,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/risk-score/{ip}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "risk-score",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "ip": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "risk-score"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "email",
@@ -2152,10 +2413,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/risk-score",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "risk-score"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "risk-score"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2188,9 +2455,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/status",
-                  "parts": [
-                    "api",
-                    "status"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "status"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -2233,6 +2504,7 @@
             },
             {
               "active": true,
+              "format": "int32",
               "name": "tor_node_count",
               "req": true,
               "short": "Total number of currently known Tor exit nodes in the database",
@@ -2267,17 +2539,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/tor/{ip}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "tor",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "ip": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "tor"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -2332,11 +2612,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/usage/current-month",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "usage",
-                    "current-month"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "usage"
+                    },
+                    {
+                      "lit": "current-month"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2374,11 +2662,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/usage/recent",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "usage",
-                    "recent"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "usage"
+                    },
+                    {
+                      "lit": "recent"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -2499,18 +2795,28 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/v1/dns/whois/{domain}",
-                  "parts": [
-                    "api",
-                    "v1",
-                    "dns",
-                    "whois",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "domain": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "dns"
+                    },
+                    {
+                      "lit": "whois"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -2593,8 +2899,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -3408,6 +3717,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3433,6 +3745,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -3484,6 +3800,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -3508,6 +3825,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -3559,6 +3877,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -3583,6 +3902,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -3623,6 +3943,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3648,6 +3971,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -3682,6 +4008,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3707,6 +4036,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -3747,6 +4079,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3772,6 +4107,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -3817,6 +4155,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3842,6 +4183,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -3859,11 +4203,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -3892,6 +4231,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -3916,6 +4258,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

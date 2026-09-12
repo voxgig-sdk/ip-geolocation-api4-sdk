@@ -23,8 +23,10 @@ main: kit: entity: paddle_controller: {
           }
           method: "POST"
           orig: "/month-sub"
-          parts: [
-            "month-sub"
+          segments: [
+            {
+              lit: "month-sub"
+            }
           ]
           select: {
             exist: [
@@ -44,8 +46,10 @@ main: kit: entity: paddle_controller: {
         {
           method: "GET"
           orig: "/month-sub"
-          parts: [
-            "month-sub"
+          segments: [
+            {
+              lit: "month-sub"
+            }
           ]
           transform: {
             req: "`reqdata`"

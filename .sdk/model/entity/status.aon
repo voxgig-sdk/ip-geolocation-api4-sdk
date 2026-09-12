@@ -12,9 +12,13 @@ main: kit: entity: status: {
         {
           method: "GET"
           orig: "/api/status"
-          parts: [
-            "api"
-            "status"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "status"
+            }
           ]
           transform: {
             req: "`reqdata`"

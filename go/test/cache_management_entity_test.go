@@ -50,7 +50,7 @@ func TestCacheManagementEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		cacheManagementRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.cache_management", setup.data)))
+		cacheManagementRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.cache_management")))
 		var cacheManagementRef01Data map[string]any
 		if len(cacheManagementRef01DataRaw) > 0 {
 			cacheManagementRef01Data = core.ToMapAny(cacheManagementRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func cache_managementBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"cache_management01", "cache_management02", "cache_management03", "check01", "check02", "check03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +125,22 @@ func cache_managementBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["IP_GEOLOCATION_API4_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewIpGeolocationApi4SDK(core.ToMapAny(mergedOpts))
 	}
