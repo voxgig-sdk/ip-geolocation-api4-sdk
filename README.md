@@ -105,7 +105,7 @@ local result, err = client:RiskScore():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ip-geolocation-api4-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
 | Python | `voxgig-sdk-ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
 | PHP | `voxgig-sdk/ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/ip-geolocation-api4-sdk/go` | `go get github.com/voxgig-sdk/ip-geolocation-api4-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:RiskScore():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { IpGeolocationApi4SDK } from '@voxgig-sdk/ip-geolocation-api4'
+import { IpGeolocationApi4SDK } from '@voxgig-sdk/ip-geolocation-api4-sdk'
 
 const client = new IpGeolocationApi4SDK()
 

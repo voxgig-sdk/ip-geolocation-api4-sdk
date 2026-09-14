@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/ip-geolocation-api4",
+  "name": "@voxgig-sdk/ip-geolocation-api4-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the IP-API.io - IP Geolocation & Security public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [
