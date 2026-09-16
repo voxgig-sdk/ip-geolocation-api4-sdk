@@ -68,6 +68,12 @@ main: kit: entity: reverse: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/v1/dns/reverse/{ip}"
+            json: "{\"operationId\":\"getReverseDns\",\"parameters\":[{\"description\":\"IPv4 or IPv6 address\",\"example\":\"8.8.8.8\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"hostname\":{\"type\":[\"string\",\"null\"]},\"ip\":{\"type\":\"string\"},\"ptr_record\":{\"type\":\"string\"},\"ttl\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Reverse DNS lookup completed (hostname may be null if no PTR record exists)\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"hostname\":{\"type\":[\"string\",\"null\"]},\"ip\":{\"type\":\"string\"},\"ptr_record\":{\"type\":\"string\"},\"ttl\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Invalid IP address format\"},\"502\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"hostname\":{\"type\":[\"string\",\"null\"]},\"ip\":{\"type\":\"string\"},\"ptr_record\":{\"type\":\"string\"},\"ttl\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"DNS lookup failed\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/v1/dns/reverse/{ip}"
           rename: {

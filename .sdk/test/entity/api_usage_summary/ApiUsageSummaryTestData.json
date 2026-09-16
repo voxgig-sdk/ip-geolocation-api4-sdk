@@ -5,39 +5,39 @@
         "apiKey": "s64",
         "apiType": "s65",
         "avgRequestDurationMs": "s66",
-        "batchOperations": "s67",
+        "batchOperations": 103,
         "periodEnd": "s68",
         "periodStart": "s69",
-        "quotaConsumed": "s6a",
-        "rateLimitedRequests": "s6b",
-        "successfulRequests": "s6c",
-        "totalRequests": "s6d",
+        "quotaConsumed": 106,
+        "rateLimitedRequests": 107,
+        "successfulRequests": 108,
+        "totalRequests": 109,
         "id": "API_USAGE_SUMMARY00"
       },
       "API_USAGE_SUMMARY01": {
         "apiKey": "sc8",
         "apiType": "sc9",
         "avgRequestDurationMs": "sca",
-        "batchOperations": "scb",
+        "batchOperations": 203,
         "periodEnd": "scc",
         "periodStart": "scd",
-        "quotaConsumed": "sce",
-        "rateLimitedRequests": "scf",
-        "successfulRequests": "sd0",
-        "totalRequests": "sd1",
+        "quotaConsumed": 206,
+        "rateLimitedRequests": 207,
+        "successfulRequests": 208,
+        "totalRequests": 209,
         "id": "API_USAGE_SUMMARY01"
       },
       "API_USAGE_SUMMARY02": {
         "apiKey": "s12c",
         "apiType": "s12d",
         "avgRequestDurationMs": "s12e",
-        "batchOperations": "s12f",
+        "batchOperations": 303,
         "periodEnd": "s130",
         "periodStart": "s131",
-        "quotaConsumed": "s132",
-        "rateLimitedRequests": "s133",
-        "successfulRequests": "s134",
-        "totalRequests": "s135",
+        "quotaConsumed": 306,
+        "rateLimitedRequests": 307,
+        "successfulRequests": 308,
+        "totalRequests": 309,
         "id": "API_USAGE_SUMMARY02"
       }
     }
@@ -48,13 +48,157 @@
         "apiKey": "s190",
         "apiType": "s191",
         "avgRequestDurationMs": "s192",
-        "batchOperations": "s193",
+        "batchOperations": 403,
         "periodEnd": "s194",
         "periodStart": "s195",
-        "quotaConsumed": "s196",
-        "rateLimitedRequests": "s197",
-        "successfulRequests": "s198",
-        "totalRequests": "s199"
+        "quotaConsumed": 406,
+        "rateLimitedRequests": 407,
+        "successfulRequests": 408,
+        "totalRequests": 409
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/usage/summary": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUsageSummary",
+        "parameters": [
+          {
+            "description": "Your API key",
+            "example": "your-api-key-here",
+            "in": "query",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Start date in ISO 8601 format (inclusive)",
+            "example": "2025-11-01T00:00:00Z",
+            "in": "query",
+            "name": "start_date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "End date in ISO 8601 format (exclusive)",
+            "example": "2025-11-04T00:00:00Z",
+            "in": "query",
+            "name": "end_date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by API type (optional)",
+            "example": "IP",
+            "in": "query",
+            "name": "api_type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "IP",
+                "ADVANCED_EMAIL_VALIDATION"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "apiKey": {
+                      "type": "string"
+                    },
+                    "apiType": {
+                      "type": "string"
+                    },
+                    "avgRequestDurationMs": {
+                      "format": "double",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "batchOperations": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "periodEnd": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "periodStart": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "quotaConsumed": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "rateLimitedRequests": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "successfulRequests": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "totalRequests": {
+                      "format": "int64",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "apiKey",
+                    "apiType",
+                    "batchOperations",
+                    "periodEnd",
+                    "periodStart",
+                    "quotaConsumed",
+                    "rateLimitedRequests",
+                    "successfulRequests",
+                    "totalRequests"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully retrieved usage summary"
+          },
+          "401": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid or missing API key"
+          },
+          "404": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No usage data found for this period"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

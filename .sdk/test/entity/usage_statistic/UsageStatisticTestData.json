@@ -16,5 +16,95 @@
     "usage_statistic": {
       "usage_statistic_ref01": {}
     }
+  },
+  "requests": {
+    "GET /api/v1/usage/current-month": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCurrentMonthSummary",
+        "parameters": [
+          {
+            "description": "Your API key",
+            "in": "query",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by API type (optional)",
+            "in": "query",
+            "name": "api_type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "IP",
+                "ADVANCED_EMAIL_VALIDATION"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /api/v1/usage/recent": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRecentUsage",
+        "parameters": [
+          {
+            "description": "Your API key",
+            "in": "query",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by API type (optional)",
+            "in": "query",
+            "name": "api_type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "IP",
+                "ADVANCED_EMAIL_VALIDATION"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

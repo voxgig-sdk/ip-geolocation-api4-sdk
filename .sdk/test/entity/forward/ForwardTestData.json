@@ -25,5 +25,197 @@
         "hostname": "s79"
       }
     }
+  },
+  "requests": {
+    "GET /api/v1/dns/forward/{hostname}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getForwardDns",
+        "parameters": [
+          {
+            "description": "Hostname to look up, e.g. dns.google",
+            "example": "dns.google",
+            "in": "path",
+            "name": "hostname",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "addresses": {
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "ttl": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "address",
+                          "ttl",
+                          "type"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "hostname": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "addresses",
+                    "hostname"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Forward DNS lookup succeeded"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "addresses": {
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "ttl": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "address",
+                          "ttl",
+                          "type"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "hostname": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "addresses",
+                    "hostname"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid hostname format"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "addresses": {
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "ttl": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "address",
+                          "ttl",
+                          "type"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "hostname": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "addresses",
+                    "hostname"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No address records found for the hostname"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "addresses": {
+                      "items": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "ttl": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "address",
+                          "ttl",
+                          "type"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "hostname": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "addresses",
+                    "hostname"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "DNS lookup failed"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

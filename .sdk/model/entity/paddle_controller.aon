@@ -21,6 +21,12 @@ main: kit: entity: paddle_controller: {
               }
             ]
           }
+          contract: {
+            id: "POST /month-sub"
+            json: "{\"operationId\":\"handleSubscription\",\"parameters\":[{\"in\":\"query\",\"name\":\"httpEntity\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/month-sub"
           segments: [
@@ -44,6 +50,12 @@ main: kit: entity: paddle_controller: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /month-sub"
+            json: "{\"operationId\":\"healthCheck\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/month-sub"
           segments: [

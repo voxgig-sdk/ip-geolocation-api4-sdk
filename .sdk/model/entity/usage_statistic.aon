@@ -28,6 +28,12 @@ main: kit: entity: usage_statistic: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/v1/usage/current-month"
+            json: "{\"operationId\":\"getCurrentMonthSummary\",\"parameters\":[{\"description\":\"Your API key\",\"in\":\"query\",\"name\":\"api_key\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by API type (optional)\",\"in\":\"query\",\"name\":\"api_type\",\"required\":false,\"schema\":{\"enum\":[\"IP\",\"ADVANCED_EMAIL_VALIDATION\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/v1/usage/current-month"
           segments: [
@@ -73,6 +79,12 @@ main: kit: entity: usage_statistic: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /api/v1/usage/recent"
+            json: "{\"operationId\":\"getRecentUsage\",\"parameters\":[{\"description\":\"Your API key\",\"in\":\"query\",\"name\":\"api_key\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by API type (optional)\",\"in\":\"query\",\"name\":\"api_type\",\"required\":false,\"schema\":{\"enum\":[\"IP\",\"ADVANCED_EMAIL_VALIDATION\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/api/v1/usage/recent"

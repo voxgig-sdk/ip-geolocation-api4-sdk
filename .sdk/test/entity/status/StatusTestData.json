@@ -16,5 +16,21 @@
     "status": {
       "status_ref01": {}
     }
+  },
+  "requests": {
+    "GET /api/status": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "handleHealth",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

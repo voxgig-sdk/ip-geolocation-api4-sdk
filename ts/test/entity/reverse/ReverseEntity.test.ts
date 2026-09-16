@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { IpGeolocationApi4SDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('ReverseEntity', async () => {
 
     const live = 'TRUE' === process.env.IP_GEOLOCATION_API4_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'reverse.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'reverse.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set IP_GEOLOCATION_API4_TEST_REVERSE_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"hostname","req":false,"type":["`$ONE`",["`$STRING`","`$NULL`"]],"index$":0},{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":1},{"active":true,"name":"ip","req":true,"type":"`$STRING`","index$":2},{"active":true,"name":"ptr_record","req":false,"type":"`$STRING`","index$":3},{"active":true,"format":"int64","name":"ttl","req":false,"type":["`$ONE`",["`$INTEGER`","`$NULL`"]],"index$":4}],"id":{"field":"id","name":"id"},"name":"reverse","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"8.8.8.8","kind":"param","name":"id","orig":"ip","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /api/v1/dns/reverse/{ip}","json":"{\"operationId\":\"getReverseDns\",\"parameters\":[{\"description\":\"IPv4 or IPv6 address\",\"example\":\"8.8.8.8\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"hostname\":{\"type\":[\"string\",\"null\"]},\"ip\":{\"type\":\"string\"},\"ptr_record\":{\"type\":\"string\"},\"ttl\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Reverse DNS lookup completed (hostname may be null if no PTR record exists)\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"hostname\":{\"type\":[\"string\",\"null\"]},\"ip\":{\"type\":\"string\"},\"ptr_record\":{\"type\":\"string\"},\"ttl\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"Invalid IP address format\"},\"502\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"hostname\":{\"type\":[\"string\",\"null\"]},\"ip\":{\"type\":\"string\"},\"ptr_record\":{\"type\":\"string\"},\"ttl\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]}},\"required\":[\"ip\"],\"type\":\"object\"}}},\"description\":\"DNS lookup failed\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/api/v1/dns/reverse/{ip}","rename":{"param":{"ip":"id"}},"segments":[{"lit":"api"},{"lit":"v1"},{"lit":"dns"},{"lit":"reverse"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"reverse","name__orig":"reverse","Name":"Reverse","name_":"reverse","name-":"reverse","NAME":"REVERSE","index$":17}, {"active":true,"entity":"reverse","key$":"BasicReverseFlow","kind":"basic","name":"BasicReverseFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"reverse_ref01","srcdatavar":"reverse_ref01_data","suffix":"_dt0"},"match":{"id":"reverse01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-reverse_ref01"}}],"index$":0}]}, 'Reverse')
     }
     const client = setup.client
     const struct = setup.struct
@@ -110,13 +109,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['IP_GEOLOCATION_API4_TEST_REVERSE_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'IP_GEOLOCATION_API4_TEST_REVERSE_ENTID': idmap,
     'IP_GEOLOCATION_API4_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.IP_GEOLOCATION_API4_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['IP_GEOLOCATION_API4_TEST_REVERSE_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new IpGeolocationApi4SDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -139,7 +137,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -152,7 +151,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.IP_GEOLOCATION_API4_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

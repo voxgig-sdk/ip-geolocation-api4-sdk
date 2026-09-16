@@ -29,8 +29,17 @@ func init() {
 	core.NewBaseFeatureFunc = func() core.Feature {
 		return feature.NewBaseFeature()
 	}
+	core.NewRatelimitFeatureFunc = func() core.Feature {
+		return feature.NewRatelimitFeature()
+	}
+	core.NewRetryFeatureFunc = func() core.Feature {
+		return feature.NewRetryFeature()
+	}
 	core.NewTestFeatureFunc = func() core.Feature {
 		return feature.NewTestFeature()
+	}
+	core.NewTimeoutFeatureFunc = func() core.Feature {
+		return feature.NewTimeoutFeature()
 	}
 	core.NewAdvancedEntityFunc = func(client *core.IpGeolocationApi4SDK, entopts map[string]any) core.IpGeolocationApi4Entity {
 		return entity.NewAdvancedEntity(client, entopts)
@@ -121,4 +130,7 @@ var SharedConfig = core.SharedConfig
 func New() *IpGeolocationApi4SDK  { return NewIpGeolocationApi4SDK(nil) }
 func Test() *IpGeolocationApi4SDK { return TestSDK(nil, nil) }
 var NewBaseFeature = feature.NewBaseFeature
+var NewRatelimitFeature = feature.NewRatelimitFeature
+var NewRetryFeature = feature.NewRetryFeature
 var NewTestFeature = feature.NewTestFeature
+var NewTimeoutFeature = feature.NewTimeoutFeature

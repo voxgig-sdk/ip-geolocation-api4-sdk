@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.IP_GEOLOCATION_API4_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'cache_management.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'cache_management.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set IP_GEOLOCATION_API4_TEST_CACHE_MANAGEMENT_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [], "name": "cache_management", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "domain", "orig": "domain", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /management/cache/domain-age/check/{domain}", "json": "{\"operationId\":\"isDomainCached\",\"parameters\":[{\"in\":\"path\",\"name\":\"domain\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"additionalProperties\":{},\"type\":\"object\"}}},\"description\":\"Cache status retrieved successfully\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/management/cache/domain-age/check/{domain}", "segments": [{ "lit": "management" }, { "lit": "cache" }, { "lit": "domain-age" }, { "lit": "check" }, { "var": "domain" }], "select": { "exist": ["domain"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "active": true, "args": {}, "contract": { "id": "GET /management/cache/domain-age/stats", "json": "{\"operationId\":\"getDomainAgeCacheStats\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"additionalProperties\":{},\"type\":\"object\"}}},\"description\":\"Cache statistics retrieved successfully\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/management/cache/domain-age/stats", "segments": [{ "lit": "management" }, { "lit": "cache" }, { "lit": "domain-age" }, { "lit": "stats" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 1 }], "key$": "load" }, "remove": { "input": "data", "name": "remove", "points": [{ "active": true, "args": {}, "contract": { "id": "DELETE /management/cache/domain-age", "json": "{\"operationId\":\"clearDomainAgeCache\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"}}},\"description\":\"Cache cleared successfully\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "DELETE", "orig": "/management/cache/domain-age", "segments": [{ "lit": "management" }, { "lit": "cache" }, { "lit": "domain-age" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "active": true, "args": {}, "contract": { "id": "DELETE /management/cache/domain-age/all", "json": "{\"operationId\":\"clearAllDomainAgeCaches\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"additionalProperties\":{\"type\":\"string\"},\"type\":\"object\"}}},\"description\":\"All caches cleared successfully\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "DELETE", "orig": "/management/cache/domain-age/all", "segments": [{ "lit": "management" }, { "lit": "cache" }, { "lit": "domain-age" }, { "lit": "all" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 1 }], "key$": "remove" } }, "relations": { "ancestors": [["check"]] }, "key$": "cache_management", "name__orig": "cache_management", "Name": "CacheManagement", "name_": "cache_management", "name-": "cache-management", "NAME": "CACHE_MANAGEMENT", "index$": 6 }, { "active": true, "entity": "cache_management", "key$": "BasicCacheManagementFlow", "kind": "basic", "name": "BasicCacheManagementFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "cache_management_ref01", "srcdatavar": "cache_management_ref01_data", "suffix": "_dt0" }, "match": {}, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-cache_management_ref01" } }], "index$": 0 }] }, 'CacheManagement');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -100,12 +98,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['IP_GEOLOCATION_API4_TEST_CACHE_MANAGEMENT_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'IP_GEOLOCATION_API4_TEST_CACHE_MANAGEMENT_ENTID': idmap,
         'IP_GEOLOCATION_API4_TEST_LIVE': 'FALSE',
@@ -113,7 +105,13 @@ function basicSetup(extra) {
     });
     idmap = env['IP_GEOLOCATION_API4_TEST_CACHE_MANAGEMENT_ENTID'];
     const live = 'TRUE' === env.IP_GEOLOCATION_API4_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['IP_GEOLOCATION_API4_TEST_CACHE_MANAGEMENT_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.IpGeolocationApi4SDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -124,7 +122,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -136,7 +135,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.IP_GEOLOCATION_API4_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

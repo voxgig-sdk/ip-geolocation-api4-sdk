@@ -10,6 +10,12 @@ main: kit: entity: status: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /api/status"
+            json: "{\"operationId\":\"handleHealth\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"OK\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/status"
           segments: [

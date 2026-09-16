@@ -5,19 +5,19 @@
         "id": "TOR00",
         "ip": "s29",
         "is_tor": true,
-        "tor_node_count": "s2b"
+        "tor_node_count": 43
       },
       "TOR01": {
         "id": "TOR01",
         "ip": "s51",
         "is_tor": true,
-        "tor_node_count": "s53"
+        "tor_node_count": 83
       },
       "TOR02": {
         "id": "TOR02",
         "ip": "s79",
         "is_tor": true,
-        "tor_node_count": "s7b"
+        "tor_node_count": 123
       }
     }
   },
@@ -26,7 +26,133 @@
       "tor_ref01": {
         "ip": "sa1",
         "is_tor": true,
-        "tor_node_count": "sa3"
+        "tor_node_count": 163
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/tor/{ip}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "checkTorNode",
+        "parameters": [
+          {
+            "description": "IPv4 or IPv6 address to check against the Tor exit node list",
+            "example": "185.220.101.50",
+            "in": "path",
+            "name": "ip",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Tor exit node detection result for the given IP address",
+                  "properties": {
+                    "ip": {
+                      "description": "The IP address that was checked",
+                      "example": "185.220.101.50",
+                      "type": "string"
+                    },
+                    "is_tor": {
+                      "description": "Whether the IP is a known Tor exit node",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "tor_node_count": {
+                      "description": "Total number of currently known Tor exit nodes in the database",
+                      "example": 1247,
+                      "format": "int32",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "ip",
+                    "is_tor",
+                    "tor_node_count"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Tor detection result returned successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Tor exit node detection result for the given IP address",
+                  "properties": {
+                    "ip": {
+                      "description": "The IP address that was checked",
+                      "example": "185.220.101.50",
+                      "type": "string"
+                    },
+                    "is_tor": {
+                      "description": "Whether the IP is a known Tor exit node",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "tor_node_count": {
+                      "description": "Total number of currently known Tor exit nodes in the database",
+                      "example": 1247,
+                      "format": "int32",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "ip",
+                    "is_tor",
+                    "tor_node_count"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request — invalid IP address format"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Tor exit node detection result for the given IP address",
+                  "properties": {
+                    "ip": {
+                      "description": "The IP address that was checked",
+                      "example": "185.220.101.50",
+                      "type": "string"
+                    },
+                    "is_tor": {
+                      "description": "Whether the IP is a known Tor exit node",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "tor_node_count": {
+                      "description": "Total number of currently known Tor exit nodes in the database",
+                      "example": 1247,
+                      "format": "int32",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "ip",
+                    "is_tor",
+                    "tor_node_count"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests — rate limit exceeded"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

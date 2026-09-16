@@ -3,7 +3,7 @@
     "rate_limit_info_dto": {
       "RATE_LIMIT_INFO_DTO00": {
         "email_api": {},
-        "interval_seconds": "s47",
+        "interval_seconds": 71,
         "ip_api": {},
         "next_renewal_date": "s49",
         "plan_id": "PLAN01",
@@ -13,7 +13,7 @@
       },
       "RATE_LIMIT_INFO_DTO01": {
         "email_api": {},
-        "interval_seconds": "s8d",
+        "interval_seconds": 141,
         "ip_api": {},
         "next_renewal_date": "s8f",
         "plan_id": "PLAN01",
@@ -23,7 +23,7 @@
       },
       "RATE_LIMIT_INFO_DTO02": {
         "email_api": {},
-        "interval_seconds": "sd3",
+        "interval_seconds": 211,
         "ip_api": {},
         "next_renewal_date": "sd5",
         "plan_id": "PLAN01",
@@ -37,12 +37,520 @@
     "rate_limit_info_dto": {
       "rate_limit_info_dto_ref01": {
         "email_api": {},
-        "interval_seconds": "s119",
+        "interval_seconds": 281,
         "ip_api": {},
         "next_renewal_date": "s11b",
         "plan_id": "PLAN01",
         "plan_name": "s11d",
         "status": "s11e"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/ratelimit": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRateLimitInfo",
+        "parameters": [
+          {
+            "description": "API key for authentication (required).\n\n**API Key Format**: 32-character alphanumeric string\n**Required**: This parameter is mandatory for accessing rate limit information\n**Note**: Works with both active and expired API keys\n\n**Example**: `?api_key=your_api_key_here`",
+            "example": "abcdef1234567890abcdef1234567890",
+            "in": "query",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Rate limit information for the authenticated user, including current usage, limits, and renewal date",
+                  "properties": {
+                    "email_api": {
+                      "description": "Email validation API rate limit information",
+                      "properties": {
+                        "limit": {
+                          "description": "Maximum number of requests allowed in the rate limit interval",
+                          "example": 100000,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Remaining requests available in the current interval",
+                          "example": 87532,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "usage_percent": {
+                          "description": "Percentage of quota utilized (0-100)",
+                          "example": 12.47,
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "used": {
+                          "description": "Number of requests consumed in the current interval",
+                          "example": 12468,
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "usage_percent",
+                        "used"
+                      ],
+                      "type": "object"
+                    },
+                    "interval_seconds": {
+                      "description": "Rate limit interval in seconds (time period for quota renewal)",
+                      "example": 2678400,
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "ip_api": {
+                      "description": "IP lookup API rate limit information",
+                      "properties": {
+                        "limit": {
+                          "description": "Maximum number of requests allowed in the rate limit interval",
+                          "example": 100000,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Remaining requests available in the current interval",
+                          "example": 87532,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "usage_percent": {
+                          "description": "Percentage of quota utilized (0-100)",
+                          "example": 12.47,
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "used": {
+                          "description": "Number of requests consumed in the current interval",
+                          "example": 12468,
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "usage_percent",
+                        "used"
+                      ],
+                      "type": "object"
+                    },
+                    "next_renewal_date": {
+                      "description": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
+                      "example": "2025-11-26",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "plan_id": {
+                      "description": "Subscription plan ID or 'default' for free tier users",
+                      "example": "550712",
+                      "type": "string"
+                    },
+                    "plan_name": {
+                      "description": "Human-readable plan name (if available)",
+                      "example": "Professional Monthly",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Subscription status (active, past_due, cancelled, etc.)",
+                      "example": "active",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "email_api",
+                    "interval_seconds",
+                    "ip_api",
+                    "plan_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit information retrieved successfully"
+          },
+          "400": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "Rate limit information for the authenticated user, including current usage, limits, and renewal date",
+                  "properties": {
+                    "email_api": {
+                      "description": "Email validation API rate limit information",
+                      "properties": {
+                        "limit": {
+                          "description": "Maximum number of requests allowed in the rate limit interval",
+                          "example": 100000,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Remaining requests available in the current interval",
+                          "example": 87532,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "usage_percent": {
+                          "description": "Percentage of quota utilized (0-100)",
+                          "example": 12.47,
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "used": {
+                          "description": "Number of requests consumed in the current interval",
+                          "example": 12468,
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "usage_percent",
+                        "used"
+                      ],
+                      "type": "object"
+                    },
+                    "interval_seconds": {
+                      "description": "Rate limit interval in seconds (time period for quota renewal)",
+                      "example": 2678400,
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "ip_api": {
+                      "description": "IP lookup API rate limit information",
+                      "properties": {
+                        "limit": {
+                          "description": "Maximum number of requests allowed in the rate limit interval",
+                          "example": 100000,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Remaining requests available in the current interval",
+                          "example": 87532,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "usage_percent": {
+                          "description": "Percentage of quota utilized (0-100)",
+                          "example": 12.47,
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "used": {
+                          "description": "Number of requests consumed in the current interval",
+                          "example": 12468,
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "usage_percent",
+                        "used"
+                      ],
+                      "type": "object"
+                    },
+                    "next_renewal_date": {
+                      "description": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
+                      "example": "2025-11-26",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "plan_id": {
+                      "description": "Subscription plan ID or 'default' for free tier users",
+                      "example": "550712",
+                      "type": "string"
+                    },
+                    "plan_name": {
+                      "description": "Human-readable plan name (if available)",
+                      "example": "Professional Monthly",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Subscription status (active, past_due, cancelled, etc.)",
+                      "example": "active",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "email_api",
+                    "interval_seconds",
+                    "ip_api",
+                    "plan_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request - API key is required"
+          },
+          "404": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "Rate limit information for the authenticated user, including current usage, limits, and renewal date",
+                  "properties": {
+                    "email_api": {
+                      "description": "Email validation API rate limit information",
+                      "properties": {
+                        "limit": {
+                          "description": "Maximum number of requests allowed in the rate limit interval",
+                          "example": 100000,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Remaining requests available in the current interval",
+                          "example": 87532,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "usage_percent": {
+                          "description": "Percentage of quota utilized (0-100)",
+                          "example": 12.47,
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "used": {
+                          "description": "Number of requests consumed in the current interval",
+                          "example": 12468,
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "usage_percent",
+                        "used"
+                      ],
+                      "type": "object"
+                    },
+                    "interval_seconds": {
+                      "description": "Rate limit interval in seconds (time period for quota renewal)",
+                      "example": 2678400,
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "ip_api": {
+                      "description": "IP lookup API rate limit information",
+                      "properties": {
+                        "limit": {
+                          "description": "Maximum number of requests allowed in the rate limit interval",
+                          "example": 100000,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Remaining requests available in the current interval",
+                          "example": 87532,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "usage_percent": {
+                          "description": "Percentage of quota utilized (0-100)",
+                          "example": 12.47,
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "used": {
+                          "description": "Number of requests consumed in the current interval",
+                          "example": 12468,
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "usage_percent",
+                        "used"
+                      ],
+                      "type": "object"
+                    },
+                    "next_renewal_date": {
+                      "description": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
+                      "example": "2025-11-26",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "plan_id": {
+                      "description": "Subscription plan ID or 'default' for free tier users",
+                      "example": "550712",
+                      "type": "string"
+                    },
+                    "plan_name": {
+                      "description": "Human-readable plan name (if available)",
+                      "example": "Professional Monthly",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Subscription status (active, past_due, cancelled, etc.)",
+                      "example": "active",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "email_api",
+                    "interval_seconds",
+                    "ip_api",
+                    "plan_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found - API key does not exist in the system"
+          },
+          "500": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "description": "Rate limit information for the authenticated user, including current usage, limits, and renewal date",
+                  "properties": {
+                    "email_api": {
+                      "description": "Email validation API rate limit information",
+                      "properties": {
+                        "limit": {
+                          "description": "Maximum number of requests allowed in the rate limit interval",
+                          "example": 100000,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Remaining requests available in the current interval",
+                          "example": 87532,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "usage_percent": {
+                          "description": "Percentage of quota utilized (0-100)",
+                          "example": 12.47,
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "used": {
+                          "description": "Number of requests consumed in the current interval",
+                          "example": 12468,
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "usage_percent",
+                        "used"
+                      ],
+                      "type": "object"
+                    },
+                    "interval_seconds": {
+                      "description": "Rate limit interval in seconds (time period for quota renewal)",
+                      "example": 2678400,
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "ip_api": {
+                      "description": "IP lookup API rate limit information",
+                      "properties": {
+                        "limit": {
+                          "description": "Maximum number of requests allowed in the rate limit interval",
+                          "example": 100000,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Remaining requests available in the current interval",
+                          "example": 87532,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "usage_percent": {
+                          "description": "Percentage of quota utilized (0-100)",
+                          "example": 12.47,
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "used": {
+                          "description": "Number of requests consumed in the current interval",
+                          "example": 12468,
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "usage_percent",
+                        "used"
+                      ],
+                      "type": "object"
+                    },
+                    "next_renewal_date": {
+                      "description": "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
+                      "example": "2025-11-26",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "plan_id": {
+                      "description": "Subscription plan ID or 'default' for free tier users",
+                      "example": "550712",
+                      "type": "string"
+                    },
+                    "plan_name": {
+                      "description": "Human-readable plan name (if available)",
+                      "example": "Professional Monthly",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Subscription status (active, past_due, cancelled, etc.)",
+                      "example": "active",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "email_api",
+                    "interval_seconds",
+                    "ip_api",
+                    "plan_id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error - Unable to retrieve rate limit information"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

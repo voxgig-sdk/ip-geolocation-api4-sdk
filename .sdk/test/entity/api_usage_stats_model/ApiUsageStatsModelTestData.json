@@ -6,18 +6,18 @@
         "apiType": "sab",
         "authType": "sac",
         "avgRequestDurationNanos": "sad",
-        "batchOperations": "sae",
-        "batchTokensConsumed": "saf",
+        "batchOperations": 174,
+        "batchTokensConsumed": 175,
         "createdAt": "sb0",
         "hourBucket": "sb1",
         "id": "API_USAGE_STATS_MODEL00",
         "minRemainingQuota": "sb3",
         "peakRemainingQuota": "sb4",
         "planId": "sb5",
-        "quotaConsumed": "sb6",
-        "rateLimitedRequests": "sb7",
-        "successfulRequests": "sb8",
-        "totalRequests": "sb9",
+        "quotaConsumed": 182,
+        "rateLimitedRequests": 183,
+        "successfulRequests": 184,
+        "totalRequests": 185,
         "updatedAt": "sba"
       },
       "API_USAGE_STATS_MODEL01": {
@@ -25,18 +25,18 @@
         "apiType": "s155",
         "authType": "s156",
         "avgRequestDurationNanos": "s157",
-        "batchOperations": "s158",
-        "batchTokensConsumed": "s159",
+        "batchOperations": 344,
+        "batchTokensConsumed": 345,
         "createdAt": "s15a",
         "hourBucket": "s15b",
         "id": "API_USAGE_STATS_MODEL01",
         "minRemainingQuota": "s15d",
         "peakRemainingQuota": "s15e",
         "planId": "s15f",
-        "quotaConsumed": "s160",
-        "rateLimitedRequests": "s161",
-        "successfulRequests": "s162",
-        "totalRequests": "s163",
+        "quotaConsumed": 352,
+        "rateLimitedRequests": 353,
+        "successfulRequests": 354,
+        "totalRequests": 355,
         "updatedAt": "s164"
       },
       "API_USAGE_STATS_MODEL02": {
@@ -44,18 +44,18 @@
         "apiType": "s1ff",
         "authType": "s200",
         "avgRequestDurationNanos": "s201",
-        "batchOperations": "s202",
-        "batchTokensConsumed": "s203",
+        "batchOperations": 514,
+        "batchTokensConsumed": 515,
         "createdAt": "s204",
         "hourBucket": "s205",
         "id": "API_USAGE_STATS_MODEL02",
         "minRemainingQuota": "s207",
         "peakRemainingQuota": "s208",
         "planId": "s209",
-        "quotaConsumed": "s20a",
-        "rateLimitedRequests": "s20b",
-        "successfulRequests": "s20c",
-        "totalRequests": "s20d",
+        "quotaConsumed": 522,
+        "rateLimitedRequests": 523,
+        "successfulRequests": 524,
+        "totalRequests": 525,
         "updatedAt": "s20e"
       }
     }
@@ -67,18 +67,205 @@
         "apiType": "s2a9",
         "authType": "s2aa",
         "avgRequestDurationNanos": "s2ab",
-        "batchOperations": "s2ac",
-        "batchTokensConsumed": "s2ad",
+        "batchOperations": 684,
+        "batchTokensConsumed": 685,
         "createdAt": "s2ae",
         "hourBucket": "s2af",
         "minRemainingQuota": "s2b1",
         "peakRemainingQuota": "s2b2",
         "planId": "s2b3",
-        "quotaConsumed": "s2b4",
-        "rateLimitedRequests": "s2b5",
-        "successfulRequests": "s2b6",
-        "totalRequests": "s2b7",
+        "quotaConsumed": 692,
+        "rateLimitedRequests": 693,
+        "successfulRequests": 694,
+        "totalRequests": 695,
         "updatedAt": "s2b8"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/usage/stats": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUsageStats",
+        "parameters": [
+          {
+            "description": "Your API key",
+            "example": "your-api-key-here",
+            "in": "query",
+            "name": "api_key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Start date in ISO 8601 format (inclusive)",
+            "example": "2025-11-01T00:00:00Z",
+            "in": "query",
+            "name": "start_date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "End date in ISO 8601 format (exclusive)",
+            "example": "2025-11-04T00:00:00Z",
+            "in": "query",
+            "name": "end_date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by API type (optional)",
+            "example": "IP",
+            "in": "query",
+            "name": "api_type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "IP",
+                "ADVANCED_EMAIL_VALIDATION"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "apiKey": {
+                      "type": "string"
+                    },
+                    "apiType": {
+                      "type": "string"
+                    },
+                    "authType": {
+                      "type": "string"
+                    },
+                    "avgRequestDurationNanos": {
+                      "format": "int64",
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "batchOperations": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "batchTokensConsumed": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "createdAt": {
+                      "format": "date-time",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "hourBucket": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "int64",
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "minRemainingQuota": {
+                      "format": "int32",
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "peakRemainingQuota": {
+                      "format": "int32",
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "planId": {
+                      "type": "string"
+                    },
+                    "quotaConsumed": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "rateLimitedRequests": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "successfulRequests": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "totalRequests": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "updatedAt": {
+                      "format": "date-time",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "apiKey",
+                    "apiType",
+                    "authType",
+                    "batchOperations",
+                    "batchTokensConsumed",
+                    "hourBucket",
+                    "planId",
+                    "quotaConsumed",
+                    "rateLimitedRequests",
+                    "successfulRequests",
+                    "totalRequests"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully retrieved usage statistics"
+          },
+          "400": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid date range or parameters"
+          },
+          "401": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid or missing API key"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

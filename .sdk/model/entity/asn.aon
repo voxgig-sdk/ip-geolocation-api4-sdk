@@ -95,6 +95,12 @@ main: kit: entity: asn: {
               }
             ]
           }
+          contract: {
+            id: "GET /api/v1/asn/{ip}"
+            json: "{\"operationId\":\"getAsn\",\"parameters\":[{\"description\":\"IPv4 or IPv6 address, e.g. 8.8.8.8\",\"example\":\"8.8.8.8\",\"in\":\"path\",\"name\":\"ip\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asn\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]},\"country\":{\"type\":[\"string\",\"null\"]},\"country_code\":{\"type\":\"string\"},\"ip\":{\"type\":\"string\"},\"is_datacenter\":{\"type\":\"boolean\"},\"network\":{\"type\":[\"string\",\"null\"]},\"organization\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"ip\",\"is_datacenter\"],\"type\":\"object\"}}},\"description\":\"ASN data retrieved successfully\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asn\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]},\"country\":{\"type\":[\"string\",\"null\"]},\"country_code\":{\"type\":\"string\"},\"ip\":{\"type\":\"string\"},\"is_datacenter\":{\"type\":\"boolean\"},\"network\":{\"type\":[\"string\",\"null\"]},\"organization\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"ip\",\"is_datacenter\"],\"type\":\"object\"}}},\"description\":\"Invalid IP address format\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asn\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]},\"country\":{\"type\":[\"string\",\"null\"]},\"country_code\":{\"type\":\"string\"},\"ip\":{\"type\":\"string\"},\"is_datacenter\":{\"type\":\"boolean\"},\"network\":{\"type\":[\"string\",\"null\"]},\"organization\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"ip\",\"is_datacenter\"],\"type\":\"object\"}}},\"description\":\"No ASN data found for IP\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asn\":{\"format\":\"int64\",\"type\":[\"integer\",\"null\"]},\"country\":{\"type\":[\"string\",\"null\"]},\"country_code\":{\"type\":\"string\"},\"ip\":{\"type\":\"string\"},\"is_datacenter\":{\"type\":\"boolean\"},\"network\":{\"type\":[\"string\",\"null\"]},\"organization\":{\"type\":[\"string\",\"null\"]}},\"required\":[\"ip\",\"is_datacenter\"],\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/v1/asn/{ip}"
           rename: {

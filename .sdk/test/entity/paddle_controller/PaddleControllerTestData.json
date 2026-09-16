@@ -16,5 +16,51 @@
     "paddle_controller": {
       "paddle_controller_ref01": {}
     }
+  },
+  "requests": {
+    "POST /month-sub": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "handleSubscription",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "httpEntity",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /month-sub": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "healthCheck",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
