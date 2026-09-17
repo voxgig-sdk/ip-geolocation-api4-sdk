@@ -105,12 +105,12 @@ local result, err = client:RiskScore():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ip-geolocation-api4-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
-| Python | `voxgig-sdk-ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
-| PHP | `voxgig-sdk/ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ip-geolocation-api4-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/tags) |
+| Python | `voxgig-sdk-ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/tags) |
+| PHP | `voxgig-sdk/ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/ip-geolocation-api4-sdk/go` | `go get github.com/voxgig-sdk/ip-geolocation-api4-sdk/go@latest` |
-| Ruby | `voxgig-sdk-ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
-| Lua | `voxgig-sdk-ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/releases) |
+| Ruby | `voxgig-sdk-ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/tags) |
+| Lua | `voxgig-sdk-ip-geolocation-api4` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ip-geolocation-api4-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/ip-geolocation-api4-sdk/go-cli` | `go install github.com/voxgig-sdk/ip-geolocation-api4-sdk/go-cli/cmd/ip-geolocation-api4@latest` |
 | Go MCP server | `github.com/voxgig-sdk/ip-geolocation-api4-sdk/go-mcp` | `go get github.com/voxgig-sdk/ip-geolocation-api4-sdk/go-mcp@latest` |
 

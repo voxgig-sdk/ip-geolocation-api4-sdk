@@ -127,75 +127,75 @@ class Config {
 
     entity: {
       
-      advanced: {
-      },
-
-      api_usage_stats_model: {
-      },
-
-      api_usage_summary: {
-      },
-
-      asn: {
-      },
-
-      batch: {
-      },
-
-      batch_email_validation_response_dto: {
-      },
-
-      cache_management: {
-      },
-
-      domain_analysi: {
-      },
-
-      domain_reputation_v1_dto: {
-      },
-
-      email: {
-      },
-
-      forward: {
-      },
-
-      ip_info_v0: {
-      },
-
-      ip_reputation: {
-      },
-
-      ipn: {
-      },
-
-      mxn: {
-      },
-
-      paddle_controller: {
-      },
-
-      rate_limit_info_dto: {
-      },
-
-      reverse: {
-      },
-
-      risk_score: {
-      },
-
-      status: {
-      },
-
-      tor: {
-      },
-
-      usage_statistic: {
-      },
-
-      whoi: {
-      },
-
+        advanced: {
+        },
+  
+        api_usage_stats_model: {
+        },
+  
+        api_usage_summary: {
+        },
+  
+        asn: {
+        },
+  
+        batch: {
+        },
+  
+        batch_email_validation_response_dto: {
+        },
+  
+        cache_management: {
+        },
+  
+        domain_analysi: {
+        },
+  
+        domain_reputation_v1_dto: {
+        },
+  
+        email: {
+        },
+  
+        forward: {
+        },
+  
+        ip_info_v0: {
+        },
+  
+        ip_reputation: {
+        },
+  
+        ipn: {
+        },
+  
+        mxn: {
+        },
+  
+        paddle_controller: {
+        },
+  
+        rate_limit_info_dto: {
+        },
+  
+        reverse: {
+        },
+  
+        risk_score: {
+        },
+  
+        status: {
+        },
+  
+        tor: {
+        },
+  
+        usage_statistic: {
+        },
+  
+        whoi: {
+        },
+  
     }
   }
 
