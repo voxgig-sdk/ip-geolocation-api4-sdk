@@ -1,0 +1,119 @@
+# Entity: rate_limit_info_dto
+
+main: kit: entity: rate_limit_info_dto: {
+
+  alias: field: {}
+
+  fields: {
+    email_api: {
+      h: "Email Api"
+      n: "email_api"
+      r: true
+      sh: "Email validation API rate limit information"
+      t: "`$OBJECT`"
+    }
+    interval_seconds: {
+      fo: "int64"
+      h: "Interval Seconds"
+      n: "interval_seconds"
+      r: true
+      sh: "Rate limit interval in seconds (time period for quota renewal)"
+      t: "`$INTEGER`"
+    }
+    ip_api: {
+      h: "Ip Api"
+      n: "ip_api"
+      r: true
+      sh: "IP lookup API rate limit information"
+      t: "`$OBJECT`"
+    }
+    next_renewal_date: {
+      fo: "date"
+      h: "Next Renewal Date"
+      n: "next_renewal_date"
+      r: false
+      sh: "Next billing/renewal date when the quota will be reset (ISO 8601 date format)"
+      t: "`$STRING`"
+    }
+    plan_id: {
+      h: "Plan Id"
+      n: "plan_id"
+      r: true
+      sh: "Subscription plan ID or 'default' for free tier users"
+      t: "`$STRING`"
+    }
+    plan_name: {
+      h: "Plan Name"
+      n: "plan_name"
+      r: false
+      sh: "Human-readable plan name (if available)"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Subscription status (active, past_due, cancelled, etc.)"
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  name: "rate_limit_info_dto"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/ratelimit"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "abcdef1234567890abcdef1234567890"
+                k: "query"
+                n: "api_key"
+                or: "api_key"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/ratelimit"
+          q: {
+            exist: [
+              "api_key"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ratelimit"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,182 @@
+# Entity: email
+
+main: kit: entity: email: {
+
+  alias: field: {}
+
+  fields: {
+    email: {
+      h: "Email"
+      n: "email"
+      r: true
+      sh: "The email address that was analyzed, returned in normalized lowercase format."
+      t: "`$STRING`"
+    }
+    email_factors: {
+      h: "Email Factors"
+      n: "email_factors"
+      r: true
+      sh: "Email-specific risk factors and validation results."
+      t: "`$NULL`"
+    }
+    has_mx_records: {
+      h: "Has Mx Records"
+      n: "has_mx_records"
+      r: true
+      sh: "Whether the email domain has valid MX records in DNS."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ip_factors: {
+      h: "Ip Factors"
+      n: "ip_factors"
+      r: true
+      sh: "IP-specific risk factors and analysis results."
+      t: "`$NULL`"
+    }
+    is_disposable: {
+      h: "Is Disposable"
+      n: "is_disposable"
+      r: true
+      sh: "Indicates whether the email address uses a disposable or temporary email service."
+      t: "`$BOOLEAN`"
+    }
+    mx_records: {
+      h: "Mx Records"
+      n: "mx_records"
+      r: true
+      sh: "MX records for the email domain, sorted by priority ascending."
+      t: "`$ARRAY`"
+    }
+    syntax: {
+      h: "Syntax"
+      n: "syntax"
+      r: true
+      sh: "Detailed syntax validation results and email component breakdown."
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "email"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/email/{email}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "john.doe@company.com"
+                k: "param"
+                n: "id"
+                or: "email"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/email/{email}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              email: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "email"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/risk-score/email/{email}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "john.doe@legitbusiness.com"
+                k: "param"
+                n: "id"
+                or: "email"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/risk-score/email/{email}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              email: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "risk-score"
+            }
+            {
+              lit: "email"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.factors`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

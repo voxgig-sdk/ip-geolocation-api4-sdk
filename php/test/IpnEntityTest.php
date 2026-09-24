@@ -70,7 +70,7 @@ function ipn_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["ipn01", "ipn02", "ipn03", "ip01", "ip02", "ip03"] as $k) {
+    foreach (["ipn01", "ipn02", "ipn03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

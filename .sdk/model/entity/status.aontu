@@ -1,0 +1,42 @@
+# Entity: status
+
+main: kit: entity: status: {
+
+  alias: field: {}
+
+  name: "status"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/status"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/status"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "status"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

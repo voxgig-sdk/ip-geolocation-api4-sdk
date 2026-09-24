@@ -62,7 +62,7 @@ def ipn_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["ipn01", "ipn02", "ipn03", "ip01", "ip02", "ip03"],
+    ["ipn01", "ipn02", "ipn03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

@@ -101,7 +101,7 @@ func domain_analysiBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"domain_analysi01", "domain_analysi02", "domain_analysi03", "age01", "age02", "age03"},
+		[]any{"domain_analysi01", "domain_analysi02", "domain_analysi03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

@@ -72,7 +72,7 @@ function ipn_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "ipn01", "ipn02", "ipn03", "ip01", "ip02", "ip03" },
+    { "ipn01", "ipn02", "ipn03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

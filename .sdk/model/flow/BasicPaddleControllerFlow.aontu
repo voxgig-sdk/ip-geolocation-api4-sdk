@@ -1,0 +1,36 @@
+# BasicPaddleControllerFlow
+
+main: kit: flow: BasicPaddleControllerFlow:
+{
+  entity: "paddle_controller",
+  kind: "basic",
+  name: "BasicPaddleControllerFlow",
+  step: [
+    {
+      i: {
+        ref: "paddle_controller_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "paddle_controller_ref01",
+        srcdatavar: "paddle_controller_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-paddle_controller_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPaddleControllerFlow"
+}

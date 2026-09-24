@@ -70,7 +70,7 @@ function mxn_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["mxn01", "mxn02", "mxn03", "mx01", "mx02", "mx03"] as $k) {
+    foreach (["mxn01", "mxn02", "mxn03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

@@ -1,0 +1,103 @@
+# Entity: tor
+
+main: kit: entity: tor: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ip: {
+      h: "Ip"
+      n: "ip"
+      r: true
+      sh: "The IP address that was checked"
+      t: "`$STRING`"
+    }
+    is_tor: {
+      h: "Is Tor"
+      n: "is_tor"
+      r: true
+      sh: "Whether the IP is a known Tor exit node"
+      t: "`$BOOLEAN`"
+    }
+    tor_node_count: {
+      fo: "int32"
+      h: "Tor Node Count"
+      n: "tor_node_count"
+      r: true
+      sh: "Total number of currently known Tor exit nodes in the database"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "tor"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/tor/{ip}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "185.220.101.50"
+                k: "param"
+                n: "id"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/tor/{ip}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              ip: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tor"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

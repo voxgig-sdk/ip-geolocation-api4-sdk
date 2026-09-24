@@ -1,0 +1,109 @@
+# Entity: domain_analysi
+
+main: kit: entity: domain_analysi: {
+
+  alias: field: {}
+
+  fields: {
+    domains: {
+      h: "Domains"
+      n: "domains"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "domain_analysi"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/domain/age/batch"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/domain/age/batch"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "domain"
+            }
+            {
+              lit: "age"
+            }
+            {
+              lit: "batch"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/domain/age/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "google.com"
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/domain/age/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "domain"
+            }
+            {
+              lit: "age"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

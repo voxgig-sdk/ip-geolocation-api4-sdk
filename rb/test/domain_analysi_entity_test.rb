@@ -62,7 +62,7 @@ def domain_analysi_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["domain_analysi01", "domain_analysi02", "domain_analysi03", "age01", "age02", "age03"],
+    ["domain_analysi01", "domain_analysi02", "domain_analysi03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

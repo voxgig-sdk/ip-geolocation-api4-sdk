@@ -62,7 +62,7 @@ def ip_info_v0_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["ip_info_v001", "ip_info_v002", "ip_info_v003", "json01", "json02", "json03"],
+    ["ip_info_v001", "ip_info_v002", "ip_info_v003"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

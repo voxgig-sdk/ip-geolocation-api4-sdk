@@ -31,15 +31,13 @@ require_once 'ipgeolocationapi4_sdk.php';
 $client = new IpGeolocationApi4SDK();
 ```
 
-### 3. Load a cachemanagement
-
-CacheManagement is nested under domain, so provide the `domain`.
+### 3. Load an advanced
 
 ```php
 try {
-    // load() returns the ENTITY — call data_get() for the CacheManagement record (throws on error).
-    $cachemanagement = $client->CacheManagement()->load(["domain" => "example_domain"]);
-    print_r($cachemanagement->data_get());
+    // load() returns the ENTITY — call data_get() for the Advanced record (throws on error).
+    $advanced = $client->Advanced()->load(["id" => "example_id"]);
+    print_r($advanced->data_get());
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }

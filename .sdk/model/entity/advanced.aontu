@@ -1,0 +1,152 @@
+# Entity: advanced
+
+main: kit: entity: advanced: {
+
+  alias: field: {}
+
+  fields: {
+    disposable: {
+      h: "Disposable"
+      n: "disposable"
+      r: true
+      sh: "Indicates whether the email is from a disposable/temporary email service."
+      t: "`$BOOLEAN`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: true
+      sh: "The email address that was analyzed, returned in the original format provided."
+      t: "`$STRING`"
+    }
+    free: {
+      h: "Free"
+      n: "free"
+      r: true
+      sh: "Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.)."
+      t: "`$BOOLEAN`"
+    }
+    gravatar: {
+      h: "Gravatar"
+      n: "gravatar"
+      r: false
+      t: "`$ANY`"
+    }
+    has_mx_records: {
+      h: "Has Mx Records"
+      n: "has_mx_records"
+      r: true
+      sh: "Indicates whether the domain has valid MX (Mail Exchange) records configured."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    reachable: {
+      h: "Reachable"
+      n: "reachable"
+      r: true
+      sh: "Overall reachability assessment."
+      t: "`$STRING`"
+    }
+    role_account: {
+      h: "Role Account"
+      n: "role_account"
+      r: true
+      sh: "Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.)."
+      t: "`$BOOLEAN`"
+    }
+    smtp: {
+      h: "Smtp"
+      n: "smtp"
+      r: false
+      t: "`$ANY`"
+    }
+    suggestion: {
+      h: "Suggestion"
+      n: "suggestion"
+      r: true
+      sh: "Suggested correction for misspelled domains."
+      t: "`$STRING`"
+    }
+    syntax: {
+      h: "Syntax"
+      n: "syntax"
+      r: true
+      sh: "Detailed syntax analysis of the email address components."
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "advanced"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/email/advanced/{email}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "test@yandex.ru"
+                k: "param"
+                n: "id"
+                or: "email"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/email/advanced/{email}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              email: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "email"
+            }
+            {
+              lit: "advanced"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

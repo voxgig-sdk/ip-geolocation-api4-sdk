@@ -1,0 +1,103 @@
+# Entity: domain_reputation_v1_dto
+
+main: kit: entity: domain_reputation_v1_dto: {
+
+  alias: field: {}
+
+  fields: {
+    domain: {
+      h: "Domain"
+      n: "domain"
+      r: true
+      sh: "The normalized domain that was analyzed (lowercased, scheme/path stripped)."
+      t: "`$STRING`"
+    }
+    is_disposable_email_domain: {
+      h: "Is Disposable Email Domain"
+      n: "is_disposable_email_domain"
+      r: true
+      sh: "Whether the domain is a known disposable/temporary email provider domain."
+      t: "`$BOOLEAN`"
+    }
+    is_valid: {
+      h: "Is Valid"
+      n: "is_valid"
+      r: true
+      sh: "Whether the input was a syntactically valid domain name."
+      t: "`$BOOLEAN`"
+    }
+    resolved_ips: {
+      h: "Resolved Ips"
+      n: "resolved_ips"
+      r: true
+      sh: "DNS A/AAAA records the domain currently resolves to."
+      t: "`$ARRAY`"
+    }
+    threat: {
+      h: "Threat"
+      n: "threat"
+      r: true
+      sh: "Threat-intelligence verdict for the domain itself (independent of its IPs)."
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "domain_reputation_v1_dto"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/domain/reputation/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "example.com"
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/domain/reputation/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "domain"
+            }
+            {
+              lit: "reputation"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

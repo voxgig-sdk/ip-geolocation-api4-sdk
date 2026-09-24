@@ -70,7 +70,7 @@ function domain_analysi_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["domain_analysi01", "domain_analysi02", "domain_analysi03", "age01", "age02", "age03"] as $k) {
+    foreach (["domain_analysi01", "domain_analysi02", "domain_analysi03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

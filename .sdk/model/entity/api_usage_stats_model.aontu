@@ -1,0 +1,248 @@
+# Entity: api_usage_stats_model
+
+main: kit: entity: api_usage_stats_model: {
+
+  alias: field: {}
+
+  fields: {
+    apiKey: {
+      h: "Api Key"
+      n: "apiKey"
+      r: true
+      t: "`$STRING`"
+    }
+    apiType: {
+      h: "Api Type"
+      n: "apiType"
+      r: true
+      t: "`$STRING`"
+    }
+    authType: {
+      h: "Auth Type"
+      n: "authType"
+      r: true
+      t: "`$STRING`"
+    }
+    avgRequestDurationNanos: {
+      fo: "int64"
+      h: "Avg Request Duration Nanos"
+      n: "avgRequestDurationNanos"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    batchOperations: {
+      fo: "int32"
+      h: "Batch Operations"
+      n: "batchOperations"
+      r: true
+      t: "`$INTEGER`"
+    }
+    batchTokensConsumed: {
+      fo: "int32"
+      h: "Batch Tokens Consumed"
+      n: "batchTokensConsumed"
+      r: true
+      t: "`$INTEGER`"
+    }
+    createdAt: {
+      fo: "date-time"
+      h: "Created At"
+      n: "createdAt"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    hourBucket: {
+      fo: "date-time"
+      h: "Hour Bucket"
+      n: "hourBucket"
+      r: true
+      t: "`$STRING`"
+    }
+    id: {
+      fo: "int64"
+      h: "Id"
+      n: "id"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    minRemainingQuota: {
+      fo: "int32"
+      h: "Min Remaining Quota"
+      n: "minRemainingQuota"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    peakRemainingQuota: {
+      fo: "int32"
+      h: "Peak Remaining Quota"
+      n: "peakRemainingQuota"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    planId: {
+      h: "Plan Id"
+      n: "planId"
+      r: true
+      t: "`$STRING`"
+    }
+    quotaConsumed: {
+      fo: "int32"
+      h: "Quota Consumed"
+      n: "quotaConsumed"
+      r: true
+      t: "`$INTEGER`"
+    }
+    rateLimitedRequests: {
+      fo: "int32"
+      h: "Rate Limited Requests"
+      n: "rateLimitedRequests"
+      r: true
+      t: "`$INTEGER`"
+    }
+    successfulRequests: {
+      fo: "int32"
+      h: "Successful Requests"
+      n: "successfulRequests"
+      r: true
+      t: "`$INTEGER`"
+    }
+    totalRequests: {
+      fo: "int32"
+      h: "Total Requests"
+      n: "totalRequests"
+      r: true
+      t: "`$INTEGER`"
+    }
+    updatedAt: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updatedAt"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "api_usage_stats_model"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/usage/stats"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "your-api-key-here"
+                k: "query"
+                n: "api_key"
+                or: "api_key"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "IP"
+                k: "query"
+                n: "api_type"
+                or: "api_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2025-11-04T00:00:00Z"
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "2025-11-01T00:00:00Z"
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/usage/stats"
+          q: {
+            exist: [
+              "api_key"
+              "api_type"
+              "end_date"
+              "start_date"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "usage"
+            }
+            {
+              lit: "stats"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

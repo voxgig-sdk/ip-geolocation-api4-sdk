@@ -1,0 +1,32 @@
+# BasicTorFlow
+
+main: kit: flow: BasicTorFlow:
+{
+  entity: "tor",
+  kind: "basic",
+  name: "BasicTorFlow",
+  step: [
+    {
+      i: {
+        ref: "tor_ref01",
+        srcdatavar: "tor_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "tor01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-tor_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTorFlow"
+}

@@ -1,0 +1,166 @@
+# Entity: api_usage_summary
+
+main: kit: entity: api_usage_summary: {
+
+  alias: field: {}
+
+  fields: {
+    apiKey: {
+      h: "Api Key"
+      n: "apiKey"
+      r: true
+      t: "`$STRING`"
+    }
+    apiType: {
+      h: "Api Type"
+      n: "apiType"
+      r: true
+      t: "`$STRING`"
+    }
+    avgRequestDurationMs: {
+      fo: "double"
+      h: "Avg Request Duration Ms"
+      n: "avgRequestDurationMs"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    batchOperations: {
+      fo: "int64"
+      h: "Batch Operations"
+      n: "batchOperations"
+      r: true
+      t: "`$INTEGER`"
+    }
+    periodEnd: {
+      fo: "date-time"
+      h: "Period End"
+      n: "periodEnd"
+      r: true
+      t: "`$STRING`"
+    }
+    periodStart: {
+      fo: "date-time"
+      h: "Period Start"
+      n: "periodStart"
+      r: true
+      t: "`$STRING`"
+    }
+    quotaConsumed: {
+      fo: "int64"
+      h: "Quota Consumed"
+      n: "quotaConsumed"
+      r: true
+      t: "`$INTEGER`"
+    }
+    rateLimitedRequests: {
+      fo: "int64"
+      h: "Rate Limited Requests"
+      n: "rateLimitedRequests"
+      r: true
+      t: "`$INTEGER`"
+    }
+    successfulRequests: {
+      fo: "int64"
+      h: "Successful Requests"
+      n: "successfulRequests"
+      r: true
+      t: "`$INTEGER`"
+    }
+    totalRequests: {
+      fo: "int64"
+      h: "Total Requests"
+      n: "totalRequests"
+      r: true
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "api_usage_summary"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/usage/summary"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "your-api-key-here"
+                k: "query"
+                n: "api_key"
+                or: "api_key"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "IP"
+                k: "query"
+                n: "api_type"
+                or: "api_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2025-11-04T00:00:00Z"
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "2025-11-01T00:00:00Z"
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/usage/summary"
+          q: {
+            exist: [
+              "api_key"
+              "api_type"
+              "end_date"
+              "start_date"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "usage"
+            }
+            {
+              lit: "summary"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

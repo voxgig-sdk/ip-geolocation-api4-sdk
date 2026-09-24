@@ -30,15 +30,13 @@ require_relative "IpGeolocationApi4_sdk"
 client = IpGeolocationApi4SDK.new
 ```
 
-### 3. Load a cachemanagement
-
-CacheManagement is nested under domain, so provide the `domain`.
+### 3. Load an advanced
 
 ```ruby
 begin
-  # load returns the ENTITY — call data_get for the CacheManagement record (raises on error).
-  cachemanagement = client.CacheManagement.load({ "domain" => "example_domain" })
-  puts cachemanagement
+  # load returns the ENTITY — call data_get for the Advanced record (raises on error).
+  advanced = client.Advanced.load({ "id" => "example_id" })
+  puts advanced
 rescue => err
   warn "load failed: #{err}"
 end

@@ -98,7 +98,7 @@ func domain_reputation_v1_dtoBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"domain_reputation_v1_dto01", "domain_reputation_v1_dto02", "domain_reputation_v1_dto03", "reputation01", "reputation02", "reputation03"},
+		[]any{"domain_reputation_v1_dto01", "domain_reputation_v1_dto02", "domain_reputation_v1_dto03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

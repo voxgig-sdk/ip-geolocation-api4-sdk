@@ -98,7 +98,7 @@ func cache_managementBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"cache_management01", "cache_management02", "cache_management03", "check01", "check02", "check03"},
+		[]any{"cache_management01", "cache_management02", "cache_management03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

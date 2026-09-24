@@ -1,0 +1,32 @@
+# BasicForwardFlow
+
+main: kit: flow: BasicForwardFlow:
+{
+  entity: "forward",
+  kind: "basic",
+  name: "BasicForwardFlow",
+  step: [
+    {
+      i: {
+        ref: "forward_ref01",
+        srcdatavar: "forward_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "forward01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-forward_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicForwardFlow"
+}

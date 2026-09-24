@@ -70,7 +70,7 @@ def _cache_management_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["cache_management01", "cache_management02", "cache_management03", "check01", "check02", "check03"],
+        ["cache_management01", "cache_management02", "cache_management03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

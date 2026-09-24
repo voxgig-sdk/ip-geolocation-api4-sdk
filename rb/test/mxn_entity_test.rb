@@ -62,7 +62,7 @@ def mxn_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["mxn01", "mxn02", "mxn03", "mx01", "mx02", "mx03"],
+    ["mxn01", "mxn02", "mxn03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

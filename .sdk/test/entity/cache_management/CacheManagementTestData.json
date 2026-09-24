@@ -23,104 +23,23 @@
   "requests": {
     "GET /management/cache/domain-age/check/{domain}": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "isDomainCached",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "domain",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "additionalProperties": {},
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Cache status retrieved successfully"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /management/cache/domain-age/stats": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getDomainAgeCacheStats",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "additionalProperties": {},
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Cache statistics retrieved successfully"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "DELETE /management/cache/domain-age": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "clearDomainAgeCache",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "additionalProperties": {
-                    "type": "string"
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Cache cleared successfully"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "DELETE /management/cache/domain-age/all": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "clearAllDomainAgeCaches",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "additionalProperties": {
-                    "type": "string"
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "All caches cleared successfully"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

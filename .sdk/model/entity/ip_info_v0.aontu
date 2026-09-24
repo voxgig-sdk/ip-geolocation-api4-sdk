@@ -1,0 +1,176 @@
+# Entity: ip_info_v0
+
+main: kit: entity: ip_info_v0: {
+
+  alias: field: {}
+
+  name: "ip_info_v0"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/json/{ip}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/json/{ip}"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "json"
+            }
+            {
+              var: "ip"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /json/{ip}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/json/{ip}"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              lit: "json"
+            }
+            {
+              var: "ip"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/json"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/json"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/json/"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/json/"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /json"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/json"
+          s: [
+            {
+              lit: "json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /json/"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/json/"
+          s: [
+            {
+              lit: "json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

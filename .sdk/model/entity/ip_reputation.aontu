@@ -1,0 +1,95 @@
+# Entity: ip_reputation
+
+main: kit: entity: ip_reputation: {
+
+  alias: field: {}
+
+  fields: {
+    email_factors: {
+      h: "Email Factors"
+      n: "email_factors"
+      r: true
+      sh: "Email-specific risk factors and validation results."
+      t: "`$NULL`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ip_factors: {
+      h: "Ip Factors"
+      n: "ip_factors"
+      r: true
+      sh: "IP-specific risk factors and analysis results."
+      t: "`$NULL`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ip_reputation"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/ip-reputation/{ip}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "203.0.113.195"
+                k: "param"
+                n: "id"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/ip-reputation/{ip}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              ip: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ip-reputation"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.factors`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

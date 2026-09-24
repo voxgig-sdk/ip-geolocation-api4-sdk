@@ -98,7 +98,7 @@ func ip_info_v0BasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"ip_info_v001", "ip_info_v002", "ip_info_v003", "json01", "json02", "json03"},
+		[]any{"ip_info_v001", "ip_info_v002", "ip_info_v003"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

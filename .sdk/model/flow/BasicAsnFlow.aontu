@@ -1,0 +1,32 @@
+# BasicAsnFlow
+
+main: kit: flow: BasicAsnFlow:
+{
+  entity: "asn",
+  kind: "basic",
+  name: "BasicAsnFlow",
+  step: [
+    {
+      i: {
+        ref: "asn_ref01",
+        srcdatavar: "asn_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "asn01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-asn_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAsnFlow"
+}

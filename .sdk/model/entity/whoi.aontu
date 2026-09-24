@@ -1,0 +1,144 @@
+# Entity: whoi
+
+main: kit: entity: whoi: {
+
+  alias: field: {}
+
+  fields: {
+    domain: {
+      h: "Domain"
+      n: "domain"
+      r: true
+      t: "`$STRING`"
+    }
+    error: {
+      h: "Error"
+      n: "error"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    expires_on: {
+      h: "Expires On"
+      n: "expires_on"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    name_servers: {
+      h: "Name Servers"
+      n: "name_servers"
+      r: true
+      t: "`$ARRAY`"
+    }
+    raw: {
+      h: "Raw"
+      n: "raw"
+      r: true
+      t: "`$STRING`"
+    }
+    registered_on: {
+      h: "Registered On"
+      n: "registered_on"
+      r: false
+      t: "`$STRING`"
+    }
+    registrar: {
+      h: "Registrar"
+      n: "registrar"
+      r: false
+      t: "`$ANY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      t: "`$ARRAY`"
+    }
+    updated_on: {
+      h: "Updated On"
+      n: "updated_on"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "whoi"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/dns/whois/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "example.com"
+                k: "param"
+                n: "id"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/dns/whois/{domain}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              domain: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "dns"
+            }
+            {
+              lit: "whois"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -70,7 +70,7 @@ def _domain_reputation_v1_dto_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["domain_reputation_v1_dto01", "domain_reputation_v1_dto02", "domain_reputation_v1_dto03", "reputation01", "reputation02", "reputation03"],
+        ["domain_reputation_v1_dto01", "domain_reputation_v1_dto02", "domain_reputation_v1_dto03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

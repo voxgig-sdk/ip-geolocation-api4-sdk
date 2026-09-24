@@ -98,7 +98,7 @@ func mxnBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"mxn01", "mxn02", "mxn03", "mx01", "mx02", "mx03"},
+		[]any{"mxn01", "mxn02", "mxn03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

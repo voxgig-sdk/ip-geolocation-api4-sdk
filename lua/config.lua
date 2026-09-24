@@ -109,63 +109,74 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "disposable",
+            ["title"] = "Disposable",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Indicates whether the email is from a disposable/temporary email service.",
-            ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "email",
+            ["title"] = "Email",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "The email address that was analyzed, returned in the original format provided.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "free",
+            ["title"] = "Free",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Indicates whether the email domain is a free email provider (Gmail, Yahoo, Hotmail, etc.).",
-            ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "gravatar",
+            ["title"] = "Gravatar",
             ["type"] = "`$ANY`",
           },
           {
             ["name"] = "has_mx_records",
+            ["title"] = "Has Mx Records",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Indicates whether the domain has valid MX (Mail Exchange) records configured.",
-            ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "reachable",
+            ["title"] = "Reachable",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Overall reachability assessment.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "role_account",
+            ["title"] = "Role Account",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Indicates whether this is a role-based email account (admin@, support@, noreply@, etc.).",
-            ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "smtp",
+            ["title"] = "Smtp",
             ["type"] = "`$ANY`",
           },
           {
             ["name"] = "suggestion",
+            ["title"] = "Suggestion",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Suggested correction for misspelled domains.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "syntax",
+            ["title"] = "Syntax",
+            ["type"] = "`$OBJECT`",
             ["req"] = true,
             ["short"] = "Detailed syntax analysis of the email address components.",
-            ["type"] = "`$OBJECT`",
           },
         },
         ["id"] = {
@@ -179,26 +190,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "test@yandex.ru",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "email",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/email/advanced/{email}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["email"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -216,21 +210,38 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "email",
                   "advanced",
                   "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["email"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "email",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "test@yandex.ru",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -244,22 +255,25 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "apiKey",
-            ["req"] = true,
+            ["title"] = "Api Key",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "apiType",
-            ["req"] = true,
+            ["title"] = "Api Type",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "authType",
-            ["req"] = true,
+            ["title"] = "Auth Type",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
-            ["format"] = "int64",
             ["name"] = "avgRequestDurationNanos",
+            ["title"] = "Avg Request Duration Nanos",
             ["type"] = {
               "`$ONE`",
               {
@@ -267,22 +281,25 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["format"] = "int64",
           },
           {
-            ["format"] = "int32",
             ["name"] = "batchOperations",
-            ["req"] = true,
+            ["title"] = "Batch Operations",
             ["type"] = "`$INTEGER`",
-          },
-          {
+            ["req"] = true,
             ["format"] = "int32",
-            ["name"] = "batchTokensConsumed",
-            ["req"] = true,
-            ["type"] = "`$INTEGER`",
           },
           {
-            ["format"] = "date-time",
+            ["name"] = "batchTokensConsumed",
+            ["title"] = "Batch Tokens Consumed",
+            ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int32",
+          },
+          {
             ["name"] = "createdAt",
+            ["title"] = "Created At",
             ["type"] = {
               "`$ONE`",
               {
@@ -290,16 +307,18 @@ local function make_config()
                 "`$NULL`",
               },
             },
-          },
-          {
             ["format"] = "date-time",
+          },
+          {
             ["name"] = "hourBucket",
-            ["req"] = true,
+            ["title"] = "Hour Bucket",
             ["type"] = "`$STRING`",
+            ["req"] = true,
+            ["format"] = "date-time",
           },
           {
-            ["format"] = "int64",
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = {
               "`$ONE`",
               {
@@ -307,10 +326,11 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["format"] = "int64",
           },
           {
-            ["format"] = "int32",
             ["name"] = "minRemainingQuota",
+            ["title"] = "Min Remaining Quota",
             ["type"] = {
               "`$ONE`",
               {
@@ -318,10 +338,11 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["format"] = "int32",
           },
           {
-            ["format"] = "int32",
             ["name"] = "peakRemainingQuota",
+            ["title"] = "Peak Remaining Quota",
             ["type"] = {
               "`$ONE`",
               {
@@ -329,39 +350,45 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["format"] = "int32",
           },
           {
             ["name"] = "planId",
-            ["req"] = true,
+            ["title"] = "Plan Id",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
-            ["format"] = "int32",
             ["name"] = "quotaConsumed",
-            ["req"] = true,
+            ["title"] = "Quota Consumed",
             ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int32",
           },
           {
-            ["format"] = "int32",
             ["name"] = "rateLimitedRequests",
-            ["req"] = true,
+            ["title"] = "Rate Limited Requests",
             ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int32",
           },
           {
-            ["format"] = "int32",
             ["name"] = "successfulRequests",
-            ["req"] = true,
+            ["title"] = "Successful Requests",
             ["type"] = "`$INTEGER`",
-          },
-          {
+            ["req"] = true,
             ["format"] = "int32",
-            ["name"] = "totalRequests",
-            ["req"] = true,
-            ["type"] = "`$INTEGER`",
           },
           {
-            ["format"] = "date-time",
+            ["name"] = "totalRequests",
+            ["title"] = "Total Requests",
+            ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int32",
+          },
+          {
             ["name"] = "updatedAt",
+            ["title"] = "Updated At",
             ["type"] = {
               "`$ONE`",
               {
@@ -369,6 +396,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["format"] = "date-time",
           },
         },
         ["id"] = {
@@ -382,41 +410,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = "your-api-key-here",
-                      ["kind"] = "query",
-                      ["name"] = "api_key",
-                      ["orig"] = "api_key",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "IP",
-                      ["kind"] = "query",
-                      ["name"] = "api_type",
-                      ["orig"] = "api_type",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "2025-11-04T00:00:00Z",
-                      ["kind"] = "query",
-                      ["name"] = "end_date",
-                      ["orig"] = "end_date",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "2025-11-01T00:00:00Z",
-                      ["kind"] = "query",
-                      ["name"] = "start_date",
-                      ["orig"] = "start_date",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/usage/stats",
@@ -434,6 +427,52 @@ local function make_config()
                     ["lit"] = "stats",
                   },
                 },
+                ["parts"] = {
+                  "api",
+                  "v1",
+                  "usage",
+                  "stats",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "api_key",
+                      ["orig"] = "api_key",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "your-api-key-here",
+                    },
+                    {
+                      ["name"] = "api_type",
+                      ["orig"] = "api_type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "IP",
+                    },
+                    {
+                      ["name"] = "end_date",
+                      ["orig"] = "end_date",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "2025-11-04T00:00:00Z",
+                    },
+                    {
+                      ["name"] = "start_date",
+                      ["orig"] = "start_date",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "2025-11-01T00:00:00Z",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "api_key",
@@ -441,16 +480,6 @@ local function make_config()
                     "end_date",
                     "start_date",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "api",
-                  "v1",
-                  "usage",
-                  "stats",
                 },
               },
             },
@@ -464,17 +493,19 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "apiKey",
-            ["req"] = true,
+            ["title"] = "Api Key",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "apiType",
-            ["req"] = true,
+            ["title"] = "Api Type",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
-            ["format"] = "double",
             ["name"] = "avgRequestDurationMs",
+            ["title"] = "Avg Request Duration Ms",
             ["type"] = {
               "`$ONE`",
               {
@@ -482,48 +513,56 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["format"] = "double",
           },
           {
-            ["format"] = "int64",
             ["name"] = "batchOperations",
-            ["req"] = true,
+            ["title"] = "Batch Operations",
             ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int64",
           },
           {
-            ["format"] = "date-time",
             ["name"] = "periodEnd",
-            ["req"] = true,
+            ["title"] = "Period End",
             ["type"] = "`$STRING`",
-          },
-          {
+            ["req"] = true,
             ["format"] = "date-time",
+          },
+          {
             ["name"] = "periodStart",
-            ["req"] = true,
+            ["title"] = "Period Start",
             ["type"] = "`$STRING`",
+            ["req"] = true,
+            ["format"] = "date-time",
           },
           {
-            ["format"] = "int64",
             ["name"] = "quotaConsumed",
-            ["req"] = true,
+            ["title"] = "Quota Consumed",
             ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int64",
           },
           {
-            ["format"] = "int64",
             ["name"] = "rateLimitedRequests",
-            ["req"] = true,
+            ["title"] = "Rate Limited Requests",
             ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int64",
           },
           {
-            ["format"] = "int64",
             ["name"] = "successfulRequests",
-            ["req"] = true,
+            ["title"] = "Successful Requests",
             ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int64",
           },
           {
-            ["format"] = "int64",
             ["name"] = "totalRequests",
-            ["req"] = true,
+            ["title"] = "Total Requests",
             ["type"] = "`$INTEGER`",
+            ["req"] = true,
+            ["format"] = "int64",
           },
         },
         ["name"] = "api_usage_summary",
@@ -533,41 +572,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = "your-api-key-here",
-                      ["kind"] = "query",
-                      ["name"] = "api_key",
-                      ["orig"] = "api_key",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "IP",
-                      ["kind"] = "query",
-                      ["name"] = "api_type",
-                      ["orig"] = "api_type",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "2025-11-04T00:00:00Z",
-                      ["kind"] = "query",
-                      ["name"] = "end_date",
-                      ["orig"] = "end_date",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "2025-11-01T00:00:00Z",
-                      ["kind"] = "query",
-                      ["name"] = "start_date",
-                      ["orig"] = "start_date",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/usage/summary",
@@ -585,6 +589,52 @@ local function make_config()
                     ["lit"] = "summary",
                   },
                 },
+                ["parts"] = {
+                  "api",
+                  "v1",
+                  "usage",
+                  "summary",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "api_key",
+                      ["orig"] = "api_key",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "your-api-key-here",
+                    },
+                    {
+                      ["name"] = "api_type",
+                      ["orig"] = "api_type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "IP",
+                    },
+                    {
+                      ["name"] = "end_date",
+                      ["orig"] = "end_date",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "2025-11-04T00:00:00Z",
+                    },
+                    {
+                      ["name"] = "start_date",
+                      ["orig"] = "start_date",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "2025-11-01T00:00:00Z",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "api_key",
@@ -592,16 +642,6 @@ local function make_config()
                     "end_date",
                     "start_date",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "api",
-                  "v1",
-                  "usage",
-                  "summary",
                 },
               },
             },
@@ -614,8 +654,8 @@ local function make_config()
       ["asn"] = {
         ["fields"] = {
           {
-            ["format"] = "int64",
             ["name"] = "asn",
+            ["title"] = "Asn",
             ["type"] = {
               "`$ONE`",
               {
@@ -623,9 +663,11 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["format"] = "int64",
           },
           {
             ["name"] = "country",
+            ["title"] = "Country",
             ["type"] = {
               "`$ONE`",
               {
@@ -636,24 +678,29 @@ local function make_config()
           },
           {
             ["name"] = "country_code",
+            ["title"] = "Country Code",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip",
-            ["req"] = true,
+            ["title"] = "Ip",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "is_datacenter",
-            ["req"] = true,
+            ["title"] = "Is Datacenter",
             ["type"] = "`$BOOLEAN`",
+            ["req"] = true,
           },
           {
             ["name"] = "network",
+            ["title"] = "Network",
             ["type"] = {
               "`$ONE`",
               {
@@ -664,6 +711,7 @@ local function make_config()
           },
           {
             ["name"] = "organization",
+            ["title"] = "Organization",
             ["type"] = {
               "`$ONE`",
               {
@@ -684,26 +732,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "8.8.8.8",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "ip",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/asn/{ip}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["ip"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -718,20 +749,37 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
+                ["parts"] = {
+                  "api",
+                  "v1",
+                  "asn",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["ip"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "api",
-                  "v1",
-                  "asn",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "ip",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "8.8.8.8",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -745,15 +793,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "emails",
+            ["title"] = "Emails",
+            ["type"] = "`$ARRAY`",
             ["req"] = true,
             ["short"] = "List of email addresses to validate.",
-            ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "ips",
+            ["title"] = "Ips",
+            ["type"] = "`$ARRAY`",
             ["req"] = true,
             ["short"] = "List of IP addresses to look up.",
-            ["type"] = "`$ARRAY`",
           },
         },
         ["name"] = "batch",
@@ -763,7 +813,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/email/advanced/batch",
@@ -784,11 +833,6 @@ local function make_config()
                     ["lit"] = "batch",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.results`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
@@ -796,9 +840,15 @@ local function make_config()
                   "advanced",
                   "batch",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.results`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/ip/batch",
@@ -816,17 +866,19 @@ local function make_config()
                     ["lit"] = "batch",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.results`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "ip",
                   "batch",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.results`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -839,18 +891,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "failed_validations",
+            ["title"] = "Failed Validations",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "results",
+            ["title"] = "Results",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "successful_validations",
+            ["title"] = "Successful Validations",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "total_processed",
+            ["title"] = "Total Processed",
             ["type"] = "`$INTEGER`",
           },
         },
@@ -861,7 +917,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/email/advanced/batch/csv",
@@ -885,11 +940,6 @@ local function make_config()
                     ["lit"] = "csv",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.results`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
@@ -898,6 +948,13 @@ local function make_config()
                   "batch",
                   "csv",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.results`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -915,17 +972,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "domain",
-                      ["orig"] = "domain",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/management/cache/domain-age/check/{domain}",
@@ -946,15 +992,6 @@ local function make_config()
                     ["var"] = "domain",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "domain",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "management",
                   "cache",
@@ -962,9 +999,29 @@ local function make_config()
                   "check",
                   "{domain}",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "domain",
+                      ["orig"] = "domain",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "domain",
+                  },
+                },
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/management/cache/domain-age/stats",
@@ -982,17 +1039,19 @@ local function make_config()
                     ["lit"] = "stats",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "management",
                   "cache",
                   "domain-age",
                   "stats",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -1001,7 +1060,6 @@ local function make_config()
             ["name"] = "remove",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/management/cache/domain-age",
@@ -1016,19 +1074,20 @@ local function make_config()
                     ["lit"] = "domain-age",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "management",
                   "cache",
                   "domain-age",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/management/cache/domain-age/all",
@@ -1046,35 +1105,34 @@ local function make_config()
                     ["lit"] = "all",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "management",
                   "cache",
                   "domain-age",
                   "all",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "check",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["domain_analysi"] = {
         ["fields"] = {
           {
             ["name"] = "domains",
-            ["req"] = true,
+            ["title"] = "Domains",
             ["type"] = "`$ARRAY`",
+            ["req"] = true,
           },
         },
         ["name"] = "domain_analysi",
@@ -1084,7 +1142,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api/v1/domain/age/batch",
@@ -1105,11 +1162,6 @@ local function make_config()
                     ["lit"] = "batch",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
@@ -1117,6 +1169,13 @@ local function make_config()
                   "age",
                   "batch",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -1125,18 +1184,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "google.com",
-                      ["kind"] = "param",
-                      ["name"] = "domain",
-                      ["orig"] = "domain",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/domain/age/{domain}",
@@ -1157,15 +1204,6 @@ local function make_config()
                     ["var"] = "domain",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "domain",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
@@ -1173,49 +1211,72 @@ local function make_config()
                   "age",
                   "{domain}",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "domain",
+                      ["orig"] = "domain",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "google.com",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "domain",
+                  },
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "age",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["domain_reputation_v1_dto"] = {
         ["fields"] = {
           {
             ["name"] = "domain",
+            ["title"] = "Domain",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "The normalized domain that was analyzed (lowercased, scheme/path stripped).",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "is_disposable_email_domain",
+            ["title"] = "Is Disposable Email Domain",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Whether the domain is a known disposable/temporary email provider domain.",
-            ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "is_valid",
+            ["title"] = "Is Valid",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Whether the input was a syntactically valid domain name.",
-            ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "resolved_ips",
+            ["title"] = "Resolved Ips",
+            ["type"] = "`$ARRAY`",
             ["req"] = true,
             ["short"] = "DNS A/AAAA records the domain currently resolves to.",
-            ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "threat",
+            ["title"] = "Threat",
+            ["type"] = "`$OBJECT`",
             ["req"] = true,
             ["short"] = "Threat-intelligence verdict for the domain itself (independent of its IPs).",
-            ["type"] = "`$OBJECT`",
           },
         },
         ["name"] = "domain_reputation_v1_dto",
@@ -1225,18 +1286,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "example.com",
-                      ["kind"] = "param",
-                      ["name"] = "domain",
-                      ["orig"] = "domain",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/domain/reputation/{domain}",
@@ -1257,15 +1306,6 @@ local function make_config()
                     ["var"] = "domain",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "domain",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
@@ -1273,65 +1313,91 @@ local function make_config()
                   "reputation",
                   "{domain}",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "domain",
+                      ["orig"] = "domain",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "example.com",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "domain",
+                  },
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "reputation",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["email"] = {
         ["fields"] = {
           {
             ["name"] = "email",
+            ["title"] = "Email",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "The email address that was analyzed, returned in normalized lowercase format.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "email_factors",
+            ["title"] = "Email Factors",
+            ["type"] = "`$NULL`",
             ["req"] = true,
             ["short"] = "Email-specific risk factors and validation results.",
-            ["type"] = "`$NULL`",
           },
           {
             ["name"] = "has_mx_records",
+            ["title"] = "Has Mx Records",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Whether the email domain has valid MX records in DNS.",
-            ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip_factors",
+            ["title"] = "Ip Factors",
+            ["type"] = "`$NULL`",
             ["req"] = true,
             ["short"] = "IP-specific risk factors and analysis results.",
-            ["type"] = "`$NULL`",
           },
           {
             ["name"] = "is_disposable",
+            ["title"] = "Is Disposable",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Indicates whether the email address uses a disposable or temporary email service.",
-            ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "mx_records",
+            ["title"] = "Mx Records",
+            ["type"] = "`$ARRAY`",
             ["req"] = true,
             ["short"] = "MX records for the email domain, sorted by priority ascending.",
-            ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "syntax",
+            ["title"] = "Syntax",
+            ["type"] = "`$OBJECT`",
             ["req"] = true,
             ["short"] = "Detailed syntax validation results and email component breakdown.",
-            ["type"] = "`$OBJECT`",
           },
         },
         ["id"] = {
@@ -1345,26 +1411,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "john.doe@company.com",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "email",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/email/{email}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["email"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -1379,43 +1428,43 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "email",
                   "{id}",
                 },
-              },
-              {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "john.doe@legitbusiness.com",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "email",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
-                ["kind"] = "http",
-                ["method"] = "GET",
-                ["orig"] = "/api/v1/risk-score/email/{email}",
                 ["rename"] = {
                   ["param"] = {
                     ["email"] = "id",
                   },
                 },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "email",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "john.doe@company.com",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
+                },
+              },
+              {
+                ["kind"] = "http",
+                ["method"] = "GET",
+                ["orig"] = "/api/v1/risk-score/email/{email}",
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -1433,21 +1482,38 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.factors`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "risk-score",
                   "email",
                   "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["email"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.factors`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "email",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "john.doe@legitbusiness.com",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1461,16 +1527,19 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "addresses",
-            ["req"] = true,
+            ["title"] = "Addresses",
             ["type"] = "`$ARRAY`",
+            ["req"] = true,
           },
           {
             ["name"] = "hostname",
-            ["req"] = true,
+            ["title"] = "Hostname",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -1485,26 +1554,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "dns.google",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "hostname",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/dns/forward/{hostname}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["hostname"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -1522,21 +1574,38 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "dns",
                   "forward",
                   "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["hostname"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "hostname",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "dns.google",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1555,17 +1624,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["kind"] = "param",
-                      ["name"] = "ip",
-                      ["orig"] = "ip",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/json/{ip}",
@@ -1580,33 +1638,34 @@ local function make_config()
                     ["var"] = "ip",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "ip",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "json",
                   "{ip}",
                 },
-              },
-              {
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["kind"] = "param",
                       ["name"] = "ip",
                       ["orig"] = "ip",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "ip",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/json/{ip}",
@@ -1618,22 +1677,33 @@ local function make_config()
                     ["var"] = "ip",
                   },
                 },
+                ["parts"] = {
+                  "json",
+                  "{ip}",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "ip",
+                      ["orig"] = "ip",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "ip",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "json",
-                  "{ip}",
-                },
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/json",
@@ -1645,18 +1715,19 @@ local function make_config()
                     ["lit"] = "json",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "json",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/json/",
@@ -1668,18 +1739,19 @@ local function make_config()
                     ["lit"] = "json",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "json",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/json",
@@ -1688,17 +1760,18 @@ local function make_config()
                     ["lit"] = "json",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "json",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "json",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/json/",
@@ -1707,43 +1780,44 @@ local function make_config()
                     ["lit"] = "json",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "json",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "json",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "json",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["ip_reputation"] = {
         ["fields"] = {
           {
             ["name"] = "email_factors",
+            ["title"] = "Email Factors",
+            ["type"] = "`$NULL`",
             ["req"] = true,
             ["short"] = "Email-specific risk factors and validation results.",
-            ["type"] = "`$NULL`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip_factors",
+            ["title"] = "Ip Factors",
+            ["type"] = "`$NULL`",
             ["req"] = true,
             ["short"] = "IP-specific risk factors and analysis results.",
-            ["type"] = "`$NULL`",
           },
         },
         ["id"] = {
@@ -1757,26 +1831,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "203.0.113.195",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "ip",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/ip-reputation/{ip}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["ip"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -1791,20 +1848,37 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
+                ["parts"] = {
+                  "api",
+                  "v1",
+                  "ip-reputation",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["ip"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.factors`",
                 },
-                ["parts"] = {
-                  "api",
-                  "v1",
-                  "ip-reputation",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "ip",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "203.0.113.195",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -1818,7 +1892,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "asn",
-            ["short"] = "Autonomous System Number in AS<number> format.",
+            ["title"] = "Asn",
             ["type"] = {
               "`$ONE`",
               {
@@ -1826,16 +1900,18 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["short"] = "Autonomous System Number in AS<number> format.",
           },
           {
             ["name"] = "ip",
+            ["title"] = "Ip",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "The IP address that was analyzed, returned in standard format.",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "isp",
-            ["short"] = "Internet Service Provider name derived from the ASN organization field.",
+            ["title"] = "Isp",
             ["type"] = {
               "`$ONE`",
               {
@@ -1843,18 +1919,21 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["short"] = "Internet Service Provider name derived from the ASN organization field.",
           },
           {
             ["name"] = "location",
+            ["title"] = "Location",
+            ["type"] = "`$OBJECT`",
             ["req"] = true,
             ["short"] = "Geographic location and timezone information for the IP address.",
-            ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "suspicious_factors",
+            ["title"] = "Suspicious Factors",
+            ["type"] = "`$OBJECT`",
             ["req"] = true,
             ["short"] = "Comprehensive security threat analysis and suspicious activity indicators.",
-            ["type"] = "`$OBJECT`",
           },
         },
         ["name"] = "ipn",
@@ -1864,18 +1943,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "203.0.113.195",
-                      ["kind"] = "param",
-                      ["name"] = "ip",
-                      ["orig"] = "ip",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/ip/{ip}",
@@ -1893,24 +1960,36 @@ local function make_config()
                     ["var"] = "ip",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "ip",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "ip",
                   "{ip}",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "ip",
+                      ["orig"] = "ip",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "203.0.113.195",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "ip",
+                  },
+                },
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/ip",
@@ -1925,39 +2004,39 @@ local function make_config()
                     ["lit"] = "ip",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "ip",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "ip",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["mxn"] = {
         ["fields"] = {
           {
             ["name"] = "domain",
-            ["req"] = true,
+            ["title"] = "Domain",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "mx_records",
-            ["req"] = true,
+            ["title"] = "Mx Records",
             ["type"] = "`$ARRAY`",
+            ["req"] = true,
           },
         },
         ["name"] = "mxn",
@@ -1967,18 +2046,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "gmail.com",
-                      ["kind"] = "param",
-                      ["name"] = "domain",
-                      ["orig"] = "domain",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/dns/mx/{domain}",
@@ -1999,15 +2066,6 @@ local function make_config()
                     ["var"] = "domain",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "domain",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
@@ -2015,16 +2073,34 @@ local function make_config()
                   "mx",
                   "{domain}",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "domain",
+                      ["orig"] = "domain",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "gmail.com",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "domain",
+                  },
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "mx",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["paddle_controller"] = {
@@ -2036,17 +2112,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "http_entity",
-                      ["orig"] = "http_entity",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/month-sub",
@@ -2055,17 +2120,29 @@ local function make_config()
                     ["lit"] = "month-sub",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "http_entity",
-                  },
+                ["parts"] = {
+                  "month-sub",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "month-sub",
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "http_entity",
+                      ["orig"] = "http_entity",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "http_entity",
+                  },
                 },
               },
             },
@@ -2075,7 +2152,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/month-sub",
@@ -2084,14 +2160,16 @@ local function make_config()
                     ["lit"] = "month-sub",
                   },
                 },
-                ["select"] = {},
+                ["parts"] = {
+                  "month-sub",
+                },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "month-sub",
-                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -2104,43 +2182,49 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "email_api",
+            ["title"] = "Email Api",
+            ["type"] = "`$OBJECT`",
             ["req"] = true,
             ["short"] = "Email validation API rate limit information",
-            ["type"] = "`$OBJECT`",
           },
           {
-            ["format"] = "int64",
             ["name"] = "interval_seconds",
+            ["title"] = "Interval Seconds",
+            ["type"] = "`$INTEGER`",
             ["req"] = true,
             ["short"] = "Rate limit interval in seconds (time period for quota renewal)",
-            ["type"] = "`$INTEGER`",
+            ["format"] = "int64",
           },
           {
             ["name"] = "ip_api",
+            ["title"] = "Ip Api",
+            ["type"] = "`$OBJECT`",
             ["req"] = true,
             ["short"] = "IP lookup API rate limit information",
-            ["type"] = "`$OBJECT`",
           },
           {
-            ["format"] = "date",
             ["name"] = "next_renewal_date",
-            ["short"] = "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
+            ["title"] = "Next Renewal Date",
             ["type"] = "`$STRING`",
+            ["short"] = "Next billing/renewal date when the quota will be reset (ISO 8601 date format)",
+            ["format"] = "date",
           },
           {
             ["name"] = "plan_id",
+            ["title"] = "Plan Id",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "Subscription plan ID or 'default' for free tier users",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "plan_name",
-            ["short"] = "Human-readable plan name (if available)",
+            ["title"] = "Plan Name",
             ["type"] = "`$STRING`",
+            ["short"] = "Human-readable plan name (if available)",
           },
           {
             ["name"] = "status",
-            ["short"] = "Subscription status (active, past_due, cancelled, etc.)",
+            ["title"] = "Status",
             ["type"] = {
               "`$ONE`",
               {
@@ -2148,6 +2232,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["short"] = "Subscription status (active, past_due, cancelled, etc.)",
           },
         },
         ["name"] = "rate_limit_info_dto",
@@ -2157,18 +2242,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["example"] = "abcdef1234567890abcdef1234567890",
-                      ["kind"] = "query",
-                      ["name"] = "api_key",
-                      ["orig"] = "api_key",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/ratelimit",
@@ -2183,19 +2256,32 @@ local function make_config()
                     ["lit"] = "ratelimit",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "api_key",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "ratelimit",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "api_key",
+                      ["orig"] = "api_key",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "abcdef1234567890abcdef1234567890",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "api_key",
+                  },
                 },
               },
             },
@@ -2209,6 +2295,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "hostname",
+            ["title"] = "Hostname",
             ["type"] = {
               "`$ONE`",
               {
@@ -2219,20 +2306,23 @@ local function make_config()
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip",
-            ["req"] = true,
+            ["title"] = "Ip",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "ptr_record",
+            ["title"] = "Ptr Record",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "int64",
             ["name"] = "ttl",
+            ["title"] = "Ttl",
             ["type"] = {
               "`$ONE`",
               {
@@ -2240,6 +2330,7 @@ local function make_config()
                 "`$NULL`",
               },
             },
+            ["format"] = "int64",
           },
         },
         ["id"] = {
@@ -2253,26 +2344,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "8.8.8.8",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "ip",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/dns/reverse/{ip}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["ip"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -2290,21 +2364,38 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "dns",
                   "reverse",
                   "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["ip"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "ip",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "8.8.8.8",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -2318,19 +2409,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "email_factors",
+            ["title"] = "Email Factors",
+            ["type"] = "`$NULL`",
             ["req"] = true,
             ["short"] = "Email-specific risk factors and validation results.",
-            ["type"] = "`$NULL`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip_factors",
+            ["title"] = "Ip Factors",
+            ["type"] = "`$NULL`",
             ["req"] = true,
             ["short"] = "IP-specific risk factors and analysis results.",
-            ["type"] = "`$NULL`",
           },
         },
         ["id"] = {
@@ -2344,35 +2438,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "203.0.113.195",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "ip",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                  ["query"] = {
-                    {
-                      ["example"] = "suspicious.user@tempmail.com",
-                      ["kind"] = "query",
-                      ["name"] = "email",
-                      ["orig"] = "email",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/risk-score/{ip}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["ip"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -2387,25 +2455,50 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "email",
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.factors`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "risk-score",
                   "{id}",
                 },
+                ["rename"] = {
+                  ["param"] = {
+                    ["ip"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.factors`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "ip",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "203.0.113.195",
+                    },
+                  },
+                  ["query"] = {
+                    {
+                      ["name"] = "email",
+                      ["orig"] = "email",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "suspicious.user@tempmail.com",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "email",
+                    "id",
+                  },
+                },
               },
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/risk-score",
@@ -2420,16 +2513,18 @@ local function make_config()
                     ["lit"] = "risk-score",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.factors`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "risk-score",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.factors`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -2447,7 +2542,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/status",
@@ -2459,15 +2553,17 @@ local function make_config()
                     ["lit"] = "status",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "status",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },
@@ -2480,26 +2576,30 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "ip",
+            ["title"] = "Ip",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "The IP address that was checked",
-            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "is_tor",
+            ["title"] = "Is Tor",
+            ["type"] = "`$BOOLEAN`",
             ["req"] = true,
             ["short"] = "Whether the IP is a known Tor exit node",
-            ["type"] = "`$BOOLEAN`",
           },
           {
-            ["format"] = "int32",
             ["name"] = "tor_node_count",
+            ["title"] = "Tor Node Count",
+            ["type"] = "`$INTEGER`",
             ["req"] = true,
             ["short"] = "Total number of currently known Tor exit nodes in the database",
-            ["type"] = "`$INTEGER`",
+            ["format"] = "int32",
           },
         },
         ["id"] = {
@@ -2513,26 +2613,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "185.220.101.50",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "ip",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/tor/{ip}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["ip"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -2547,20 +2630,37 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
+                ["parts"] = {
+                  "api",
+                  "v1",
+                  "tor",
+                  "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["ip"] = "id",
                   },
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "api",
-                  "v1",
-                  "tor",
-                  "{id}",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "ip",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "185.220.101.50",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },
@@ -2579,23 +2679,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "api_key",
-                      ["orig"] = "api_key",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "api_type",
-                      ["orig"] = "api_type",
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/usage/current-month",
@@ -2613,41 +2696,42 @@ local function make_config()
                     ["lit"] = "current-month",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "api_key",
-                    "api_type",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "usage",
                   "current-month",
                 },
-              },
-              {
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["kind"] = "query",
                       ["name"] = "api_key",
                       ["orig"] = "api_key",
-                      ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
                     },
                     {
-                      ["kind"] = "query",
                       ["name"] = "api_type",
                       ["orig"] = "api_type",
                       ["type"] = "`$STRING`",
+                      ["kind"] = "query",
                     },
                   },
                 },
+                ["select"] = {
+                  ["exist"] = {
+                    "api_key",
+                    "api_type",
+                  },
+                },
+              },
+              {
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/usage/recent",
@@ -2665,21 +2749,39 @@ local function make_config()
                     ["lit"] = "recent",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "api_key",
-                    "api_type",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "usage",
                   "recent",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "api_key",
+                      ["orig"] = "api_key",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "api_type",
+                      ["orig"] = "api_type",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "api_key",
+                    "api_type",
+                  },
                 },
               },
             },
@@ -2693,11 +2795,13 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "domain",
-            ["req"] = true,
+            ["title"] = "Domain",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "error",
+            ["title"] = "Error",
             ["type"] = {
               "`$ONE`",
               {
@@ -2708,37 +2812,45 @@ local function make_config()
           },
           {
             ["name"] = "expires_on",
+            ["title"] = "Expires On",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name_servers",
-            ["req"] = true,
+            ["title"] = "Name Servers",
             ["type"] = "`$ARRAY`",
+            ["req"] = true,
           },
           {
             ["name"] = "raw",
-            ["req"] = true,
+            ["title"] = "Raw",
             ["type"] = "`$STRING`",
+            ["req"] = true,
           },
           {
             ["name"] = "registered_on",
+            ["title"] = "Registered On",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "registrar",
+            ["title"] = "Registrar",
             ["type"] = "`$ANY`",
           },
           {
             ["name"] = "status",
-            ["req"] = true,
+            ["title"] = "Status",
             ["type"] = "`$ARRAY`",
+            ["req"] = true,
           },
           {
             ["name"] = "updated_on",
+            ["title"] = "Updated On",
             ["type"] = "`$STRING`",
           },
         },
@@ -2753,26 +2865,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "example.com",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "domain",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/v1/dns/whois/{domain}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["domain"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "api",
@@ -2790,21 +2885,38 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "v1",
                   "dns",
                   "whois",
                   "{id}",
+                },
+                ["rename"] = {
+                  ["param"] = {
+                    ["domain"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "domain",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "example.com",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                  },
                 },
               },
             },

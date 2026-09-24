@@ -1,0 +1,150 @@
+# Entity: cache_management
+
+main: kit: entity: cache_management: {
+
+  alias: field: {}
+
+  name: "cache_management"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /management/cache/domain-age/check/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/management/cache/domain-age/check/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          s: [
+            {
+              lit: "management"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "domain-age"
+            }
+            {
+              lit: "check"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /management/cache/domain-age/stats"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/management/cache/domain-age/stats"
+          s: [
+            {
+              lit: "management"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "domain-age"
+            }
+            {
+              lit: "stats"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /management/cache/domain-age"
+            source: "openapi3"
+            version: 2
+          }
+          m: "DELETE"
+          o: "/management/cache/domain-age"
+          s: [
+            {
+              lit: "management"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "domain-age"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /management/cache/domain-age/all"
+            source: "openapi3"
+            version: 2
+          }
+          m: "DELETE"
+          o: "/management/cache/domain-age/all"
+          s: [
+            {
+              lit: "management"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "domain-age"
+            }
+            {
+              lit: "all"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

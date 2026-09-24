@@ -1,0 +1,80 @@
+# Entity: mxn
+
+main: kit: entity: mxn: {
+
+  alias: field: {}
+
+  fields: {
+    domain: {
+      h: "Domain"
+      n: "domain"
+      r: true
+      t: "`$STRING`"
+    }
+    mx_records: {
+      h: "Mx Records"
+      n: "mx_records"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "mxn"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/dns/mx/{domain}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "gmail.com"
+                k: "param"
+                n: "domain"
+                or: "domain"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/dns/mx/{domain}"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "dns"
+            }
+            {
+              lit: "mx"
+            }
+            {
+              var: "domain"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

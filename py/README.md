@@ -36,15 +36,14 @@ from ipgeolocationapi4_sdk import IpGeolocationApi4SDK
 client = IpGeolocationApi4SDK()
 ```
 
-### 3. Load a cachemanagement
+### 3. Load an advanced
 
-CacheManagement is nested under domain, so provide the `domain`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    cachemanagement = client.CacheManagement().load({"domain": "example_domain"})
-    print(cachemanagement)
+    advanced = client.Advanced().load({"id": "example_id"})
+    print(advanced)
 except Exception as err:
     print(f"load failed: {err}")
 ```

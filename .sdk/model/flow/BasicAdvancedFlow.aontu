@@ -1,0 +1,32 @@
+# BasicAdvancedFlow
+
+main: kit: flow: BasicAdvancedFlow:
+{
+  entity: "advanced",
+  kind: "basic",
+  name: "BasicAdvancedFlow",
+  step: [
+    {
+      i: {
+        ref: "advanced_ref01",
+        srcdatavar: "advanced_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "advanced01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-advanced_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAdvancedFlow"
+}

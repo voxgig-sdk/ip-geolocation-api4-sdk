@@ -1,0 +1,40 @@
+# BasicDomainAnalysiFlow
+
+main: kit: flow: BasicDomainAnalysiFlow:
+{
+  entity: "domain_analysi",
+  kind: "basic",
+  name: "BasicDomainAnalysiFlow",
+  step: [
+    {
+      i: {
+        ref: "domain_analysi_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "domain_analysi_ref01",
+        srcdatavar: "domain_analysi_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "domain_analysi01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_analysi_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainAnalysiFlow"
+}

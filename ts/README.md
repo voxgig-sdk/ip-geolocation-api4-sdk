@@ -33,17 +33,14 @@ import { IpGeolocationApi4SDK } from '@voxgig-sdk/ip-geolocation-api4-sdk'
 const client = new IpGeolocationApi4SDK()
 ```
 
-### 3. Load a cachemanagement
+### 3. Load an advanced
 
-CacheManagement is nested under domain, so provide the `domain`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const cachemanagement = await client.CacheManagement().load({
-    domain: 'example_domain',
-  })
-  console.log(cachemanagement)
+  const advanced = await client.Advanced().load({ id: 'example_id' })
+  console.log(advanced)
 } catch (err) {
   console.error('load failed:', err)
 }

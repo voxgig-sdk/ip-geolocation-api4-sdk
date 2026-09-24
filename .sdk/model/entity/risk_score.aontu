@@ -1,0 +1,130 @@
+# Entity: risk_score
+
+main: kit: entity: risk_score: {
+
+  alias: field: {}
+
+  fields: {
+    email_factors: {
+      h: "Email Factors"
+      n: "email_factors"
+      r: true
+      sh: "Email-specific risk factors and validation results."
+      t: "`$NULL`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    ip_factors: {
+      h: "Ip Factors"
+      n: "ip_factors"
+      r: true
+      sh: "IP-specific risk factors and analysis results."
+      t: "`$NULL`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "risk_score"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/risk-score/{ip}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "203.0.113.195"
+                k: "param"
+                n: "id"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "suspicious.user@tempmail.com"
+                k: "query"
+                n: "email"
+                or: "email"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/risk-score/{ip}"
+          q: {
+            exist: [
+              "email"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              ip: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "risk-score"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.factors`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/risk-score"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/risk-score"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "risk-score"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.factors`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

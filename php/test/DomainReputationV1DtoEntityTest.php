@@ -70,7 +70,7 @@ function domain_reputation_v1_dto_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["domain_reputation_v1_dto01", "domain_reputation_v1_dto02", "domain_reputation_v1_dto03", "reputation01", "reputation02", "reputation03"] as $k) {
+    foreach (["domain_reputation_v1_dto01", "domain_reputation_v1_dto02", "domain_reputation_v1_dto03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

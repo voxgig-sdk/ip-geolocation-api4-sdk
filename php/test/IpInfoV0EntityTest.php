@@ -70,7 +70,7 @@ function ip_info_v0_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["ip_info_v001", "ip_info_v002", "ip_info_v003", "json01", "json02", "json03"] as $k) {
+    foreach (["ip_info_v001", "ip_info_v002", "ip_info_v003"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

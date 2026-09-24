@@ -1,0 +1,32 @@
+# BasicReverseFlow
+
+main: kit: flow: BasicReverseFlow:
+{
+  entity: "reverse",
+  kind: "basic",
+  name: "BasicReverseFlow",
+  step: [
+    {
+      i: {
+        ref: "reverse_ref01",
+        srcdatavar: "reverse_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "reverse01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-reverse_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReverseFlow"
+}

@@ -1,0 +1,32 @@
+# BasicMxnFlow
+
+main: kit: flow: BasicMxnFlow:
+{
+  entity: "mxn",
+  kind: "basic",
+  name: "BasicMxnFlow",
+  step: [
+    {
+      i: {
+        ref: "mxn_ref01",
+        srcdatavar: "mxn_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "mxn01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-mxn_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMxnFlow"
+}

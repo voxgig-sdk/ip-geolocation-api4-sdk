@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -123,12 +123,9 @@ import { IpGeolocationApi4SDK } from '@voxgig-sdk/ip-geolocation-api4-sdk'
 
 const client = new IpGeolocationApi4SDK()
 
-
-// Load a specific cachemanagement (returns a CacheManagement)
-const cachemanagement = await client.CacheManagement().load({
-  domain: 'example_domain',
-})
-console.log(cachemanagement)
+// Load advanced data (returns a Advanced)
+const advanced = await client.Advanced().load()
+console.log(advanced)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -232,15 +229,12 @@ import sdk "github.com/voxgig-sdk/ip-geolocation-api4-sdk/go"
 
 client := sdk.New()
 
-
-// Load a specific cachemanagement
-cacheManagement, err := client.CacheManagement(nil).Load(
-    map[string]any{"domain": "example_domain"}, nil,
-)
+// Load advanced data
+advanced, err := client.Advanced(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cacheManagement)
+fmt.Println(advanced)
 ```
 
 ### Ruby

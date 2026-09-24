@@ -33,14 +33,12 @@ local sdk = require("ip-geolocation-api4_sdk")
 local client = sdk.new()
 ```
 
-### 3. Load a cachemanagement
-
-CacheManagement is nested under domain, so provide the `domain`.
+### 3. Load an advanced
 
 ```lua
-local cachemanagement, err = client:CacheManagement():load({ domain = "example_domain" })
+local advanced, err = client:Advanced():load({ id = "example_id" })
 if err then error(err) end
-print(cachemanagement)
+print(advanced)
 ```
 
 

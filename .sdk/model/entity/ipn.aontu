@@ -1,0 +1,136 @@
+# Entity: ipn
+
+main: kit: entity: ipn: {
+
+  alias: field: {}
+
+  fields: {
+    asn: {
+      h: "Asn"
+      n: "asn"
+      r: false
+      sh: "Autonomous System Number in AS<number> format."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    ip: {
+      h: "Ip"
+      n: "ip"
+      r: true
+      sh: "The IP address that was analyzed, returned in standard format."
+      t: "`$STRING`"
+    }
+    isp: {
+      h: "Isp"
+      n: "isp"
+      r: false
+      sh: "Internet Service Provider name derived from the ASN organization field."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: true
+      sh: "Geographic location and timezone information for the IP address."
+      t: "`$OBJECT`"
+    }
+    suspicious_factors: {
+      h: "Suspicious Factors"
+      n: "suspicious_factors"
+      r: true
+      sh: "Comprehensive security threat analysis and suspicious activity indicators."
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "ipn"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/ip/{ip}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "203.0.113.195"
+                k: "param"
+                n: "ip"
+                or: "ip"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/ip/{ip}"
+          q: {
+            exist: [
+              "ip"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ip"
+            }
+            {
+              var: "ip"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/ip"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/ip"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "ip"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

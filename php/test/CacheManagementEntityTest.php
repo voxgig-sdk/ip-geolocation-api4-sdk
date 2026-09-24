@@ -70,7 +70,7 @@ function cache_management_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["cache_management01", "cache_management02", "cache_management03", "check01", "check02", "check03"] as $k) {
+    foreach (["cache_management01", "cache_management02", "cache_management03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 
